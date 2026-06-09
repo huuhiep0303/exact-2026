@@ -30,23 +30,26 @@ class InferencePipeline:
         self.config = config
         self.device = next(model.parameters()).device
     
-    def generate(self, prompt: str) -> str:
+    def generate(self, messages: list) -> str:
         """
         Generate response for a prompt.
         
         Args:
-            prompt: Input prompt
+            messages: List of message dictionaries
             
         Returns:
-            Generated text
+            Generated text (response only, not including the prompt)
         """
-        # Tokenize
-        inputs = self.tokenizer(
-            prompt,
+        # Tokenize using chat template
+        inputs = self.tokenizer.apply_chat_template(
+            messages,
+            tokenize=True,
+            add_generation_prompt=True,
             return_tensors='pt',
-            max_length=self.config['model']['max_length'],
-            truncation=True
+            return_dict=True
         ).to(self.device)
+        
+        input_length = inputs['input_ids'].shape[1]
         
         # Generate
         with torch.no_grad():
@@ -61,14 +64,12 @@ class InferencePipeline:
                 eos_token_id=self.tokenizer.eos_token_id
             )
         
-        # Decode
-        generated_text = self.tokenizer.decode(
-            outputs[0],
+        # Extract only the generated tokens (after the input)
+        response_ids = outputs[0][input_length:]
+        response = self.tokenizer.decode(
+            response_ids,
             skip_special_tokens=True
-        )
-        
-        # Extract only the response part (after the prompt)
-        response = generated_text[len(prompt):].strip()
+        ).strip()
         
         return response
     
@@ -89,11 +90,32 @@ class InferencePipeline:
         Returns:
             Parsed response dictionary
         """
-        # Extract relevant premises
-        relevant_premises = extract_premise_indices(response, num_premises)
+        # Extract relevant premises — only from the "Relevant Premises" section
+        # to avoid picking up premise references from reasoning text
+        premises_section = ""
+        if "**Relevant Premises:**" in response:
+            start = response.find("**Relevant Premises:**")
+            # Find next section
+            end = response.find("**Reasoning:**", start)
+            if end == -1:
+                end = response.find("**Answer:**", start)
+            if end == -1:
+                end = len(response)
+            premises_section = response[start:end]
+        else:
+            premises_section = response
         
-        # Extract answer
-        answer = extract_answer(response, question_type)
+        relevant_premises = extract_premise_indices(premises_section, num_premises)
+        
+        # Extract answer — prioritize the "Answer:" section
+        answer_section = ""
+        if "**Answer:**" in response:
+            start = response.find("**Answer:**") + len("**Answer:**")
+            answer_section = response[start:].strip()
+        else:
+            answer_section = response
+        
+        answer = extract_answer(answer_section, question_type)
         
         # Extract reasoning (text between "Reasoning:" and "Answer:")
         reasoning = ""
@@ -128,8 +150,14 @@ class InferencePipeline:
         prompt = example['input']
         metadata = example['metadata']
         
+        # Apply Qwen chat template to match training
+        messages = [
+            {"role": "system", "content": "You are a logical reasoning expert."},
+            {"role": "user", "content": prompt}
+        ]
+        
         # Generate response
-        response = self.generate(prompt)
+        response = self.generate(messages)
         
         # Parse response
         parsed = self.parse_response(

@@ -8,6 +8,16 @@ from .data_loader import load_raw_data, save_processed_data
 from ..utils.helpers import format_premises
 
 
+SYSTEM_PROMPT = """You are an expert in formal logical reasoning. Your task is to analyze premises and answer questions using rigorous logical deduction.
+
+Rules:
+1. Select ONLY the MINIMUM premises needed to answer the question.
+2. Provide clear, step-by-step reasoning based strictly on the selected premises.
+3. For Yes/No questions: Answer "Yes" ONLY if the conclusion can be logically DERIVED from the premises. Answer "No" if the premises CONTRADICT the conclusion. Answer "Unknown" if the premises are INSUFFICIENT to determine the truth of the conclusion.
+4. For multiple choice questions: Select the option that is BEST supported by the premises.
+5. Your answer MUST be consistent with your reasoning. Do NOT contradict your own analysis."""
+
+
 class DataProcessor:
     """Process raw data into training format."""
     
@@ -28,33 +38,31 @@ class DataProcessor:
         question: str
     ) -> str:
         """
-        Create input prompt.
+        Create input prompt using Qwen chat template format.
         
         Args:
             premises: List of premises
             question: Question text
             
         Returns:
-            Formatted prompt
+            Formatted prompt string with chat template
         """
         premises_text = format_premises(premises)
         
-        prompt = f"""You are a logical reasoning expert. Given premises and a question, you must:
-1. Identify which premises are relevant
-2. Provide step-by-step reasoning
-3. Give the final answer
+        user_message = f"""Given the following premises, answer the question below.
 
 Premises:
 {premises_text}
 
 Question: {question}
 
-Provide your response in this format:
-**Relevant Premises:** [List premise numbers]
-**Reasoning:** [Step-by-step explanation in natural language]
-**Answer:** [A/B/C/D or Yes/No/Unknown]
-
-Response:"""
+Provide your response in EXACTLY this format:
+**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]
+**Reasoning:** [Step-by-step logical deduction using only the selected premises]
+**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]"""
+        
+        # Use Qwen2.5 chat template format
+        prompt = f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{user_message}<|im_end|>\n<|im_start|>assistant\n"
         
         return prompt
     
@@ -73,13 +81,13 @@ Response:"""
             answer: Answer
             
         Returns:
-            Formatted response
+            Formatted response with end token
         """
         relevant_premises_str = ", ".join([f"P{i}" for i in idx])
         
         response = f"""**Relevant Premises:** {relevant_premises_str}
 **Reasoning:** {explanation}
-**Answer:** {answer}"""
+**Answer:** {answer}<|im_end|>"""
         
         return response
     

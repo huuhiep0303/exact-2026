@@ -1,0 +1,27 @@
+2026-05-23 11:33:21 - trainer - INFO - ================================================================================
+2026-05-23 11:33:21 - trainer - INFO - Starting training
+2026-05-23 11:33:21 - trainer - INFO - ================================================================================
+2026-05-23 11:33:21 - trainer - INFO - Loading model: Qwen/Qwen2.5-7B-Instruct
+2026-05-23 11:35:37 - trainer - INFO - Loading training data...
+2026-05-23 11:35:37 - trainer - INFO - Train examples: 565
+2026-05-23 11:35:37 - trainer - INFO - Val examples: 121
+2026-05-23 11:44:48 - trainer - INFO - ================================================================================
+2026-05-23 11:44:48 - trainer - INFO - Starting training
+2026-05-23 11:44:48 - trainer - INFO - ================================================================================
+2026-05-23 11:44:48 - trainer - INFO - Loading model: Qwen/Qwen2.5-7B-Instruct
+2026-05-23 11:46:53 - trainer - INFO - Loading training data...
+2026-05-23 11:46:53 - trainer - INFO - Train examples: 565
+2026-05-23 11:46:53 - trainer - INFO - Val examples: 121
+2026-05-23 11:46:53 - trainer - INFO - Starting training...
+2026-05-23 11:49:20 - trainer - INFO - ================================================================================
+2026-05-23 11:49:20 - trainer - INFO - Starting training
+2026-05-23 11:49:20 - trainer - INFO - ================================================================================
+2026-05-23 11:49:20 - trainer - INFO - Loading model: Qwen/Qwen2.5-7B-Instruct
+2026-05-23 11:51:24 - trainer - INFO - Loading training data...
+2026-05-23 11:51:24 - trainer - INFO - Train examples: 565
+2026-05-23 11:51:24 - trainer - INFO - Val examples: 121
+2026-05-23 11:51:25 - trainer - INFO - Starting training...
+2026-05-23 12:16:16 - trainer - INFO - Saving final model...
+2026-05-23 12:16:17 - trainer - INFO - ================================================================================
+2026-05-23 12:16:17 - trainer - INFO - Training completed!
+2026-05-23 12:16:17 - trainer - INFO - ================================================================================

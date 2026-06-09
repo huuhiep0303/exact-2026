@@ -4,7 +4,7 @@ import torch
 from transformers import (
     Trainer,
     TrainingArguments,
-    DataCollatorForLanguageModeling
+    default_data_collator
 )
 from typing import Dict, Any
 from pathlib import Path
@@ -55,12 +55,6 @@ def train_model(config: Dict[str, Any]):
         max_length=config['model']['max_length']
     )
     
-    # Data collator
-    data_collator = DataCollatorForLanguageModeling(
-        tokenizer=tokenizer,
-        mlm=False
-    )
-    
     # Training arguments
     training_args = TrainingArguments(
         output_dir=config['training']['output_dir'],
@@ -71,6 +65,7 @@ def train_model(config: Dict[str, Any]):
         learning_rate=config['training']['learning_rate'],
         weight_decay=config['training']['weight_decay'],
         warmup_steps=config['training']['warmup_steps'],
+        warmup_ratio=config.get('training', {}).get('warmup_ratio', 0.0),
         logging_steps=config['training']['logging_steps'],
         eval_steps=config['training']['eval_steps'],
         save_steps=config['training']['save_steps'],
@@ -91,13 +86,14 @@ def train_model(config: Dict[str, Any]):
         remove_unused_columns=False
     )
     
-    # Initialize trainer
+    # Initialize trainer — use default_data_collator to preserve our custom labels
+    # (DataCollatorForLanguageModeling would override our label masking)
     trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=val_dataset,
-        data_collator=data_collator
+        data_collator=default_data_collator
     )
     
     # Train

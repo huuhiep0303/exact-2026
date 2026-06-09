@@ -2,3 +2,4 @@ __pycache__/
 venv/
 EXACT_Slides.pdf
 QA.pdf 
+outputs/checkpoints/

@@ -75,9 +75,12 @@ def extract_premise_indices(text: str, num_premises: int) -> List[int]:
 def extract_answer(text: str, question_type: str) -> str:
     """
     Extract answer from model output.
+    Expects text from the **Answer:** section (not the full response).
+    Takes the FIRST match since this is the actual answer, not a mention
+    in reasoning.
     
     Args:
-        text: Model output text
+        text: Model output text (ideally just the Answer section)
         question_type: "MCQ" or "YesNo"
         
     Returns:
@@ -85,13 +88,16 @@ def extract_answer(text: str, question_type: str) -> str:
     """
     import re
     
+    # Clean the text — remove markdown formatting
+    clean_text = text.strip().replace("**", "")
+    
     if question_type == "MCQ":
-        # Look for A, B, C, D
+        # Look for A, B, C, D — take FIRST match (the actual answer)
         pattern = r'\b([ABCD])\b'
-        matches = re.findall(pattern, text, re.IGNORECASE)
-        return matches[-1].upper() if matches else "Unknown"
+        matches = re.findall(pattern, clean_text)
+        return matches[0].upper() if matches else "Unknown"
     else:
-        # Look for Yes, No, Unknown
+        # Look for Yes, No, Unknown — take FIRST match
         pattern = r'\b(Yes|No|Unknown)\b'
-        matches = re.findall(pattern, text, re.IGNORECASE)
-        return matches[-1].capitalize() if matches else "Unknown"
+        matches = re.findall(pattern, clean_text, re.IGNORECASE)
+        return matches[0].capitalize() if matches else "Unknown"

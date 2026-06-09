@@ -33,7 +33,7 @@ image = (
     .add_local_dir(
         ".",
         remote_path="/workspace",
-        ignore=["venv", "EXACT2026_dataset_2026-05-15", "outputs/checkpoints", "outputs/logs", "outputs/results", "outputs/exploration", ".git"]
+        ignore=["venv", "__pycache__", "EXACT2026_dataset_2026-05-15", "outputs/checkpoints", "outputs/logs", "outputs/results", "outputs/exploration", ".git", ".codegraph"]
     )
 )
 
@@ -56,6 +56,14 @@ def setup_symlinks():
         if not os.path.exists(target):
             os.symlink(f"/modal_vol/{folder}", target)
 
+def clean_previous_run():
+    """Xóa kết quả từ lần chạy trước trên volume."""
+    for folder in ["checkpoints", "logs", "results"]:
+        vol_path = f"/modal_vol/{folder}"
+        if os.path.exists(vol_path):
+            shutil.rmtree(vol_path)
+        os.makedirs(vol_path, exist_ok=True)
+
 @app.function(
     image=image,
     gpu="A100", # Sử dụng GPU A100 cho quá trình fine-tuning LoRA
@@ -65,6 +73,7 @@ def setup_symlinks():
 def train_model():
     """Khởi chạy quá trình huấn luyện trên Modal Cloud."""
     os.chdir("/workspace")
+    clean_previous_run()
     setup_symlinks()
     
     print("🚀 Bắt đầu huấn luyện mô hình trên Modal Cloud (A100 GPU)...")
@@ -87,6 +96,33 @@ def evaluate_model():
 @app.function(
     image=image,
     gpu="A100",
+    timeout=86400,
+    volumes={"/modal_vol": volume}
+)
+def train_and_evaluate():
+    """Chạy training và evaluation trong một lần. Data đã được preprocess sẵn."""
+    os.chdir("/workspace")
+    clean_previous_run()
+    setup_symlinks()
+    
+    # Verify processed data exists
+    if not os.path.exists("outputs/processed_data/train_fixed.json"):
+        print("❌ Processed data not found! Need train_fixed.json")
+        return
+    
+    # Step 1: Train model
+    print("🚀 Bước 1: Huấn luyện mô hình...")
+    subprocess.run(["python", "03_train.py"], check=True)
+    
+    # Step 2: Evaluate model  
+    print("📊 Bước 2: Đánh giá mô hình...")
+    subprocess.run(["python", "04_evaluate.py"], check=True)
+    
+    print("✅ Hoàn tất tất cả các bước!")
+
+@app.function(
+    image=image,
+    gpu="A100",
     timeout=14400,
     volumes={"/modal_vol": volume}
 )
@@ -100,4 +136,6 @@ def run_inference():
 
 if __name__ == "__main__":
     print("Sử dụng CLI của Modal để chạy:")
-    print("modal run run_modal.py::train_model")
+    print("  modal run run_modal.py::train_and_evaluate  (train + evaluate)")
+    print("  modal run run_modal.py::train_model          (train only)")
+    print("  modal run run_modal.py::evaluate_model        (evaluate only)")

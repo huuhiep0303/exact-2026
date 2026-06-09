@@ -29,13 +29,15 @@ def load_model_and_tokenizer(
     # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(
         model_name,
-        trust_remote_code=True
+        trust_remote_code=True,
+        padding_side='right'
     )
     
-    # Set pad token if not exists
+    # Set pad token — for Qwen2.5, use <|endoftext|> as pad token
+    # to avoid conflicts with <|im_end|> (the eos_token used in chat template)
     if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-        tokenizer.pad_token_id = tokenizer.eos_token_id
+        tokenizer.pad_token = '<|endoftext|>'
+        tokenizer.pad_token_id = tokenizer.convert_tokens_to_ids('<|endoftext|>')
     
     # Quantization config
     if config['quantization']['load_in_4bit']:
@@ -99,14 +101,16 @@ def load_trained_model(
     model_name = config['model']['name']
     
     # Load tokenizer
+    # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(
         model_name,
-        trust_remote_code=True
+        trust_remote_code=True,
+        padding_side='right'
     )
     
     if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-        tokenizer.pad_token_id = tokenizer.eos_token_id
+        tokenizer.pad_token = '<|endoftext|>'
+        tokenizer.pad_token_id = tokenizer.convert_tokens_to_ids('<|endoftext|>')
     
     # Quantization config
     if config['quantization']['load_in_4bit']:
