@@ -1,0 +1,31 @@
+model_name: Qwen/Qwen2.5-7B-Instruct
+dataset_path: dataset_2/Physics_Problems_Text_Only.csv
+processed_dir: finetuning/data/processed
+train_file: finetuning/data/processed/train.jsonl
+val_file: finetuning/data/processed/val.jsonl
+test_file: finetuning/data/processed/test.jsonl
+output_dir: finetuning/runs/qwen2_5_7b_local_smoke
+
+seed: 42
+train_ratio: 0.8
+val_ratio: 0.1
+test_ratio: 0.1
+
+load_in_4bit: true
+max_seq_length: 512
+num_train_epochs: 1
+max_steps: 20
+learning_rate: 2e-4
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 4
+warmup_steps: 2
+logging_steps: 1
+save_strategy: steps
+eval_strategy: no
+load_best_model_at_end: false
+
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.0
+target_modules: q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj
+

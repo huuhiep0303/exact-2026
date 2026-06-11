@@ -1,0 +1,48 @@
+.env
+.env.*
+!.env.example
+qdrant_storage/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.venv-*/
+.venv*/
+
+# Local/vector DB and embedding caches
+.cache/
+cache/
+models/
+ollama/
+hf_cache/
+huggingface/
+
+# Large vendored dependencies and local builds
+external/
+llama.cpp/
+build/
+dist/
+
+# Phase 5 LoRA fine-tuning generated artifacts
+finetuning/data/processed/
+finetuning/data/raw/
+finetuning/data/cache/
+finetuning/runs/
+finetuning/adapters/
+wandb/
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.bin
+*.ckpt
+
+# Generated evaluation artifacts
+eval_results/**/*.jsonl
+eval_results/**/pipeline_guard*.md
+eval_results/**/debug*.md
+eval_results/**/debug*.jsonl
+
+# Runtime logs
+*.log
+logs/

@@ -1,0 +1,596 @@
+{
+  "knowledge_base": {
+    "version": "1.0",
+    "source": "Extracted & curated from Physics_Problems_Text_Only.csv CoT analysis",
+    "topics": [
+      {
+        "prefix": "LD",
+        "topic": "Electrostatics — Coulomb Force & Electric Field",
+        "laws": [
+          {
+            "name": "Coulomb's Law",
+            "formula": "F = k * |q1 * q2| / r^2",
+            "latex": "F = k \\frac{|q_1 q_2|}{r^2}",
+            "constant": "k = 9e9 N·m²/C² (in vacuum/air)",
+            "description": "Force between two point charges",
+            "units": "F [N], q [C], r [m]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Electric Field from point charge",
+            "formula": "E = k * |q| / r^2",
+            "latex": "E = k \\frac{|q|}{r^2}",
+            "description": "Electric field magnitude at distance r from charge q",
+            "units": "E [V/m or N/C], q [C], r [m]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Superposition Principle",
+            "formula": "F_net = vector_sum(F1, F2, ..., Fn)",
+            "description": "Net force/field is vector sum of individual contributions",
+            "note": "Must add as VECTORS, not scalars",
+            "answer_type": "qualitative"
+          },
+          {
+            "name": "Resultant of two forces — same direction",
+            "formula": "F = F1 + F2",
+            "description": "Forces in same direction: add magnitudes",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Resultant of two perpendicular forces",
+            "formula": "F = sqrt(F1^2 + F2^2)",
+            "latex": "F = \\sqrt{F_1^2 + F_2^2}",
+            "description": "Pythagorean theorem for perpendicular forces",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Resultant of two forces at angle theta",
+            "formula": "F = sqrt(F1^2 + F2^2 + 2*F1*F2*cos(theta))",
+            "latex": "F = \\sqrt{F_1^2 + F_2^2 + 2F_1 F_2 \\cos\\theta}",
+            "description": "Law of cosines for force composition",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Force on test charge in E field",
+            "formula": "F = q0 * E",
+            "description": "Force on charge q0 placed in electric field E",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Force on a third charge by two source charges",
+            "formula": "F13 = k*|q1*q3|/CA^2; F23 = k*|q2*q3|/CB^2; F_net = vector_sum(F13, F23)",
+            "latex": "F_{13}=k\\frac{|q_1q_3|}{CA^2}, F_{23}=k\\frac{|q_2q_3|}{CB^2}",
+            "description": "Use when a third/test charge q3 is placed at point C and the question asks for the force acting on q3. Compute each Coulomb force and add as vectors.",
+            "units": "F [N], q [C], distance [m]",
+            "note": "Do not use point-where-E=0 or point-where-V=0 formulas for this task unless the question explicitly asks for such a point.",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Direction of Coulomb force by charge signs",
+            "formula": "same signs repel; opposite signs attract",
+            "description": "Use before vector addition. Determine whether each force on the test charge points toward or away from the source charge.",
+            "note": "For collinear A-C-B geometry, if both forces on q3 point the same way then add magnitudes; if they point opposite ways then subtract magnitudes.",
+            "answer_type": "qualitative"
+          },
+          {
+            "name": "Collinear geometry for three points",
+            "formula": "if CA + CB = AB then C lies between A and B",
+            "description": "Use to infer the line geometry in Coulomb force problems with distances AB, CA, and CB.",
+            "note": "Once geometry is known, combine Coulomb forces by direction along the line.",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Net Coulomb force with angle at the test charge",
+            "formula": "F_net = sqrt(F13^2 + F23^2 + 2*F13*F23*cos(theta))",
+            "latex": "F=\\sqrt{F_{13}^2+F_{23}^2+2F_{13}F_{23}\\cos\\theta}",
+            "description": "Use when two Coulomb force vectors acting on the same charge form an angle theta at that charge.",
+            "units": "F [N], theta [rad or degree converted before cos]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Point where E = 0 (two charges same sign)",
+            "formula": "k*|q1|/r1^2 = k*|q2|/r2^2, r1+r2 = d",
+            "description": "Use only when the question asks for the point/location where net electric field is zero. For same-sign charges, the zero-field point lies between them.",
+            "answer_type": "symbolic"
+          },
+          {
+            "name": "Point where E = 0 (two charges opposite sign)",
+            "formula": "k*|q1|/r1^2 = k*|q2|/r2^2, outside the segment (closer to smaller charge)",
+            "description": "Use only when the question asks for the point/location where net electric field is zero. For opposite-sign charges, the zero-field point lies outside the segment on the side of the smaller charge.",
+            "answer_type": "symbolic"
+          }
+        ]
+      },
+      {
+        "prefix": "CH",
+        "topic": "AC Circuits — RLC Series/Parallel",
+        "laws": [
+          {
+            "name": "Impedance of RLC series circuit",
+            "formula": "Z = sqrt(R^2 + (X_L - X_C)^2)",
+            "latex": "Z = \\sqrt{R^2 + (X_L - X_C)^2}",
+            "units": "Z [Ω]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Inductive reactance",
+            "formula": "X_L = omega * L = 2 * pi * f * L",
+            "latex": "X_L = \\omega L = 2\\pi f L",
+            "units": "X_L [Ω], L [H], f [Hz]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Capacitive reactance",
+            "formula": "X_C = 1 / (omega * C) = 1 / (2 * pi * f * C)",
+            "latex": "X_C = \\frac{1}{\\omega C} = \\frac{1}{2\\pi f C}",
+            "units": "X_C [Ω], C [F]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "RMS current",
+            "formula": "I = U / Z",
+            "units": "I [A], U [V], Z [Ω]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Voltage across components",
+            "formula": "U_R = I*R,  U_L = I*X_L,  U_C = I*X_C",
+            "description": "Voltage across resistor, inductor, capacitor",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Active (real) power",
+            "formula": "P = U * I * cos(phi) = I^2 * R",
+            "latex": "P = UI\\cos\\varphi = I^2 R",
+            "units": "P [W]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Power factor",
+            "formula": "cos(phi) = R / Z",
+            "latex": "\\cos\\varphi = \\frac{R}{Z}",
+            "description": "dimensionless [0, 1]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Apparent power",
+            "formula": "S = U * I",
+            "units": "S [VA]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Reactive power",
+            "formula": "Q_r = U * I * sin(phi)",
+            "units": "Q_r [VAR]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Resonance condition",
+            "formula": "X_L = X_C  =>  omega_0 = 1 / sqrt(L*C)",
+            "latex": "\\omega_0 = \\frac{1}{\\sqrt{LC}}",
+            "description": "At resonance: Z_min = R, I_max = U/R",
+            "answer_type": "symbolic"
+          },
+          {
+            "name": "Resonant frequency",
+            "formula": "f_0 = 1 / (2 * pi * sqrt(L * C))",
+            "latex": "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}",
+            "units": "f_0 [Hz]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Quality factor",
+            "formula": "Q = (1/R) * sqrt(L/C) = omega_0 * L / R",
+            "latex": "Q = \\frac{1}{R}\\sqrt{\\frac{L}{C}}",
+            "description": "dimensionless, measures sharpness of resonance",
+            "answer_type": "quantitative"
+          }
+        ]
+      },
+      {
+        "prefix": "NL",
+        "topic": "LC Oscillations & Electromagnetic Energy",
+        "laws": [
+          {
+            "name": "Energy stored in capacitor",
+            "formula": "W_C = 0.5 * C * U^2 = Q^2 / (2*C)",
+            "latex": "W_C = \\frac{1}{2}CU^2 = \\frac{Q^2}{2C}",
+            "units": "W_C [J]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Energy stored in inductor",
+            "formula": "W_L = 0.5 * L * I^2",
+            "latex": "W_L = \\frac{1}{2}LI^2",
+            "units": "W_L [J]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Total energy conservation in LC",
+            "formula": "W_total = W_C + W_L = 0.5*C*U_max^2 = 0.5*L*I_max^2",
+            "description": "Total energy is constant (no resistance)",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Angular frequency of LC oscillation",
+            "formula": "omega_0 = 1 / sqrt(L * C)",
+            "latex": "\\omega_0 = \\frac{1}{\\sqrt{LC}}",
+            "units": "omega [rad/s]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Period of LC oscillation",
+            "formula": "T = 2 * pi * sqrt(L * C)",
+            "latex": "T = 2\\pi\\sqrt{LC}",
+            "units": "T [s]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Oscillation frequency",
+            "formula": "f = 1 / (2 * pi * sqrt(L * C))",
+            "latex": "f = \\frac{1}{2\\pi\\sqrt{LC}}",
+            "units": "f [Hz]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Charge as function of time",
+            "formula": "q(t) = Q_max * cos(omega_0 * t + phi)",
+            "description": "Oscillating charge on capacitor",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "When W_C = W_L (equal energy split)",
+            "formula": "U = U_max / sqrt(2),  I = I_max / sqrt(2)",
+            "description": "At this moment half energy in each component",
+            "answer_type": "quantitative"
+          }
+        ]
+      },
+      {
+        "prefix": "TD",
+        "topic": "Parallel-Plate Capacitor",
+        "laws": [
+          {
+            "name": "Capacitance of parallel-plate capacitor",
+            "formula": "C = epsilon_0 * epsilon * A / d",
+            "latex": "C = \\frac{\\varepsilon_0 \\varepsilon A}{d}",
+            "constant": "epsilon_0 = 8.854e-12 F/m",
+            "units": "C [F], A [m²], d [m]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Charge on capacitor",
+            "formula": "Q = C * U",
+            "units": "Q [C], C [F], U [V]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Energy stored in capacitor",
+            "formula": "W = 0.5 * C * U^2 = Q^2/(2*C) = Q*U/2",
+            "latex": "W = \\frac{1}{2}CU^2 = \\frac{Q^2}{2C}",
+            "units": "W [J]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Electric field between plates",
+            "formula": "E = U / d",
+            "units": "E [V/m], U [V], d [m]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Capacitors in series",
+            "formula": "1/C_eq = 1/C1 + 1/C2 + ...",
+            "description": "Same charge on each, voltages add",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Capacitors in parallel",
+            "formula": "C_eq = C1 + C2 + ...",
+            "description": "Same voltage across each, charges add",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Effect of dielectric (disconnected from source)",
+            "formula": "Q = const, C_new = epsilon * C0, U_new = Q / C_new = U0 / epsilon, W_new = W0 / epsilon",
+            "description": "Disconnected: Q unchanged, U and W decrease",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Effect of dielectric (connected to source)",
+            "formula": "U = const, C_new = epsilon * C0, Q_new = C_new * U, W_new = epsilon * W0",
+            "description": "Connected: U unchanged, Q and W increase",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Merging capacitors (like-sign plates together)",
+            "formula": "U_final = (Q1 + Q2) / (C1 + C2)",
+            "description": "Total charge divided by total capacitance",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Merging capacitors (unlike-sign plates together)",
+            "formula": "U_final = |Q1 - Q2| / (C1 + C2)",
+            "description": "Charge difference divided by total capacitance",
+            "answer_type": "quantitative"
+          }
+        ]
+      },
+      {
+        "prefix": "DDT",
+        "topic": "Magnetism & Electromagnetic Induction",
+        "laws": [
+          {
+            "name": "Magnetic field inside solenoid",
+            "formula": "B = mu_0 * n * I",
+            "latex": "B = \\mu_0 n I",
+            "constant": "mu_0 = 4*pi*1e-7 H/m ≈ 1.2566e-6 H/m",
+            "note": "n = N/l (turns per meter)",
+            "units": "B [T]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Turns per unit length",
+            "formula": "n = N / l",
+            "units": "n [turns/m], N [turns], l [m]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Magnetic flux",
+            "formula": "Phi = B * A * cos(theta)",
+            "latex": "\\Phi = BA\\cos\\theta",
+            "units": "Phi [Wb = T·m²]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Inductance of solenoid",
+            "formula": "L = mu_0 * N^2 * A / l",
+            "latex": "L = \\frac{\\mu_0 N^2 A}{l}",
+            "units": "L [H]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Induced EMF (Faraday's law)",
+            "formula": "e = -d(Phi)/dt = -L * dI/dt",
+            "latex": "e = -\\frac{d\\Phi}{dt} = -L\\frac{dI}{dt}",
+            "units": "e [V]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Average induced EMF",
+            "formula": "e_avg = -Delta_Phi / Delta_t",
+            "description": "Used when flux changes uniformly",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Energy stored in inductor",
+            "formula": "W_L = 0.5 * L * I^2",
+            "units": "W_L [J]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Magnetic energy density",
+            "formula": "w = B^2 / (2 * mu_0)",
+            "units": "w [J/m³]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Lorentz force on moving charge",
+            "formula": "F = q * v * B * sin(alpha)",
+            "units": "F [N], q [C], v [m/s], B [T]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Force on current-carrying wire",
+            "formula": "F = B * I * l * sin(alpha)",
+            "units": "F [N], I [A], l [m], B [T]",
+            "answer_type": "quantitative"
+          }
+        ]
+      },
+      {
+        "prefix": "THCB",
+        "topic": "Measurement Errors & Experimental Physics",
+        "laws": [
+          {
+            "name": "Absolute error",
+            "formula": "Delta_X = |X_measured - X_true|",
+            "description": "Absolute deviation from true value",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Relative error (percentage error)",
+            "formula": "delta_X = Delta_X / X * 100%",
+            "description": "Ratio of absolute error to value, expressed as %",
+            "answer_type": "symbolic"
+          },
+          {
+            "name": "Instrument error",
+            "formula": "Delta_instrument = LCNS",
+            "description": "LCNS = Least Count (smallest division). In Vietnamese physics, instrument error equals the FULL least count.",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Mean value from repeated measurements",
+            "formula": "x_bar = (x1 + x2 + ... + xn) / n",
+            "description": "Average of n measurements",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Random error (max deviation)",
+            "formula": "Delta_random = max(|xi - x_bar|)",
+            "description": "Maximum absolute deviation from the mean. Vietnamese standard uses MAX, not average deviation.",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Total measurement error",
+            "formula": "Delta_total = max(Delta_random, Delta_instrument)",
+            "description": "The total error is the larger of random error and instrument error",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Error propagation — sum/difference",
+            "formula": "Z = X ± Y  =>  Delta_Z = Delta_X + Delta_Y",
+            "description": "Errors always ADD for sum or difference",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Error propagation — product/quotient",
+            "formula": "Z = X * Y or X/Y  =>  delta_Z = delta_X + delta_Y",
+            "description": "Relative errors add for multiplication/division",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Error propagation — power",
+            "formula": "Z = X^n  =>  delta_Z = n * delta_X",
+            "description": "Multiply relative error by the exponent",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Resistance from V and I",
+            "formula": "R = U / I,  delta_R = delta_U + delta_I",
+            "description": "Ohm's law with error propagation",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Power error propagation",
+            "formula": "P = V * I,  delta_P = delta_V + delta_I",
+            "description": "Power measurement error",
+            "answer_type": "quantitative"
+          }
+        ]
+      },
+      {
+        "prefix": "DT",
+        "topic": "Electric Potential & Voltage",
+        "laws": [
+          {
+            "name": "Electric potential from point charge",
+            "formula": "V = k * q / r",
+            "latex": "V = \\frac{kq}{r}",
+            "units": "V [Volt], q [C], r [m]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Superposition of potential",
+            "formula": "V_total = V1 + V2 + ... (scalar, not vector sum)",
+            "description": "Potential is SCALAR — just add algebraically",
+            "answer_type": "qualitative"
+          },
+          {
+            "name": "Voltage (potential difference)",
+            "formula": "U_AB = V_A - V_B",
+            "description": "Potential difference between points A and B",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Relation between E and V along field line",
+            "formula": "E = -dV/dr  (or U_AB = E * d for uniform field)",
+            "description": "E points from high V to low V",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Electric field between capacitor plates (uniform)",
+            "formula": "E = U / d",
+            "units": "E [V/m]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "E ratio at two points on same field line",
+            "formula": "E_A / E_B = (r_B / r_A)^2",
+            "description": "Point charge: E inversely proportional to r squared",
+            "answer_type": "symbolic"
+          },
+          {
+            "name": "Point where V = 0 (two opposite charges)",
+            "formula": "k*q1/r1 + k*q2/r2 = 0  =>  q1/r1 = -q2/r2",
+            "description": "For charges +q and -q: point divides distance in ratio |q1|:|q2|",
+            "answer_type": "symbolic"
+          },
+          {
+            "name": "Work done by electric force",
+            "formula": "W = q * U_AB = q * (V_A - V_B)",
+            "units": "W [J]",
+            "answer_type": "quantitative"
+          }
+        ]
+      },
+      {
+        "prefix": "CHLT",
+        "topic": "AC Circuit Resonance (Advanced)",
+        "laws": [
+          {
+            "name": "Resonance condition",
+            "formula": "X_L = X_C  =>  2*pi*f0*L = 1/(2*pi*f0*C)",
+            "description": "Verify by computing both reactances and comparing",
+            "answer_type": "symbolic"
+          },
+          {
+            "name": "Resonant frequency",
+            "formula": "f_0 = 1 / (2 * pi * sqrt(L * C))",
+            "units": "f_0 [Hz]",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "At resonance: minimum impedance",
+            "formula": "Z_min = R",
+            "description": "Reactive components cancel exactly",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "At resonance: maximum current",
+            "formula": "I_max = U / R",
+            "description": "Current is maximum at resonance",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "At resonance: maximum power",
+            "formula": "P_max = U^2 / R",
+            "description": "All power consumed by resistance",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Quality factor",
+            "formula": "Q_factor = omega_0 * L / R = 1 / (omega_0 * C * R)",
+            "latex": "Q = \\frac{\\omega_0 L}{R}",
+            "description": "Higher Q = sharper resonance peak",
+            "answer_type": "quantitative"
+          },
+          {
+            "name": "Yes/No resonance answer format",
+            "formula": "Compare f_given with f_0 = 1/(2*pi*sqrt(L*C)) using tolerance",
+            "description": "For Yes/No resonance questions: answer must be the string 'Yes' or 'No', not True/False or a number. Unit is '-'.",
+            "answer_type": "yes_no"
+          }
+        ]
+      }
+    ],
+    "unit_conversions": {
+      "description": "Always convert to SI before calculation",
+      "conversions": [
+        "μF = 1e-6 F",
+        "nF = 1e-9 F",
+        "pF = 1e-12 F",
+        "mC = 1e-3 C",
+        "μC = 1e-6 C",
+        "nC = 1e-9 C",
+        "cm = 1e-2 m",
+        "mm = 1e-3 m",
+        "mH = 1e-3 H",
+        "μH = 1e-6 H",
+        "kHz = 1e3 Hz",
+        "MHz = 1e6 Hz",
+        "mΩ = 1e-3 Ω",
+        "kΩ = 1e3 Ω",
+        "MΩ = 1e6 Ω"
+      ]
+    },
+    "constants": {
+      "k_coulomb": "9e9 N·m²/C²",
+      "epsilon_0": "8.854e-12 F/m",
+      "mu_0": "4*pi*1e-7 H/m ≈ 1.2566e-6 H/m",
+      "pi": "3.14159265",
+      "e_electron": "1.6e-19 C"
+    }
+  }
+}

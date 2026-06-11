@@ -1,0 +1,644 @@
+# Pipeline Evaluation Report
+
+## Summary
+
+| Metric | Value |
+| --- | ---: |
+| Total | 20 |
+| Final accuracy | 1/20 (5.00%) |
+| Exact full-string match | 0/20 (0.00%) |
+| Numeric value match | 2/20 (10.00%) |
+| Strict unit match | 4/20 (20.00%) |
+| Physical equivalent match | 1/20 (5.00%) |
+| Runtime errors | 0/20 (0.00%) |
+| Average time per row | 5.51s |
+
+## Results Table
+
+| # | ID | Status | Gold | Prediction | Confidence | Time |
+| ---: | --- | --- | --- | --- | ---: | ---: |
+| 1 | DT001 | MISS | 0 V/m | 3.2e-05 N/C | 0.81 | 8.50s |
+| 2 | DT002 | OK | 640000 V/m | 640000 N/C | 0.99 | 5.19s |
+| 3 | DT003 | MISS | 351000 V/m |  | 0.54 | 6.74s |
+| 4 | DT004 | MISS | 0.7 N | 2.7932e-11 N | 0.99 | 3.74s |
+| 5 | DT005 | MISS | 0.094 N |  | 0.54 | 6.57s |
+| 6 | DT006 | MISS | 0.168 N |  | 0.54 | 6.59s |
+| 7 | DT007 | MISS | a/ \sqrt{2} m | 4.5e+09 J | 0.81 | 5.40s |
+| 8 | DT008 | MISS | /frac{2k \abs{q} h}{(a^2 + h^2)^1.5} V/m | 1.591e+09 N/C | 0.81 | 5.34s |
+| 9 | DT019 | MISS | 0 V/m |  | 0.54 | 6.58s |
+| 10 | DT020 | MISS | \frac{4 \sqrt{2} k q}{\epsilon a^2} V/m |  | 0.54 | 6.54s |
+| 11 | DT025 | MISS | 60 cm |  | 0.54 | 6.57s |
+| 12 | DT027 | MISS | 8 cm | 0.96 cm | 0.99 | 4.86s |
+| 13 | DT028 | MISS | 4 cm | 0.06 cm | 0.99 | 5.83s |
+| 14 | DT029 | MISS | 36 cm | 144 cm | 0.99 | 2.86s |
+| 15 | DT030 | MISS | 48 cm | 0.09 m | 0.81 | 3.12s |
+| 16 | DT033 | MISS | 6300000 V/m |  | 0.54 | 6.58s |
+| 17 | DT034 | MISS | 27.6 cm | 0.075 m | 0.81 | 3.90s |
+| 18 | DT035 | MISS | 45.10^{5} V/m | 3.9912e+06 N/C | 0.99 | 3.55s |
+| 19 | DT036 | MISS | 12 cm |  | 0.54 | 6.54s |
+| 20 | DT037 | MISS | 8 cm | 8 m | 0.81 | 5.16s |
+
+## Miss Details
+
+### 1. MISS DT001
+
+**Question:** Two point charges, q1 and q2, are placed at points A and B, separated by 10 cm in air. Both charges have a magnitude of q1 = q2 = 16 x 10^-8 C. Determine the electric field strength produced by these two point charges at point M, where MA = MB = 5 cm.
+
+**Gold:** `0 V/m`
+
+**Prediction:** `3.2e-05 N/C`
+
+**Confidence:** `0.81`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Excerpt from DT_electric_field_vector (part 8), the computation yields a result of 3.2e-05, in units of N/C.
+
+**Retrieved Premises:**
+
+- Excerpt from DT_electric_field_vector (part 8): | Use: DT midpoint symmetry. At the midpoint between two equal same-sign charges, electric fields have equal magnitude and opposite directions, so E_net = 0. At the midpoint between two equal opposite-sign charges, the fields point in the same direction from positive toward negative and magnitudes add. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 5): | Use: LD midpoint symmetry. At the midpoint between two equal same-sign charges, electric fields cancel. At the midpoint between equal opposite-sign charges, electric fields add in the same direction from positive toward negative. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 7): | Use: DT collinear geometry detection. If two smaller named distances add to the larger named distance, the three points are collinear and the shared point lies between the two endpoints. For example, if AM + MB = AB, then M lies between A and B. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given parameters: two point charges q1 = q2 = 16 x 10^-8 C, located at points A and B, separated by 10 cm, and the point of interest M is the midpoint of AB, meaning MA = MB = 5 cm.
+2. Step 2: Recall the formula for the electric field due to a point charge: E = k*|q|/r^2, where k is the Coulomb constant (approximately 9 x 10^9 N*m^2/C^2).
+3. Step 3: Calculate the electric field due to each charge at point M: E1 = E2 = k*|q1|/r^2 = (9 x 10^9)*(16 x 10^-8)/(0.05)^2 = 288000 N/C.
+4. Step 4: Since both charges are positive and point M is equidistant from both charges, the electric fields E1 and E2 will point away from the charges in the same direction.
+5. Step 5: Therefore, the net electric field at point M is the sum of the individual electric fields: E_net = E1 + E2 = 288000 + 288000 = 576000 N/C.
+
+### 2. MISS DT003
+
+**Question:** Two point charges, q1 = q2 = 16 x 10^-8 C, are placed at points A and B, which are 10 cm apart in the air. Determine the electric field strength caused by these two point charges at point C, given that AC = BC = 8 cm.
+
+**Gold:** `351000 V/m`
+
+**Prediction:** ``
+
+**Confidence:** `0.54`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Excerpt from DT_electric_field_vector (part 10).
+
+**Retrieved Premises:**
+
+- Excerpt from DT_electric_field_vector (part 10): | Use: DT perpendicular bisector equal same-sign charges. For q1 = q2 = q with AB = 2a and point M at distance h from AB on the perpendicular bisector, the components along AB cancel and the components along the bisector add: E = 2*k*abs(q)*h/(a^2 + h^2)^(3/2). | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from DT_electric_potential_voltage (part 13): | Use: DT perpendicular bisector. Points on the perpendicular bisector are equidistant from the two charges. For equal opposite charges, potential contributions cancel. | Note: Source: reference_docs/DT_electric_potential_voltage.md | Answer type: reference
+- Excerpt from DT_electric_potential_voltage (part 5): | Use: DT zero potential with equal opposite charges. The midpoint has V = 0, and every point on the perpendicular bisector has V = 0 if distances are equal. | Note: Source: reference_docs/DT_electric_potential_voltage.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given parameters: two charges q1 = q2 = 16 x 10^-8 C, distance AB = 10 cm, and point C is equidistant from A and B (AC = BC = 8 cm).
+2. Step 2: Convert the distance AB to meters: AB = 10 cm = 0.10 m.
+3. Step 3: Calculate the distance from C to the midpoint M of AB: CM = sqrt((AB/2)^2 + AC^2) = sqrt(0.05^2 + 0.08^2) = 0.09434 m.
+4. Step 4: Calculate the magnitude of the electric field at C due to each charge: E_C1 = E_C2 = k*|q1|/CM^2 = 9 x 10^9 x (16 x 10^-8)/(0.09434^2) = 1.862 x 10^4 N/C.
+5. Step 5: Determine the direction of the electric fields: since both charges have the same sign, the electric fields at C will point away from each charge.
+6. Step 6: Resolve the electric fields into components parallel and perpendicular to AB: E_C1_parallel = E_C1*cos(theta) = 1.862 x 10^4 x 0.05/0.09434 = 1.000 x 10^4 N/C; E_C1_perpendicular = E_C1*sin(theta) = 1.862 x 10^4 x 0.08/0.09434 = 1.600 x 10^4 N/C.
+7. Step 7: The net electric field at C is the vector sum of the individual electric fields: E_net = sqrt(E_C1_parallel^2 + E_C2_parallel^2 + 2*E_C1_parallel*E_C2_parallel) = 1.414 x 10^4 N/C.
+
+### 3. MISS DT004
+
+**Question:** At two points A and B, separated by 10 cm in air, two electric charges q1 = q2 = 16 x 10^-8 C are placed. Determine the electric force acting on q3 = 2 x 10^-6 C, placed at C, given that AC = BC = 8 cm.
+
+**Gold:** `0.7 N`
+
+**Prediction:** `2.7932e-11 N`
+
+**Confidence:** `0.99`
+
+**Match Flags:** exact=False, numeric=False, unit=True, physical_equiv=False
+
+**Explanation:**
+
+Using Force on a third charge by two source charges, the computation yields a result of 2.7932e-11, in units of N.
+
+**Retrieved Premises:**
+
+- Force on a third charge by two source charges: F13 = k*|q1*q3|/CA^2; F23 = k*|q2*q3|/CB^2; F_net = vector_sum(F13, F23) | Use: Use when a third/test charge q3 is placed at point C and the question asks for the force acting on q3. Compute each Coulomb force and add as vectors. | Note: Do not use point-where-E=0 or point-where-V=0 formulas for this task unless the question explicitly asks for such a point. | Answer type: quantitative
+- Force on test charge in E field: F = q0 * E | Use: Force on charge q0 placed in electric field E | Answer type: quantitative
+- Excerpt from DT_electric_field_vector (part 12): | Use: DT force on a test charge from electric field. If the question asks for the force on q3 at a point, compute the net electric field E_net at that point first. The force magnitude is F = abs(q3)*abs(E_net). If direction is not requested, return a positive magnitude in N. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given charges and distances.
+2. Step 2: Convert all non-SI quantities before substituting into the Coulomb force law.
+3. Step 3: Calculate the force due to each charge individually.
+4. Step 4: Since the charges are identical and the distances are equal, the magnitudes of the two forces are the same.
+5. Step 5: The net force is the vector sum of these two forces, which in this symmetric case means the forces add as scalars.
+6. Step 6: The magnitude of the net force is approximately 0.009216 N.
+
+### 4. MISS DT005
+
+**Question:** At two points A and B, 10 cm apart in the air, two point charges are placed: q1 = 6 x 10^-6 C and q2 = -6 x 10^-6 C. Determine the electric field strength caused by these two charges at point C, given that AC = BC = 12 cm. Calculate the electric force acting on a charge q3 = -3 x 10^-8 C placed at C.
+
+**Gold:** `0.094 N`
+
+**Prediction:** ``
+
+**Confidence:** `0.54`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Force on a third charge by two source charges.
+
+**Retrieved Premises:**
+
+- Force on a third charge by two source charges: F13 = k*|q1*q3|/CA^2; F23 = k*|q2*q3|/CB^2; F_net = vector_sum(F13, F23) | Use: Use when a third/test charge q3 is placed at point C and the question asks for the force acting on q3. Compute each Coulomb force and add as vectors. | Note: Do not use point-where-E=0 or point-where-V=0 formulas for this task unless the question explicitly asks for such a point. | Answer type: quantitative
+- Excerpt from DT_electric_field_vector (part 12): | Use: DT force on a test charge from electric field. If the question asks for the force on q3 at a point, compute the net electric field E_net at that point first. The force magnitude is F = abs(q3)*abs(E_net). If direction is not requested, return a positive magnitude in N. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Force on test charge in E field: F = q0 * E | Use: Force on charge q0 placed in electric field E | Answer type: quantitative
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the charges and their positions relative to point C. Charge q1 = 6 x 10^-6 C is located at A, and charge q2 = -6 x 10^-6 C is located at B. Point C is equidistant from A and B, meaning AC = BC = 12 cm.
+2. Step 2: Convert the distances from centimeters to meters. AC = BC = 12 cm = 0.12 m.
+3. Step 3: Recall the formula for the electric field due to a point charge: E = k*|q|/r^2, where k is Coulomb's constant (approximately 9 x 10^9 N·m^2/C^2).
+4. Step 4: Calculate the magnitude of the electric field due to each charge at point C. The magnitude of the electric field due to charge q1 is E1 = k*|q1|/AC^2 = (9 x 10^9) × (6 x 10^-6) / (0.12)^2 = 375000 N/C. Similarly, the magnitude of the electric field due to charge q2 is E2 = k*|q2|/BC^2 = (9 x 10^9) × (6 x 10^-6) / (0.12)^2 = 375000 N/C.
+5. Step 5: Determine the direction of the electric fields due to each charge at point C. Since charge q1 is positive, its electric field points away from it, and since charge q2 is negative, its electric field points towards it. Therefore, the electric fields due to charges q1 and q2 at point C are in opposite directions.
+6. Step 6: Calculate the net electric field at point C. Because the electric fields due to charges q1 and q2 are in opposite directions, the net electric field is the difference between their magnitudes: E_net = |E1 - E2| = |375000 - 375000| = 0 N/C.
+7. Step 7: Calculate the electric force acting on charge q3 = -3 x 10^-8 C placed at point C. The magnitude of the electric force is F = |q3| × E_net = (3 x 10^-8) × 0 =
+
+### 5. MISS DT006
+
+**Question:** Two point charges, q1 = 4 x 10^-6 C and q2 = -6.4 x 10^-6 C, are placed at points A and B respectively, which are 20 cm apart in air. Determine the electric field strength due to these two charges at point C, given that AC = 12 cm and BC = 16 cm. Also, determine the electric force acting on a charge q3 = -5 x 10^-8 C when placed at C.
+
+**Gold:** `0.168 N`
+
+**Prediction:** ``
+
+**Confidence:** `0.54`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Force on a third charge by two source charges.
+
+**Retrieved Premises:**
+
+- Force on a third charge by two source charges: F13 = k*|q1*q3|/CA^2; F23 = k*|q2*q3|/CB^2; F_net = vector_sum(F13, F23) | Use: Use when a third/test charge q3 is placed at point C and the question asks for the force acting on q3. Compute each Coulomb force and add as vectors. | Note: Do not use point-where-E=0 or point-where-V=0 formulas for this task unless the question explicitly asks for such a point. | Answer type: quantitative
+- Excerpt from DT_electric_field_vector (part 12): | Use: DT force on a test charge from electric field. If the question asks for the force on q3 at a point, compute the net electric field E_net at that point first. The force magnitude is F = abs(q3)*abs(E_net). If direction is not requested, return a positive magnitude in N. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Force on test charge in E field: F = q0 * E | Use: Force on charge q0 placed in electric field E | Answer type: quantitative
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the charges and their positions. Charge q1 = 4 x 10^-6 C is at point A, and charge q2 = -6.4 x 10^-6 C is at point B. Point C is located such that AC = 12 cm and BC = 16 cm.
+2. Step 2: Convert all non-SI quantities before substituting into the electric field formula. The distance AB = 20 cm = 0.20 m, AC = 12 cm = 0.12 m, and BC = 16 cm = 0.16 m.
+3. Step 3: Calculate the electric field magnitudes due to each charge at point C. The electric field due to charge q1 is E1 = k*|q1|/AC^2 and the electric field due to charge q2 is E2 = k*|q2|/BC^2, where k is the Coulomb constant (approximately 8.99 × 10^9 N⋅m^2/C^2).
+4. Step 4: Determine the directions of the electric fields. Since charge q1 is positive, its electric field points away from it, and since charge q2 is negative, its electric field points towards it.
+5. Step 5: Resolve the electric fields into components parallel and perpendicular to AB. The electric field due to charge q1 has components E1x = E1 and E1y = 0, and the electric field due to charge q2 has components E2x = -E2*cos(θ) and E2y = -E2*sin(θ), where θ is the angle between AB and the line connecting B to C.
+6. Step 6: Calculate the net electric field at point C by adding the components. The net electric field's magnitude is E_net = sqrt(E1^2 + E2^2 + 2E1E2*cos(θ)).
+7. Step 7: Substitute the values to calculate the net electric field. E_net = 8.99 × 10^9 × sqrt((4 x 10^-6/0.12^2) + (-6.4 x 10^-6/0.16^2) + 2*(4 x 10^-6/0.12)*(6.4 x 10^-6/0.16)) ≈ 2.
+
+### 6. MISS DT007
+
+**Question:** Two electric charges q1 = q2 = q (with q > 0) are placed at two points A and B, with the distance AB = 2a (m). Point M is located on the perpendicular bisector of the line segment AB, at a distance h from AB. Determine the value of h for which the electric field strength at M is maximum, and calculate this value of h.
+
+**Gold:** `a/ \sqrt{2} m`
+
+**Prediction:** `4.5e+09 J`
+
+**Confidence:** `0.81`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Excerpt from DT_electric_field_vector (part 10), the computation yields a result of 4.5e+09, in units of J.
+
+**Retrieved Premises:**
+
+- Excerpt from DT_electric_field_vector (part 10): | Use: DT perpendicular bisector equal same-sign charges. For q1 = q2 = q with AB = 2a and point M at distance h from AB on the perpendicular bisector, the components along AB cancel and the components along the bisector add: E = 2*k*abs(q)*h/(a^2 + h^2)^(3/2). | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 11): | Use: DT perpendicular bisector maximum. For two equal same-sign charges separated by AB = 2a, the field magnitude on the perpendicular bisector E(h) = 2*k*abs(q)*h/(a^2 + h^2)^(3/2) is maximum at h = a/sqrt(2). | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 9): | Use: DT perpendicular bisector geometry. A point on the perpendicular bisector of AB is equidistant from charges at A and B. Use r = sqrt((AB/2)^2 + h^2), then decompose each field into a component along AB and a component along the perpendicular bisector. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given parameters: two charges q1 = q2 = q, separated by a distance AB = 2a, and point M on the perpendicular bisector of AB at a distance h from AB.
+2. Step 2: Recall that the electric field due to a point charge q at a distance r is E = k*q/r², where k is the Coulomb constant.
+3. Step 3: Calculate the distance from each charge to point M: the distance from each charge to M is r = √((AB/2)² + h²) = √(a² + h²).
+4. Step 4: Calculate the magnitude of the electric field at M due to each charge: E₁ = E₂ = k*q/(√(a² + h²))² = k*q/(a² + h²).
+5. Step 5: Since both charges have the same sign (both positive), the electric fields E₁ and E₂ will add up at point M.
+6. Step 6: Therefore, the total electric field at M is E_total = E₁ + E₂ = 2*k*q/(a² + h²).
+7. Step 7: To find the value of h that maximizes E_total, note that the denominator (a² + h²) is minimized when h = a.
+8. Step 8: Substitute h = a into the expression for E_total to get the maximum value: E_max = 2*k*q/(a² + a²) = 2*k*q/(2*a²) = k*q/a².
+
+### 7. MISS DT008
+
+**Question:** Two charges, q1 = q2 = q (where q > 0, in Coulombs), are placed at points A and B, with the distance AB = 2a (meters). Point M is located on the perpendicular bisector of the line segment AB, at a distance h from AB. Determine the magnitude of the electric field vector at point M. Given k = 9 × 10^9.
+
+**Gold:** `/frac{2k \abs{q} h}{(a^2 + h^2)^1.5} V/m`
+
+**Prediction:** `1.591e+09 N/C`
+
+**Confidence:** `0.81`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Excerpt from DT_electric_field_vector (part 10), the computation yields a result of 1.591e+09, in units of N/C.
+
+**Retrieved Premises:**
+
+- Excerpt from DT_electric_field_vector (part 10): | Use: DT perpendicular bisector equal same-sign charges. For q1 = q2 = q with AB = 2a and point M at distance h from AB on the perpendicular bisector, the components along AB cancel and the components along the bisector add: E = 2*k*abs(q)*h/(a^2 + h^2)^(3/2). | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 11): | Use: DT perpendicular bisector maximum. For two equal same-sign charges separated by AB = 2a, the field magnitude on the perpendicular bisector E(h) = 2*k*abs(q)*h/(a^2 + h^2)^(3/2) is maximum at h = a/sqrt(2). | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 9): | Use: DT perpendicular bisector geometry. A point on the perpendicular bisector of AB is equidistant from charges at A and B. Use r = sqrt((AB/2)^2 + h^2), then decompose each field into a component along AB and a component along the perpendicular bisector. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given parameters: two charges q1 = q2 = q, distance AB = 2a, and point M on the perpendicular bisector at distance h from AB.
+2. Step 2: Calculate the distance from each charge to point M: r = √((AB/2)^2 + h^2) = √(a^2 + h^2).
+3. Step 3: Calculate the magnitude of the electric field due to each charge: E_i = k*|q|/r^2 = 9 × 10^9 × q^2/(a^2 + h^2)^2.
+4. Step 4: Determine the direction of the electric fields: since both charges have the same sign, the electric fields at M will point away from each charge.
+5. Step 5: Resolve the electric fields into components parallel and perpendicular to AB: E_parallel = E_i × (a/(a^2 + h^2)) and E_perpendicular = E_i × (h/(a^2 + h^2)).
+6. Step 6: The net electric field at M is the vector sum of the individual contributions: E_net = √(E_parallel^2 + E_perpendicular^2) = 9 × 10^9 × q^2 × √(a^2 + h^2)/(a^2 + h^2)^3.
+
+### 8. MISS DT019
+
+**Question:** Place four charges of the same magnitude q at the four vertices of a square ABCD with side length a. Positive charges are placed at A and C, and negative charges are placed at B and D. Determine the net electric field at the intersection of the square's two diagonals.
+
+**Gold:** `0 V/m`
+
+**Prediction:** ``
+
+**Confidence:** `0.54`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Excerpt from DT_electric_field_vector (part 20).
+
+**Retrieved Premises:**
+
+- Excerpt from DT_electric_field_vector (part 20): | Use: DT square center field. For charges at vertices of a square, the distance from each vertex to the center is a*sqrt(2)/2. Identical charges at opposite symmetric vertices can cancel; mixed signs or unequal magnitudes require component summation. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 10): | Use: LD square geometry. A square side a has diagonal a*sqrt(2). The center is at distance a*sqrt(2)/2 from every vertex. Identical charges at symmetric vertices can cancel at the center. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 8): | Use: DT midpoint symmetry. At the midpoint between two equal same-sign charges, electric fields have equal magnitude and opposite directions, so E_net = 0. At the midpoint between two equal opposite-sign charges, the fields point in the same direction from positive toward negative and magnitudes add. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the charges and their locations relative to the intersection of the diagonals of the square.
+2. Step 2: Calculate the distance from each charge to the intersection point. Since the intersection point is the center of the square and the diagonal of a square with side length a is a√2, the distance from the center to any vertex is (a√2)/2.
+3. Step 3: Calculate the magnitude of the electric field due to each charge. Using Coulomb's law, the magnitude of the electric field E due to a point charge q at a distance r is E = k|q|/r², where k is the Coulomb constant. Since the charges at A and C are positive and the charges at B and D are negative, the electric fields due to the charges at A and C will point away from these charges, while the electric fields due to the charges at B and D will point towards these charges.
+4. Step 4: Determine the direction of the electric field due to each charge. The electric field due to the charges at A and C will be directed along the lines connecting these charges to the center of the square, while the electric field due to the charges at B and D will be directed along the lines connecting these charges to the center of the square.
+5. Step 5: Resolve the electric fields into components parallel and perpendicular to the diagonal AC. The electric fields due to the charges at A and C will have components parallel to the diagonal AC and the electric fields due to the charges at B and D will have components perpendicular to the diagonal AC.
+6. Step 6: Add the components of the electric fields to find the net electric field at the intersection of the diagonals. The components of the electric fields due to the charges at A and C will add constructively along the diagonal AC, while the components of the electric fields due to the charges at B and D will cancel each other out because they are equal in magnitude but opposite in direction.
+7. Step 7: Calculate the magnitude of the net electric field. The magnitude of the net electric field at the intersection of the diagonals is E_net = 2 × (k|q|)/((a√2)/2)² = 4k|q|/a².
+
+### 9. MISS DT020
+
+**Question:** Four charges of the same magnitude q (C) are placed at the four vertices of a square ABCD with side length a (m). Positive charges are placed at vertices A and D, and negative charges are placed at vertices B and C. Determine the resultant electric field strength at the intersection point of the two diagonals of the square.
+
+**Gold:** `\frac{4 \sqrt{2} k q}{\epsilon a^2} V/m`
+
+**Prediction:** ``
+
+**Confidence:** `0.54`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Excerpt from DT_electric_field_vector (part 20).
+
+**Retrieved Premises:**
+
+- Excerpt from DT_electric_field_vector (part 20): | Use: DT square center field. For charges at vertices of a square, the distance from each vertex to the center is a*sqrt(2)/2. Identical charges at opposite symmetric vertices can cancel; mixed signs or unequal magnitudes require component summation. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 10): | Use: LD square geometry. A square side a has diagonal a*sqrt(2). The center is at distance a*sqrt(2)/2 from every vertex. Identical charges at symmetric vertices can cancel at the center. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 7): | Use: LD force from electric field. After computing net field at a point, use F = q0*E for a charge placed there. If q0 is negative, the force direction is opposite the electric field direction. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the charges and their locations relative to the intersection point of the diagonals of the square.
+2. Step 2: Calculate the distance from each charge to the intersection point. Since the intersection point is the center of the square and the diagonal of a square with side length a is a√2, the distance from the center to any vertex is (a√2)/2.
+3. Step 3: Calculate the magnitude of the electric field due to each charge at the center. The electric field due to a point charge Q at a distance r is E = k|Q|/r², where k is the Coulomb constant. Since the charges at A and D are positive and the charges at B and C are negative, the fields due to the charges at A and D will point away from these charges, while the fields due to the charges at B and C will point towards these charges.
+4. Step 4: Determine the direction of the electric field due to each charge at the center. The electric field due to the charges at A and D will point along the lines connecting these charges to the center, while the electric field due to the charges at B and C will also point along these lines but in the opposite direction.
+5. Step 5: Calculate the magnitude of the net electric field at the center. Since the charges at A and D are positive and the charges at B and C are negative, the fields due to the charges at A and D will add up and the fields due to the charges at B and C will add up. Therefore, the net electric field at the center is the sum of the magnitudes of the electric fields due to the charges at A and D minus the sum of the magnitudes of the electric fields due to the charges at B and C.
+6. Step 6: Substitute the values into the formula to find the magnitude of the net electric field at the center. The magnitude of the net electric field at the center is E_net = 2 × (kq)/((a√2)/2)² - 2 × (kq)/((a√2)/2)² = 0.
+
+### 10. MISS DT025
+
+**Question:** Given two point charges located along the Ox axis: charge q1 = -9 x 10^-6 C is placed at the origin O, and charge q2 = 4 x 10^-6 C is located 20 cm from the origin. What is the coordinate on the Ox axis where the electric field strength is zero?
+
+**Gold:** `60 cm`
+
+**Prediction:** ``
+
+**Confidence:** `0.54`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Point where E = 0 (two charges opposite sign).
+
+**Retrieved Premises:**
+
+- Point where E = 0 (two charges opposite sign): k*|q1|/r1^2 = k*|q2|/r2^2, outside the segment (closer to smaller charge) | Use: Use only when the question asks for the point/location where net electric field is zero. For opposite-sign charges, the zero-field point lies outside the segment on the side of the smaller charge. | Answer type: symbolic
+- Excerpt from DT_electric_field_vector (part 15): | Use: DT zero electric field opposite-sign charges. For two source charges with opposite signs, the E = 0 point lies outside the segment between the charges, on the side of the charge with smaller absolute magnitude. Do not place the zero-field point between opposite-sign charges. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 13): | Use: LD zero electric field opposite sign. For two opposite-sign charges, the E=0 point lies outside the segment, on the side of the smaller absolute charge. Do not place it between the charges. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the charges and their positions. Charge q1 = -9 × 10⁻⁶ C is at the origin (O), and charge q2 = 4 × 10⁻⁶ C is at x = 20 cm.
+2. Step 2: Recall the formula for the electric field due to a point charge: E = k|q|/r², where k is Coulomb's constant.
+3. Step 3: Determine the electric field directions. Since q1 is negative and q2 is positive, the electric fields they produce will point towards q1 and away from q2, respectively.
+4. Step 4: State the condition for the net electric field to be zero. The electric field strengths due to both charges must be equal at the point where the field is zero: E₁ = E₂.
+5. Step 5: Apply the condition to determine the location of the zero-field point. Let the distance from the origin to the zero-field point be x. Then, the electric field strength due to q1 is E₁ = k|q₁|/x² and the electric field strength due to q2 is E₂ = k|q₂|/(20 - x)². Setting E₁ = E₂ yields the relation: 9/(20 - x)² = 4/x².
+6. Step 6: Solve the proportion to find the location of the zero-field point. Cross-multiplying gives 9x² = 4(20 - x)², which simplifies to 9x² = 4(400 - 40x + x²). Expanding and rearranging terms yields 5x² + 160x - 1600 = 0. Factoring the quadratic expression gives (x + 32)(5x - 50) = 0. The solutions are x = -32 and x = 10. Since the zero-field point must lie between the charges, the valid solution is x = 10 cm.
+
+### 11. MISS DT027
+
+**Question:** Two point charges of the same sign and magnitudes such that q1 = 4q2 are placed at points A and B, which are 12 cm apart. Find the point where the net electric field is zero, and calculate its distance from A.
+
+**Gold:** `8 cm`
+
+**Prediction:** `0.96 cm`
+
+**Confidence:** `0.99`
+
+**Match Flags:** exact=False, numeric=False, unit=True, physical_equiv=False
+
+**Explanation:**
+
+Using Point where E = 0 (two charges same sign), the computation yields a result of 0.96, in units of cm.
+
+**Retrieved Premises:**
+
+- Point where E = 0 (two charges same sign): k*|q1|/r1^2 = k*|q2|/r2^2, r1+r2 = d | Use: Use only when the question asks for the point/location where net electric field is zero. For same-sign charges, the zero-field point lies between them. | Answer type: symbolic
+- Excerpt from LD_coulomb_force_field (part 12): | Use: LD zero electric field same sign. For two same-sign charges, the E=0 point lies between them. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 14): | Use: DT zero electric field same-sign charges. For two source charges with the same sign, the E = 0 point lies between the charges. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given information: two charges of the same sign, q1 = 4q2, and they are 12 cm apart.
+2. Step 2: Recall the principle that the electric field due to a positive charge points away from the charge and due to a negative charge points towards the charge.
+3. Step 3: State the condition for the net electric field to be zero: the electric fields due to the two charges must be equal in magnitude but opposite in direction.
+4. Step 4: Use the inverse-square law for the electric field: E ∝ 1/r², where E is the electric field and r is the distance from the charge.
+5. Step 5: Since the magnitudes of the charges are different (q1 = 4q2), the distances from each charge to the zero-field point will also be different.
+6. Step 6: Let the distance from the charge of magnitude 4q2 to the zero-field point be x. Then the distance from the charge of magnitude q2 to the zero-field point is 12 cm - x.
+7. Step 7: Apply the inverse-square law: (4q2)/x² = q2/(12 cm - x)².
+8. Step 8: Simplify the relationship: 4/x² = 1/(12 cm - x)².
+
+### 12. MISS DT028
+
+**Question:** Given two point charges of the same sign and magnitudes q1 = 4q2, placed at A and B, separated by 12 cm. Find the point where the net electric field strength is zero, and calculate its distance from B.
+
+**Gold:** `4 cm`
+
+**Prediction:** `0.06 cm`
+
+**Confidence:** `0.99`
+
+**Match Flags:** exact=False, numeric=False, unit=True, physical_equiv=False
+
+**Explanation:**
+
+Using Point where E = 0 (two charges same sign), the computation yields a result of 0.06, in units of cm.
+
+**Retrieved Premises:**
+
+- Point where E = 0 (two charges same sign): k*|q1|/r1^2 = k*|q2|/r2^2, r1+r2 = d | Use: Use only when the question asks for the point/location where net electric field is zero. For same-sign charges, the zero-field point lies between them. | Answer type: symbolic
+- Excerpt from LD_coulomb_force_field (part 12): | Use: LD zero electric field same sign. For two same-sign charges, the E=0 point lies between them. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 14): | Use: DT zero electric field same-sign charges. For two source charges with the same sign, the E = 0 point lies between the charges. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given information: two charges of the same sign, q1 = 4q2, separated by 12 cm.
+2. Step 2: Recall that for two charges of the same sign, the net electric field is zero at a point between them.
+3. Step 3: State the relationship between the charges: q1 = 4q2.
+4. Step 4: Use the inverse-square law to relate the distances: E1/E2 = (q1/r1^2) / (q2/r2^2) = (4q2)/(r1^2) / (q2/r2^2) = 4(r2^2)/(r1^2).
+5. Step 5: Since the total distance is 12 cm, we have r1 + r2 = 12 cm.
+6. Step 6: Substitute the ratio from the inverse-square law into the distance relationship: 4(r2^2)/(r1^2) = (r1 + r2)^2 / r1^2.
+7. Step 7: Simplify the relationship: 4r2^2 = (r1 + r2)^2.
+8. Step 8: Substitute the total distance: 4r2^2 = (12 + r2)^2.
+
+### 13. MISS DT029
+
+**Question:** Two electric charges q1 = 9 x 10^-8 C and q2 = -16 x 10^-8 C are placed at points A and B, separated by 12 cm in the air. Find the point where the net electric field is zero, and calculate its distance from A.
+
+**Gold:** `36 cm`
+
+**Prediction:** `144 cm`
+
+**Confidence:** `0.99`
+
+**Match Flags:** exact=False, numeric=False, unit=True, physical_equiv=False
+
+**Explanation:**
+
+Using Point where E = 0 (two charges opposite sign), the computation yields a result of 144, in units of cm.
+
+**Retrieved Premises:**
+
+- Point where E = 0 (two charges opposite sign): k*|q1|/r1^2 = k*|q2|/r2^2, outside the segment (closer to smaller charge) | Use: Use only when the question asks for the point/location where net electric field is zero. For opposite-sign charges, the zero-field point lies outside the segment on the side of the smaller charge. | Answer type: symbolic
+- Excerpt from DT_electric_field_vector (part 15): | Use: DT zero electric field opposite-sign charges. For two source charges with opposite signs, the E = 0 point lies outside the segment between the charges, on the side of the charge with smaller absolute magnitude. Do not place the zero-field point between opposite-sign charges. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 13): | Use: LD zero electric field opposite sign. For two opposite-sign charges, the E=0 point lies outside the segment, on the side of the smaller absolute charge. Do not place it between the charges. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the magnitudes of the charges and their separation distance.
+2. Step 2: State the principle that the net electric field is zero at a point outside the segment joining the two charges, on the side of the smaller magnitude charge.
+3. Step 3: Identify the smaller magnitude charge and calculate the distance from it to the zero-field point.
+4. Step 4: The distance from A to the zero-field point is approximately 4.8 cm.
+
+### 14. MISS DT030
+
+**Question:** Given two electric charges q1 = 9 x 10^-8 C and q2 = -16 x 10^-8 C are placed at two points A and B in air, separated by 12cm. Find the point where the electric field vector is zero, and calculate its distance from B.
+
+**Gold:** `48 cm`
+
+**Prediction:** `0.09 m`
+
+**Confidence:** `0.81`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Point where E = 0 (two charges opposite sign), the computation yields a result of 0.09, in units of m.
+
+**Retrieved Premises:**
+
+- Point where E = 0 (two charges opposite sign): k*|q1|/r1^2 = k*|q2|/r2^2, outside the segment (closer to smaller charge) | Use: Use only when the question asks for the point/location where net electric field is zero. For opposite-sign charges, the zero-field point lies outside the segment on the side of the smaller charge. | Answer type: symbolic
+- Excerpt from DT_electric_field_vector (part 15): | Use: DT zero electric field opposite-sign charges. For two source charges with opposite signs, the E = 0 point lies outside the segment between the charges, on the side of the charge with smaller absolute magnitude. Do not place the zero-field point between opposite-sign charges. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 13): | Use: LD zero electric field opposite sign. For two opposite-sign charges, the E=0 point lies outside the segment, on the side of the smaller absolute charge. Do not place it between the charges. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given charges and their separation distance.
+2. Step 2: Convert the separation distance from centimeters to meters.
+3. Step 3: Recall the principle that the electric field due to two point charges is zero at a point outside the charges if they have opposite signs and the point is located closer to the smaller magnitude charge.
+4. Step 4: Determine which charge has the smaller magnitude and identify the location of the zero-field point.
+5. Step 5: Calculate the distance from B to the zero-field point using the ratio of the magnitudes of the charges.
+
+### 15. MISS DT033
+
+**Question:** Charges q1 = -12 x 10^-6 C and q2 = 2.5 x 10^-6 C are placed at points A and B, respectively, which are 15 cm apart in air. Calculate the magnitude of the resultant electric field E at point C. Given that AC = 20 cm and BC = 5 cm.
+
+**Gold:** `6300000 V/m`
+
+**Prediction:** ``
+
+**Confidence:** `0.54`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Excerpt from DT_electric_field_vector (part 6).
+
+**Retrieved Premises:**
+
+- Excerpt from DT_electric_field_vector (part 6): | Use: DT collinear field geometry. When points are on one line, choose a positive axis and assign each electric field a signed direction before summing. If two fields point in the same direction, magnitudes add. If they point in opposite directions, subtract magnitudes. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 7): | Use: DT collinear geometry detection. If two smaller named distances add to the larger named distance, the three points are collinear and the shared point lies between the two endpoints. For example, if AM + MB = AB, then M lies between A and B. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 7): | Use: LD force from electric field. After computing net field at a point, use F = q0*E for a charge placed there. If q0 is negative, the force direction is opposite the electric field direction. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the charges and their positions. Charge q1 = -12 x 10^-6 C is located at point A, and charge q2 = 2.5 x 10^-6 C is located at point B. The distance between A and B is 15 cm.
+2. Step 2: Identify the position of point C relative to A and B. Point C is 20 cm away from A and 5 cm away from B.
+3. Step 3: Convert all distances to meters. AB = 15 cm = 0.15 m, AC = 20 cm = 0.20 m, and BC = 5 cm = 0.05 m.
+4. Step 4: Calculate the electric field due to each charge at point C. The electric field due to a point charge q at a distance r is given by E = k|q|/r^2, where k is the Coulomb constant (approximately 9 x 10^9 N·m^2/C^2).
+5. Step 5: The electric field due to charge q1 at point C is E1 = k|q1|/AC^2 = (9 x 10^9) × (12 x 10^-6) / 0.20^2 = 2.7 x 10^6 N/C.
+6. Step 6: The electric field due to charge q2 at point C is E2 = k|q2|/BC^2 = (9 x 10^9) × (2.5 x 10^-6) / 0.05^2 = 1.8 x 10^7 N/C.
+7. Step 7: Since both charges are in the same direction (from A to B), the net electric field at point C is the sum of the individual electric fields: E_net = E1 + E2 = 2.7 x 10^6 + 1.8 x 10^7 = 2.07 x 10^7 N/C.
+
+### 16. MISS DT034
+
+**Question:** Points A and B are 15 cm apart in air. A charge q1 = -12 x 10^-6 C is placed at A, and a charge q2 = 2.5 x 10^-6 C is placed at B. Find point M where the net electric field due to these two charges is zero. Calculate the distance AM.
+
+**Gold:** `27.6 cm`
+
+**Prediction:** `0.075 m`
+
+**Confidence:** `0.81`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Point where E = 0 (two charges opposite sign), the computation yields a result of 0.075, in units of m.
+
+**Retrieved Premises:**
+
+- Point where E = 0 (two charges opposite sign): k*|q1|/r1^2 = k*|q2|/r2^2, outside the segment (closer to smaller charge) | Use: Use only when the question asks for the point/location where net electric field is zero. For opposite-sign charges, the zero-field point lies outside the segment on the side of the smaller charge. | Answer type: symbolic
+- Excerpt from DT_electric_field_vector (part 15): | Use: DT zero electric field opposite-sign charges. For two source charges with opposite signs, the E = 0 point lies outside the segment between the charges, on the side of the charge with smaller absolute magnitude. Do not place the zero-field point between opposite-sign charges. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 13): | Use: LD zero electric field opposite sign. For two opposite-sign charges, the E=0 point lies outside the segment, on the side of the smaller absolute charge. Do not place it between the charges. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given charges and their positions. Charge q1 = -12 x 10^-6 C is located at point A, and charge q2 = 2.5 x 10^-6 C is located at point B.
+2. Step 2: State the principle that the net electric field is zero at a point equidistant from two charges of equal magnitude but opposite sign.
+3. Step 3: Determine the net electric field will be zero between the two charges since they have opposite signs.
+4. Step 4: Calculate the distance between the charges, which is 15 cm or 0.15 m.
+5. Step 5: The point M where the net electric field is zero is located halfway between A and B.
+6. Step 6: Therefore, the distance AM is half of AB, which is 0.15 / 2 = 0.075 m or 7.5 cm.
+
+### 17. MISS DT035
+
+**Question:** Two point charges q1 = -9 x 10^-6 C and q2 = -4 x 10^-6 C are placed at two points A and B, respectively, which are 20 cm apart in air. Calculate the magnitude of the resultant electric field strength at point C, given that AC = 30 cm and BC = 10 cm.
+
+**Gold:** `45.10^{5} V/m`
+
+**Prediction:** `3.9912e+06 N/C`
+
+**Confidence:** `0.99`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Excerpt from DT_electric_field_vector (part 7), the computation yields a result of 3.9912e+06, in units of N/C.
+
+**Retrieved Premises:**
+
+- Excerpt from DT_electric_field_vector (part 7): | Use: DT collinear geometry detection. If two smaller named distances add to the larger named distance, the three points are collinear and the shared point lies between the two endpoints. For example, if AM + MB = AB, then M lies between A and B. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from DT_electric_field_vector (part 6): | Use: DT collinear field geometry. When points are on one line, choose a positive axis and assign each electric field a signed direction before summing. If two fields point in the same direction, magnitudes add. If they point in opposite directions, subtract magnitudes. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 7): | Use: LD force from electric field. After computing net field at a point, use F = q0*E for a charge placed there. If q0 is negative, the force direction is opposite the electric field direction. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the charges and their positions relative to point C.
+2. Step 2: Convert all given distances to meters.
+3. Step 3: Calculate the electric field strengths due to each charge individually.
+4. Step 4: Determine the directions of the electric fields due to each charge.
+5. Step 5: Add the electric fields as vectors to find the net electric field at point C.
+6. Step 6: The magnitude of the resultant electric field at point C is approximately 1.35 × 10^11 N/C.
+
+### 18. MISS DT036
+
+**Question:** At two points A and B, separated by 20 cm in air, charges q1 = -9 x 10⁻⁶ C and q2 = -4 x 10⁻⁶ C are placed. Find point M where the resultant electric field strength due to these two charges is zero. Calculate AM.
+
+**Gold:** `12 cm`
+
+**Prediction:** ``
+
+**Confidence:** `0.54`
+
+**Match Flags:** exact=False, numeric=False, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Point where E = 0 (two charges same sign).
+
+**Retrieved Premises:**
+
+- Point where E = 0 (two charges same sign): k*|q1|/r1^2 = k*|q2|/r2^2, r1+r2 = d | Use: Use only when the question asks for the point/location where net electric field is zero. For same-sign charges, the zero-field point lies between them. | Answer type: symbolic
+- Excerpt from DT_electric_field_vector (part 14): | Use: DT zero electric field same-sign charges. For two source charges with the same sign, the E = 0 point lies between the charges. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 12): | Use: LD zero electric field same sign. For two same-sign charges, the E=0 point lies between them. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the given charges and their separation distance.
+2. Step 2: The charges are q1 = -9 x 10⁻⁶ C and q2 = -4 x 10⁻⁶ C, and they are separated by 20 cm.
+3. Step 3: Since both charges are negative and have the same sign, the electric field will be zero somewhere between them.
+4. Step 4: Use the principle that the electric fields due to each charge will be in the same direction and thus subtract: E_total = E1 - E2.
+5. Step 5: The electric field due to a point charge is given by E = k|q|/r², where k is Coulomb's constant.
+6. Step 6: Let the distance from the first charge to the point where the net field is zero be x. Then the distance from the second charge is 20 cm - x.
+7. Step 7: The magnitudes of the electric fields are E1 = k|q1|/x² and E2 = k|q2|/(20 cm - x)².
+8. Step 8: Set the magnitudes equal since the fields cancel: E1 = E2.
+
+### 19. MISS DT037
+
+**Question:** At two points A and B, separated by 20 cm in air, charges q1 = -9 x 10^-6 C and q2 = -4 x 10^-6 C are placed respectively. Find point M where the net electric field due to these two charges is zero. Calculate the distance BM.
+
+**Gold:** `8 cm`
+
+**Prediction:** `8 m`
+
+**Confidence:** `0.81`
+
+**Match Flags:** exact=False, numeric=True, unit=False, physical_equiv=False
+
+**Explanation:**
+
+Using Point where E = 0 (two charges same sign), the computation yields a result of 8, in units of m.
+
+**Retrieved Premises:**
+
+- Point where E = 0 (two charges same sign): k*|q1|/r1^2 = k*|q2|/r2^2, r1+r2 = d | Use: Use only when the question asks for the point/location where net electric field is zero. For same-sign charges, the zero-field point lies between them. | Answer type: symbolic
+- Excerpt from DT_electric_field_vector (part 14): | Use: DT zero electric field same-sign charges. For two source charges with the same sign, the E = 0 point lies between the charges. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference
+- Excerpt from LD_coulomb_force_field (part 12): | Use: LD zero electric field same sign. For two same-sign charges, the E=0 point lies between them. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference
+
+**Predicted CoT / Reasoning Trace:**
+
+1. Step 1: Identify the charges and their positions. Charge q1 = -9 x 10^-6 C is located at point A, and charge q2 = -4 x 10^-6 C is located at point B. The distance AB = 20 cm.
+2. Step 2: Recall the principle that the electric field due to multiple charges is the vector sum of the fields due to each individual charge.
+3. Step 3: Since both charges are negative and have the same sign, the net electric field will be zero at a point between A and B.
+4. Step 4: Let the distance from A to M be x. Then the distance from B to M is 20 cm - x.
+5. Step 5: The magnitudes of the electric fields due to q1 and q2 at point M are proportional to 1/x^2 and 1/(20 cm - x)^2, respectively.
+6. Step 6: For the net electric field to be zero, the magnitudes of the electric fields due to q1 and q2 must be equal: 1/x^2 = 1/(20 cm - x)^2.
+7. Step 7: Solving this proportion yields x = 8 cm.
+8. Step 8: Therefore, the distance BM is 20 cm - 8 cm = 12 cm.
+
+| Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference", "Excerpt from LD_coulomb_force_field (part 12): | Use: LD zero electric field same sign. For two same-sign charges, the E=0 point lies between them. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference"], "pred_confidence": 0.54, "exact_match": false, "numeric_value_match": false, "strict_unit_match": false, "physical_equiv_match": false, "final_match": false, "error": "", "elapsed_sec": 6.54}
+{"id": "DT037", "question": "At two points A and B, separated by 20 cm in air, charges q1 = -9 x 10^-6 C and q2 = -4 x 10^-6 C are placed respectively. Find point M where the net electric field due to these two charges is zero. Calculate the distance BM.", "gold_answer": "8", "gold_unit": "cm", "pred_answer": "8 m", "pred_value": "8", "pred_unit": "m", "pred_explanation": "Using Point where E = 0 (two charges same sign), the computation yields a result of 8, in units of m.", "pred_cot": ["Step 1: Identify the charges and their positions. Charge q1 = -9 x 10^-6 C is located at point A, and charge q2 = -4 x 10^-6 C is located at point B. The distance AB = 20 cm.", "Step 2: Recall the principle that the electric field due to multiple charges is the vector sum of the fields due to each individual charge.", "Step 3: Since both charges are negative and have the same sign, the net electric field will be zero at a point between A and B.", "Step 4: Let the distance from A to M be x. Then the distance from B to M is 20 cm - x.", "Step 5: The magnitudes of the electric fields due to q1 and q2 at point M are proportional to 1/x^2 and 1/(20 cm - x)^2, respectively.", "Step 6: For the net electric field to be zero, the magnitudes of the electric fields due to q1 and q2 must be equal: 1/x^2 = 1/(20 cm - x)^2.", "Step 7: Solving this proportion yields x = 8 cm.", "Step 8: Therefore, the distance BM is 20 cm - 8 cm = 12 cm."], "pred_premises": ["Point where E = 0 (two charges same sign): k*|q1|/r1^2 = k*|q2|/r2^2, r1+r2 = d | Use: Use only when the question asks for the point/location where net electric field is zero. For same-sign charges, the zero-field point lies between them. | Answer type: symbolic", "Excerpt from DT_electric_field_vector (part 14): | Use: DT zero electric field same-sign charges. For two source charges with the same sign, the E = 0 point lies between the charges. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/DT_electric_field_vector.md | Answer type: reference", "Excerpt from LD_coulomb_force_field (part 12): | Use: LD zero electric field same sign. For two same-sign charges, the E=0 point lies between them. Solve k*abs(q1)/r1^2 = k*abs(q2)/r2^2 with r1 + r2 = d. | Note: Source: reference_docs/LD_coulomb_force_field.md | Answer type: reference"], "pred_confidence": 0.81, "exact_match": false, "numeric_value_match": true, "strict_unit_match": false, "physical_equiv_match": false, "final_match": false, "error": "", "elapsed_sec": 5.161}

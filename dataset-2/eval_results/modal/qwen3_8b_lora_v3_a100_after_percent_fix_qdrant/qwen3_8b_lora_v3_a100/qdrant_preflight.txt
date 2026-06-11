@@ -1,0 +1,4 @@
+qdrant_connected=true
+host=https://4e048dd7-7f79-4151-b176-...
+collection=physics_kb
+points_count=334

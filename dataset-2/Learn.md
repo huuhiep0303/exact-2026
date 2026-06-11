@@ -1,0 +1,1 @@
+quatization: lượng tử hóa

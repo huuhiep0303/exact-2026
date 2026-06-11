@@ -1,0 +1,28 @@
+1. Evaluation trước
+   Đo accuracy trên Physics_Problems_Text_Only.csv.
+   Không có metric thì không biết sửa gì có tốt hơn không.
+
+2. Router
+   Phân loại quantitative / qualitative / insufficient-info tốt hơn.
+   Test 3 sai chủ yếu vì router cho chạy code dù là câu mô tả.
+
+3. Prompt reasoner
+   Ép model xuất đúng [FOL], [CODE], [ANSWER].
+   Cấm bịa số khi đề thiếu dữ kiện.
+   Với qualitative, answer là text, không tạo code tính số.
+
+4. RAG
+   Hiện mới là BM25 naive trên formula JSON.
+   Cải thiện retrieval để lấy đúng công thức.
+
+5. Sandbox + verifier
+   Sandbox chỉ biết code chạy được.
+   Cần thêm kiểm tra: answer có hợp đơn vị không, có bịa biến không, có dùng dữ kiện đề không.
+
+6. Fine-tuning
+   Chỉ nên làm sau khi pipeline baseline ổn.
+
+1. Viết evaluator đo accuracy
+2. Sửa router
+3. Sửa prompt để model không bịa
+4. Sau đó mới tối ưu RAG / fine-tune
