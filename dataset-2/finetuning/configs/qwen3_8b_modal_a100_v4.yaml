@@ -1,0 +1,30 @@
+model_name: Qwen/Qwen3-8B
+dataset_path: dataset_2/physic_version_2.csv
+processed_dir: finetuning/data/processed_v4
+train_file: finetuning/data/processed_v4/train.jsonl
+val_file: finetuning/data/processed_v4/val.jsonl
+test_file: finetuning/data/processed_v4/test.jsonl
+output_dir: finetuning/runs/qwen3_8b_lora_v4_a100
+
+seed: 42
+train_ratio: 0.8
+val_ratio: 0.1
+test_ratio: 0.1
+
+load_in_4bit: true
+max_seq_length: 2048
+num_train_epochs: 4
+max_steps: null
+learning_rate: 1.5e-4
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 4
+warmup_steps: 20
+logging_steps: 10
+save_strategy: epoch
+eval_strategy: epoch
+load_best_model_at_end: true
+
+lora_r: 32
+lora_alpha: 64
+lora_dropout: 0.05
+target_modules: q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj

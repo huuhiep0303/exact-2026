@@ -1,0 +1,148 @@
+{
+  "dataset_path": "dataset_2\\physic_version_2.csv",
+  "seed": 42,
+  "total": 1352,
+  "splits": {
+    "train": 1071,
+    "val": 125,
+    "test": 156
+  },
+  "topics": {
+    "TD": {
+      "total": 177,
+      "train": 140,
+      "val": 17,
+      "test": 20,
+      "trainable": 177,
+      "untrainable": 0
+    },
+    "LD": {
+      "total": 397,
+      "train": 316,
+      "val": 37,
+      "test": 44,
+      "trainable": 397,
+      "untrainable": 0
+    },
+    "DT": {
+      "total": 68,
+      "train": 53,
+      "val": 6,
+      "test": 9,
+      "trainable": 68,
+      "untrainable": 0
+    },
+    "THCB": {
+      "total": 80,
+      "train": 63,
+      "val": 7,
+      "test": 10,
+      "trainable": 80,
+      "untrainable": 0
+    },
+    "NL": {
+      "total": 190,
+      "train": 149,
+      "val": 17,
+      "test": 24,
+      "trainable": 190,
+      "untrainable": 0
+    },
+    "DDT": {
+      "total": 130,
+      "train": 103,
+      "val": 11,
+      "test": 16,
+      "trainable": 130,
+      "untrainable": 0
+    },
+    "CHLT": {
+      "total": 20,
+      "train": 16,
+      "val": 2,
+      "test": 2,
+      "trainable": 20,
+      "untrainable": 0
+    },
+    "CH": {
+      "total": 290,
+      "train": 231,
+      "val": 28,
+      "test": 31,
+      "trainable": 290,
+      "untrainable": 0
+    }
+  },
+  "trainable_splits": {
+    "train": 1071,
+    "val": 125,
+    "test": 156
+  },
+  "code_strategies": {
+    "CH": {
+      "resonance_impedance_equals_resistance": 31,
+      "supervised_ac_circuit_target": 259
+    },
+    "CHLT": {
+      "chlt_resonance_yes_no": 20
+    },
+    "DDT": {
+      "capacitor_energy": 2,
+      "ddt_emf_from_current_change": 1,
+      "ddt_flux_linkage": 3,
+      "ddt_inductance_from_emf": 2,
+      "ddt_magnetic_flux": 6,
+      "ddt_solenoid_field": 10,
+      "ddt_solenoid_inductance": 1,
+      "ddt_turn_density": 9,
+      "inductance_from_energy": 1,
+      "inductor_energy": 8,
+      "supervised_numeric_target": 49,
+      "supervised_symbolic_text_target": 38
+    },
+    "DT": {
+      "supervised_numeric_target": 20,
+      "supervised_symbolic_text_target": 22,
+      "symbolic_geometry_vector": 1,
+      "symbolic_perpendicular_bisector_field": 1,
+      "symbolic_perpendicular_bisector_maximum": 1,
+      "two_charge_field_vector": 12,
+      "two_charge_force_vector": 3,
+      "zero_field_opposite_sign": 4,
+      "zero_field_same_sign": 4
+    },
+    "LD": {
+      "angle_from_resultant_forces": 1,
+      "angled_forces": 48,
+      "opposite_direction_forces": 1,
+      "perpendicular_forces": 5,
+      "same_direction_forces": 1,
+      "supervised_numeric_target": 92,
+      "supervised_symbolic_text_target": 143,
+      "symbolic_geometry_vector": 4,
+      "two_charge_field_vector": 40,
+      "two_charge_force_vector": 59,
+      "zero_field_opposite_sign": 3
+    },
+    "NL": {
+      "capacitance_from_energy": 18,
+      "capacitor_energy": 33,
+      "current_from_inductor_energy": 12,
+      "inductance_from_energy": 20,
+      "inductor_energy": 21,
+      "supervised_lc_energy_target": 73,
+      "voltage_from_capacitor_energy": 13
+    },
+    "TD": {
+      "capacitance_from_energy": 3,
+      "capacitor_energy": 77,
+      "supervised_capacitor_target": 94,
+      "voltage_from_capacitor_energy": 3
+    },
+    "THCB": {
+      "parallel_identical_lamps": 2,
+      "supervised_measurement_target": 78
+    }
+  },
+  "trainable_total": 1352
+}
