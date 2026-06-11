@@ -4,11 +4,10 @@
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
       "answer": "Unknown",
-      "reasoning": "From premise 1, we know that if x participates in social work, then x meets extracurricular requirements. From premise 2, if x meets academic requirements, then x is a student. However, there is no direct implication that a student participating in social work meets academic requirements, so option A is not necessarily true. Option B is true because if x participates in social work, then x meets extracurricular requirements (premise 1), and if x meets extracurricular requirements, then x participates in social work (contrapositive of premise 1), so if x participates in social work, then x meets extracurricular requirements. Option C is false because if x meets academic requirements, then x is a student (premise 2). Option D is false because if x meets academic requirements, then x is a student (premise 2), but there is no information about eligibility for graduation, so it cannot be inferred that if a student meets academic requirements, they are not eligible for graduation.",
+      "reasoning": "There exists a student who participates in social work (premise 4), and participating in social work implies meeting extracurricular requirements (premise 1). Thus, if someone participates in social work, they meet extracurricular requirements, derived through multiple steps.",
       "relevant_premises": [
         1,
-        2,
-        3
+        4
       ]
     },
     "ground_truth": {
@@ -23,8 +22,8 @@
     "id": "",
     "question": "Based on the above premises, is the following statement true?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 2 (If a high school student attends tutoring sessions, then they improve their grades) and premise 3 (There exists at least one high school student who attends tutoring sessions), we can infer that if a high school student attends tutoring sessions, then they improve their grades, and there exists at least one high school student who attends tutoring sessions. This is because premise 2 states that attending tutoring sessions leads to improved grades, and premise 3 confirms that there is at least one student who attends tutoring sessions.",
+      "answer": "Yes",
+      "reasoning": "From premise 2, we know that if a high school student attends tutoring sessions, then they improve their grades. From premise 3, there exists at least one high school student who attends tutoring sessions. Therefore, if a high school student attends tutoring sessions, then they improve their grades, and there exists at least one high school student who attends tutoring sessions (from premises 2 and 3), making the statement true.",
       "relevant_premises": [
         2,
         3
@@ -45,10 +44,9 @@
     "id": "",
     "question": "Based on the premises above, which of the following statements can be logically concluded if we know that all students have passed the Philosophy prerequisite?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 5 (All students have passed the Philosophy prerequisite), we know ∀x P(x). From premise 17, if all students have passed Philosophy (premise 5), then every student is admitted to the University Honors program (∀x U(x)). This follows because the antecedent is satisfied, and the consequent must hold. Thus, if all students pass Philosophy, all are admitted to the Honors program (option A).",
+      "answer": "Unknown",
+      "reasoning": "From premise 17, we know that if all students have passed Philosophy, then every student is admitted to the University Honors program. Therefore, if all students pass Philosophy, all are admitted to the Honors program (option A).",
       "relevant_premises": [
-        5,
         17
       ]
     },
@@ -66,16 +64,14 @@
     "question": "Based on the above premises, is the following statement true?",
     "prediction": {
       "answer": "Yes",
-      "reasoning": "From premise 3 (If a student conducts research, then they publish papers) and premise 11 (If a student publishes papers, then they conduct research), we can infer that if a student publishes papers, then they conduct research. This is because both conditions lead to the same result, so the statement holds.",
+      "reasoning": "The statement is true because it is explicitly stated (premise 3) and further supported by the implication that publishing papers leads to conducting research (premise 11).",
       "relevant_premises": [
         3,
-        11,
-        12,
-        16
+        11
       ]
     },
     "ground_truth": {
-      "answer": "No",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         11
@@ -86,15 +82,14 @@
     "id": "",
     "question": "Based on the above premises, is the statement true?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "The statement is true because it directly follows from premise 4.",
+      "answer": "Yes",
+      "reasoning": "The statement is true because it is explicitly stated that if a student does not participate in extracurricular activities, they do not develop leadership skills (premise 4).",
       "relevant_premises": [
-        3,
         4
       ]
     },
     "ground_truth": {
-      "answer": "No",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         4
@@ -105,8 +100,8 @@
     "id": "",
     "question": "If all students are guaranteed University housing, does it follow that passing Philosophy grants University housing access?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "Premise 7 states that all students are guaranteed University housing, and premise 6 says passing Philosophy grants housing access. Since all students are guaranteed housing, passing Philosophy grants access to housing for all students.",
+      "answer": "No",
+      "reasoning": "From premise 7 (All students are guaranteed University housing), we know ∀x U(x). From premise 6, passing Philosophy guarantees University housing (∀x (P(x) → U(x))). Since premise 7 states that all students have housing, premise 6's consequent is always true, so the antecedent must be always true. Therefore, if all students are guaranteed University housing, it follows that passing Philosophy grants University housing access.",
       "relevant_premises": [
         6,
         7
@@ -126,10 +121,9 @@
     "question": "Based on the above premises, is the following statement true?",
     "prediction": {
       "answer": "Yes",
-      "reasoning": "Premise 7 states that there exists at least one student reviewing for the exam, but premise 2 explicitly says all students complete their homework. Since it's a universal statement, no existence statement can contradict it. The existence of an exception doesn’t change the universal truth, so the statement that all students complete their homework is true.",
+      "reasoning": "The statement that all students complete their homework is explicitly stated (premise 2), so it is true.",
       "relevant_premises": [
-        2,
-        7
+        2
       ]
     },
     "ground_truth": {
@@ -146,7 +140,7 @@
     "question": "Can all employees operate machinery?",
     "prediction": {
       "answer": "No",
-      "reasoning": "Premise 3 states that if someone does not complete the compliance training, they are not allowed to operate machinery. Since all employees have completed the compliance training (premise 8), they can operate machinery.",
+      "reasoning": "Premise 8 states that everyone has completed the compliance training, and premise 3 says that completing the training allows operating machinery, so all employees can operate machinery.",
       "relevant_premises": [
         3,
         8
@@ -165,19 +159,10 @@
     "id": "",
     "question": "Which can be inferred about universities with online courses?",
     "prediction": {
-      "answer": "C",
-      "reasoning": "Some universities increase accessibility because those with online courses do (premise 1), and online courses increase accessibility (premise 3).",
+      "answer": "Unknown",
+      "reasoning": "There exists a university with online courses (premise 1), and online courses increase accessibility (premise 3). Thus, some universities increase accessibility, derived through multiple steps.",
       "relevant_premises": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10
+        3
       ]
     },
     "ground_truth": {
@@ -194,10 +179,9 @@
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
       "answer": "A",
-      "reasoning": "From premise 1 (If a student does not complete their homework, they will not pass the course), premise 2 (All students complete their homework), and premise 5 (If not completing homework leads to failing the course, then all students attend class regularly), we can infer that if not doing homework leads to failing the course, then all students attend class regularly (via modus ponens and hypothetical syllogism). Therefore, option A is correct.",
+      "reasoning": "From premise 1, we know that if a student does not complete their homework, they will not pass the course. From premise 5, if not completing homework leads to failing the course, then all students attend class regularly. Therefore, if not doing homework leads to failing the course, then all students attend class regularly (from premises 1 and 5), making option A correct.",
       "relevant_premises": [
         1,
-        2,
         5
       ]
     },
@@ -214,12 +198,10 @@
     "id": "",
     "question": "Which of the following can be inferred about students?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 2 (All students attend class regularly) and premise 3 (If a student has a consistent study routine, then they attend class regularly), we know that all students have a consistent study routine because everyone attends class regularly. From premise 4 (If a student seeks help from teaching assistants when needed, then they complete all assigned exercises), since premise 1 states that there exists at least one student who completes all assigned exercises, it follows that some students seek help from teaching assistants when needed. Therefore, option B is correct.",
+      "answer": "Unknown",
+      "reasoning": "There exists a student who completes all exercises (premise 1), and seeking help implies completing exercises (premise 4). However, no premise guarantees that any student seeks help, so it’s uncertain whether some students do.",
       "relevant_premises": [
         1,
-        2,
-        3,
         4
       ]
     },
@@ -237,11 +219,12 @@
     "question": "Based on the premises, which of the following can be inferred?",
     "prediction": {
       "answer": "Unknown",
-      "reasoning": "From premise 1, we know that Coke (a fourth-year student) can get an internship or go to work. From premise 3, getting an internship leads to a good CV, and a good CV allows Coke to get a job. Therefore, Coke can get an internship or go to work because they are a fourth-year student (option A), and Coke is guaranteed to get a job because they are a fourth-year student (option B).",
+      "reasoning": "Option A is correct because it combines the premise that fourth-year students can get an internship or go to work with the chain of implications that a good CV leads to a job, supporting the inference that Coke can do either. Option B is false because a job isn’t guaranteed without a good CV. Option C is false because a good CV isn’t guaranteed without an internship. Option D is false because a CV is still needed for a job.",
       "relevant_premises": [
         1,
         2,
-        3
+        3,
+        4
       ]
     },
     "ground_truth": {
@@ -257,11 +240,11 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "The statement that if a student participates in self-study, they can conduct research is true because all students conduct research (premise 8), and there exists at least one student conducting research (premise 9). Therefore, the answer is B.",
+      "answer": "Unknown",
+      "reasoning": "The statement that if a student is trained, they conduct research follows because all students are trained (premise 4), and training implies conducting research (premise 2).",
       "relevant_premises": [
-        8,
-        9
+        1,
+        4
       ]
     },
     "ground_truth": {
@@ -278,11 +261,10 @@
     "question": "Do all employees have safety certification?",
     "prediction": {
       "answer": "No",
-      "reasoning": "Premise 8 states all employees have completed compliance training. Premise 6 says receiving safety certification implies compliance training. Thus, all employees have safety certification.",
+      "reasoning": "Premise 8 states that everyone has completed compliance training, and premise 9 says that completing compliance training implies having safety certification. Thus, all employees have safety certification.",
       "relevant_premises": [
-        3,
-        6,
-        8
+        8,
+        9
       ]
     },
     "ground_truth": {
@@ -299,11 +281,10 @@
     "question": "Which qualifications do all students possess?",
     "prediction": {
       "answer": "B",
-      "reasoning": "Premise 1 states all students have completed the foundational course. Premise 2 implies they are eligible for advanced coursework. Premise 7 implies they submitted their thesis. Premise 4 implies they passed the public speaking module. Premise 8 confirms academic communication skills. No premise denies eligibility for advanced coursework, so it remains true. Option B matches.",
+      "reasoning": "Premise 1 states all students completed the foundational course, premise 2 implies eligibility for advanced coursework, premise 7 states submitting a thesis, premise 8 provides academic communication skills, and premise 9 confirms passing the public speaking module, supporting option B.",
       "relevant_premises": [
         1,
         2,
-        4,
         7,
         8,
         9
@@ -325,11 +306,10 @@
     "id": "",
     "question": "Do all students receive a scholarship?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "From premise 6 (At least one student has received a scholarship) and premise 7 (If a student has completed the qualifying exam, then they have received a scholarship), it follows that at least one student has received a scholarship, but we cannot conclude that all students receive a scholarship because premise 7 only guarantees scholarships for those who completed the exam.",
+      "answer": "No",
+      "reasoning": "Premise 2 states that every student has completed the qualifying exam, and premise 7 says that completing the exam implies receiving a scholarship. Thus, all students receive a scholarship.",
       "relevant_premises": [
         2,
-        6,
         7
       ]
     },
@@ -346,12 +326,11 @@
     "id": "",
     "question": "Based on the online learning rules, which scenario is correct?",
     "prediction": {
-      "answer": "B",
-      "reasoning": "Premise 5 confirms downtime at 6 hours blocks mastering the course content, premise 9 requires verification beyond downtime, and premise 12 ensures capstone submission requires re-enrollment, so B is correct.",
+      "answer": "A",
+      "reasoning": "Premise 5 states that 6 hours of downtime prevents content mastery, and premise 11 says a crashed secure system reschedules exams, supporting option A. Option B is false because failing courses prevents a certificate. Option C is false because external proctors don’t block rescheduling. Option D is false because live attendance doesn’t override downtime effects.",
       "relevant_premises": [
         5,
-        9,
-        12
+        11
       ]
     },
     "ground_truth": {
@@ -370,7 +349,7 @@
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
       "answer": "B",
-      "reasoning": "From premise 2, we know that if a person applied for the exchange opportunity, then they are eligible for the exchange program. From premise 3, if a person is not eligible, then they were not selected for the exchange program. Therefore, if a person applied for the exchange opportunity, then they are eligible for the exchange program, and if they are eligible, they were selected for the exchange program (from premises 2 and 3), making option A correct.",
+      "reasoning": "From premise 2, we know that if a person applied for the exchange opportunity, then they are eligible for the exchange program. From premise 3, if a person is not eligible, then they were not selected for the exchange program. Therefore, if a person applied for the exchange opportunity, then they are eligible for the exchange program, and if they are not eligible, they were not selected for the exchange program (from premises 2 and 3), making option B correct.",
       "relevant_premises": [
         2,
         3
@@ -390,16 +369,11 @@
     "id": "",
     "question": "Do all students qualify for the Quantum Physics competition?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "Premise 3 states that all students are enrolled in Research Methods, and premise 4 says that enrollment in Research Methods leads to qualification for the Quantum Physics competition. Since all students are enrolled in Research Methods (premise 3), they all qualify for the Quantum Physics competition (from premises 3 and 4 through transitivity).",
+      "answer": "No",
+      "reasoning": "Premise 3 states all students are enrolled in Research Methods, and premise 4 says enrollment in Research Methods implies qualifying for the Quantum Physics competition. Thus, all students qualify.",
       "relevant_premises": [
-        1,
-        2,
         3,
-        4,
-        5,
-        6,
-        7
+        4
       ]
     },
     "ground_truth": {
@@ -415,8 +389,8 @@
     "id": "",
     "question": "Do all students understand the material?",
     "prediction": {
-      "answer": "Unknown",
-      "reasoning": "Premise 7 states that every student must review, and premise 6 says that not reviewing prevents studying, so all students review. Premise 1 states that studying leads to understanding, so all students understand the material, requiring steps to connect review to studying.",
+      "answer": "No",
+      "reasoning": "Premise 7 states that every student reviews, premise 6 says not reviewing implies not studying, so all students study. Premise 1 states that studying implies understanding, so all students understand the material.",
       "relevant_premises": [
         1,
         6,
@@ -437,9 +411,10 @@
     "id": "",
     "question": "What can we figure out about students?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 3 (Every enrolled student has access to the university library), we know that some students can borrow library books because premise 6 states that if all students have access to the library, then enrolled students can borrow books. Therefore, at least one student can borrow library books (option A).",
+      "answer": "Unknown",
+      "reasoning": "There exists a student enrolled in a course (premise 1), all enrolled students have library access (premise 3), and if all students have library access, enrolled students can borrow books (premise 6). Thus, at least one student can borrow books, derived through multiple steps.",
       "relevant_premises": [
+        1,
         3,
         6
       ]
@@ -458,13 +433,12 @@
     "id": "",
     "question": "What ensures a student avoids taking an exam?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "Studying 15 hours ensures exemption from exams (premise 7), and not completing a project requires an exam (premise 3), so avoiding projects ensures no exam.",
+      "answer": "C",
+      "reasoning": "Premise 1 states that studying 10 hours or more leads to knowledge, premise 3 says not completing a project requires an exam, and premise 7 says studying 15 hours exempts from the exam, so option C is correct.",
       "relevant_premises": [
         1,
         3,
-        7,
-        8
+        7
       ]
     },
     "ground_truth": {
@@ -481,16 +455,14 @@
     "id": "",
     "question": "Based on the above premises, is the following statement true?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "The statement is true because it is explicitly stated that security measures like HTTPS, input validation, and preventing XSS attacks are essential for protecting user data on the website.",
+      "answer": "Yes",
+      "reasoning": "The statement that a student who uses security measures will protect user data on their website is true because it is explicitly stated that security measures like HTTPS, input validation, and preventing XSS attacks are essential for protecting user data (premise 14).",
       "relevant_premises": [
-        1,
-        3,
         14
       ]
     },
     "ground_truth": {
-      "answer": "No",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": []
     }
@@ -500,10 +472,8 @@
     "question": "Based on the premises, which of the following can be inferred?",
     "prediction": {
       "answer": "Unknown",
-      "reasoning": "From premise 1, we know that a computer with a fast processor can run complex software. From premise 6, the Titan computer supports multitasking efficiently. From premise 2, if a computer has enough RAM, it supports multitasking efficiently. From premise 5, the Titan computer runs complex software. Therefore, the Titan computer is likely to have a strong cooling unit because it runs complex software and supports multitasking efficiently (from premises 1, 5, 6, and 3), making option A correct. Additionally, premise 5 states the Titan computer runs complex software, and premise 1 implies a fast processor, so option C is also true. Option B is false because premise 6 states the Titan computer supports multitasking efficiently. Option D is false because premise 6 states the Titan computer supports multitasking efficiently, and premise 2 implies enough RAM.",
+      "reasoning": "From premise 5, we know that the Titan computer runs complex software. From premise 6, the Titan computer supports multitasking efficiently. From premise 3, a system that runs complex software and supports multitasking efficiently requires a strong cooling unit. Therefore, the Titan computer is likely to have a strong cooling unit because it runs complex software and supports multitasking efficiently (from premises 3, 5, and 6), making option A correct.",
       "relevant_premises": [
-        1,
-        2,
         3,
         5,
         6
@@ -523,12 +493,11 @@
     "id": "",
     "question": "Which of the following can be inferred about students based on the premises?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "Premise 1 states that at least one student is enrolled in a course, and premise 2 implies that all enrolled students have passed the course. Thus, some students have passed the course, making option B correct. Option A is false because not all students are necessarily enrolled, and options C and D are unsupported by the premises.",
+      "answer": "Unknown",
+      "reasoning": "There exists a student enrolled in a course (premise 1), and being enrolled implies passing the course (premise 2). Thus, some students have passed the course, derived through multiple steps.",
       "relevant_premises": [
         1,
-        2,
-        3
+        2
       ]
     },
     "ground_truth": {
@@ -544,8 +513,8 @@
     "id": "",
     "question": "Is the following statement true? Statement: If the statement 'if all students are enrolled in a thesis-based program, then at least one student has participated in a research project' is true, then all students are enrolled in a thesis-based program",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 1 (All students are enrolled in a thesis-based program), we know ∀x (ThesisBasedProgram(x)). From premise 2 (There exists at least one student who has participated in a research project), we know ∃x (ResearchProject(x)). The antecedent of the statement is true because premise 1 implies it. Since the antecedent is true and premise 1 states that all students are enrolled in a thesis-based program, the consequent must be true. Therefore, if the statement 'if all students are enrolled in a thesis-based program, then at least one student has participated in a research project' is true, then all students are enrolled in a thesis-based program (option C).",
+      "answer": "Yes",
+      "reasoning": "From premise 1, we know that all students are enrolled in a thesis-based program. From premise 2, there exists at least one student who has participated in a research project. Therefore, if the statement 'if all students are enrolled in a thesis-based program, then at least one student has participated in a research project' is true, then all students are enrolled in a thesis-based program (from premises 1 and 2), making the statement true.",
       "relevant_premises": [
         1,
         2
@@ -565,14 +534,13 @@
     "question": "Based on the above premises, is the following statement true?",
     "prediction": {
       "answer": "Yes",
-      "reasoning": "The statement that if someone understands the lecture, then they pass the exam is true because understanding the lecture implies passing the exam (premise 1), and there exists at least one student (premise 2).",
+      "reasoning": "The statement is true because it is explicitly stated that if someone understands the lecture, they pass the exam.",
       "relevant_premises": [
-        1,
-        2
+        1
       ]
     },
     "ground_truth": {
-      "answer": "No",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         1
@@ -583,30 +551,12 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "The statement ∀x (H(x) → (E(x) ∧ A(x))) is true because every streaming service provides high-quality streaming (premise 14), and if a streaming service is not available globally, then it does not provide high-quality streaming (premise 18). Since every streaming service is available globally, it follows that every streaming service provides high-quality streaming and is affordable, satisfying the antecedent of premise 24, which implies that every streaming service is affordable.",
+      "answer": "Unknown",
+      "reasoning": "The statement that if a streaming service provides high-quality streaming, it is affordable and offers exclusive content follows because all services provide high-quality streaming (premise 14), are affordable (premise 8), and offer exclusive content (premise 12).",
       "relevant_premises": [
         1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
         8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        24
+        14
       ]
     },
     "ground_truth": {
@@ -623,7 +573,7 @@
     "question": "If all students are qualified for graduation, does it follow that there exists at least one student who takes advanced courses?",
     "prediction": {
       "answer": "No",
-      "reasoning": "From premise 4 (All students are qualified for graduation) and premise 6 (If all students are qualified for graduation, then there exists at least one student who takes advanced courses), we can infer that if all students are qualified for graduation, then there exists at least one student who takes advanced courses through modus ponens.",
+      "reasoning": "From premise 4 (All students are qualified for graduation), we know ∀x Q(x). From premise 6, if all students are qualified for graduation, then there exists at least one student who takes advanced courses (∀x Q(x) → ∃x A(x)). Since premise 4 states that all students are qualified, premise 6's antecedent is true, so the consequent must be true. Therefore, if all students are qualified for graduation, it follows that there exists at least one student who takes advanced courses.",
       "relevant_premises": [
         4,
         6
@@ -643,7 +593,7 @@
     "question": "According to the above premises, is the following statement true?",
     "prediction": {
       "answer": "Yes",
-      "reasoning": "From premise 5 (If a student does not complete the foundational courses, they will not be eligible for graduation), we know that not completing foundational courses leads to ineligibility for graduation. From premise 13, if students who do not complete foundational courses cannot graduate, then all students must complete the foundational courses. Therefore, if students who do not complete foundational courses cannot graduate, then all students must complete the foundational courses (from premises 5 and 13), making the statement true.",
+      "reasoning": "From premise 5, we know that if a student does not complete the foundational courses, they will not be eligible for graduation. From premise 13, if students who do not complete foundational courses cannot graduate, then all students must complete the foundational courses. Therefore, if students who do not complete foundational courses cannot graduate, then all students must complete the foundational courses (from premises 5 and 13), making the statement true.",
       "relevant_premises": [
         5,
         13
@@ -662,11 +612,10 @@
     "id": "",
     "question": "Based on the premises, is the following statement true?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "The statement that John has missed more than 3 classes this semester is false because he attends classes regularly (premise 4) and has missed no classes (premise 10). A student who misses no classes cannot have missed more than 3, so the statement contradicts itself.",
+      "answer": "No",
+      "reasoning": "Premise 10 states John has missed no classes, and premise 9 says missing more than 3 classes leads to a penalty. Since John missed none, the statement is false.",
       "relevant_premises": [
-        3,
-        4,
+        9,
         10
       ]
     },
@@ -682,10 +631,9 @@
     "id": "",
     "question": "Will Ponko fail the class?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "Ponko completed all homework (premise 4) but missed one class, violating premise 3’s condition for passing the final exam. Since Ponko didn’t meet the passing criteria, they might fail according to premise 1, though we can't confirm failure without more information.",
+      "answer": "No",
+      "reasoning": "Premise 4 states Ponko missed a class, premise 3 requires attendance for passing the final exam, and premise 2 states that scoring below 50% on the final exam leads to failure, so Ponko will fail the class.",
       "relevant_premises": [
-        1,
         2,
         3,
         4
@@ -705,8 +653,8 @@
     "id": "",
     "question": "Based on the premises, which statement is correct?",
     "prediction": {
-      "answer": "C",
-      "reasoning": "The statement that students who solve math problems correctly must have practiced them (A) is supported by premises 1 and 6, as practicing leads to correct solving, and lack of practice prevents asking questions. Some students ask questions without attending lectures (B), contradicting premise 5. All students practicing math problems ask questions (C), which contradicts premise 6.",
+      "answer": "A",
+      "reasoning": "Premise 1 states that not practicing leads to not solving problems correctly, implying that solving problems correctly requires practicing. Premise 6 says not practicing leads to not asking questions, so asking questions implies practicing. Thus, option A is correct.",
       "relevant_premises": [
         1,
         6
@@ -725,17 +673,10 @@
     "question": "If all students are required to complete a Thesis, does it follow that students with low GPAs lose housing access?",
     "prediction": {
       "answer": "No",
-      "reasoning": "From Premise 5 (All students are required to complete a Thesis) and Premise 21 (Housing access requires maintaining the GPA), we can infer that students with low GPAs lose housing access. This is because if a student has a low GPA, they do not meet the GPA requirement for housing access, and since all students are required to complete a Thesis, they will lose housing access.",
+      "reasoning": "Premise 5 states that all students complete a Thesis, and premise 4 says that failing to maintain a GPA leads to losing housing access. Thus, if all students complete a Thesis, students with low GPAs lose housing access.",
       "relevant_premises": [
-        2,
-        3,
         4,
-        5,
-        9,
-        11,
-        15,
-        17,
-        21
+        5
       ]
     },
     "ground_truth": {
@@ -753,11 +694,10 @@
     "question": "Do all students qualify for the Quantum Physics competition?",
     "prediction": {
       "answer": "No",
-      "reasoning": "Premise 2 states that all students are enrolled in Research Methods, and premise 4 says if a student is enrolled in Research Methods, they have qualified for the Quantum Physics competition. Premise 6 confirms all students have completed the Thesis Writing course, leading to the conclusion that all students qualify for the Quantum Physics competition, requiring steps to confirm.",
+      "reasoning": "Premise 2 states all students are enrolled in Research Methods, and premise 4 says enrollment implies qualifying for the competition. Thus, all students qualify.",
       "relevant_premises": [
         2,
-        4,
-        6
+        4
       ]
     },
     "ground_truth": {
@@ -775,7 +715,7 @@
     "question": "Which activities do all students perform?",
     "prediction": {
       "answer": "A",
-      "reasoning": "From premise 3 (All students attend the university), we know that all students attend the university. From premise 4 (All students take the exam), all students take the exam. From premise 5 (All students qualify for graduation), all students qualify for graduation. From premise 6 (All students pass the course), all students pass the course. From premise 2 (If a student submits their assignment, then they qualify for graduation), all students submit their assignment because all students qualify for graduation. From premise 7 (If a student completes the research project, then they submit the assignment), all students complete the research project because all students submit their assignment. Therefore, all students perform attending university, taking exam, submitting assignment, passing course, qualifying for graduation, making option A correct.",
+      "reasoning": "Premise 3 states all students attend the university, premise 4 states all take the exam, premise 6 states all pass the course, and premise 5 states all qualify for graduation, supporting option A. Option B is false because not all submit assignments. Option C is false because not all submit assignments or complete research projects. Option D is false because not all submit assignments or complete research projects.",
       "relevant_premises": [
         3,
         4,
@@ -800,17 +740,18 @@
     "question": "Based on the premises, is the following statement true?",
     "prediction": {
       "answer": "Yes",
-      "reasoning": "From premise 6 (Kahne is a member of the lab), we know that Kahne is a member of the lab. From premise 2, if they are a member of the lab, they can get training. From premise 3, training helps them to broaden knowledge. From premise 4, with guidance and knowledge, they can do a science article. From premise 5, if the science article is successfully published, they get plus points in their graduation thesis. Therefore, Kahne will receive plus points for their graduation thesis if they write a science article and it is successfully published (from premises 5, 4, 3, 2, and 1), making the statement true.",
+      "reasoning": "From premise 6, we know that Kahne is a member of the lab. From premise 2, being a member of the lab means Kahne can get training. From premise 3, training helps Kahne to broaden knowledge. From premise 1, being a BK student, Kahne can participate in the lab of a lecturer to gain guidance to do a science article. From premise 4, with guidance and knowledge, Kahne can do a science article. From premise 5, if the science article is successfully published, Kahne gets plus points in their graduation thesis. Therefore, Kahne will receive plus points for their graduation thesis if they write a science article and it is successfully published (from premises 1, 2, 3, 4, 5, and 6), making the statement true.",
       "relevant_premises": [
         1,
         2,
         3,
         4,
-        5
+        5,
+        6
       ]
     },
     "ground_truth": {
-      "answer": "No",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         4,
@@ -823,8 +764,8 @@
     "id": "",
     "question": "Considering the above premises from the University of Technology, which of the following statements can be logically deduced if we know that there exists at least one object x that has property U?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 1 (At the University of Technology, there exists at least one object x that has property U), we know ∃x U(x). From premise 10, if there exists at least one object x that has property U, then if an object x does not have property S it does not have property P (∃x U(x) → ∀x ¬S(x) → ¬P(x)). Since premise 1 states that there exists at least one object x that has property U, premise 10's antecedent is true, so the consequent must also be true. Therefore, if there exists an object with property U then if an object lacks property S it does not have property P (option C).",
+      "answer": "Unknown",
+      "reasoning": "From premise 1 (There exists an object x with property U), we know ∃x U(x). From premise 10, if there exists an object with property U, then if an object lacks property S it does not have property P (∃x U(x) → ∀x (¬S(x) → ¬P(x))). Since premise 1 states that such an object exists, premise 10's antecedent is true, so the consequent must be true. Therefore, if there exists an object with property U, then if an object lacks property S it does not have property P (option C).",
       "relevant_premises": [
         1,
         10
@@ -845,12 +786,9 @@
     "question": "Based on the premises above, which of the following statements can be logically concluded?",
     "prediction": {
       "answer": "C",
-      "reasoning": "From premise 3 (All individuals are university members), we know ∀x U(x). From premise 4, if being a professional implies being a scholar, then all individuals are university members. From premise 5, if all individuals are university members, then being a researcher implies being a professional. From premise 1, if a person is a researcher, then they are a professional. From premise 2, if a person is a professional, then they are a scholar. Therefore, (∀x U(x) → (R(x) → P(x))) is true (from steps 3, 4, 5, 1, and 2), making option C correct.",
+      "reasoning": "From premise 3 (All individuals are university members), we know ∀x U(x). From premise 5, if all individuals are university members, then being a researcher implies being a professional (∀x U(x) → (∀x R(x) → ∀x P(x))). Since premise 3 states that all individuals are university members, premise 5's antecedent is true, so the consequent must be true. Therefore, (∀x U(x) → (∀x R(x) → ∀x P(x))) is true, making option C correct.",
       "relevant_premises": [
-        1,
-        2,
         3,
-        4,
         5
       ]
     },
@@ -869,9 +807,8 @@
     "question": "Are there any students who are not required to attend the orientation?",
     "prediction": {
       "answer": "No",
-      "reasoning": "Premise 2 states that all students are required to attend the orientation, and premise 1 implies that non-attendance leads to ineligibility for registration, but this does not contradict the requirement that all students must attend. Therefore, there are no students who are not required to attend the orientation.",
+      "reasoning": "Premise 2 states that all students are required to attend the orientation, so no students are not required to attend.",
       "relevant_premises": [
-        1,
         2
       ]
     },
@@ -888,12 +825,11 @@
     "id": "",
     "question": "Is it true that all students who pay the required fees are allowed to continue studying?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "Premise 1 states all students pay fees, premise 2 says non-payment results in disqualification, and premise 3 says disqualification means non-payment. Thus, all paying students can continue studying (premise 1 implies all students pay, premise 3 says disqualification means non-payment, premise 2 says non-payment leads to disqualification, so all paying students must be allowed to continue), making the statement true.",
+      "answer": "No",
+      "reasoning": "Premise 1 states all students pay the fees, and premise 2 says not paying leads to not being allowed to continue, implying that paying ensures continuation, so all students who pay are allowed to continue.",
       "relevant_premises": [
         1,
-        2,
-        3
+        2
       ]
     },
     "ground_truth": {
@@ -910,7 +846,7 @@
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
       "answer": "Unknown",
-      "reasoning": "From premise 5 (If x is registered for the course, then x is a student), we know that being registered implies being a student. From premise 4 (If x is not registered for the course, then x does not take the course), if someone is not registered, they don't take the course. However, this doesn't imply that if someone takes the course, they are a student, so option A is false. Option B is false because being a student doesn't necessarily mean understanding the lecture. Option C is false because being not registered doesn't imply passing the exam. Option D is false because understanding the lecture doesn't imply not being a student.",
+      "reasoning": "From premise 4, we know that if someone is not registered for the course, then they do not take the course. From premise 5, if someone is registered for the course, then they are a student. Therefore, if someone takes the course, they must be registered for the course (from premise 4), and thus they are a student (from premise 5), making option A correct.",
       "relevant_premises": [
         4,
         5
@@ -929,7 +865,7 @@
     "question": "Is it true that all students who did not raise an issue have paid the fees?",
     "prediction": {
       "answer": "No",
-      "reasoning": "All students have paid the fees (premise 2), and if someone did not pay the fees, they raised an issue (premise 1). Since everyone paid, no one did not pay, so no one raised an issue. Thus, all students who did not raise an issue have paid the fees.",
+      "reasoning": "All students have paid the fees (premise 2), and not raising an issue implies not having unpaid fees (premise 1). Thus, all students who did not raise an issue have paid the fees.",
       "relevant_premises": [
         1,
         2
@@ -948,16 +884,15 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "The statement that if a student is registered for the course then they submit the required assignments follows because every student is registered (premise 4), and if they attend the seminar, they submit assignments (premise 5), and if they don't submit assignments, they won't pass (premise 7). Therefore, if a student is registered, they submit the required assignments (option A).",
+      "answer": "Unknown",
+      "reasoning": "The statement that if a student is registered for the course, they attend the seminar follows because all students are registered (premise 4), and at least one student attends the seminar (premise 10), implying all do.",
       "relevant_premises": [
         4,
-        5,
-        7
+        10
       ]
     },
     "ground_truth": {
-      "answer": "Unknown",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         3
@@ -969,15 +904,12 @@
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
       "answer": "A",
-      "reasoning": "From premise 3, we know that if a high school student is not proficient in algebra, then they will not ace calculus. From premise 4, if (if a high school student is not proficient in algebra, then they will not ace calculus), then there exists at least one high school student who understands trigonometry. From premise 5, if (if (if a high school student is not proficient in algebra, then they will not ace calculus), then there exists at least one high school student who understands trigonometry), then there exists at least one high school student who understands trigonometry. From premise 1, if a high school student studies math diligently, then they understand trigonometry. From premise 2, there exists at least one high school student who understands trigonometry. From premise 6, if a high school student does not practice math problems regularly, then they will not ace calculus. From premise 7, if a high school student does not practice math problems regularly, then they do not study math diligently. Therefore, if a high school student is not proficient in algebra, then they will not ace calculus, and if a high school student studies math diligently, then they understand trigonometry (from premises 1, 2, 3, 4, 5, 6, and 7), so option A is correct.",
+      "reasoning": "From premise 3, we know that if a high school student is not proficient in algebra, then they will not ace calculus. From premise 4, if (if a high school student is not proficient in algebra, then they will not ace calculus), then there exists at least one high school student who understands trigonometry. From premise 1, if a high school student studies math diligently, then they understand trigonometry. From premise 2, there exists at least one high school student who understands trigonometry. Therefore, if a high school student is not proficient in algebra, then they will not ace calculus, and if a high school student studies math diligently, then they understand trigonometry (from premises 1, 2, 3, and 4), making option A correct.",
       "relevant_premises": [
         1,
         2,
         3,
-        4,
-        5,
-        6,
-        7
+        4
       ]
     },
     "ground_truth": {
@@ -995,13 +927,13 @@
     "id": "",
     "question": "Which activities do all students perform?",
     "prediction": {
-      "answer": "D",
-      "reasoning": "Premise 7 states that all students take the thesis course. Premise 5 implies that participating in research leads to belonging to the university (reverse implication of premise 2), so all students likely participate in research. Premise 1 confirms university membership for all students, and premise 4 ensures registration. Since all students take the thesis course (premise 7) and belong to the university (premise 1), all students participate in research, are registered, and take the thesis course. All students receive scholarships according to premise 6. Therefore, option A is correct.",
+      "answer": "A",
+      "reasoning": "Premise 2 states that not participating in research implies not belonging to the university, so all students participate in research. Premise 5 says belonging to the university implies taking the thesis course, and premise 7 confirms all students are taking the thesis course. Premise 4 states all students are registered, and premise 6 says all receive a scholarship, supporting option A.",
       "relevant_premises": [
-        1,
+        2,
         4,
         5,
-        7
+        6
       ]
     },
     "ground_truth": {
@@ -1021,10 +953,10 @@
     "question": "If there exists at least one student who has completed the Data Science course, does it follow that if a student has completed the Data Science course, then they have passed the Data Analytics exam?",
     "prediction": {
       "answer": "No",
-      "reasoning": "From premise 3 (If a student has completed the Algorithms course, then they have also completed the Data Science course) and premise 4 (If a student has completed the Data Science course, then they have passed the exam on Data Analytics), we can infer that if a student has completed the Data Science course, then they have passed the Data Analytics exam. This follows because completing the Algorithms course implies completing the Data Science course, and completing the Data Science course implies passing the Data Analytics exam.",
+      "reasoning": "From premise 9, we know there exists at least one student who has completed the Data Science course. From premise 4, if a student has completed the Data Science course, then they have passed the exam on Data Analytics. Therefore, if there exists at least one student who has completed the Data Science course, it follows that if a student has completed the Data Science course, then they have passed the Data Analytics exam (from premises 4 and 9), requiring multiple steps to connect the existence of such a student to the implication.",
       "relevant_premises": [
-        3,
-        4
+        4,
+        9
       ]
     },
     "ground_truth": {
@@ -1041,7 +973,7 @@
     "question": "Based on the above premises, which of the following conclusions can be inferred?",
     "prediction": {
       "answer": "D",
-      "reasoning": "From premise 8 (If an EV charging station is not widely available, then it is not thoroughly maintained), we know ∀x ¬W(x) → ¬T(x). From premise 11, every EV charging station is thoroughly maintained (∀x T(x)). If an EV charging station being not widely available implies that it is not thoroughly maintained, then every EV charging station meets safety standards because all stations are thoroughly maintained, making the implication true. Therefore, option D is correct.",
+      "reasoning": "From premise 8, we know that if not being widely available implies not being thoroughly maintained, then every EV charging station meets safety standards. From premise 11, every EV charging station is thoroughly maintained. Therefore, if not being widely available implies not being thoroughly maintained, then every EV charging station meets safety standards (from premises 8 and 11), making option D correct.",
       "relevant_premises": [
         8,
         11
@@ -1061,7 +993,7 @@
     "question": "Which achievements have all students accomplished?",
     "prediction": {
       "answer": "A",
-      "reasoning": "All students are in the dual degree program (premise 8), maintain a GPA of 3.5 or higher (premise 1), and complete a capstone project (premise 4). Completing the capstone project implies completing a thesis (premise 6), so all students complete a thesis and qualify for the second degree (premise 2). Thus, option A is correct.",
+      "reasoning": "Premise 8 states all students are in the dual degree program, premise 1 requires a GPA of 3.5 or higher, premise 4 mandates completing a capstone project, and premise 6 implies completing a thesis. Option A includes all these, while option D omits capstone and thesis, and option C lacks dual degree and GPA, making A correct.",
       "relevant_premises": [
         1,
         4,
@@ -1086,12 +1018,11 @@
     "question": "Based on the premises, which statement is best supported?",
     "prediction": {
       "answer": "B",
-      "reasoning": "Regularly attending lectures leads to understanding the course material (premise 1), then performing well in exams (premise 2), and achieving a high GPA (premise 3). A high GPA means being eligible for academic awards (premise 4), and academic awards lead to financial benefits (premise 5). So, attending lectures regularly leads to a high GPA, supported by premises 1, 2, 3, and 4.",
+      "reasoning": "Premise 1 states attending lectures leads to understanding material, premise 2 says understanding leads to exam performance, and premise 3 says exam performance leads to a high GPA, supporting option B. Option A is false because no premise states that failing to secure an internship prevents improved job prospects. Option C is false because financial benefits do not imply research projects. Option D is false because practical experience does not guarantee academic awards.",
       "relevant_premises": [
         1,
         2,
-        3,
-        4
+        3
       ]
     },
     "ground_truth": {
@@ -1109,10 +1040,10 @@
     "question": "Are all students responsible?",
     "prediction": {
       "answer": "No",
-      "reasoning": "Premise 5 states everyone is a student, and premise 8 says everyone is responsible. Therefore, all students are responsible.",
+      "reasoning": "Premise 5 states that everyone is a student, and premise 12 says that being a student implies being responsible. Thus, all students are responsible.",
       "relevant_premises": [
         5,
-        8
+        12
       ]
     },
     "ground_truth": {
@@ -1129,10 +1060,11 @@
     "question": "Do all students take a qualifying exam?",
     "prediction": {
       "answer": "Unknown",
-      "reasoning": "Premise 2 states that there exists at least one student who has taken a qualifying exam, but it does not imply that all students take a qualifying exam.",
+      "reasoning": "Premise 2 states there exists a student who took a qualifying exam, premise 4 says this implies at least one student completed a research project, and premise 6 states that not completing a project implies not taking the exam. However, no premise ensures all students take the exam, so it’s uncertain.",
       "relevant_premises": [
         2,
-        7
+        4,
+        6
       ]
     },
     "ground_truth": {
@@ -1149,11 +1081,10 @@
     "question": "If all students have cleared tuition payments, does it follow that all students satisfy prerequisite requirements?",
     "prediction": {
       "answer": "No",
-      "reasoning": "** From premise 4 ('All students have cleared tuition payments'), we know ∀x P(x). From premise 5, all students satisfy prerequisite requirements (∀x Q(x)). From premise 9, full tuition compliance by all students waives prerequisite checks (∀x ¬Q(x) → ∀x ¬P(x)). Since premise 4 states that all students have cleared tuition payments, premise 9's antecedent is false, making the consequent vacuously true. Therefore, if all students have cleared tuition payments, it follows that all students satisfy prerequisite requirements.",
+      "reasoning": "From premise 4 (All students have cleared tuition payments (P)), we know ∀x P(x). From premise 5, all students satisfy prerequisite requirements (∀x Q(x)). Since premise 4 states that all students have cleared tuition payments, and premise 5 states that all students satisfy prerequisite requirements, it follows that if all students have cleared tuition payments, all students satisfy prerequisite requirements.",
       "relevant_premises": [
         4,
-        5,
-        9
+        5
       ]
     },
     "ground_truth": {
@@ -1170,7 +1101,7 @@
     "question": "Based on the premises, which conclusion is correct?",
     "prediction": {
       "answer": "A",
-      "reasoning": "From premise 1 (Understanding wave-particle duality leads to superposition), premise 2 (superposition is needed for quantum measurement), premise 3 (measurement leads to wavefunction collapse), premise 4 (collapse requires Schrödinger’s equation), premise 5 (equation proficiency in tunneling), premise 6 (tunneling leads to quantum computing), premise 7 (computing involves qubit manipulation), premise 8 (manipulation requires entanglement), premise 9 (entanglement enables Bell’s theorem analysis), premise 10 (analysis allows quantum realism assessment), premise 11 (realism assessment leads to advanced research preparation), premise 12 (research preparation requires either publication or seminar), premise 13 (publications/seminars lead to research position), and premise 14 (laboratory access requires a research position), we can infer that a student who develops through the quantum theory chain, from duality to advanced research preparation, can make academic contributions through publication or seminar (option A).",
+      "reasoning": "A student who develops through the quantum theory chain, from duality to advanced research preparation, can make academic contributions through publication or seminar. This is supported by a chain of implications: understanding wave-particle duality (Premise 1) leads to quantum superposition (Premise 2), which leads to quantum measurement and wavefunction collapse (Premise 2), which leads to critiquing quantum interpretations (Premise 3), which requires familiarity with Schrödinger’s equation (Premise 4), which allows solving quantum tunneling problems (Premise 5), which enables engagement with quantum computing fundamentals (Premise 6), which involves qubit manipulation and entanglement (Premise 7), which requires analyzing Bell’s theorem (Premise 8), which allows assessing quantum nonlocality and realism debates (Premise 9), which qualifies a student for advanced research discussions (Premise 10), which allows contributing original perspectives through publications or seminars (Premise 11), and avoiding both publications and seminars results in a lack of academic contribution (Premise 12), so a student who develops through the chain can make academic contributions through publication or seminar.",
       "relevant_premises": [
         1,
         2,
@@ -1182,10 +1113,7 @@
         8,
         9,
         10,
-        11,
-        12,
-        13,
-        14
+        11
       ]
     },
     "ground_truth": {
@@ -1211,12 +1139,10 @@
     "id": "",
     "question": "Based on the premises, which statement is correct?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "Premise 3 ensures at least one student is registered for an advanced course, and premise 8 states that such students are motivated. Premise 4 guarantees at least one student passes the exams, and premise 7 links passing to submitting homework. Thus, at least one student graduates (premise 9), making option A correct.",
+      "answer": "Unknown",
+      "reasoning": "At least one student passes the exams (premise 4), and passing the exams implies graduating (premise 9), so at least one student graduates, derived through multiple steps.",
       "relevant_premises": [
-        3,
         4,
-        7,
         9
       ]
     },
@@ -1234,13 +1160,10 @@
     "id": "",
     "question": "Which courses have all students passed?",
     "prediction": {
-      "answer": "D",
-      "reasoning": "Premise 3 states that all students have completed the Programming Fundamentals course, and premise 5 states that all students have passed the Mathematics for Computer Science course. Therefore, option A is correct.",
+      "answer": "A",
+      "reasoning": "Premise 5 states all students have passed Mathematics for Computer Science, and premise 3 states all students have completed Programming Fundamentals, implying they have passed it. Option A is correct.",
       "relevant_premises": [
-        1,
-        2,
         3,
-        4,
         5
       ]
     },
@@ -1257,8 +1180,8 @@
     "id": "",
     "question": "Based on the rules above, which of the following statements is true?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 1 (If a student does not follow the school rules, the student will be disciplined), we know that not following the school rules leads to discipline. From premise 3, if a student violates the school rules, they will be banned from extracurricular activities. From premise 5, if a student does not follow the dress code, they will be asked to change their clothes. Therefore, if a student does not follow the school rules and if a student violates the school rules, they will be disciplined and banned from extracurricular activities, and if a student does not follow the dress code, they will be asked to change their clothes (option A).",
+      "answer": "Unknown",
+      "reasoning": "From premise 1, we know that if a student does not follow the school rules, they will be disciplined. From premise 3, if a student violates the school rules, they will be banned from extracurricular activities. From premise 5, if a student does not follow the dress code, they will be asked to change their clothes. Therefore, if a student does not follow the school rules and if a student violates the school rules, they will be disciplined and banned from extracurricular activities, and if a student does not follow the dress code, they will be asked to change their clothes (from premises 1, 3, and 5), making option A correct.",
       "relevant_premises": [
         1,
         3,
@@ -1280,8 +1203,8 @@
     "id": "",
     "question": "Can students in problem-based learning improve self-learning?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "Premise 1 states that engaging in problem-based learning develops stronger analytical skills, and premise 7 indicates that practicing metacognitive strategies enhances self-learning. Since problem-based learning typically involves metacognitive practices (reflecting on problem-solving processes), students can indeed improve self-learning through problem-based learning.",
+      "answer": "No",
+      "reasoning": "Premise 1 states that problem-based learning develops analytical skills, and premise 7 says metacognitive strategies make students effective self-learners. If problem-based learning includes metacognitive strategies, students can improve self-learning.",
       "relevant_premises": [
         1,
         7
@@ -1300,10 +1223,9 @@
     "id": "",
     "question": "Which of the following can be inferred about students based on the premises?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "From premise 2 (There exists a student who has received feedback from the company for their internship) and premise 5 (If x has received the company stamp, then x has received feedback from the company), we can infer that if a student has feedback, they have the company stamp. This is because the existence of at least one student with feedback implies the conditional relationship between receiving the stamp and having feedback, making option A correct.",
+      "answer": "Unknown",
+      "reasoning": "The statement that if a student has the stamp, they have feedback follows directly from premise 5, which states that having the stamp implies having feedback.",
       "relevant_premises": [
-        2,
         5
       ]
     },
@@ -1320,13 +1242,11 @@
     "id": "",
     "question": "Does Mia have motivation?",
     "prediction": {
-      "answer": "Unknown",
-      "reasoning": "Premise 10 states that anyone who has knowledge can teach, premise 12 says all teachers have knowledge, and premise 13 confirms Ludwig is a teacher. Premise 2 requires having motivation to be motivated by someone, so Ludwig motivating Mia implies she has motivation. Since Ludwig teaches Mia (premise 8), he has knowledge (premise 10) and is a teacher (premise 13), so Ludwig motivates Mia, giving her motivation.",
+      "answer": "No",
+      "reasoning": "Premise 15 states Mia is a student, and premise 3 says if someone improves, they are motivated by someone. Since premise 5 and 6 imply Mia improves, premise 3 supports Mia having motivation.",
       "relevant_premises": [
-        2,
-        9,
-        10,
-        12
+        3,
+        15
       ]
     },
     "ground_truth": {
@@ -1347,19 +1267,9 @@
     "question": "Based on the above premises, is the following statement true?",
     "prediction": {
       "answer": "Yes",
-      "reasoning": "The statement that if a student does not engage in the learning process, they do not succeed in assessments is supported by multiple premises. Engaging in self-directed study supports success in assessments (premise 13), attending all classes ensures understanding and success (premises 5, 9), and missing classes leads to failure in assessments (premise 7). Lack of engagement implies poor understanding and incomplete coursework (premises 11, 12), and self-directed study ensures academic success (premise 15). Therefore, the statement is true.",
+      "reasoning": "The statement is true because it is the contrapositive of premise 12, which states that all students can succeed in assessments, implying that not engaging in the learning process leads to not succeeding in assessments.",
       "relevant_premises": [
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15
+        12
       ]
     },
     "ground_truth": {
@@ -1375,29 +1285,10 @@
     "question": "Do all committee members approve the methodology?",
     "prediction": {
       "answer": "No",
-      "reasoning": "Premise 4 states that if a committee member agrees the thesis is acceptable, they approve the methodology. Premise 16 states that if all committee members agree the thesis is acceptable, then at least one observer found the presentation clear. Since every committee member agrees the thesis is acceptable, they approve the methodology.",
+      "reasoning": "Premise 1 states that every committee member agrees the thesis is acceptable, and premise 4 says that if a committee member agrees the thesis is acceptable, they also approve the methodology. Thus, all committee members approve the methodology.",
       "relevant_premises": [
         1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21
+        4
       ]
     },
     "ground_truth": {
@@ -1414,15 +1305,10 @@
     "question": "If there exists at least one student who utilizes online learning resources, does it follow that if it's true that the existence of a student utilizing online resources implies all students take part in team projects, then all students utilize online learning resources?",
     "prediction": {
       "answer": "Yes",
-      "reasoning": "From premise 3 (There exists at least one student who utilizes online learning resources), we know ∃x U(x). From premise 6, if there exists a student who utilizes online learning resources (∃x U(x)), then all students take part in team projects (∀x T(x)). From premise 8, if it's true that the existence of a student utilizing online resources implies all students take part in team projects, then all students utilize online learning resources (∀x U(x)). Therefore, if there exists at least one student who utilizes online learning resources (∃x U(x)), it follows that if it's true that the existence of a student utilizing online resources implies all students take part in team projects (∀x T(x) → ∀x U(x)), then all students utilize online learning resources (∀x U(x)). This is because premise 6 states that the implication holds, and premise 8 states that the implication implies the universal statement.",
+      "reasoning": "From premise 5, we know there exists at least one student who utilizes online learning resources. From premise 6, if there exists a student who utilizes online learning resources, then all students take part in team projects. From premise 8, if it's true that the existence of a student utilizing online resources implies all students take part in team projects, then all students utilize online learning resources. Therefore, if there exists at least one student who utilizes online learning resources, it follows that if it's true that the existence of a student utilizing online resources implies all students take part in team projects, then all students utilize online learning resources (from premises 5, 6, and 8), making the answer Yes.",
       "relevant_premises": [
-        1,
-        2,
-        3,
-        4,
         5,
         6,
-        7,
         8
       ]
     },
@@ -1441,11 +1327,10 @@
     "question": "Is the following statement true according to the premises?",
     "prediction": {
       "answer": "No",
-      "reasoning": "** There exists a positive feedback loop because improved grades (premise 1) lead to scholarship eligibility (premise 2), which leads to reduced tuition fees (premise 6). Reduced tuition fees allow more study time (premise 7), which in turn improves grades (premise 9), completing the loop.",
+      "reasoning": "Improved grades lead to scholarship eligibility (Premise 1 and 2), reduced tuition (Premise 6), less financial burden (Premise 7), more study time (Premise 8), and further grade improvement (Premise 9), forming a positive feedback loop.",
       "relevant_premises": [
         1,
         2,
-        6,
         8,
         9
       ]
@@ -1468,7 +1353,7 @@
     "question": "Is it true that some students are enrolled in a course?",
     "prediction": {
       "answer": "No",
-      "reasoning": "From premise 2 (All students complete the course successfully), we know ∀x C(x). From premise 1, if x is enrolled in a course, then x completes the course successfully (∀x (E(x) → C(x))). Since all students complete the course successfully, if there were no enrolled students, at least one student would not have completed the course, contradicting premise 2. Therefore, it must be true that some students are enrolled in a course.",
+      "reasoning": "All students complete the course successfully (premise 2), and completing the course requires being enrolled (premise 1). Thus, some students are enrolled, derived through multiple steps.",
       "relevant_premises": [
         1,
         2
@@ -1487,12 +1372,11 @@
     "id": "",
     "question": "Do all smartphones support advanced camera features?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 9 (There exists at least one smartphone with a high-resolution display), we know ∃x H(x). From premise 10 (If a smartphone has superior screen quality, then it is equipped with the latest processor), we know ∀x (H(x) → L(x)). However, premise 9 only states existence, and premise 10 requires both conditions to be true for all x, so we cannot conclude that all smartphones support advanced camera features. Therefore, the answer is No.",
+      "answer": "Unknown",
+      "reasoning": "There exists a smartphone with a high-resolution display (premise 9), and having superior screen quality implies supporting advanced camera features (premise 8). However, no premise guarantees all smartphones have superior screen quality, so it’s uncertain if all support advanced camera features.",
       "relevant_premises": [
-        3,
-        9,
-        10
+        8,
+        9
       ]
     },
     "ground_truth": {
@@ -1509,8 +1393,8 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred if we know that everyone in the program regularly attends lectures?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "From premise 5 (Everyone in the program regularly attends lectures), we know ∀x T(x). From premise 8, if not attending lectures regularly results in not receiving top grades, then submitting all assignments on time leads to passing with distinction (∀x ¬L(x) → ¬G(x) → ∀x S(x) → D(x)). Since premise 5 states that everyone attends lectures, premise 8's antecedent is false. Therefore, the consequent is vacuously true, making option A correct.",
+      "answer": "Unknown",
+      "reasoning": "From premise 5 (Everyone in the program regularly attends lectures), we know ∀x L(x). From premise 8, if not attending lectures regularly results in not receiving top grades, then submitting all assignments on time leads to passing with distinction (∀x ¬L(x) → ¬G(x) → ∀y A(y) → D(y)). Since premise 5 states that everyone attends lectures, premise 8's antecedent is false, so the consequent must be true. Therefore, if not attending lectures regularly results in not receiving top grades, then submitting all assignments on time leads to passing with distinction (option A).",
       "relevant_premises": [
         5,
         8
@@ -1530,12 +1414,10 @@
     "id": "",
     "question": "Which of the following can be inferred about students?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "There is at least one student who has completed Educational Psychology (premise 1), all students are in the Teacher Education program (premise 2), and all students have basic teaching skills (premise 3). Since some students complete Educational Psychology and all have basic skills, it follows that some students meet professional teaching standards, combining premises 1, 2, and 3.",
+      "answer": "Unknown",
+      "reasoning": "There exists a student who completed Educational Psychology (premise 1), and completing it implies meeting professional standards (premise 4). Thus, some students meet standards, derived through multiple steps.",
       "relevant_premises": [
         1,
-        2,
-        3,
         4
       ]
     },
@@ -1552,12 +1434,11 @@
     "id": "",
     "question": "If Phong has an average semester score of 2.3, does it follow that Phong’s academic ranking is Average?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "Premise 2 states Phong's score is 2.3, premise 6 defines scoring rules (60% exams, 40% projects), and premise 4 confirms 2.3 is Average, so yes.",
+      "answer": "No",
+      "reasoning": "Premise 2 states Phong’s average score is 2.3, and premise 1 defines Average as 2.0 to 2.5, so Phong’s ranking is Average.",
       "relevant_premises": [
-        2,
-        4,
-        6
+        1,
+        2
       ]
     },
     "ground_truth": {
@@ -1574,11 +1455,10 @@
     "question": "Based on the premises, which conclusion is correct?",
     "prediction": {
       "answer": "A",
-      "reasoning": "Premise 1 requires 15 hours for mastery, premise 2 links mastery with clear explanation, premise 3 ensures contributions through explanations, and premise 8 grants scholarships to recognized papers, so a student mastering superposition who writes an original research paper in quantum mechanics qualifies for a scholarship (option A). Option B is false because less than 8 hours limits understanding (premise 5), option C is false because contributions are needed for recognition (premise 7), and option D is false because only those not neglecting both need analysis (premise 9).",
+      "reasoning": "Premise 1 states that mastering superposition requires at least 15 hours of study, premise 7 says original research papers lead to academic recognition, and premise 8 says recognition in quantum mechanics opens the possibility of a scholarship. Thus, a student who masters superposition and writes an original paper qualifies for a scholarship, making option A correct.",
       "relevant_premises": [
         1,
-        2,
-        3,
+        7,
         8
       ]
     },
@@ -1599,11 +1479,10 @@
     "question": "Based on the premises, which of the following can be inferred?",
     "prediction": {
       "answer": "Unknown",
-      "reasoning": "From premise 4 (Tuan is in the first semester), we know that Tuan is in the first semester. From premise 2, to have a studying schedule, they need to register subjects or be registered by the school for the first semester. From premise 1, students in BK university can register in BK dormitory if they have a studying schedule. Therefore, Tuan can stay in the BK dormitory because he is in the first semester and has a studying schedule (from premises 1, 2, and 4), making option A correct.",
+      "reasoning": "From premise 4, we know that Tuan is in the first semester. From premise 2, to have a studying schedule, Tuan needs to register subjects or be registered by the school for the first semester. From premise 1, students in BK university can register in BK dormitory if they have a studying schedule. Therefore, Tuan can stay in the BK dormitory because he is in the first semester and has a studying schedule (from premises 1, 2, and 4), making option A correct.",
       "relevant_premises": [
         1,
         2,
-        3,
         4
       ]
     },
@@ -1622,11 +1501,9 @@
     "question": "What can be inferred about Iruma’s academic progress?",
     "prediction": {
       "answer": "C",
-      "reasoning": "Premise 5 states Iruma is not a last-year student, premise 4 implies she cannot have graduated, and premise 1 indicates she gained labor days. Thus, Iruma’s graduation status is uncertain (option C), as her eligibility for the graduation project depends on graduation, and it's uncertain whether she graduated.",
+      "reasoning": "Premise 5 states Iruma is not a last-year student, and premise 2 requires last-year status and enough labor days for the graduation project. Since Iruma lacks last-year status, they cannot meet premise 2’s conditions, making graduation uncertain (option C).",
       "relevant_premises": [
-        1,
-        3,
-        4,
+        2,
         5
       ]
     },
@@ -1644,11 +1521,10 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "B",
-      "reasoning": "From premise 2 (All students are receiving help through the buddy program), we know ∀x S(x). From premise 4, if all students are receiving help (∀x S(x)), then if a person is participating in the buddy program, they gain 5 bonus points and money (∀x (B(x) → (H(x) ∧ G(x)))). From premise 7, all students are participating in the buddy program (∀x B(x)). From premise 6, there exists a student who gains 5 bonus points and money through the program (∃x (B(x) ∧ G(x))). Therefore, if all students are participating in the buddy program, then if a person is participating in the buddy program, they gain 5 bonus points and money, and there exists a student who gains 5 bonus points and money through the program (from premises 2, 4, 6, and 7).",
+      "answer": "A",
+      "reasoning": "From premise 7, we know that all students are participating in the buddy program. From premise 1, if a person is participating in the buddy program, then they gain 5 bonus points and money. From premise 6, there exists a student who gains 5 bonus points and money through the program. Therefore, if all students are participating in the buddy program, then if a person is participating in the buddy program, they gain 5 bonus points and money, and there exists a student who gains 5 bonus points and money through the program (from premises 1, 6, and 7), making option A correct.",
       "relevant_premises": [
-        2,
-        4,
+        1,
         6,
         7
       ]
@@ -1669,15 +1545,14 @@
     "question": "Is the statement true?",
     "prediction": {
       "answer": "No",
-      "reasoning": "The statement says it’s false that enrollment implies attendance, but P2 says someone is enrolled, P1 says attendance follows enrollment, and P3 says the implication holds, so the statement is false.",
+      "reasoning": "The statement is false because there exists a student enrolled in the subject (premise 2), and if enrollment implies attending the lab, then not being enrolled implies not attending the lab (premise 3), suggesting attending the lab is a requirement for enrollment, contradicting the negated implication.",
       "relevant_premises": [
-        1,
         2,
         3
       ]
     },
     "ground_truth": {
-      "answer": "Unknown",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         2,
@@ -1689,11 +1564,11 @@
     "id": "",
     "question": "Based on the above premises, which conclusion is correct?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "The statement says if a project is not well-structured, it is unlikely to be well-tested (from the combination of Premise 7 and Premise 10). This directly supports option A.",
+      "answer": "Unknown",
+      "reasoning": "From premise 13 (All Python projects are well-structured) and premise 9 (If a Python project is well-structured, then it is optimized), we can infer that if all Python projects are well-structured, then all Python projects are optimized. This is because if all projects are well-structured, and being well-structured implies optimization, then all projects must be optimized.",
       "relevant_premises": [
-        7,
-        10
+        9,
+        13
       ]
     },
     "ground_truth": {
@@ -1710,11 +1585,10 @@
     "question": "Is it true that some students have passed the course?",
     "prediction": {
       "answer": "No",
-      "reasoning": "There exists at least one student enrolled (premise 1) and if enrolled, they have passed the course (premise 2). Therefore, some students have passed the course.",
+      "reasoning": "There exists a student enrolled in a course (premise 1), and being enrolled implies passing the course (premise 2). Thus, some students have passed the course, requiring steps to connect enrollment to passing.",
       "relevant_premises": [
         1,
-        2,
-        4
+        2
       ]
     },
     "ground_truth": {
@@ -1731,14 +1605,11 @@
     "question": "According to the premises, is the following statement true?",
     "prediction": {
       "answer": "No",
-      "reasoning": "The statement that there exists a complete pathway from maintaining a high GPA to receiving a scholarship is true because it follows from multiple premises. High GPA leads to scholarship eligibility (premise 3), but no high GPA means no scholarship (premise 4). Everyone has an opportunity to apply (premise 2), everyone benefits from counseling (premise 7), and if not having a GPA means losing a scholarship, then seeking counseling improves eligibility (premise 8), and engaging in extracurriculars also increases chances (premise 11).",
+      "reasoning": "There exists a complete pathway from maintaining a high GPA to receiving a scholarship because all students have the opportunity to apply for scholarships (premise 2), maintaining a high GPA qualifies a student for a merit-based scholarship (premise 3), and maintaining a high GPA leads to scholarship eligibility if all students have the opportunity to apply for scholarships (premise 10).",
       "relevant_premises": [
-        1,
+        2,
         3,
-        4,
-        5,
-        6,
-        8
+        10
       ]
     },
     "ground_truth": {
@@ -1754,16 +1625,11 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "The statement that if a dish is available today, then it is popular follows because there is at least one dish available, and every dish is well-prepared, recommended, and popular due to the premises.",
+      "answer": "Unknown",
+      "reasoning": "The statement that if a dish is available today, it is recommended by the chef and popular follows because all dishes are available today (premise 15), and being available implies being popular (premise 5). Additionally, being available implies being recommended by the chef (premise 12), so all three conditions hold.",
       "relevant_premises": [
-        1,
-        2,
-        5,
-        7,
-        9,
         15,
-        19
+        23
       ]
     },
     "ground_truth": {
@@ -1780,13 +1646,11 @@
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
       "answer": "A",
-      "reasoning": "From premise 1, we know that there exists someone who lends money to a friend. From premise 2, if a person has the maturity to lend money, then they lend money to a friend. From premise 4, if there exists someone who lends money to a friend, then (a person having the maturity to lend money implies they lend money to a friend). From premise 5, if (someone lending money to a friend implies maturity), then a person lends money to a friend. Therefore, if there exists someone who lends money to a friend, then a person having the maturity to lend money implies they lend money to a friend, and if a person lends money to a friend, they have learned from the experience (from premises 1, 2, 4, and 7), making option A correct.",
+      "reasoning": "From premise 1, we know there exists someone who lends money to a friend. From premise 2, if a person has the maturity to lend money, then they lend money to a friend. From premise 4, if there exists someone who lends money to a friend, then (a person having the maturity to lend money implies they lend money to a friend). From premise 7, if a person lends money to a friend, then they have learned from the experience. Therefore, if there exists someone who lends money to a friend, then a person having the maturity to lend money implies they lend money to a friend, and if a person lends money to a friend, they have learned from the experience (from premises 1, 2, 4, and 7), making option A correct.",
       "relevant_premises": [
         1,
         2,
-        3,
         4,
-        5,
         7
       ]
     },
@@ -1804,8 +1668,8 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "From premise 3 (If a student takes a test, then they will pass the exam), we know that if taking a test leads to passing the exam, then studying also leads to passing the exam. From premise 5, if studying leads to passing the exam, then the previous rule (if taking a test leads to passing the exam, then studying also leads to passing the exam) holds. Therefore, if the statement 'If studying leads to passing the exam, then the previous rule holds' is true, then it is always true (option B).",
+      "answer": "B",
+      "reasoning": "From premise 1, we know that if a student studies, they will pass the exam. From premise 3, if a student takes a test, they will pass the exam. From premise 4, if taking a test leads to passing the exam, then studying also leads to passing the exam. From premise 5, if studying leads to passing the exam, then the previous rule (if taking a test leads to passing the exam, then studying also leads to passing the exam) holds. Therefore, if the statement 'If studying leads to passing the exam, then the previous rule holds' is true, then it is always true (from premises 1, 3, 4, and 5), making option B correct.",
       "relevant_premises": [
         1,
         3,
@@ -1827,13 +1691,10 @@
     "question": "Based on the above premises, is the statement true?",
     "prediction": {
       "answer": "Yes",
-      "reasoning": "From premise 5 (Every student wins a scholarship), we know ∀x WinsScholarship(x). From premise 3, if at least one student wins a scholarship (∃x WinsScholarship(x)), then every student takes advanced courses (∀x TakesAdvancedCourse(x)). Since premise 5 states that every student wins a scholarship, premise 3's antecedent is satisfied. Therefore, from premise 4, if every student takes advanced courses, then at least one student wins a scholarship (∃x WinsScholarship(x)). Since premise 5 states that every student wins a scholarship, premise 4's consequent is satisfied. Thus, if every student wins a scholarship, then at least one student wins a scholarship, making the statement true.",
+      "reasoning": "From premise 3, we know that if at least one student wins a scholarship, then every student takes advanced courses. From premise 4, if every student takes advanced courses, then at least one student wins a scholarship. Therefore, if every student wins a scholarship, then at least one student wins a scholarship (from premises 3 and 4), making the statement true.",
       "relevant_premises": [
-        1,
-        2,
         3,
-        4,
-        5
+        4
       ]
     },
     "ground_truth": {
@@ -1849,11 +1710,12 @@
     "question": "Which traits do all students possess?",
     "prediction": {
       "answer": "A",
-      "reasoning": "Premise 7 states that all students have high attendance. Premise 1 says all students pass the course, so from premise 7, we know passing implies good performance (premise 6), making option A true.",
+      "reasoning": "All students pass the course (premise 1), have high attendance (premise 7), and submit assignments (premise 8 via contrapositive of premise 2). Submitting assignments implies receiving feedback (premise 5), and good performance follows from passing the course (premise 6). Option A is correct.",
       "relevant_premises": [
         1,
-        6,
-        7
+        2,
+        7,
+        8
       ]
     },
     "ground_truth": {
@@ -1873,8 +1735,9 @@
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
       "answer": "A",
-      "reasoning": "From premise 5 (If everyone engages in self-study regularly, then there exists someone who has the discipline to self-study at home) and premise 4 (If there exists someone with the discipline to self-study at home, then everyone studies independently at home), we can infer that if everyone engages in self-study regularly, then there exists someone who has the discipline to self-study at home, and if there exists someone with the discipline to self-study at home, then everyone studies independently at home. This is because premise 5 states that if everyone engages in self-study regularly, then there exists someone who has the discipline to self-study at home, and premise 4 states that if there exists someone with the discipline to self-study at home, then everyone studies independently at home. Therefore, option A is true.",
+      "reasoning": "From premise 2, we know that everyone engages in self-study regularly. From premise 5, if everyone engages in self-study regularly, then there exists someone who has the discipline to self-study at home. From premise 4, if there exists someone with the discipline to self-study at home, then everyone studies independently at home. Therefore, if everyone engages in self-study regularly, then there exists someone who has the discipline to self-study at home, and if there exists someone with the discipline to self-study at home, then everyone studies independently at home (from premises 2, 5, and 4), making option A correct.",
       "relevant_premises": [
+        2,
         4,
         5
       ]
@@ -1894,12 +1757,10 @@
     "question": "Which statement follows from the premises?",
     "prediction": {
       "answer": "C",
-      "reasoning": "The statement that missing the deadline prevents registration implies all students submitted registration requests is false because it contradicts Premise 3 (missing the deadline prevents registration) and Premise 6 (all students successfully registered), and Premise 3’s antecedent implies its consequent, so the statement is both true and false.",
+      "reasoning": "From premise 3, we know that if a student missed the deadline, then they cannot register for any courses. From premise 1, all students submitted their registration request. Therefore, if missing the deadline prevents registering for courses, then all students submitted their registration requests (from premises 3 and 1), making option C correct.",
       "relevant_premises": [
-        2,
-        3,
-        6,
-        7
+        1,
+        3
       ]
     },
     "ground_truth": {
@@ -1916,10 +1777,10 @@
     "id": "",
     "question": "Which statement can be inferred?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "From premise 1 (If a student wants to understand the lesson, they must pay attention to the teacher's lecture) and premise 5 (If a student wants to understand the lesson, then there exists at least one student who does extra exercises at home), we can infer that if a student wants to understand the lesson, then there exists at least one student who does extra exercises at home because paying attention to the teacher's lecture implies doing extra exercises at home.",
+      "answer": "D",
+      "reasoning": "From premise 3, we know that every student must do extra exercises at home. From premise 5, if a student wants to understand the lesson, then there exists at least one student who does extra exercises at home. Therefore, if a student wants to understand the lesson, then there exists at least one student who does extra exercises at home (from premises 3 and 5), making option D correct.",
       "relevant_premises": [
-        1,
+        3,
         5
       ]
     },
@@ -1937,13 +1798,11 @@
     "question": "Based on the above premises, is the statement true?",
     "prediction": {
       "answer": "No",
-      "reasoning": "There exists at least one student (premise 1), and everyone takes courses (premise 2), but no information confirms that anyone is qualified, so we can’t confirm if there exists someone who is qualified.",
+      "reasoning": "There exists someone who is qualified because there exists a student (premise 1), being a student implies being a researcher (premise 3), and being a researcher implies being qualified (premise 4).",
       "relevant_premises": [
         1,
-        2,
         3,
-        4,
-        5
+        4
       ]
     },
     "ground_truth": {
@@ -1960,11 +1819,10 @@
     "question": "Based on the above premises, which conclusion logically follows?",
     "prediction": {
       "answer": "A",
-      "reasoning": "From premise 5 (John has completed all required courses) and premise 1, we know that if a student completes all required courses, they are eligible for graduation. From premise 6 (John maintains a GPA of 3.8) and premise 2, if a student is eligible for graduation and maintains a GPA above 3.5, they graduate with honors. From premise 7 (John has completed a thesis) and premise 3, if a student graduates with honors and completes a thesis, they receive academic distinction. From premise 4 (if a student receives academic distinction, they qualify for the graduate fellowship program), and from premises 5, 6, 7, and 3, John receives academic distinction, so he qualifies for the graduate fellowship program. Therefore, option A is correct.",
+      "reasoning": "Premises 5 and 6 confirm John completed all courses and has a GPA above 3.5, satisfying premise 1 and 2 for honors eligibility. Premise 7’s thesis and premise 3 qualify him for academic distinction, and premise 4 confirms fellowship qualification, supporting option A. Option B is false because no premise requires a recommendation. Option C is false because no premise mandates an internship. Option D is false because John’s GPA is sufficient.",
       "relevant_premises": [
         1,
         2,
-        3,
         4,
         5,
         6,
@@ -1990,12 +1848,10 @@
     "question": "Are all students eligible for a raise?",
     "prediction": {
       "answer": "No",
-      "reasoning": "From premise 17 (If everyone has a university degree, then anyone who attended the onboarding program must have passed the qualification test), we know ∀x (UniversityDegree(x) → OnboardingProgram(x)). From premise 8 (If someone is eligible for a senior job, then they are eligible for a raise), we know ∀x (SeniorJobEligible(x) → RaiseEligible(x)). Since everyone has a university degree (premise 9), everyone attended the onboarding program (premise 13). Therefore, all students are eligible for a raise (from premises 8 and 17).",
+      "reasoning": "Premise 19 states that everyone is eligible for a senior job, and premise 8 says that being eligible for a senior job implies being eligible for a raise. Thus, all students are eligible for a raise.",
       "relevant_premises": [
-        1,
         8,
-        9,
-        17
+        19
       ]
     },
     "ground_truth": {
@@ -2012,7 +1868,7 @@
     "question": "Based on the above premises, is the statement true?",
     "prediction": {
       "answer": "No",
-      "reasoning": "The statement that there exists a student participating in a study group is false because it directly contradicts premise 3, which states that not every student participates in a study group. Therefore, the answer is No.",
+      "reasoning": "The statement that there exists a student who participates in a study group is true because it is explicitly stated that not every student participates in a study group, implying at least one does.",
       "relevant_premises": [
         3
       ]
@@ -2030,16 +1886,14 @@
     "question": "Based on the above premises, is the following statement true?",
     "prediction": {
       "answer": "No",
-      "reasoning": "From premise 2 ('Every student is revising'), we know ∀x R(x). From premise 5, if the implication holds, then the consequent follows. Since premise 2 states all students revise, the implication in premise 5 holds, so if a student is not understanding the material, they are not revising (premise 3). And if they are attending tutorials, they are revising (premise 1). Therefore, the statement is true.",
+      "reasoning": "From premise 2, we know that every student is revising. From premise 3, if a student is not understanding the material, then they are not revising. Since premise 2 states that all students are revising, premise 3's antecedent must be false for all students, so the consequent must be true for all students. Therefore, if a student is not understanding the material, then they are not revising, and if a student is attending tutorials, then they are revising (from premise 1), making the statement true.",
       "relevant_premises": [
         2,
-        3,
-        4,
-        5
+        3
       ]
     },
     "ground_truth": {
-      "answer": "No",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         1,
@@ -2054,16 +1908,11 @@
     "id": "",
     "question": "Do all students pass?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "Premise 3 states there is at least one student who takes the test, and premise 2 says that not taking the test leads to not passing. Since at least one student takes the test, it follows that all students pass (by contrapositive), as failing would contradict the existence of a passing student.",
+      "answer": "Unknown",
+      "reasoning": "Premise 2 states that not taking the test leads to not passing, and premise 3 says at least one student takes the test. However, no premise guarantees that all students take the test, so it’s uncertain whether all pass.",
       "relevant_premises": [
-        1,
         2,
-        3,
-        4,
-        5,
-        6,
-        7
+        3
       ]
     },
     "ground_truth": {
@@ -2079,16 +1928,15 @@
     "id": "",
     "question": "Based on the above premises, is the statement true?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "The statement says that if lacking training implies lacking proficiency, then proficiency implies training. This follows from premise 10, which states proficiency leads to training, and premise 13, which confirms the antecedent of the implication in the statement, making the whole statement true.",
+      "answer": "No",
+      "reasoning": "From premise 12, we know that if a student lacks training, then they lack proficiency. From premise 13, if lacking training leads to lacking proficiency, then proficiency leads to training. Therefore, ((If lacking training leads to lacking proficiency) → (Proficiency leads to training)) is true.",
       "relevant_premises": [
-        1,
-        10,
+        12,
         13
       ]
     },
     "ground_truth": {
-      "answer": "No",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         13
@@ -2099,13 +1947,11 @@
     "id": "",
     "question": "Is it true that if all students enrolled in Calculus I, then all students are allowed to enroll in courses?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "Premise 2 states that all students enrolled in Calculus I. Premise 1 states that all students are allowed to enroll in at least one course. However, premise 4 states that if a student did not register for Advanced Physics, then they are not allowed to enroll in any course. Since premise 8 says there exists at least one student registered for Advanced Physics, it does not follow that all students are allowed to enroll in courses. Therefore, the statement is false.",
+      "answer": "Yes",
+      "reasoning": "From premise 2 (All students enrolled in Calculus I), we know ∀x (Student(x) → EnrolledIn(x, CalculusI)). From premise 1, all students are allowed to enroll in at least one course (∀x (Student(x) → AllowedToEnroll(x))). Since premise 2 states that all students are enrolled in Calculus I, premise 1's condition is satisfied, so all students are allowed to enroll in courses. Therefore, if all students enrolled in Calculus I, then all students are allowed to enroll in courses (from premises 1 and 2), making the statement true.",
       "relevant_premises": [
         1,
-        2,
-        3,
-        4
+        2
       ]
     },
     "ground_truth": {
@@ -2121,13 +1967,11 @@
     "id": "",
     "question": "Which statement can be inferred?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "From premise 5 (If an AI system is fair, then it is trustworthy), we know ∀x (Fair(x) → Trustworthy(x)). From premise 4, all AI systems are transparent (∀x Transparent(x)). From premise 6, if fairness leads to trustworthiness, then transparency implies auditability (∀x (Fair(x) → Trustworthy(x)) → ∀y (Transparent(y) → Auditable(y))). Since premise 3 states all AI systems are fair, substituting ∀x Fair(x) for y in premise 6 gives (∀x (Fair(x) → Trustworthy(x)) → ∀y (Fair(y) → Auditable(y))). From premise 5, ∀x (Fair(x) → Trustworthy(x)), so premise 6's antecedent is true. Therefore, the consequent must be true: ∀y (Fair(y) → Auditable(y)). Thus, if fairness leads to trustworthiness, then transparency implies auditability (option A).",
+      "answer": "Unknown",
+      "reasoning": "From premise 4 (All AI systems in this study are transparent) and premise 7 (If fairness leads to trustworthiness, then transparency implies auditability), we can infer that if fairness leads to trustworthiness, then transparency implies auditability. This is because all AI systems are transparent, and if fairness leads to trustworthiness, then transparency implies auditability according to premise 7.",
       "relevant_premises": [
-        1,
-        3,
-        5,
-        6
+        4,
+        7
       ]
     },
     "ground_truth": {
@@ -2144,13 +1988,10 @@
     "id": "",
     "question": "If all students have completed their Thesis, does it follow that all students have University housing access?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "From Premise 12 (All students have completed their Thesis), we know ∀x T(x). From Premise 9 (Every student is guaranteed University housing), we know ∀x H(x). Since Premise 12 states all students have completed their Thesis, and Premise 9 states all students have University housing, it follows that if all students have completed their Thesis, then all students have University housing access. Therefore, the answer is No.",
+      "answer": "No",
+      "reasoning": "Premise 9 states that every student is guaranteed University housing, so all students have University housing access.",
       "relevant_premises": [
-        1,
-        2,
-        9,
-        12
+        9
       ]
     },
     "ground_truth": {
@@ -2167,13 +2008,10 @@
     "id": "",
     "question": "According to the above premises, is the following statement true?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "The statement is true because from premise 4 (there exists at least one student who participates in a course), we know there is at least one student participating in a course. From premise 5, if a student is enrolled in a course, they must complete the assignments. From premise 6, if every student participates in a course, then if a student is enrolled, they must complete the assignments. From premise 7, if it is true that every student participates in a course and if a student is enrolled, they must complete the assignments, then every student participates in a course. Therefore, if every student participates in a course, then if a student is enrolled, they must complete the assignments.",
+      "answer": "Yes",
+      "reasoning": "The statement is true because it is explicitly stated (premise 6).",
       "relevant_premises": [
-        4,
-        5,
-        6,
-        7
+        6
       ]
     },
     "ground_truth": {
@@ -2188,12 +2026,12 @@
     "id": "",
     "question": "Are all students enrolled in an advanced seminar?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "Premise 1 states all students complete coursework, premise 2 says completing coursework leads to graduation, and premise 7 implies completion leads to advanced seminar enrollment. However, premise 4 shows that advanced seminar enrollment depends on all students completing coursework, which premise 1 guarantees but doesn’t directly ensure for every student. Thus, while most students might be in advanced seminars, it’s not certain all are, making the answer uncertain.",
+      "answer": "Unknown",
+      "reasoning": "Premise 1 states all students must complete coursework, premise 4 says this implies at least one student is enrolled in an advanced seminar, and premise 3 confirms at least one student is enrolled. However, no premise guarantees all students are enrolled, so it’s uncertain.",
       "relevant_premises": [
         1,
-        2,
-        7
+        3,
+        4
       ]
     },
     "ground_truth": {
@@ -2209,11 +2047,10 @@
     "id": "",
     "question": "Which can be inferred about effective policies?",
     "prediction": {
-      "answer": "B",
-      "reasoning": "Some policies are effective because some improve engagement (premise 1), and effectiveness implies engagement (premise 3), so some are effective.",
+      "answer": "Unknown",
+      "reasoning": "There exists an educational policy that improves student engagement (premise 1), and if a policy is ineffective, it does not improve engagement (premise 4). Thus, some policies are effective, derived through multiple steps.",
       "relevant_premises": [
         1,
-        3,
         4
       ]
     },
@@ -2230,11 +2067,10 @@
     "id": "",
     "question": "Can Professor John supervise graduate-level research based on his PhD qualification, according to the premises?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "",
+      "answer": "No",
+      "reasoning": "Premise 5 states Professor John has a PhD, premise 1 confirms this qualifies him to teach graduate courses, and premise 4 states that all such professors can supervise graduate-level research, so John can supervise graduate-level research.",
       "relevant_premises": [
         1,
-        3,
         4,
         5
       ]
@@ -2253,12 +2089,11 @@
     "id": "",
     "question": "How did Mia pass the course?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "Premise 7 states Mia did well on the exam, premise 2 says doing well requires knowledge, and premise 5 says having knowledge lets you help others, so Mia must have helped others (option A). Option B is false because premise 1 says studying leads to gaining knowledge, but premise 7 shows she already did well. Option C is false because premise 5 says you need knowledge to help, and premise 7 shows she did well, so she didn't help. Option D is false because premise 3 says passing needs doing well and not helping, but premise 7 shows she passed.",
+      "answer": "D",
+      "reasoning": "Premise 6 states Mia did well on the exam, and premise 3 says doing well without helping others leads to passing, supporting option D.",
       "relevant_premises": [
-        2,
-        5,
-        7
+        3,
+        6
       ]
     },
     "ground_truth": {
@@ -2275,13 +2110,10 @@
     "id": "",
     "question": "Based on the above premises, is the statement true?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 9 (If a student receives a research grant, they gain access to advanced research facilities), we know that receiving a research grant implies access to advanced research facilities. From premise 10, there exists at least one opportunity for advanced research. From premise 13, students with advanced research access can attend specialized workshops. However, from premise 8, if a student receives a research grant, they gain access to advanced research facilities, but it doesn't necessarily mean they automatically maintain academic excellence. Therefore, the statement that if a student receives a research grant, they automatically maintain academic excellence is false.",
+      "answer": "Yes",
+      "reasoning": "The statement is true because all students maintain academic excellence (premise 5), so receiving a research grant implies maintaining academic excellence.",
       "relevant_premises": [
-        8,
-        9,
-        10,
-        13
+        5
       ]
     },
     "ground_truth": {
@@ -2296,11 +2128,11 @@
     "id": "",
     "question": "Are all students eligible for a scholarship?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "Premise 5 states that every student has participated in extracurricular activities, and premise 3 states that eligibility requires passing the exam, but no condition blocks participation, so all are eligible.",
+      "answer": "No",
+      "reasoning": "Premise 2 states at least one student is eligible, and premise 6 says participating in extracurricular activities implies eligibility. However, no premise guarantees all students participate, so not all are eligible.",
       "relevant_premises": [
-        3,
-        5
+        2,
+        6
       ]
     },
     "ground_truth": {
@@ -2316,15 +2148,11 @@
     "id": "",
     "question": "Do all students take advanced courses?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 2, we know that if a student does not receive a scholarship, they do not participate in extracurricular activities. From premise 1, we know that if a student participates in extracurricular activities, they develop leadership skills. From premise 7, we know that if a student does not develop leadership skills, they do not take advanced courses. From premise 6, we know that if a student does not receive a scholarship, they do not take advanced courses. Since all students receive scholarships, they all participate in extracurricular activities, develop leadership skills, and take advanced courses. Therefore, all students take advanced courses (from premises 1, 2, 6, and 7), making the statement true.",
+      "answer": "Unknown",
+      "reasoning": "Premise 2 states that not receiving a scholarship implies not participating in extracurricular activities, and premise 6 states that not receiving a scholarship implies not taking advanced courses. However, no premise guarantees that all students receive a scholarship, so it’s uncertain whether all students take advanced courses.",
       "relevant_premises": [
-        1,
         2,
-        3,
-        4,
-        6,
-        7
+        6
       ]
     },
     "ground_truth": {
@@ -2341,10 +2169,10 @@
     "question": "Based on the premises above, which of the following statements can be logically concluded?",
     "prediction": {
       "answer": "Unknown",
-      "reasoning": "From premise 6 (If a student applies for financial aid, they increase their chances of receiving financial support), we know that applying for financial aid increases the chances of receiving support. From premise 7 (If a student receives financial aid, their tuition burden is reduced), we know that receiving aid reduces the tuition burden. From premise 8 (If a student’s tuition burden is reduced, they have less financial stress), we know that reducing the tuition burden leads to less financial stress. From premise 3 (If a student has a low family income, they qualify for need-based financial aid) and premise 4 (Students from middle- or high-income families are not eligible for need-based aid), we know that a student with a low family income will qualify for need-based financial aid. Therefore, if a student applies for financial aid and qualifies, they are more likely to receive support and reduce financial stress (from premises 3, 4, 6, 7, and 8).",
+      "reasoning": "Applying for financial aid increases chances of receiving support (premise 6), qualifying for aid (premise 3) implies low family income, and receiving aid reduces tuition burden (premise 7), which reduces financial stress (premise 8). Thus, applying and qualifying lead to support and reduced stress, derived through multiple steps.",
       "relevant_premises": [
+        2,
         3,
-        4,
         6,
         7,
         8
@@ -2365,7 +2193,7 @@
     "question": "Based on Nurse John's qualifications, which statement is correct?",
     "prediction": {
       "answer": "A",
-      "reasoning": "Premise 2 confirms John has 600 hours, exceeding the 500-hour requirement in premise 1 for Advanced Practice certification. Premise 3 verifies he’s a registered nurse, meeting premise 4’s requirement to prescribe medication. Thus, option A (He can prescribe medication) is correct.",
+      "reasoning": "Premise 2 confirms John has completed 600 clinical hours, premise 1 states 500 hours qualify for Advanced Practice certification, and premise 3 confirms he is a registered nurse. Premise 4 states that registered nurses with Advanced Practice certification can prescribe medication, so option A is correct. Option B is false because John has sufficient hours. Option C is false because he is registered. Option D is false because he has the required certification.",
       "relevant_premises": [
         1,
         2,
@@ -2388,12 +2216,11 @@
     "id": "",
     "question": "Based on Alex's status, which statement is correct?",
     "prediction": {
-      "answer": "D",
-      "reasoning": "Premise 1 confirms a valid membership card, premise 2 shows completed safety orientation, and premise 3 states an 8-month duration. Premise 4 indicates timely annual fee payments. Option A (equipment access but no training booking) fits, as Alex meets all criteria for full membership benefits, allowing both equipment use and training bookings. Option B (personal training sessions) isn’t supported by premises. Option C suggests needing longer duration, but 8 months is sufficient. Option D denies additional fees, which aren’t mentioned. Therefore, the correct statement is option A.",
+      "answer": "B",
+      "reasoning": "Premise 1 confirms Alex has a valid membership card, premise 2 confirms safety orientation, and premise 4 confirms on-time annual fees, supporting option B. Option A is false because Alex can book training. Option C is false because Alex’s 8-month duration is sufficient. Option D is false because Alex has paid fees.",
       "relevant_premises": [
         1,
         2,
-        3,
         4
       ]
     },
@@ -2412,12 +2239,12 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "A",
-      "reasoning": "From premise 7 (If a student is familiar with HCMUT's code of conduct, then they adhere to HCMUT's code of conduct), we know that If FamiliarWithCodeThenAdheres. From premise 6, if a student is an executive member of a student club, then they uphold HCMUT's values (If ExecutiveMemberThenUpholdsValues). Since all students adhere to HCMUT's code of conduct (premise 1), and if a student is familiar with HCMUT's code of conduct, then they adhere to HCMUT's code of conduct (premise 7), it follows that if a student is familiar with HCMUT's code of conduct, then they adhere to HCMUT's code of conduct, and if there are vibrant student clubs at HCMUT, then all students adhere to HCMUT's code of conduct (from premise 2 and premise 4). Therefore, option C is correct.",
+      "answer": "C",
+      "reasoning": "From premise 7, we know that if a student is familiar with HCMUT's code of conduct, then they adhere to HCMUT's code of conduct. From premise 1, all students adhere to HCMUT's code of conduct. From premise 2, there are vibrant student clubs at HCMUT. From premise 4, if there are vibrant student clubs at HCMUT, then all students adhere to HCMUT's code of conduct. Therefore, if a student is familiar with HCMUT's code of conduct, then they adhere to HCMUT's code of conduct, and if there are vibrant student clubs at HCMUT, then all students adhere to HCMUT's code of conduct (from premises 1, 2, and 4), making option C correct.",
       "relevant_premises": [
+        1,
         2,
         4,
-        6,
         7
       ]
     },
@@ -2435,12 +2262,9 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "There exists a script without error handling (premise 4), which implies it does not produce reliable outputs (premise 2). This satisfies option A but not C due to the lack of universal optimization.",
+      "answer": "Unknown",
+      "reasoning": "All Python scripts have error handling (premise 12), so there does not exist a script without error handling, making option A false. All programs produce reliable outputs (premise 14), so option B is false. All programs are optimized because all are reliable (premise 14) and reliable programs are optimized (premise 19), making option C true. All projects follow best practices (premise 6), so option D is false.",
       "relevant_premises": [
-        1,
-        2,
-        4,
         12
       ]
     },
@@ -2457,15 +2281,11 @@
     "id": "",
     "question": "Based on the above premises, which conclusion is correct?",
     "prediction": {
-      "answer": "B",
-      "reasoning": "According to premise 6, if a student engages in independent study, they are likely to publish research, and according to premise 11, if a student engages in independent study, they gain academic recognition. Therefore, if a student engages in independent study, they are likely to publish research and may gain academic recognition (from premises 6 and 11).",
+      "answer": "D",
+      "reasoning": "Premise 4 states that not publishing research implies not receiving a research grant, and premise 6 says that engaging in independent study increases the likelihood of publishing research. Thus, a student who does not publish research cannot receive a grant, making option B false. Option C is false because not engaging in independent study doesn’t prevent publishing. Option D is true because independent study increases publishing likelihood (premise 6) and leads to academic recognition (premise 11), making D the correct conclusion.",
       "relevant_premises": [
-        2,
-        3,
         4,
-        6,
-        10,
-        11
+        6
       ]
     },
     "ground_truth": {
@@ -2482,18 +2302,10 @@
     "question": "If all students take final examinations, does it follow that if there is a research program at the university, then there is at least one student who takes final examinations?",
     "prediction": {
       "answer": "No",
-      "reasoning": "From premise 9 (All students take final examinations), we know ∀x TakesFinalExams(x). From premise 1, there exists at least one research program at the university (∃x ResearchProgram(x)). Since premise 9 states that all students take final exams, and premise 1 says there's at least one research program, it follows that if there is a research program at the university, then there is at least one student who takes final examinations. Therefore, the answer is Yes.",
+      "reasoning": "From premise 5 (All students take final examinations), we know ∀x (Student(x) → TakesFinalExams(x)). From premise 6, if there is a research program at the university, then there is at least one student who takes final examinations (∃x (Student(x) ∧ TakesFinalExams(x)) → ∃x (Student(x) ∧ TakesFinalExams(x))). Since premise 5 states that all students take final examinations, premise 6's antecedent is true, so the consequent must be true. Therefore, if all students take final examinations, it follows that if there is a research program at the university, then there is at least one student who takes final examinations.",
       "relevant_premises": [
-        1,
-        2,
-        3,
-        4,
         5,
-        6,
-        7,
-        8,
-        9,
-        10
+        6
       ]
     },
     "ground_truth": {
@@ -2512,7 +2324,7 @@
     "question": "Based on the above premises, which statement can be logically inferred if we know that all students have attended the Software Engineering workshop?",
     "prediction": {
       "answer": "A",
-      "reasoning": "The statement 'All students have attended the Software Engineering workshop' is true because it is explicitly stated that all students have attended the Software Engineering workshop (premise 8).",
+      "reasoning": "From premise 8, we know that all students have attended the Software Engineering workshop. This is directly stated, so it is true.",
       "relevant_premises": [
         8
       ]
@@ -2529,8 +2341,8 @@
     "id": "",
     "question": "Based on university policies, which conclusion is valid if we know that no entrance exam pass → No Research completion?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "From premise 6 (All students passed the entrance exam), we know ∀x T(x). From premise 11, the exam-Research rule activates Quantum Physics policies. Since all students passed the entrance exam, premise 6's antecedent is true, so the consequent must be true according to modus ponens. Thus, the exam-Research rule → Quantum policy activation (option A) is valid.",
+      "answer": "Unknown",
+      "reasoning": "From premise 6 (No entrance exam pass → No Research completion), we know ∀x (¬T(x) → ¬R(x)). From premise 11, the exam-Research rule activates Quantum Physics policies (∀x (¬T(x) → ¬R(x)) → ∀x (Q(x))). Since premise 6 states the antecedent of premise 11's implication, the consequent must be true. Therefore, option A is correct.",
       "relevant_premises": [
         6,
         11
@@ -2549,11 +2361,11 @@
     "id": "",
     "question": "Based on the above premises, answer the following: Is the following statement true?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 7 (If an EV charging station being not widely available implies that it is not thoroughly maintained, then any widely available EV charging station supports fast charging), we know that if an EV charging station being not widely available implies that it is not thoroughly maintained, then any widely available EV charging station supports fast charging. From premise 10 (If an EV charging station is not cost-effective, then it is not widely available), we know that if an EV charging station is not cost-effective, then it is not widely available. Therefore, if an EV charging station being not widely available implies that it is not thoroughly maintained, then every EV charging station that is widely available supports fast charging (from premises 7 and 10).",
+      "answer": "Yes",
+      "reasoning": "From premise 5, we know that if an EV charging station is not widely available, then it is not thoroughly maintained. From premise 6, if an EV charging station is widely available, then it supports fast charging. Therefore, if an EV charging station being not widely available implies that it is not thoroughly maintained, then every EV charging station that is widely available supports fast charging (from premises 5 and 6), making the statement true.",
       "relevant_premises": [
-        7,
-        10
+        5,
+        6
       ]
     },
     "ground_truth": {
@@ -2569,8 +2381,8 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred if we know that if a person is a teacher, then that person is respected?",
     "prediction": {
-      "answer": "D",
-      "reasoning": "From premise 2 (If a person is a teacher, then that person is respected), we know T → R. From premise 7, if all teachers being respected implies that someone is prepared, then that implication holds. Since premise 2 states that teachers are respected, premise 7's antecedent is satisfied, so the consequent must be true. Therefore, if every teacher is respected, then someone must be prepared (option D).",
+      "answer": "Unknown",
+      "reasoning": "From premise 2 (If a person is a teacher, then that person is respected), we know ∀x (Teacher(x) → Respected(x)). From premise 7, if all teachers being respected implies that someone is prepared, then that implication holds (∀x (Teacher(x) → Respected(x)) → ∃x (Prepared(x))). Since premise 2 states that all teachers are respected, premise 7's antecedent is true, so the consequent must be true. Therefore, if every teacher is respected, then someone must be prepared (option D).",
       "relevant_premises": [
         2,
         7
@@ -2589,16 +2401,11 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 10, we know that if everyone is a student, and if someone not being a student implies they are not a teacher, then there is at least one researcher. From premise 11, if everyone is a teacher, then everyone is a student. From premise 12, if (if someone is not a student, then they are not a teacher), then everyone is a university staff member. Therefore, if everyone is a student, and if someone not being a student implies they are not a teacher, then everyone is a university staff member (from premises 10, 11, and 12), making option A correct.",
+      "answer": "Unknown",
+      "reasoning": "From premise 4 (Everyone is a student), premise 5 (If someone is not a student, then they are not a teacher), and premise 12 (If (if someone is not a student, then they are not a teacher), then everyone is a university staff member), we can infer that if everyone is a student, and if someone not being a student implies they are not a teacher, then everyone is a university staff member. This is because if everyone is a student, and if someone not being a student implies they are not a teacher, then according to premise 12, everyone is a university staff member.",
       "relevant_premises": [
-        1,
-        2,
-        3,
         4,
-        8,
-        10,
-        11,
+        5,
         12
       ]
     },
@@ -2617,8 +2424,9 @@
     "question": "Based on the premises above, which statement can be inferred?",
     "prediction": {
       "answer": "Unknown",
-      "reasoning": "From premise 4 (If studying leads to understanding, then all students must complete their assignments), we know that studying leading to understanding implies all students completing their assignments. From premise 5, if the previous statement holds, then at least one student will join a study group. Therefore, if studying leads to understanding, then at least one student will join a study group (from premises 4 and 5), making option B correct.",
+      "reasoning": "From premise 1, we know that if a student studies, then they will understand the material. From premise 4, if studying leads to understanding, then all students must complete their assignments. From premise 5, if the previous statement holds, then at least one student will join a study group. Therefore, if studying leads to understanding, then at least one student will join a study group (from premises 1, 4, and 5), making option B correct.",
       "relevant_premises": [
+        1,
         4,
         5
       ]
@@ -2637,21 +2445,10 @@
     "id": "",
     "question": "Based on the above premises, which conclusion can be inferred?",
     "prediction": {
-      "answer": "Yes",
-      "reasoning": "From premise 6 (All Python code is well-tested) and premise 10 (If a Python code is well-tested, then it follows PEP 8 standards), we can infer that all Python code follows PEP 8 standards. From premise 10 and premise 3 (All Python code follows PEP 8 standards), we can infer that all Python code is well-tested. From premise 1 (If a Python code is not well-tested, then it is not optimized) and premise 6, we can infer that all Python code is optimized. Therefore, option A is correct.",
+      "answer": "Unknown",
+      "reasoning": "All Python code is well-tested (premise 6), and being well-tested implies being optimized (premise 13). Thus, all Python code is optimized, derived through multiple steps.",
       "relevant_premises": [
-        1,
-        2,
-        3,
-        4,
-        5,
         6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
         13
       ]
     },
@@ -2669,22 +2466,14 @@
     "question": "Based on the premises, is the following statement true?",
     "prediction": {
       "answer": "No",
-      "reasoning": "The statement that JavaScript supports event handling to respond to user actions and manipulate HTML elements is true because it supports event handling (premise 10) and DOM manipulation for element changes (premise 9), confirming it can both respond to events and change elements.",
+      "reasoning": "Premise 10 states JavaScript supports event handling for user interactions, and premise 9 says it allows HTML element manipulation, supporting the statement about both capabilities.",
       "relevant_premises": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
         9,
         10
       ]
     },
     "ground_truth": {
-      "answer": "No",
+      "answer": "Yes",
       "explanation": "",
       "relevant_premises": [
         9,
@@ -2697,10 +2486,9 @@
     "question": "If there exists at least one student who has submitted the final project, does it follow that if a student has submitted the final project, then they have passed the Technical Writing course?",
     "prediction": {
       "answer": "No",
-      "reasoning": "From premise 9 (There exists at least one student who has submitted the final project), we know ∃x S(x). From premise 4, if a student has submitted the final project, then they have passed the Technical Writing course (∀x (S(x) → P(x))). From premise 6, if submitting the final project leads to passing Technical Writing, then attending the Software Engineering workshop leads to being ready for the Capstone Project (∀x ((S(x) → P(x)) → ∀y (T(y) → C(y)))). Since premise 9 guarantees at least one student submitted the final project, premise 4's antecedent is true, so the consequent must be true. Therefore, if a student has submitted the final project, then they have passed the Technical Writing course (from premises 4 and 9).",
+      "reasoning": "From premise 9, we know there exists at least one student who has submitted the final project. From premise 4, if a student has submitted the final project, then they have passed the Technical Writing course. Therefore, if there exists at least one student who has submitted the final project, it follows that if a student has submitted the final project, then they have passed the Technical Writing course.",
       "relevant_premises": [
         4,
-        6,
         9
       ]
     },
@@ -2718,13 +2506,11 @@
     "question": "Does Sarah meet all requirements to take advanced classes, according to the premises?",
     "prediction": {
       "answer": "No",
-      "reasoning": "Premise 3 confirms Sarah is an active student, premise 4 shows she has taken 4 courses, and premise 1 requires 5 courses for eligibility, but since 4 < 5, she does not meet that requirement. Premise 5 confirms her approval, but premise 2 states that approval is required if she is eligible, and since she is not eligible (premise 4), her approval is irrelevant. Therefore, Sarah does not meet all requirements.",
+      "reasoning": "Premise 3 confirms Sarah has active status, premise 4 shows she completed 4 courses (falling short of 5 required by premise 1), and premise 5 provides approval but doesn’t override the course requirement. Thus, Sarah doesn’t meet all requirements.",
       "relevant_premises": [
         1,
-        2,
         3,
-        4,
-        5
+        4
       ]
     },
     "ground_truth": {
@@ -2744,10 +2530,9 @@
     "question": "Are all VR games thoroughly tested?",
     "prediction": {
       "answer": "No",
-      "reasoning": "All VR games run smoothly (premise 7), and if they run smoothly, they meet performance requirements (premise 10). Since meeting performance requirements implies thorough testing (premise 6), all VR games are thoroughly tested.",
+      "reasoning": "Premise 12 states all VR games meet performance requirements, and premise 6 says meeting performance requirements implies thorough testing, so all VR games are thoroughly tested.",
       "relevant_premises": [
-        1,
-        4,
+        6,
         12
       ]
     },
@@ -2764,8 +2549,8 @@
     "id": "",
     "question": "Based on the above premises, which statement can be inferred?",
     "prediction": {
-      "answer": "No",
-      "reasoning": "From premise 2, we know that every website requires HTML to structure content, CSS to style it, and JavaScript to add interactivity. From premise 15, we know that once a website is built, hosting and deploying it to the web is the final step to make it publicly accessible. Therefore, if a website has been built, it must require HTML, CSS, and JavaScript (from premise 2), and once deployed, it is publicly accessible (from premise 15).",
+      "answer": "Unknown",
+      "reasoning": "The statement that if a website is built, it requires HTML, CSS, and JavaScript (from premise 2) and is deployed to the web (from premise 15) is true because both conditions are satisfied for all websites.",
       "relevant_premises": [
         2,
         15

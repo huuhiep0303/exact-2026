@@ -1,5 +1,8 @@
 __pycache__/
 venv/
+.env
+
 EXACT_Slides.pdf
 QA.pdf 
 outputs/checkpoints/
+eval.txt
