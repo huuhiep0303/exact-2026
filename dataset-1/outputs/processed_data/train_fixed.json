@@ -106,12 +106,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Every AI model requires training data to function properly.\nP2: If an AI model is not trained, it cannot perform predictions.\nP3: Training an AI model requires a large dataset to improve its performance.\nP4: If an AI model uses deep learning, it will need substantial computational resources.\nP5: If an AI model does not have sufficient training data, it cannot achieve high accuracy.\nP6: For all AI models, training is essential to enable predictions.\nP7: If an AI model is trained on high-quality data, it will perform well in predictions.\nP8: If an AI model lacks training data, it is not possible to use it for predictions.\nP9: If an AI model is trained, it will have the capacity to make predictions.\nP10: If an AI model does not use deep learning, it will likely underperform on tasks requiring complex reasoning.\nP11: At least one AI model can perform well when trained with a proper dataset.\nP12: For all AI models, training improves their ability to solve complex problems.\nP13: If an AI model is not trained, it cannot generalize to unseen data.\nP14: For all AI systems, the training process involves iterating on the model using feedback from predictions.\nP15: If an AI model is not provided with sufficient training, it will not learn efficiently.\n\nQuestion: Based on the above premises, is the following statement true?\nStatement: If an AI model is not trained, it cannot generalize to unseen data.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P13\n**Reasoning:** The statement that if an AI model is not trained, it cannot generalize to unseen data is true because it is explicitly stated (premise 13).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P13\n**Reasoning:** The statement that if an AI model is not trained, it cannot generalize to unseen data is true because it is explicitly stated (premise 13).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 15,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         13
       ]
@@ -209,12 +209,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Students with active status who have completed at least 5 courses are eligible for advanced classes.\nP2: Eligible students must obtain advisor approval to take advanced classes.\nP3: Sarah has active student status.\nP4: Sarah has completed 4 courses.\nP5: Sarah has obtained advisor approval.\n\nQuestion: Based on the requirements, which statement about Sarah is correct?\nA. She can take advanced classes because she has approval\nB. She cannot take advanced classes due to insufficient completed courses\nC. She is eligible but lacks approval\nD. Her active status alone qualifies her\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3, P4\n**Reasoning:** Premise 3 confirms Sarah has active status, but premise 4 states she completed only 4 courses, which is below the 5-course threshold for eligibility in premise 1. Thus, Sarah cannot take advanced classes due to insufficient courses, supporting option B. Option A is false because approval alone isn’t enough without eligibility. Option C is false because Sarah is not eligible and has approval. Option D is false because active status requires 5 courses for eligibility.\n</think>\n**Answer:** D",
+    "output": "<think>\n**Relevant Premises:** P1, P3, P4\n**Reasoning:** Premise 3 confirms Sarah has active status, but premise 4 states she completed only 4 courses, which is below the 5-course threshold for eligibility in premise 1. Thus, Sarah cannot take advanced classes due to insufficient courses, supporting option B. Option A is false because approval alone isn’t enough without eligibility. Option C is false because Sarah is not eligible and has approval. Option D is false because active status requires 5 courses for eligibility.\n</think>\n**Answer:** B",
     "metadata": {
       "num_premises": 5,
       "num_premises_used": 3,
       "question_type": "MCQ",
-      "answer": "D",
+      "answer": "B",
       "relevant_premises_idx": [
         1,
         3,
@@ -341,12 +341,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students are enrolled in courses.\nP2: If a student lacks research, then they lack proficiency.\nP3: If a student submits assignments, then they demonstrate knowledge.\nP4: If a student lacks participation, then they lack engagement.\nP5: There exists at least one student who participates in discussions.\nP6: There exists at least one student who has proficiency.\nP7: If a student lacks proficiency, then they lack research.\nP8: If a student engages, then they have understanding.\nP9: If a student lacks training, then they lack proficiency.\nP10: All students have access to resources.\nP11: If a student has access to resources, then they complete assignments.\nP12: If a student lacks proficiency, then they lack certification.\nP13: If lacking proficiency leads to lacking certification, then lacking research leads to lacking proficiency.\nP14: If lacking training leads to lacking proficiency, then training leads to proficiency.\nP15: If a student has proficiency, then they obtain certification.\nP16: If a student has access to resources, then they can conduct research.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: All students have access to resources.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P10\n**Reasoning:** The statement that all students have access to resources is true because it is explicitly stated that all students have access to resources (premise 10).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P10\n**Reasoning:** The statement that all students have access to resources is true because it is explicitly stated that all students have access to resources (premise 10).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 16,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         10
       ]
@@ -369,12 +369,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who has completed their assignments.\nP2: There exists at least one student who participates in extracurricular activities.\nP3: If a student follows the study plan, then they will pass the exam.\nP4: Every student follows the attendance policy.\nP5: There exists at least one student who has achieved high marks.\nP6: If a student does not complete assignments, they will not pass the exam.\nP7: If a student follows the attendance policy, then they will be eligible for participation points.\nP8: If a student has completed assignments, then they will be eligible for extra credit.\nP9: If a student follows the attendance policy, then they are eligible for participation points.\nP10: If a student participates in extracurricular activities, then they will gain extra credit.\nP11: If a student does not follow the attendance policy, then they will lose participation points.\nP12: Every student participates in group projects.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: 'If a student does not complete assignments and does not follow the study plan, they will not pass the exam and not be eligible for extra credit.'\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P6, P8\n**Reasoning:** From premise 6, we know that if a student does not complete assignments, they will not pass the exam. From premise 8, we know that if a student has completed assignments, they will be eligible for extra credit. Therefore, if a student does not complete assignments and does not follow the study plan, they will not pass the exam (from premise 6) and not be eligible for extra credit (from premise 8), making the statement true.\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P6, P8\n**Reasoning:** From premise 6, we know that if a student does not complete assignments, they will not pass the exam. From premise 8, we know that if a student has completed assignments, they will be eligible for extra credit. Therefore, if a student does not complete assignments and does not follow the study plan, they will not pass the exam (from premise 6) and not be eligible for extra credit (from premise 8), making the statement true.\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 12,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         6,
         8
@@ -383,12 +383,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student successfully completes a prerequisite course, they are eligible to enroll in the next level course.\nP2: If a student demonstrates competence in one subject, they are qualified to advance to a more challenging subject.\nP3: All students enrolled in the course are actively engaging in the learning material.\nP4: At least one student has enrolled in the prerequisite course.\nP5: If a student passes the final exam, they are considered to have mastered the course content.\nP6: If a student does not demonstrate mastery, they are not considered to have passed the course.\nP7: If a student does not meet the course prerequisites, they cannot take the final exam.\nP8: All students are expected to complete the assigned coursework on time.\nP9: All students are required to complete assignments in accordance with the syllabus.\nP10: If a student demonstrates mastery of the course material, they will be recommended for advanced coursework.\nP11: If a student passes a course, they are eligible to move on to the next subject.\nP12: If a student fails to meet the prerequisites, they cannot take more advanced courses.\nP13: If a student fails to meet the course requirements, they will not be eligible for further academic opportunities.\nP14: If a student has demonstrated understanding of the core principles, they are encouraged to pursue further academic challenges.\nP15: For students who have mastered the necessary content, additional learning opportunities will be provided.\n\nQuestion: Based on the above premises, is the following statement true?\nStatement: If a student demonstrates competence in one subject, they are qualified to advance to a more challenging subject.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1\n**Reasoning:** The statement that if a student demonstrates competence, they are qualified to advance is true because it is explicitly stated (premise 1).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P1\n**Reasoning:** The statement that if a student demonstrates competence, they are qualified to advance is true because it is explicitly stated (premise 1).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 15,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         1
       ]
@@ -707,12 +707,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one object x that has property R.\nP2: If an object x does not have property U, then it does not have property Q.\nP3: Every object x has property P.\nP4: If an object x does not have property Q, then it does not have property S.\nP5: If an object x does not have property R, then it does not have property S.\nP6: If an object x has property T, then it has property P.\nP7: If an object x does not have property T, then it does not have property R.\nP8: There exists at least one object x that has property U.\nP9: If it is true that if an object x does not have property T then it does not have property R, then if an object x has property T, it has property P.\nP10: If there exists at least one object x with property R, then there exists at least one object x with property U.\nP11: If there exists at least one object x with property R, then every object x has property P.\nP12: Every object x has property R.\nP13: If an object x does not have property U, then it does not have property T.\nP14: There exists at least one object x that has property Q.\n\nQuestion: If there exists at least one object x that has property R, does it follow that every object has property P?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3, P11\n**Reasoning:** From premise 1 (There exists at least one object x that has property R), we know ∃x R(x). From premise 3, every object x has property P (∀x P(x)). From premise 11, if there exists at least one object x with property R, then every object x has property P (∃x R(x) → ∀x P(x)). Since premise 1 states that there exists an object with property R, premise 11's antecedent is true, so the consequent must be true. Therefore, if there exists at least one object x that has property R, it follows that every object has property P.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P3, P11\n**Reasoning:** From premise 1 (There exists at least one object x that has property R), we know ∃x R(x). From premise 3, every object x has property P (∀x P(x)). From premise 11, if there exists at least one object x with property R, then every object x has property P (∃x R(x) → ∀x P(x)). Since premise 1 states that there exists an object with property R, premise 11's antecedent is true, so the consequent must be true. Therefore, if there exists at least one object x that has property R, it follows that every object has property P.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 14,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         3,
@@ -1122,12 +1122,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Submitting a thesis proposal (S) requires advisor approval (T).\nP2: Failing Philosophy (¬P) blocks Quantum Physics enrollment (¬Q).\nP3: Thesis proposals grant dormitory access (U).\nP4: Research project approval (R) grants dormitory access.\nP5: Dormitory access allows Quantum Physics enrollment.\nP6: No advisor approval blocks Philosophy progression.\nP7: Some students are enrolled in Quantum Physics.\nP8: All students have submitted thesis proposals.\nP9: Thesis-advisor rule enforces research-dormitory link.\nP10: Thesis-advisor compliance ensures universal submissions.\nP11: Philosophy-Quantum rules enforce research-dormitory policies.\nP12: All students have dormitory access.\nP13: Quantum enrollment requires dormitory access.\nP14: Advisor approval ensures dormitory access.\n\nQuestion: If submitting a thesis proposal requires advisor approval, does it follow that the thesis approval → research-dormitory rule holds?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3, P9\n**Reasoning:** From premise 1 (Submitting a thesis proposal (S) requires advisor approval (T)), we know ∀x (S(x) → T(x)). From premise 3, thesis proposals grant dormitory access (U) (∀x (S(x) → U(x))). From premise 9, thesis-advisor rule enforces research-dormitory link (∀x (S(x) → T(x)) → ∀x (R(x) → U(x))). Since premise 1 states that submitting a thesis proposal requires advisor approval, premise 9's antecedent is true, so the consequent must be true. Therefore, if submitting a thesis proposal requires advisor approval, it follows that the thesis approval → research-dormitory rule holds.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P3, P9\n**Reasoning:** From premise 1 (Submitting a thesis proposal (S) requires advisor approval (T)), we know ∀x (S(x) → T(x)). From premise 3, thesis proposals grant dormitory access (U) (∀x (S(x) → U(x))). From premise 9, thesis-advisor rule enforces research-dormitory link (∀x (S(x) → T(x)) → ∀x (R(x) → U(x))). Since premise 1 states that submitting a thesis proposal requires advisor approval, premise 9's antecedent is true, so the consequent must be true. Therefore, if submitting a thesis proposal requires advisor approval, it follows that the thesis approval → research-dormitory rule holds.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 14,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         3,
@@ -1166,12 +1166,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a person has not complied with the new attendance rule, then they are not allowed to attend class.\nP2: Everyone is allowed to attend class.\nP3: If a person received a warning for previous absences, then they acknowledged the new attendance policy.\nP4: If everyone is allowed to attend class, then if a person has not complied with the new attendance rule, then they are not allowed to attend class.\nP5: If (a person received a warning for previous absences implies they acknowledged the new attendance policy), then (a person not complying with the new rule implies they are not allowed to attend class).\nP6: There exists someone who has complied with the new attendance rule.\nP7: If a person is not allowed to attend class, then they have not complied with the new attendance rule.\n\nQuestion: Based on the above premises, is the following statement true?\nStatement: If a person received a warning for previous absences, then they acknowledged the new attendance policy, and if they acknowledged the new attendance policy, then not complying with the new rule implies they are not allowed to attend class.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P3, P5\n**Reasoning:** From premise 3, we know that if a person received a warning for previous absences, then they acknowledged the new attendance policy. From premise 5, if (a person received a warning for previous absences implies they acknowledged the new attendance policy), then (a person not complying with the new rule implies they are not allowed to attend class). Therefore, if a person received a warning for previous absences, then they acknowledged the new attendance policy, and if they acknowledged the new attendance policy, then not complying with the new rule implies they are not allowed to attend class (from premises 3 and 5), making the statement true.\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P3, P5\n**Reasoning:** From premise 3, we know that if a person received a warning for previous absences, then they acknowledged the new attendance policy. From premise 5, if (a person received a warning for previous absences implies they acknowledged the new attendance policy), then (a person not complying with the new rule implies they are not allowed to attend class). Therefore, if a person received a warning for previous absences, then they acknowledged the new attendance policy, and if they acknowledged the new attendance policy, then not complying with the new rule implies they are not allowed to attend class (from premises 3 and 5), making the statement true.\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 7,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         3,
         5
@@ -1210,12 +1210,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has not registered for the festival, then they do not have access to festival activities\nP2: If a student has not received a festival invitation, then they have not registered for the festival\nP3: If a student is attending the university festival, then they have access to festival activities\nP4: All students are attending the university festival\n\nQuestion: Which of the following can be inferred about students?\nA. All students have received a festival invitation\nB. Some students do not have access to festival activities\nC. Some students are not attending the university festival\nD. All students have not registered for the festival\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2, P3, P4\n**Reasoning:** All students are attending the festival (premise 4), attendance implies access (premise 3), access implies registration (premise 1), and registration implies invitation (premise 2). Thus, all students have received an invitation, derived through multiple steps.\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P1, P2, P3, P4\n**Reasoning:** All students are attending the festival (premise 4), attendance implies access (premise 3), access implies registration (premise 1), and registration implies invitation (premise 2). Thus, all students have received an invitation, derived through multiple steps.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 4,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         2,
@@ -1687,12 +1687,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students meet the seminar's eligibility criteria\nP2: If a student has not submitted a complete seminar application, then they will not be selected to attend the seminar\nP3: All students have shown interest in the seminar\n\nQuestion: Is the following statement true? Statement: If there exists at least one student who has shown interest in the seminar, then all students meet the seminar's eligibility criteria\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students have shown interest (premise 3), implying at least one has, and all meet the eligibility criteria (premise 1). Thus, the statement is true, requiring steps to connect premises.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students have shown interest (premise 3), implying at least one has, and all meet the eligibility criteria (premise 1). Thus, the statement is true, requiring steps to connect premises.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 3,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         3
@@ -1759,12 +1759,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has not reviewed the course materials, then they are not well-prepared for class discussions\nP2: All students participate actively in class\nP3: All students are well-prepared for class discussions\n\nQuestion: Is the following statement true? Statement: All students participate actively in class\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P2, P3\n**Reasoning:** All students participate actively in class (premise 2), and all are well-prepared (premise 3). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P2, P3\n**Reasoning:** All students participate actively in class (premise 2), and all are well-prepared (premise 3). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 3,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         2,
         3
@@ -1773,12 +1773,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: At least one student has received a Scholarship.\nP2: All students are required to submit a Research project.\nP3: Research project completion grants access to University housing.\nP4: Students who skip the Thesis requirement cannot submit a Research project.\nP5: Failure to pass Philosophy disqualifies students from Scholarships.\nP6: Research project submission requires Thesis completion.\nP7: Some students have passed the Philosophy prerequisite.\nP8: Research project participants must pass Philosophy.\nP9: There exists at least one student who completed their Thesis.\nP10: Non-submission of Research projects blocks Thesis completion.\nP11: At least one student has submitted a Research project.\nP12: Scholarship disqualification revokes Philosophy eligibility.\nP13: The policy 'Research → Housing' enforces Scholarship-Philosophy linkage.\nP14: The Research-Housing policy ensures Scholarship availability.\nP15: Research-Housing compliance requires Scholarship-Philosophy alignment.\nP16: The rule 'No Research → No Thesis' guarantees Thesis completion.\nP17: Some students have secured University housing.\nP18: Quantum Physics enrollment provides housing access.\nP19: At least one student is enrolled in Quantum Physics.\nP20: Research project disqualification revokes Scholarships.\nP21: All students are enrolled in Quantum Physics.\n\nQuestion: If all students are required to submit a Research project, does it follow that Research project completion grants housing access?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P2, P3\n**Reasoning:** From premise 2 (All students are required to submit a Research project), we know ∀x R(x). From premise 3, research project completion grants access to University housing (∀x (R(x) → U(x))). Since premise 2 states that all students submit Research projects, premise 3's antecedent is true, so the consequent must be true. Therefore, if all students are required to submit a Research project, it follows that Research project completion grants housing access.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P2, P3\n**Reasoning:** From premise 2 (All students are required to submit a Research project), we know ∀x R(x). From premise 3, research project completion grants access to University housing (∀x (R(x) → U(x))). Since premise 2 states that all students submit Research projects, premise 3's antecedent is true, so the consequent must be true. Therefore, if all students are required to submit a Research project, it follows that Research project completion grants housing access.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 21,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         2,
         3
@@ -1803,12 +1803,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has requested permission to be absent, then they are officially granted that permission\nP2: If a student has not requested permission, then they are not granted permission to be absent\nP3: All students have requested permission to be absent from class\nP4: There exists at least one student who provided a valid reason for absence\n\nQuestion: Is the following statement true? Statement: There exists at least one student who has requested permission to be absent from class\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students have requested permission (premise 3), implying at least one has, with permission granted (premise 1). Thus, the statement is true, requiring steps to confirm.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students have requested permission (premise 3), implying at least one has, with permission granted (premise 1). Thus, the statement is true, requiring steps to confirm.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         3
@@ -1834,12 +1834,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student successfully completes a prerequisite course, they are eligible to enroll in the next level course.\nP2: If a student demonstrates competence in one subject, they are qualified to advance to a more challenging subject.\nP3: All students enrolled in the course are actively engaging in the learning material.\nP4: At least one student has enrolled in the prerequisite course.\nP5: If a student passes the final exam, they are considered to have mastered the course content.\nP6: If a student does not demonstrate mastery, they are not considered to have passed the course.\nP7: If a student does not meet the course prerequisites, they cannot take the final exam.\nP8: All students are expected to complete the assigned coursework on time.\nP9: All students are required to complete assignments in accordance with the syllabus.\nP10: If a student demonstrates mastery of the course material, they will be recommended for advanced coursework.\nP11: If a student passes a course, they are eligible to move on to the next subject.\nP12: If a student fails to meet the prerequisites, they cannot take more advanced courses.\nP13: If a student fails to meet the course requirements, they will not be eligible for further academic opportunities.\nP14: If a student has demonstrated understanding of the core principles, they are encouraged to pursue further academic challenges.\nP15: For students who have mastered the necessary content, additional learning opportunities will be provided.\n\nQuestion: Based on the above premises, which statement can be inferred?\nA. ∀x (P(x) → S(x))\nB. ¬∀x (P(x) → S(x))\nC. ∀x (P(x) → ¬S(x))\nD. ∀x (S(x) → ¬P(x))\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P11\n**Reasoning:** The statement that if a student passes a course, they are eligible for advanced coursework is true because it is explicitly stated (premise 11).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P11\n**Reasoning:** The statement that if a student passes a course, they are eligible for advanced coursework is true because it is explicitly stated (premise 11).\n</think>\n**Answer:** Unknown",
     "metadata": {
       "num_premises": 15,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "Unknown",
       "relevant_premises_idx": [
         11
       ]
@@ -1936,12 +1936,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one educational technology laboratory on campus.\nP2: All students take part in collaborative learning activities.\nP3: If a student qualifies for academic scholarships, then that student submits all required assignments.\nP4: If a student does not qualify for academic scholarships, then that student does not take part in collaborative learning activities.\nP5: All students submit all required assignments.\nP6: If there exists an educational technology laboratory on campus, then all students take part in collaborative learning activities.\nP7: If all students take part in collaborative learning activities, then there exists an educational technology laboratory on campus.\nP8: If all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities.\nP9: All students participate in peer review sessions.\nP10: All students qualify for academic scholarships.\n\nQuestion: Based on the above premises, which statement can be inferred if we know that all students submit all required assignments?\nA. If all students submitting assignments implies that an educational technology lab existing means students participate in collaborative learning implies itself.\nB. Both the statement that all students submitting assignments means tech labs lead to collaborative learning and its negation are simultaneously true.\nC. If all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities.\nD. It is not the case that all students submitting assignments implies that tech labs lead to collaborative learning.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P5, P6, P8\n**Reasoning:** From premise 5 (All students submit all required assignments), we know ∀x (Student(x) → SubmitsAssignments(x)). From premise 6, if there exists an educational technology laboratory on campus, then all students take part in collaborative learning activities (∃x (EducationalTechLab(x)) → ∀y (Student(y) → ParticipatesToCollaborativeLearning(y))). From premise 8, if all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities (∀x (Student(x) → SubmitsAssignments(x)) → (∃y (EducationalTechLab(y)) → ∀z (Student(z) → ParticipatesToCollaborativeLearning(z)))). Since premise 5 states that all students submit assignments, premise 8's antecedent is true, so the consequent must be true. Therefore, if all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities (option C).\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P5, P6, P8\n**Reasoning:** From premise 5 (All students submit all required assignments), we know ∀x (Student(x) → SubmitsAssignments(x)). From premise 6, if there exists an educational technology laboratory on campus, then all students take part in collaborative learning activities (∃x (EducationalTechLab(x)) → ∀y (Student(y) → ParticipatesToCollaborativeLearning(y))). From premise 8, if all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities (∀x (Student(x) → SubmitsAssignments(x)) → (∃y (EducationalTechLab(y)) → ∀z (Student(z) → ParticipatesToCollaborativeLearning(z)))). Since premise 5 states that all students submit assignments, premise 8's antecedent is true, so the consequent must be true. Therefore, if all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities (option C).\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 10,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "Yes",
       "relevant_premises_idx": [
         5,
         6,
@@ -2069,12 +2069,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one educational technology laboratory on campus.\nP2: All students take part in collaborative learning activities.\nP3: If a student qualifies for academic scholarships, then that student submits all required assignments.\nP4: If a student does not qualify for academic scholarships, then that student does not take part in collaborative learning activities.\nP5: All students submit all required assignments.\nP6: If there exists an educational technology laboratory on campus, then all students take part in collaborative learning activities.\nP7: If all students take part in collaborative learning activities, then there exists an educational technology laboratory on campus.\nP8: If all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities.\nP9: All students participate in peer review sessions.\nP10: All students qualify for academic scholarships.\n\nQuestion: If all students submit all required assignments, does it follow that if there exists an educational technology laboratory, all students take part in collaborative learning activities?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P5, P6, P8\n**Reasoning:** From premise 5 (All students submit all required assignments), we know ∀x (Student(x) → SubmitsAssignments(x)). From premise 6, if there exists an educational technology laboratory on campus, then all students take part in collaborative learning activities (∃x (EducationalTechLab(x)) → ∀y (Student(y) → ParticipatesToCollaborativeLearning(y))). From premise 8, if all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities (∀x (Student(x) → SubmitsAssignments(x)) → (∃y (EducationalTechLab(y)) → ∀z (Student(z) → ParticipatesToCollaborativeLearning(z)))). Since premise 5 states that all students submit assignments, premise 8's antecedent is true, so the consequent must be true. Therefore, if all students submit all required assignments, it follows that if there exists an educational technology laboratory, all students take part in collaborative learning activities.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P5, P6, P8\n**Reasoning:** From premise 5 (All students submit all required assignments), we know ∀x (Student(x) → SubmitsAssignments(x)). From premise 6, if there exists an educational technology laboratory on campus, then all students take part in collaborative learning activities (∃x (EducationalTechLab(x)) → ∀y (Student(y) → ParticipatesToCollaborativeLearning(y))). From premise 8, if all students submit required assignments, then if there exists an educational technology laboratory, all students take part in collaborative learning activities (∀x (Student(x) → SubmitsAssignments(x)) → (∃y (EducationalTechLab(y)) → ∀z (Student(z) → ParticipatesToCollaborativeLearning(z)))). Since premise 5 states that all students submit assignments, premise 8's antecedent is true, so the consequent must be true. Therefore, if all students submit all required assignments, it follows that if there exists an educational technology laboratory, all students take part in collaborative learning activities.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 10,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         5,
         6,
@@ -2099,12 +2099,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student completes prerequisite courses, then they are eligible for advanced training.\nP2: There exists at least one student who has received a qualification.\nP3: There exists at least one student who has completed prerequisite courses.\nP4: All students are required to undergo training.\nP5: All students participate in self-study.\nP6: There exists at least one student engaged in independent research.\nP7: If a student does not undergo training, then they cannot conduct research.\nP8: If a student completes prerequisite courses, then they receive a qualification.\nP9: If a student conducts research, then they engage in independent learning.\nP10: If a student does not undergo training, then they cannot engage in independent learning.\nP11: All students must obtain qualifications.\nP12: If a student undergoes training, then they participate in self-study.\nP13: If the inability to undergo training leads to the inability to conduct research, then at least one student must receive a qualification.\nP14: If there exists at least one student engaged in independent research, then the inability to undergo training leads to the inability to conduct research.\nP15: If a student undergoes training, then they engage in independent learning.\nP16: If a student completes prerequisite courses, then they are able to conduct research.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: There exists at least one student who has completed prerequisite courses.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P3\n**Reasoning:** The statement that there exists at least one student who has completed prerequisite courses is true because it is explicitly stated that at least one student has completed prerequisite courses (premise 3).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P3\n**Reasoning:** The statement that there exists at least one student who has completed prerequisite courses is true because it is explicitly stated that at least one student has completed prerequisite courses (premise 3).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 16,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         3
       ]
@@ -2223,12 +2223,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student installs the software from the university’s repository, then the software is functional.\nP2: There exists at least one student who has installed the software from the university’s repository.\nP3: There exists at least one student who is using the software.\nP4: If a student does not update the software, then the software is not secure.\nP5: If a student does not install the software from the university’s repository, then the software is not functional.\nP6: If a student installs the software, it implies that if they do not update it, the software will be insecure.\nP7: If a student installs the software, then they have access to the latest features from the university's system.\nP8: There exists at least one student who has updated the software.\nP9: If a student does not update the software, then they do not have access to the latest features.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: (Exists(x, InstallsSoftware(x)) → (¬UpdatesSoftware(x) → ¬SecureSoftware(x)))\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P4\n**Reasoning:** The statement is true because not updating the software implies it is not secure, and since at least one student installs the software, the implication holds.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P4\n**Reasoning:** The statement is true because not updating the software implies it is not secure, and since at least one student installs the software, the implication holds.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 9,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         4
       ]
@@ -2398,12 +2398,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If x does not use online documents from the library, then x does not gain more knowledge\nP2: There exists a student who gains more knowledge from the online documents\nP3: All students actively use the library's online resources\n\nQuestion: Is the following statement true? Statement: If x does not use online documents from the library, then x does not gain more knowledge\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** If x does not use online documents, x does not gain knowledge (premise 1), and all students use them (premise 3). The statement holds, requiring steps to confirm consistency.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** If x does not use online documents, x does not gain knowledge (premise 1), and all students use them (premise 3). The statement holds, requiring steps to confirm consistency.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 3,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         3
@@ -2427,12 +2427,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students in the digital literacy program take standardized assessments.\nP2: All students participate in group projects.\nP3: There exists at least one student who qualifies for the honors program.\nP4: If a student qualifies for the honors program, then that student participates in group projects.\nP5: If a student participates in group projects, then that student receives constructive feedback.\nP6: If participating in group projects means receiving constructive feedback, then all students participate in group projects.\nP7: If all students participate in group projects, then participating in group projects means receiving constructive feedback.\nP8: If qualifying for honors means participating in group projects, then if participating in projects means receiving feedback, all students participate in projects.\nP9: If a student does not utilize learning technologies, then that student does not succeed in advanced courses.\nP10: If a student qualifies for the honors program, then that student takes standardized assessments.\n\nQuestion: If there exists at least one student who qualifies for the honors program, does it follow that if participating in group projects means receiving constructive feedback, then all students participate in group projects?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P2, P3, P4, P6\n**Reasoning:** From premise 3 (There exists at least one student who qualifies for the honors program), we know ∃x (QualifiesForHonors(x)). From premise 4, if a student qualifies for the honors program, then that student participates in group projects (∀x (QualifiesForHonors(x) → ParticipatesInProjects(x))). Since premise 3 states that there exists such a student, premise 4's antecedent is true, so the consequent must be true for at least one student. From premise 2, all students participate in group projects (∀x (ParticipatesInProjects(x))). From premise 6, if participating in group projects means receiving constructive feedback, then all students participate in group projects (∀x (ParticipatesInProjects(x) → ReceivesFeedback(x)) → ∀x (ParticipatesInProjects(x))). Since premise 2 states that all students participate in group projects, premise 6's consequent is true, so the antecedent must be true. From premise 5, if a student participates in group projects, then that student receives constructive feedback (∀x (ParticipatesInProjects(x) → ReceivesFeedback(x))). Since premise 2 states all students participate in projects, and premise 5 states the implication, premise 6's antecedent is true. Therefore, if there exists at least one student who qualifies for the honors program, it follows that if participating in group projects means receiving constructive feedback, then all students participate in group projects.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P2, P3, P4, P6\n**Reasoning:** From premise 3 (There exists at least one student who qualifies for the honors program), we know ∃x (QualifiesForHonors(x)). From premise 4, if a student qualifies for the honors program, then that student participates in group projects (∀x (QualifiesForHonors(x) → ParticipatesInProjects(x))). Since premise 3 states that there exists such a student, premise 4's antecedent is true, so the consequent must be true for at least one student. From premise 2, all students participate in group projects (∀x (ParticipatesInProjects(x))). From premise 6, if participating in group projects means receiving constructive feedback, then all students participate in group projects (∀x (ParticipatesInProjects(x) → ReceivesFeedback(x)) → ∀x (ParticipatesInProjects(x))). Since premise 2 states that all students participate in group projects, premise 6's consequent is true, so the antecedent must be true. From premise 5, if a student participates in group projects, then that student receives constructive feedback (∀x (ParticipatesInProjects(x) → ReceivesFeedback(x))). Since premise 2 states all students participate in projects, and premise 5 states the implication, premise 6's antecedent is true. Therefore, if there exists at least one student who qualifies for the honors program, it follows that if participating in group projects means receiving constructive feedback, then all students participate in group projects.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 10,
       "num_premises_used": 4,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         2,
         3,
@@ -2749,12 +2749,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student in an advanced research program.\nP2: If a student does not attend advanced seminars, they do not earn research credits.\nP3: If a student demonstrates research skills, they receive a research grant.\nP4: There exists at least one advanced seminar.\nP5: All students maintain academic excellence.\nP6: All students are part of the advanced research program.\nP7: There exists at least one research project.\nP8: If a student is not in the advanced research program, they cannot access specialized research facilities.\nP9: If a student fails to secure a research grant, they cannot maintain academic excellence.\nP10: If a student does not complete a research project, they lose access to advanced seminars.\nP11: If a student does not maintain academic excellence, they are removed from the advanced research program.\nP12: If a student receives a research grant, they gain access to specialized research facilities.\nP13: If an advanced seminar exists, then students who do not maintain academic excellence are removed from the advanced research program.\nP14: If (students who do not maintain academic excellence are removed from the advanced research program), then (students who fail to secure a research grant cannot maintain academic excellence).\nP15: If (students who do not complete a research project lose advanced seminar access), then (an advanced seminar exists implies that students who do not maintain academic excellence are removed from the advanced research program).\nP16: There exists at least one research grant recipient.\nP17: There exists at least one student with specialized research access.\nP18: If a student is in the advanced research program, they must conduct a research project.\nP19: If a student gains specialized research access, they can attend advanced seminars.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: If an advanced seminar exists, then students who do not maintain academic excellence are removed from the advanced research program.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P13\n**Reasoning:** The statement that if an advanced seminar exists, then students who do not maintain academic excellence are removed from the advanced research program is true because it is explicitly stated (premise 13).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P13\n**Reasoning:** The statement that if an advanced seminar exists, then students who do not maintain academic excellence are removed from the advanced research program is true because it is explicitly stated (premise 13).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 19,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         13
       ]
@@ -2792,12 +2792,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has not reviewed the course materials, then they are not well-prepared for class discussions\nP2: All students participate actively in class\nP3: All students are well-prepared for class discussions\n\nQuestion: Which of the following can be inferred about students?\nA. All students have reviewed the course materials\nB. Some students have not participated actively in class\nC. Some students are not well-prepared for class discussions\nD. All students have joined a study group\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students are well-prepared for class discussions (premise 3), and being well-prepared requires reviewing course materials (premise 1). Thus, all students have reviewed the materials, derived through multiple steps.\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students are well-prepared for class discussions (premise 3), and being well-prepared requires reviewing course materials (premise 1). Thus, all students have reviewed the materials, derived through multiple steps.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 3,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         3
@@ -3098,12 +3098,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who has shown interest in the start-up competition\nP2: There exists at least one student who has submitted a competition application\nP3: If a student has not formed a team, then they are not registered for the start-up competition\nP4: If a student has not submitted a competition application, then they are not eligible for the pitching round\nP5: There exists at least one student who has registered for the start-up competition\n\nQuestion: Is the following statement true? Statement: If a student has not formed a team, then they are not registered for the start-up competition\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P3, P5\n**Reasoning:** If a student has not formed a team, they are not registered (premise 3), and at least one student is registered (premise 5). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P3, P5\n**Reasoning:** If a student has not formed a team, they are not registered (premise 3), and at least one student is registered (premise 5). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 5,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         3,
         5
@@ -3339,12 +3339,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: BK students can participate in the lab of a lecturer to gain guidance to do a science article.\nP2: If they are a member of the lab, they can get training.\nP3: Training helps them to broaden knowledge.\nP4: With guidance and knowledge, they can do a science article.\nP5: If the science article is successfully published, they get plus points in their graduation thesis.\nP6: Kahne is a member of the lab.\n\nQuestion: Based on the premises, which of the following can be inferred?\nA) Kahne will not receive guidance because they are not a BK student.\nB) Kahne can write a science article if they receive guidance and broaden their knowledge through training.\nC) Kahne will not get plus points in their graduation thesis because they have not published an article.\nD) Kahne needs to complete more training before they can write the article, even though they are a lab member.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2, P3, P4, P6\n**Reasoning:** From premise 6, we know that Kahne is a member of the lab. From premise 2, being a lab member means Kahne can get training. From premise 3, training helps Kahne to broaden their knowledge. From premise 1, if Kahne is a BK student and a lab member, they can receive guidance. From premise 4, with guidance and knowledge, Kahne can do a science article. Therefore, Kahne can write a science article if they receive guidance and broaden their knowledge through training (from premises 1, 2, 3, 4, and 6), making option B correct.\n</think>\n**Answer:** D",
+    "output": "<think>\n**Relevant Premises:** P1, P2, P3, P4, P6\n**Reasoning:** From premise 6, we know that Kahne is a member of the lab. From premise 2, being a lab member means Kahne can get training. From premise 3, training helps Kahne to broaden their knowledge. From premise 1, if Kahne is a BK student and a lab member, they can receive guidance. From premise 4, with guidance and knowledge, Kahne can do a science article. Therefore, Kahne can write a science article if they receive guidance and broaden their knowledge through training (from premises 1, 2, 3, 4, and 6), making option B correct.\n</think>\n**Answer:** B",
     "metadata": {
       "num_premises": 6,
       "num_premises_used": 5,
       "question_type": "MCQ",
-      "answer": "D",
+      "answer": "B",
       "relevant_premises_idx": [
         1,
         2,
@@ -3614,12 +3614,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students engage in self-study.\nP2: All students undergo training.\nP3: There exists at least one student who engages in self-study.\nP4: All students participate in projects.\nP5: If a student does not undergo training, then they do not engage in extracurricular activities.\nP6: If a student does not engage in self-study, then they do not undergo training.\nP7: If a student participates in extracurricular activities, then they take part in projects.\nP8: There exists at least one student who undergoes training.\nP9: All students participate in extracurricular activities.\nP10: If a student participates in extracurricular activities, then they contribute to research.\nP11: If a student meets a certain qualification, then they engage in self-study.\nP12: If a student contributes to research, then they engage in self-study.\nP13: If contributing to research leads to self-study, then participating in extracurricular activities leads to research involvement.\nP14: If all students participate in projects, then contributing to research leads to self-study.\nP15: If a student engages in self-study, then they participate in extracurricular activities.\nP16: There exists at least one student who contributes to research.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: If a student meets a certain qualification, then they engage in self-study.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P11\n**Reasoning:** The statement that if a student meets a certain qualification, they engage in self-study is true because it is explicitly stated that meeting a qualification implies self-study (premise 11).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P11\n**Reasoning:** The statement that if a student meets a certain qualification, they engage in self-study is true because it is explicitly stated that meeting a qualification implies self-study (premise 11).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 16,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         11
       ]
@@ -3780,12 +3780,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students follow the classroom rules\nP2: There exists at least one student who is a member of the student council\nP3: All students receive positive participation marks\n\nQuestion: Is the following statement true? Statement: All students follow the classroom rules\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** All students follow the classroom rules (premise 1), and there exists a student in the student council who follows the rules (premise 2). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** All students follow the classroom rules (premise 1), and there exists a student in the student council who follows the rules (premise 2). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 3,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         2
@@ -3981,12 +3981,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has not submitted the group contract, then they are not considered an active group member\nP2: If a student has been invited to the group, then they have agreed to join the group for the assignment\nP3: All students have agreed to join a group for the assignment\nP4: If a student has not been invited to the group, then they are not considered an active group member\n\nQuestion: Is the following statement true? Statement: If a student has been invited to the group, then it implies that if at least one student has agreed to join, then those who haven't submitted the contract aren't active members\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2, P3\n**Reasoning:** Invitation implies agreement (premise 2), all students have agreed (premise 3), and missing the contract denies membership (premise 1). Thus, the statement holds, requiring steps to connect premises.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P2, P3\n**Reasoning:** Invitation implies agreement (premise 2), all students have agreed (premise 3), and missing the contract denies membership (premise 1). Thus, the statement holds, requiring steps to connect premises.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         2,
@@ -4154,12 +4154,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who graduates on time.\nP2: All university students take required core curriculum courses.\nP3: If a student doesn't understand foundational concepts, then that student won't graduate on time.\nP4: There exists at least one student who studies regularly.\nP5: If a student doesn't study regularly, then that student won't graduate on time.\nP6: If it's true that not understanding foundational concepts prevents graduating on time, then all university students take required core curriculum courses.\nP7: If not understanding foundational concepts prevents on-time graduation, then there exists a student who studies regularly.\nP8: If all university students take required core curriculum courses, then there exists at least one student who graduates on time.\nP9: There exists at least one student who understands foundational concepts.\nP10: If a student doesn't take required core curriculum courses, then that student doesn't understand foundational concepts.\n\nQuestion: Based on the above premises, which statement can be inferred if we know that there exists at least one student who graduates on time?\nA. The statement 'if all students take required courses, then at least one student graduates on time' implies itself.\nB. It is not the case that all students taking required courses implies at least one student graduates on time.\nC. Both the statement that all students taking required courses implies someone graduates on time and its negation are simultaneously true.\nD. If all university students take required core curriculum courses, then there exists at least one student who graduates on time.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2, P8\n**Reasoning:** From premise 1 (There exists at least one student who graduates on time), we know ∃x (GraduatesOnTime(x)). From premise 2, all university students take required core curriculum courses (∀x (TakesRequiredCourses(x))). From premise 8, if all university students take required core curriculum courses, then there exists at least one student who graduates on time (∀x (TakesRequiredCourses(x)) → ∃x (GraduatesOnTime(x))). Since premise 2 states that all students take required courses, premise 8's antecedent is true, so the consequent must be true. Therefore, if all university students take required core curriculum courses, then there exists at least one student who graduates on time (option D).\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P1, P2, P8\n**Reasoning:** From premise 1 (There exists at least one student who graduates on time), we know ∃x (GraduatesOnTime(x)). From premise 2, all university students take required core curriculum courses (∀x (TakesRequiredCourses(x))). From premise 8, if all university students take required core curriculum courses, then there exists at least one student who graduates on time (∀x (TakesRequiredCourses(x)) → ∃x (GraduatesOnTime(x))). Since premise 2 states that all students take required courses, premise 8's antecedent is true, so the consequent must be true. Therefore, if all university students take required core curriculum courses, then there exists at least one student who graduates on time (option D).\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 10,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         2,
@@ -4319,12 +4319,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who has demonstrated mastery of the subject.\nP2: If a student does not meet the requirements for passing, they cannot move forward in the curriculum.\nP3: All students are engaged in active learning sessions within the classroom.\nP4: At least one student is participating in the current course or class.\nP5: All students have the same baseline knowledge required to succeed in the subject.\nP6: At least one student has a solid understanding of the core concepts.\nP7: If a student fails to meet the required standards, they will not be able to apply the knowledge in real-world scenarios.\nP8: All students are proficient in the core skills necessary for academic success.\nP9: All students are expected to follow the school’s code of conduct.\nP10: If a student has the ability to apply their knowledge in real-world contexts, they will succeed in advanced coursework.\nP11: At least one student is actively participating in the course activities.\nP12: If a student does not meet the academic standards, they will not be able to advance in their education.\nP13: If a student has the skills necessary to apply what they've learned, they will succeed in future coursework.\nP14: If a student fails to meet expectations, they cannot pursue additional academic opportunities or specialized subjects.\nP15: For students who meet all educational requirements, further educational opportunities will be available.\n\nQuestion: Based on the above premises, is the following statement true?\nStatement: If a student does not meet academic standards, they will not be able to advance to further educational opportunities.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P2\n**Reasoning:** The statement that if a student does not meet academic standards, they will not advance to further educational opportunities is true because it is explicitly stated (premise 2).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P2\n**Reasoning:** The statement that if a student does not meet academic standards, they will not advance to further educational opportunities is true because it is explicitly stated (premise 2).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 15,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         2
       ]
@@ -4393,12 +4393,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a person is a freshman, they need to attend 2 physics courses: PE1 and PE2.\nP2: Nobody can register for PE2 if they don't pass PE1.\nP3: A person cannot register for PE1 twice.\nP4: All people need to pass both PE physics courses in order to meet the condition for graduating school.\nP5: Peter Griffin is a freshman.\nP6: Peter Griffin passed PE1.\n\nQuestion: Based on the premises, which of the following can be inferred?\nA) Peter Griffin can register for PE2 because he passed PE1.\nB) Peter Griffin cannot graduate until he registers for PE2 and passes it.\nC) Peter Griffin has already graduated because he passed PE1.\nD) Peter Griffin must take PE1 again because he is a freshman.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P4, P5, P6\n**Reasoning:** From premise 5, we know that Peter Griffin is a freshman. From premise 1, this means he needs to register for both PE1 and PE2. From premise 6, we know that Peter Griffin passed PE1. From premise 4, to meet the condition for graduating, Peter Griffin needs to pass both PE1 and PE2. Therefore, Peter Griffin cannot graduate until he registers for PE2 and passes it (from premises 1, 4, 5, and 6), making option B correct.\n</think>\n**Answer:** D",
+    "output": "<think>\n**Relevant Premises:** P1, P4, P5, P6\n**Reasoning:** From premise 5, we know that Peter Griffin is a freshman. From premise 1, this means he needs to register for both PE1 and PE2. From premise 6, we know that Peter Griffin passed PE1. From premise 4, to meet the condition for graduating, Peter Griffin needs to pass both PE1 and PE2. Therefore, Peter Griffin cannot graduate until he registers for PE2 and passes it (from premises 1, 4, 5, and 6), making option B correct.\n</think>\n**Answer:** B",
     "metadata": {
       "num_premises": 6,
       "num_premises_used": 4,
       "question_type": "MCQ",
-      "answer": "D",
+      "answer": "B",
       "relevant_premises_idx": [
         1,
         4,
@@ -4496,12 +4496,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student does not follow the school rules, the student will be disciplined.\nP2: Every student must arrive at school on time.\nP3: If a student violates the school rules, the student will be banned from extracurricular activities.\nP4: There exists at least one student who has been disciplined for violating the school rules.\nP5: If a student does not follow the dress code, the student will be asked to change their clothes.\nP6: Every student must maintain cleanliness in the classroom and around the school premises.\nP7: If a student does not complete the assigned tasks in class, the student will not be allowed to participate in after-school activities.\nP8: If a student violates the mobile phone policy in class, the student's phone will be confiscated.\nP9: If a student does not follow the attendance policy, the student will lose participation points.\nP10: If a student violates traffic safety rules, the student will be fined according to the school's regulations.\n\nQuestion: Based on the rules above, is the following statement true?\nStatement: If there exists at least one student who has been disciplined for violating the school rules, then a student who violates the traffic safety rules will be fined according to the school's regulations.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P4, P10\n**Reasoning:** From premise 4 (There exists at least one student who has been disciplined for violating the school rules) and premise 10 (If a student violates traffic safety rules, the student will be fined according to the school's regulations), we can infer that if there exists at least one student who has been disciplined for violating the school rules, then a student who violates the traffic safety rules will be fined according to the school's regulations. This is because if there exists at least one student who has been disciplined for violating the school rules, and violating traffic safety rules leads to a fine according to premise 10, then the statement holds true.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P4, P10\n**Reasoning:** From premise 4 (There exists at least one student who has been disciplined for violating the school rules) and premise 10 (If a student violates traffic safety rules, the student will be fined according to the school's regulations), we can infer that if there exists at least one student who has been disciplined for violating the school rules, then a student who violates the traffic safety rules will be fined according to the school's regulations. This is because if there exists at least one student who has been disciplined for violating the school rules, and violating traffic safety rules leads to a fine according to premise 10, then the statement holds true.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 10,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         4,
         10
@@ -4510,12 +4510,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Qualifying for Quantum Physics (Q) requires Research project completion (R).\nP2: Failing the entrance exam (¬T) blocks dormitory access (¬U).\nP3: Special program enrollment (S) mandates passing Philosophy (P).\nP4: All students passed the entrance exam.\nP5: All students have passed Philosophy.\nP6: No entrance exam pass → No Research completion.\nP7: Some students completed Research projects.\nP8: Special program students get dormitory access.\nP9: Universal Philosophy success ensures special program benefits.\nP10: Research completers enforce Quantum Physics requirements.\nP11: The exam-Research rule activates Quantum Physics policies.\nP12: Quantum disqualification revokes dormitory rights.\nP13: Some students qualify for Quantum Physics.\nP14: Quantum qualification grants dormitory access.\n\nQuestion: If some students completed Research projects, does it follow that the existence of Research completers enforces Quantum Physics requirements?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P7, P10\n**Reasoning:** From premise 7 (Some students completed Research projects), we know ∃x R(x). From premise 10, research completers enforce Quantum Physics requirements (∃x R(x) → ∀x (Q(x) → R(x))). Since premise 7 states that there exist students who completed Research projects, premise 10's antecedent is true, so the consequent must be true. Therefore, if some students completed Research projects, it follows that the existence of Research completers enforces Quantum Physics requirements.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P7, P10\n**Reasoning:** From premise 7 (Some students completed Research projects), we know ∃x R(x). From premise 10, research completers enforce Quantum Physics requirements (∃x R(x) → ∀x (Q(x) → R(x))). Since premise 7 states that there exist students who completed Research projects, premise 10's antecedent is true, so the consequent must be true. Therefore, if some students completed Research projects, it follows that the existence of Research completers enforces Quantum Physics requirements.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 14,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         7,
         10
@@ -4624,12 +4624,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Full-time students must take at least 14 credits per semester, but in special cases (e.g., weak academic performance or health issues), they can take a minimum of 11 credits for up to 2 semesters.\nP2: Part-time (work-study) students must take at least 11 credits per semester, but in special cases (e.g., weak academic performance, health issues, or work reasons), they can take a minimum of 9 credits for up to 3 semesters.\nP3: Linh is a full-time student with health issues, taking 12 credits this semester.\nP4: This is Linh’s first semester using the special case exception.\nP5: Part-time students must submit a work schedule to the registrar each semester.\nP6: Full-time students taking fewer than 14 credits must meet with an advisor annually.\nP7: Linh is enrolled in a 4-credit lab course and two 4-credit lecture courses.\nP8: Another student, Minh, is a part-time student taking 10 credits due to work reasons.\nP9: Courses worth more than 3 credits require attendance at 80% of classes.\nP10: The university offers a tuition discount for students taking exactly 12 credits.\nP11: Linh has not exceeded the 2-semester limit for special cases.\nP12: Minh’s employer requires him to work 20 hours per week.\nP13: Full-time students must declare a major by their third semester, and Linh is in her second.\n\nQuestion: If Linh is taking exactly 12 credits this semester, does it follow that Linh is eligible for the tuition discount?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P3, P12\n**Reasoning:** From premise 3 (Linh is a full-time student with health issues, taking 12 credits this semester), we know Credits(Linh) = 12. From premise 12, the university offers a tuition discount for students taking exactly 12 credits (∀s (Credits(s) = 12 → EligibleForDiscount(s))). Since premise 3 states that Linh is taking exactly 12 credits, premise 12's antecedent is true, so the consequent must be true. Therefore, if Linh is taking exactly 12 credits this semester, it follows that Linh is eligible for the tuition discount.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P3, P12\n**Reasoning:** From premise 3 (Linh is a full-time student with health issues, taking 12 credits this semester), we know Credits(Linh) = 12. From premise 12, the university offers a tuition discount for students taking exactly 12 credits (∀s (Credits(s) = 12 → EligibleForDiscount(s))). Since premise 3 states that Linh is taking exactly 12 credits, premise 12's antecedent is true, so the consequent must be true. Therefore, if Linh is taking exactly 12 credits this semester, it follows that Linh is eligible for the tuition discount.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 13,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         3,
         12
@@ -4707,12 +4707,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has training, then they have proficiency.\nP2: If a student lacks qualifications, then they lack proficiency.\nP3: All students have qualifications.\nP4: If a student lacks understanding, then they lack skills.\nP5: There exists at least one student with skills.\nP6: There exists at least one student with proficiency.\nP7: If a student lacks proficiency, then they lack qualifications.\nP8: If a student has skills, then they have understanding.\nP9: If a student lacks training, then they lack proficiency.\nP10: All students have understanding.\nP11: If a student has understanding, then they have qualifications.\nP12: If a student lacks proficiency, then they lack recognition.\nP13: If lacking proficiency leads to lacking recognition, then lacking qualifications leads to lacking proficiency.\nP14: If lacking training leads to lacking proficiency, then training leads to proficiency.\nP15: If a student has proficiency, then they receive recognition.\nP16: If a student has understanding, then they have skills.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: All students have understanding.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P10\n**Reasoning:** The statement that all students have understanding is true because it is explicitly stated that all students have understanding (premise 10).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P10\n**Reasoning:** The statement that all students have understanding is true because it is explicitly stated that all students have understanding (premise 10).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 16,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         10
       ]
@@ -4781,12 +4781,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students have met all academic requirements\nP2: If a student has submitted the exam eligibility form, then they have received clearance from the academic office\nP3: All students are allowed to attend the final exam\nP4: There exists at least one student who has submitted the exam eligibility form\n\nQuestion: Is the following statement true? Statement: If submitting the eligibility form leads to receiving clearance, then confirming the exam schedule leads to being allowed to attend the final exam\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P2, P3\n**Reasoning:** Submitting the form leads to clearance (premise 2), and all students are allowed to attend the exam (premise 3), making the consequent trivially true. The statement holds, requiring steps to confirm.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P2, P3\n**Reasoning:** Submitting the form leads to clearance (premise 2), and all students are allowed to attend the exam (premise 3), making the consequent trivially true. The statement holds, requiring steps to confirm.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         2,
         3
@@ -4795,12 +4795,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student with recognition.\nP2: If a student lacks skills, then they lack training.\nP3: All students have recognition.\nP4: There exists at least one student with training.\nP5: If a student lacks proficiency, then they lack skills.\nP6: There exists at least one student with skills.\nP7: If a student lacks recognition, then they lack qualifications.\nP8: If a student has recognition, then they have understanding.\nP9: All students have skills.\nP10: There exists at least one student with qualifications.\nP11: All students have qualifications.\nP12: If a student has recognition, then they have qualifications.\nP13: If all students have recognition, then all students have skills.\nP14: If recognition leads to understanding, then there exists at least one student with recognition.\nP15: If a student has proficiency, then they have recognition.\nP16: If a student has proficiency, then they have qualifications.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: All students have qualifications.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P11\n**Reasoning:** The statement that all students have qualifications is true because it is explicitly stated that all students have qualifications (premise 11).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P11\n**Reasoning:** The statement that all students have qualifications is true because it is explicitly stated that all students have qualifications (premise 11).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 16,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         11
       ]
@@ -5025,12 +5025,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Students who come to the library to borrow books will gain books.\nP2: Students who got a book and are hardworking will read them.\nP3: Students who read books will gain knowledge.\nP4: Students who have knowledge will pass the course.\nP5: Dio comes to the library to borrow a book, and he passes the course.\n\nQuestion: Did Dio pass by reading books?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2, P5\n**Reasoning:** Premise 5 states Dio borrowed a book and passed, premise 1 confirms he got a book, but premise 2 requires hard work to read, which is uncertain, so passing via reading isn’t guaranteed.\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P1, P2, P5\n**Reasoning:** Premise 5 states Dio borrowed a book and passed, premise 1 confirms he got a book, but premise 2 requires hard work to read, which is uncertain, so passing via reading isn’t guaranteed.\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 5,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "No",
       "relevant_premises_idx": [
         1,
         2,
@@ -5040,12 +5040,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Every student with a GPA of 4.0 is eligible for a full scholarship.\nP2: If a student receives a full scholarship, they do not have to pay tuition fees.\nP3: A student who maintains a GPA of 4.0 for all semesters will graduate with honors.\nP4: There exists at least one student who has received a full scholarship.\nP5: If a student participates in research, they have a higher chance of receiving a scholarship.\nP6: Students who engage in extracurricular activities have a better chance of getting scholarships.\nP7: At least one student who received a full scholarship has participated in research.\nP8: If maintaining a GPA of 4.0 leads to graduating with honors, then every honors graduate must have a high GPA.\nP9: If research participation improves scholarship chances, then at least one research student has a scholarship.\nP10: If all students with a GPA of 4.0 are eligible for scholarships, then top students are financially supported.\nP11: If a student has received a full scholarship, they must have demonstrated academic excellence.\nP12: If a student does not maintain a high GPA, they might lose their scholarship.\nP13: There exists at least one student who has lost a scholarship due to a GPA drop.\n\nQuestion: According to the premises, is the following statement true?\nStatement: If there exists at least one student who has received a full scholarship and at least one student who has lost a scholarship due to a GPA drop, then a student who has received a full scholarship must have demonstrated academic excellence.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P4, P11, P13\n**Reasoning:** From premise 4 (There exists at least one student who has received a full scholarship), premise 11 (If a student has received a full scholarship, they must have demonstrated academic excellence), and premise 13 (There exists at least one student who has lost a scholarship due to a GPA drop), we can infer that if there exists at least one student who has received a full scholarship and at least one student who has lost a scholarship due to a GPA drop, then a student who has received a full scholarship must have demonstrated academic excellence. This is because if there exists at least one student who has received a full scholarship, and receiving a full scholarship implies demonstrated academic excellence according to premise 11, then regardless of the existence of students who have lost scholarships, the statement holds true.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P4, P11, P13\n**Reasoning:** From premise 4 (There exists at least one student who has received a full scholarship), premise 11 (If a student has received a full scholarship, they must have demonstrated academic excellence), and premise 13 (There exists at least one student who has lost a scholarship due to a GPA drop), we can infer that if there exists at least one student who has received a full scholarship and at least one student who has lost a scholarship due to a GPA drop, then a student who has received a full scholarship must have demonstrated academic excellence. This is because if there exists at least one student who has received a full scholarship, and receiving a full scholarship implies demonstrated academic excellence according to premise 11, then regardless of the existence of students who have lost scholarships, the statement holds true.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 13,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         4,
         11,
@@ -5071,12 +5071,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who participated in the online training session.\nP2: There exists at least one student who signed the academic integrity agreement.\nP3: If a student did not submit the final report, then they did not receive course recognition.\nP4: If a student attended the training session, then they submitted the final report.\nP5: If a student did not attend the training session, then they did not submit the final report.\nP6: If students who did not attend the training session also failed to submit the final report, then they did not receive course recognition.\nP7: If not attending the training session leads to not submitting the final report, then some students must have signed the academic integrity agreement.\nP8: If a student did not attend the training session, then they did not submit the final project either.\nP9: If a student did not sign the academic integrity agreement, then they did not receive course recognition.\n\nQuestion: Based on the above premises, is the following statement true?\nStatement: If a student did not sign the academic integrity agreement, then they did not receive course recognition.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P9\n**Reasoning:** The statement that if a student did not sign the academic integrity agreement, they did not receive course recognition is true because it is explicitly stated (premise 9).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P9\n**Reasoning:** The statement that if a student did not sign the academic integrity agreement, they did not receive course recognition is true because it is explicitly stated (premise 9).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 9,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         9
       ]
@@ -5099,12 +5099,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who has completed the Educational Psychology course\nP2: All students are enrolled in the Teacher Education program\nP3: All students possess basic teaching skills\nP4: If a student has not completed the Educational Psychology course, then that student does not meet the professional teaching standards\n\nQuestion: Is the following statement true? Statement: If all students are enrolled in the Teacher Education program, then there exists at least one student who has completed the Educational Psychology course\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** All students are enrolled in the Teacher Education program (premise 2), and there exists a student who has completed the Educational Psychology course (premise 1). Thus, the statement holds, requiring steps to connect enrollment to completion.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** All students are enrolled in the Teacher Education program (premise 2), and there exists a student who has completed the Educational Psychology course (premise 1). Thus, the statement holds, requiring steps to connect enrollment to completion.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         2
@@ -5241,12 +5241,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who participates in extracurricular activities.\nP2: All students participate in extracurricular activities.\nP3: There exists at least one student who has completed prerequisite courses.\nP4: If a student participates in extracurricular activities, then they engage in self-study.\nP5: All students engage in self-study.\nP6: If a student engages in self-study, then they develop critical thinking skills.\nP7: If a student does not undergo training, then they do not engage in self-study.\nP8: If a student does not undergo training, then they cannot conduct research.\nP9: There exists at least one student who conducts research.\nP10: If a student cannot conduct research, then they do not participate in extracurricular activities.\nP11: If a student undergoes training, then they have completed prerequisite courses.\nP12: All students must complete prerequisite courses.\nP13: If there exists at least one student who participates in extracurricular activities, then the inability to undergo training leads to the inability to conduct research.\nP14: If participation in extracurricular activities leads to self-study, then all students must participate in extracurricular activities.\nP15: All students engage in research.\nP16: All students undergo training.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: If a student does not undergo training, then they do not engage in self-study.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P7\n**Reasoning:** The statement that if a student does not undergo training, they do not engage in self-study is true because it is explicitly stated that the absence of training prevents self-study (premise 7).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P7\n**Reasoning:** The statement that if a student does not undergo training, they do not engage in self-study is true because it is explicitly stated that the absence of training prevents self-study (premise 7).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 16,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         7
       ]
@@ -5254,12 +5254,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has not registered for the festival, then they do not have access to festival activities\nP2: If a student has not received a festival invitation, then they have not registered for the festival\nP3: If a student is attending the university festival, then they have access to festival activities\nP4: All students are attending the university festival\n\nQuestion: Is the following statement true? Statement: At least one student is attending the university festival\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P3, P4\n**Reasoning:** All students are attending the festival (premise 4), implying at least one is attending, with access ensured (premise 3). Thus, the statement is true, requiring steps to confirm.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P3, P4\n**Reasoning:** All students are attending the festival (premise 4), implying at least one is attending, with access ensured (premise 3). Thus, the statement is true, requiring steps to confirm.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         3,
         4
@@ -5327,12 +5327,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students have understanding.\nP2: There exists at least one student with training.\nP3: If a student has understanding, then they have reasoning skills.\nP4: All students have skills.\nP5: There exists at least one student with understanding.\nP6: If a student lacks skills, then they lack proficiency.\nP7: There exists at least one student with skills.\nP8: If a student has reasoning skills, then they have understanding.\nP9: If a student lacks training, then they lack understanding.\nP10: If a student lacks understanding, then they lack reasoning skills.\nP11: If a student lacks qualifications, then they lack proficiency.\nP12: If a student lacks training, then they lack qualifications.\nP13: If there exists at least one student with understanding, then there exists at least one student with training.\nP14: If there exists at least one student with skills, then lacking understanding leads to lacking reasoning skills.\nP15: If a student lacks reasoning skills, then they lack training.\nP16: If a student has proficiency, then they have understanding.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: All students have skills.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P4\n**Reasoning:** The statement that all students have skills is true because it is explicitly stated that all students have skills (premise 4).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P4\n**Reasoning:** The statement that all students have skills is true because it is explicitly stated that all students have skills (premise 4).\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 16,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         4
       ]
@@ -5397,12 +5397,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a participant has completed the registration form, then they have received the necessary safety briefing\nP2: All participants have completed the registration form\nP3: All participants are equipped with proper outdoor gear\nP4: If a participant has not signed the liability waiver, then they have not completed the registration form\n\nQuestion: Is the following statement true? Statement: If a participant has completed the registration form, then they have received the necessary safety briefing\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** If a participant completes the registration form, they receive the safety briefing (premise 1), and all participants have completed the form (premise 2). Thus, the statement is true, requiring steps to confirm.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** If a participant completes the registration form, they receive the safety briefing (premise 1), and all participants have completed the form (premise 2). Thus, the statement is true, requiring steps to confirm.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         2
@@ -5509,12 +5509,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All computer science students are skilled in software development.\nP2: If someone regularly practices coding, then they are skilled in software development.\nP3: If a programmer qualifies for advanced certification, then they take specialized training courses.\nP4: All computer science students regularly practice coding.\nP5: If someone is skilled in software development, then they can produce professional applications.\nP6: If all computer science students regularly practice coding, then regular coding practice leads to software development skill.\nP7: If all students are skilled in software development, then having software development skills means being able to produce professional applications.\nP8: If having software development skills meaning capable of producing professional applications implies that regular coding practice leads to software skill, then the reverse implication also holds.\nP9: If someone doesn't take specialized training courses, then they don't understand underlying algorithms.\nP10: All computer science students can produce professional applications.\n\nQuestion: If all computer science students are skilled in software development, does it follow that if having software development skills meaning capable of producing professional applications implies that regular coding practice leads to software skill, then the reverse implication also holds?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P6, P7, P8\n**Reasoning:** From premise 1 (All computer science students are skilled in software development), we know ∀x (ComputerScienceStudent(x) → SkilledInSoftwareDev(x)). From premise 7, if all students are skilled in software development, then having software development skills means being able to produce professional applications (∀x (ComputerScienceStudent(x) → SkilledInSoftwareDev(x)) → ∀x (SkilledInSoftwareDev(x) → ProducesProfessionalApps(x))). Since premise 1 states that all computer science students are skilled in software development, premise 7's antecedent is true, so the consequent must be true. From premise 8, if having software development skills meaning capable of producing professional applications implies that regular coding practice leads to software skill, then the reverse implication also holds ((∀x (ComputerScienceStudent(x) → SkilledInSoftwareDev(x)) → ∀x (SkilledInSoftwareDev(x) → ProducesProfessionalApps(x))) → (∀x (ComputerScienceStudent(x) → PracticesCoding(x)) → ∀x (PracticesCoding(x) → SkilledInSoftwareDev(x)))). Since premise 7's consequent is true, and premise 4 states that all computer science students regularly practice coding (∀x (ComputerScienceStudent(x) → PracticesCoding(x))), premise 8's antecedent is true, so the consequent must be true. Therefore, if all computer science students are skilled in software development, it follows that if having software development skills meaning capable of producing professional applications implies that regular coding practice leads to software skill, then the reverse implication also holds.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P6, P7, P8\n**Reasoning:** From premise 1 (All computer science students are skilled in software development), we know ∀x (ComputerScienceStudent(x) → SkilledInSoftwareDev(x)). From premise 7, if all students are skilled in software development, then having software development skills means being able to produce professional applications (∀x (ComputerScienceStudent(x) → SkilledInSoftwareDev(x)) → ∀x (SkilledInSoftwareDev(x) → ProducesProfessionalApps(x))). Since premise 1 states that all computer science students are skilled in software development, premise 7's antecedent is true, so the consequent must be true. From premise 8, if having software development skills meaning capable of producing professional applications implies that regular coding practice leads to software skill, then the reverse implication also holds ((∀x (ComputerScienceStudent(x) → SkilledInSoftwareDev(x)) → ∀x (SkilledInSoftwareDev(x) → ProducesProfessionalApps(x))) → (∀x (ComputerScienceStudent(x) → PracticesCoding(x)) → ∀x (PracticesCoding(x) → SkilledInSoftwareDev(x)))). Since premise 7's consequent is true, and premise 4 states that all computer science students regularly practice coding (∀x (ComputerScienceStudent(x) → PracticesCoding(x))), premise 8's antecedent is true, so the consequent must be true. Therefore, if all computer science students are skilled in software development, it follows that if having software development skills meaning capable of producing professional applications implies that regular coding practice leads to software skill, then the reverse implication also holds.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 10,
       "num_premises_used": 4,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         6,
@@ -5846,12 +5846,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Alex has completed safety orientation.\nP2: Alex has a membership duration of 8 months.\nP3: Alex has paid annual fees on time.\nP4: If a person has a valid membership card and has completed safety orientation, they can use equipment.\nP5: If a person can use equipment and has a trainer, they can book training.\nP6: If a person’s membership duration is at least 6 months, they are eligible for a trainer.\nP7: If a person has paid the annual fee, they have a valid membership.\n\nQuestion: Based on Alex's status, which statement is correct?\nA. Alex can use equipment but cannot book training without a trainer\nB. Alex can book personal training sessions if assigned a trainer\nC. Alex needs a longer membership duration\nD. Alex must pay additional fees\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3, P4, P7\n**Reasoning:** Premises 3 and 7 confirm Alex paid fees for a valid membership, premise 1 confirms safety orientation, and premise 4 allows equipment use, so Alex can use equipment. Premise 5 requires a trainer to book training, which isn’t confirmed, supporting option A. Option B is uncertain without a confirmed trainer. Option C is false because 8 months exceeds 6 per premise 6. Option D is false because fees are paid per premise 3.\n</think>\n**Answer:** C",
+    "output": "<think>\n**Relevant Premises:** P1, P3, P4, P7\n**Reasoning:** Premises 3 and 7 confirm Alex paid fees for a valid membership, premise 1 confirms safety orientation, and premise 4 allows equipment use, so Alex can use equipment. Premise 5 requires a trainer to book training, which isn’t confirmed, supporting option A. Option B is uncertain without a confirmed trainer. Option C is false because 8 months exceeds 6 per premise 6. Option D is false because fees are paid per premise 3.\n</think>\n**Answer:** A",
     "metadata": {
       "num_premises": 7,
       "num_premises_used": 4,
       "question_type": "MCQ",
-      "answer": "C",
+      "answer": "A",
       "relevant_premises_idx": [
         1,
         3,
@@ -5862,12 +5862,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Students who do not apply for Scholarships (¬S) cannot enroll in Thesis Writing (¬T).\nP2: Passing Philosophy (P) grants eligibility for Research Methods (R).\nP3: All students are guaranteed University housing (U).\nP4: Enrollment in Research Methods (R) requires Thesis Writing (T).\nP5: Passing Philosophy (P) necessitates enrolling in Thesis Writing (T).\nP6: Every student is enrolled in Quantum Physics (Q).\nP7: Some students are participating in Research Methods (R).\nP8: All students have submitted Scholarship applications (S).\nP9: Universal Quantum Physics enrollment (∀Q) enforces Philosophy-Thesis linkage (P→T).\nP10: Mandatory Quantum Physics (∀Q) implies Scholarship applications are required for Thesis (¬S→¬T).\nP11: The policy 'Philosophy → Thesis' ensures universal housing access (∀U).\nP12: Universal housing (∀U) guarantees Scholarship-Thesis compliance under Quantum enrollment (∀Q → ¬S→¬T).\nP13: Lack of housing (¬U) revokes Research Methods eligibility (¬R).\n\nQuestion: If all students are guaranteed University housing, does it follow that universal housing guarantees Scholarship checks for Thesis under Quantum enrollment?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P3, P6, P12\n**Reasoning:** From premise 3 (All students are guaranteed University housing (U)), we know ∀x U(x). From premise 6, every student is enrolled in Quantum Physics (Q) (∀x Q(x)). From premise 12, universal housing (∀U) guarantees Scholarship-Thesis compliance under Quantum enrollment (∀Q → ¬S→¬T) (∀x U(x) → (∀x Q(x) → ∀x (¬S(x) → ¬T(x)))). Since premise 3 states that all students have housing, premise 12's antecedent is true, so the consequent must be true. Since premise 6 states that all students are enrolled in Quantum Physics, the consequent of premise 12's implication is true, so the inner implication must be true. Therefore, if all students are guaranteed University housing, it follows that universal housing guarantees Scholarship checks for Thesis under Quantum enrollment.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P3, P6, P12\n**Reasoning:** From premise 3 (All students are guaranteed University housing (U)), we know ∀x U(x). From premise 6, every student is enrolled in Quantum Physics (Q) (∀x Q(x)). From premise 12, universal housing (∀U) guarantees Scholarship-Thesis compliance under Quantum enrollment (∀Q → ¬S→¬T) (∀x U(x) → (∀x Q(x) → ∀x (¬S(x) → ¬T(x)))). Since premise 3 states that all students have housing, premise 12's antecedent is true, so the consequent must be true. Since premise 6 states that all students are enrolled in Quantum Physics, the consequent of premise 12's implication is true, so the inner implication must be true. Therefore, if all students are guaranteed University housing, it follows that universal housing guarantees Scholarship checks for Thesis under Quantum enrollment.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 13,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         3,
         6,
@@ -6011,12 +6011,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists a student who is allowed to borrow books from the library.\nP2: If a person has not borrowed more than 5 books at once, then they are allowed to borrow books.\nP3: If a person has permission to borrow books from the library, then they are a student allowed to borrow books.\nP4: If (a person having permission to borrow books implies they are allowed to borrow books), then (not borrowing more than 5 books implies they are allowed to borrow books).\nP5: If (a person having permission to borrow books implies being allowed to borrow books), then there exists a student who is allowed to borrow books.\nP6: If a person does not have permission to borrow books, then they are not allowed to borrow books.\nP7: If a person is not allowed to borrow books, then they have not borrowed more than 5 books.\n\nQuestion: Based on the above premises, is the following statement true?\nStatement: If a person has permission to borrow books from the library, then they are a student allowed to borrow books, and if there exists a student who is allowed to borrow books, then there exists someone who has not borrowed more than 5 books at once.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2, P7\n**Reasoning:** From premise 1, we know there exists a student who is allowed to borrow books from the library. From premise 3, if a person has permission to borrow books from the library, then they are a student allowed to borrow books. From premise 7, if a person is not allowed to borrow books, then they have not borrowed more than 5 books. Therefore, if a person has permission to borrow books from the library, then they are a student allowed to borrow books, and if there exists a student who is allowed to borrow books, then there exists someone who has not borrowed more than 5 books at once (from premises 1, 2, and 7), making the statement true.\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P1, P2, P7\n**Reasoning:** From premise 1, we know there exists a student who is allowed to borrow books from the library. From premise 3, if a person has permission to borrow books from the library, then they are a student allowed to borrow books. From premise 7, if a person is not allowed to borrow books, then they have not borrowed more than 5 books. Therefore, if a person has permission to borrow books from the library, then they are a student allowed to borrow books, and if there exists a student who is allowed to borrow books, then there exists someone who has not borrowed more than 5 books at once (from premises 1, 2, and 7), making the statement true.\n</think>\n**Answer:** No",
     "metadata": {
       "num_premises": 7,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "No",
       "relevant_premises_idx": [
         1,
         2,
@@ -6190,12 +6190,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students must complete advanced digital skills training.\nP2: If a student does not master coding skills, they cannot participate in tech innovation projects.\nP3: If a student fails to complete data analysis workshops, they do not receive advanced certification.\nP4: Every student in the technology track must demonstrate proficiency in artificial intelligence.\nP5: If a student demonstrates AI proficiency, they become eligible for research grants.\nP6: There is at least one student in the machine learning specialization.\nP7: If a student is in the machine learning specialization, they must complete advanced programming modules.\nP8: All students must develop a comprehensive technology portfolio.\nP9: If a student does not develop a technology portfolio, they cannot apply to top-tier tech companies.\nP10: Students who do not receive advanced certification cannot join professional tech networks.\nP11: If a student participates in hackathons, they gain practical coding experience.\nP12: All students in advanced technology tracks must complete innovative tech projects.\nP13: If a student does not complete an innovative tech project, they are ineligible for industry internships.\nP14: There exists at least one student in an advanced technology track.\nP15: If a student is in an advanced technology track, they must maintain cutting-edge technological skills.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: If a student is in the machine learning specialization, they gain practical coding experience.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P6, P7\n**Reasoning:** The statement that if a student is in the machine learning specialization, they gain practical coding experience is not true because, while there exists a student in the specialization (premise 6) who completes programming modules (premise 7), no premise guarantees they gain practical coding experience.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P6, P7\n**Reasoning:** The statement that if a student is in the machine learning specialization, they gain practical coding experience is not true because, while there exists a student in the specialization (premise 6) who completes programming modules (premise 7), no premise guarantees they gain practical coding experience.\n</think>\n**Answer:** Unknown",
     "metadata": {
       "num_premises": 15,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Unknown",
       "relevant_premises_idx": [
         6,
         7
@@ -6465,12 +6465,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has attended soft skills workshops, then they have improved their communication skills\nP2: If a student did not participate in group projects, then they did not develop leadership abilities\nP3: All students have attended soft skills workshops\nP4: If a student has developed leadership abilities, then they have improved their communication skills\n\nQuestion: Which of the following can be inferred about students?\nA. All students have improved their communication skills\nB. Some students did not participate in group projects\nC. All students have developed leadership abilities\nD. Some students have not attended soft skills workshops\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students have attended workshops (premise 3), and attending workshops implies improved communication (premise 1). Thus, all students have improved communication skills, derived through multiple steps.\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students have attended workshops (premise 3), and attending workshops implies improved communication (premise 1). Thus, all students have improved communication skills, derived through multiple steps.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         3
@@ -6523,12 +6523,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student understands the material, then they attend tutoring sessions.\nP2: If a student understands the material, then they receive a recommendation letter.\nP3: There is at least one student who attends tutoring sessions.\nP4: If a student does not receive a recommendation letter, then they do not understand the material.\nP5: If a student receives a recommendation letter, then they study regularly.\nP6: If a student does not qualify for a scholarship, then they do not study regularly.\nP7: All students pass the exam.\nP8: If a student does not pass the exam, then they do not qualify for a scholarship.\nP9: There is at least one student who receives a recommendation letter.\nP10: If a student does not study regularly, then they do not qualify for a scholarship.\nP11: If a student Trần tutoring sessions, then they qualify for a scholarship.\nP12: If a student studies regularly, then they qualify for a scholarship.\nP13: If there is at least one student who attends tutoring sessions, then there is at least one student who receives a recommendation letter.\nP14: If studying regularly implies qualifying for a scholarship, then there is at least one student who attends tutoring sessions.\nP15: All students attend tutoring sessions.\nP16: If a student understands the material, then they qualify for a scholarship.\nP17: If a student passes the exam, then they understands the material.\nP18: All students study regularly.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: ((AttendsTutoring(x) → QualifiesScholarship(x)) → (ReceivesRecommendation(x) → StudiesRegularly(x)))\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P18\n**Reasoning:** The statement is true because all students study regularly, making the consequent of receiving a recommendation letter implying studying regularly true, so the entire implication holds.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P18\n**Reasoning:** The statement is true because all students study regularly, making the consequent of receiving a recommendation letter implying studying regularly true, so the entire implication holds.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 18,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         18
       ]
@@ -6700,12 +6700,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Students who have completed the core curriculum and passed the science assessment are qualified for advanced courses.\nP2: Students who are qualified for advanced courses and have completed research methodology are eligible for the international program.\nP3: Students who have passed the language proficiency exam are eligible for the international program.\nP4: Students who are eligible for the international program and have completed a capstone project are awarded an honors diploma.\nP5: Students who have been awarded an honors diploma and have completed community service qualify for the university scholarship.\nP6: Students who have been awarded an honors diploma and have received a faculty recommendation qualify for the university scholarship.\nP7: Sophia has completed the core curriculum.\nP8: Sophia has passed the science assessment.\nP9: Sophia has completed the research methodology course.\nP10: Sophia has completed her capstone project.\nP11: Sophia has completed the required community service hours.\n\nQuestion: Based on the above premises, which conclusion is correct?\nA. Sophia qualifies for the university scholarship\nB. Sophia needs a faculty recommendation to qualify for the scholarship\nC. Sophia is eligible for the international program\nD. Sophia needs to pass the language proficiency exam to get an honors diploma\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2, P4, P5, P7, P8, P9, P10, P11\n**Reasoning:** Premises 7 and 8 confirm Sophia completed the core curriculum and passed the science assessment, satisfying premise 1 for advanced courses. Premise 9’s research methodology and premise 2 make her eligible for the international program. Premise 10’s capstone project and premise 4 award her an honors diploma. Premise 11’s community service and premise 5 qualify her for the university scholarship, supporting option A. Option B is false because community service suffices without a recommendation. Option C is true but weaker than A, as scholarship implies prior eligibility. Option D is false because language proficiency is not required via premise 2’s path.\n</think>\n**Answer:** C",
+    "output": "<think>\n**Relevant Premises:** P1, P2, P4, P5, P7, P8, P9, P10, P11\n**Reasoning:** Premises 7 and 8 confirm Sophia completed the core curriculum and passed the science assessment, satisfying premise 1 for advanced courses. Premise 9’s research methodology and premise 2 make her eligible for the international program. Premise 10’s capstone project and premise 4 award her an honors diploma. Premise 11’s community service and premise 5 qualify her for the university scholarship, supporting option A. Option B is false because community service suffices without a recommendation. Option C is true but weaker than A, as scholarship implies prior eligibility. Option D is false because language proficiency is not required via premise 2’s path.\n</think>\n**Answer:** A",
     "metadata": {
       "num_premises": 11,
       "num_premises_used": 9,
       "question_type": "MCQ",
-      "answer": "C",
+      "answer": "A",
       "relevant_premises_idx": [
         1,
         2,
@@ -6749,12 +6749,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: All online students have logged into the online learning platform\nP2: There exists at least one online student who has completed a module quiz\nP3: If an online student has logged into the learning platform, then they have viewed at least one lecture video\nP4: There exists at least one online student who has submitted a course feedback form\n\nQuestion: Is the following statement true? Statement: There exists at least one online student who has completed a module quiz\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** There exists an online student who has completed a module quiz (premise 2), and all online students have logged in (premise 1). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** There exists an online student who has completed a module quiz (premise 2), and all online students have logged in (premise 1). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         2
@@ -6948,12 +6948,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student successfully completes a prerequisite course, they are eligible to enroll in the next level course.\nP2: If a student demonstrates competence in one subject, they are qualified to advance to a more challenging subject.\nP3: All students enrolled in the course are actively engaging in the learning material.\nP4: At least one student has enrolled in the prerequisite course.\nP5: If a student passes the final exam, they are considered to have mastered the course content.\nP6: If a student does not demonstrate mastery, they are not considered to have passed the course.\nP7: If a student does not meet the course prerequisites, they cannot take the final exam.\nP8: All students are expected to complete the assigned coursework on time.\nP9: All students are required to complete assignments in accordance with the syllabus.\nP10: If a student demonstrates mastery of the course material, they will be recommended for advanced coursework.\nP11: If a student passes a course, they are eligible to move on to the next subject.\nP12: If a student fails to meet the prerequisites, they cannot take more advanced courses.\nP13: If a student fails to meet the course requirements, they will not be eligible for further academic opportunities.\nP14: If a student has demonstrated understanding of the core principles, they are encouraged to pursue further academic challenges.\nP15: For students who have mastered the necessary content, additional learning opportunities will be provided.\n\nQuestion: Based on the above premises, which statement can be inferred?\nA. ∀x (U(x) → S(x))\nB. ¬∀x (U(x) → S(x))\nC. ∀x (¬P(x) → ¬S(x))\nD. ∀x (S(x) → ¬P(x))\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1\n**Reasoning:** The statement that if a student completes a prerequisite course, they are eligible for advanced coursework is true because it is explicitly stated (premise 1).\n</think>\n**Answer:** Yes",
+    "output": "<think>\n**Relevant Premises:** P1\n**Reasoning:** The statement that if a student completes a prerequisite course, they are eligible for advanced coursework is true because it is explicitly stated (premise 1).\n</think>\n**Answer:** Unknown",
     "metadata": {
       "num_premises": 15,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "Yes",
+      "answer": "Unknown",
       "relevant_premises_idx": [
         1
       ]
@@ -7152,12 +7152,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a participant has completed the registration form, then they have received the necessary safety briefing\nP2: All participants have completed the registration form\nP3: All participants are equipped with proper outdoor gear\nP4: If a participant has not signed the liability waiver, then they have not completed the registration form\n\nQuestion: Which of the following can be inferred about participants?\nA. All participants have signed the liability waiver\nB. Some participants have not received the safety briefing\nC. Some participants are not equipped with proper outdoor gear\nD. All participants have not completed the registration form\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P2, P4\n**Reasoning:** All participants have completed the registration form (premise 2), and completing the form requires signing the liability waiver (premise 4). Thus, all participants have signed the waiver, derived through multiple steps.\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P2, P4\n**Reasoning:** All participants have completed the registration form (premise 2), and completing the form requires signing the liability waiver (premise 4). Thus, all participants have signed the waiver, derived through multiple steps.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "Yes",
       "relevant_premises_idx": [
         2,
         4
@@ -7286,12 +7286,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who is prepared.\nP2: There exists at least one student who asks questions.\nP3: If a student is prepared, then they receive a recommendation letter.\nP4: All students take the test.\nP5: All students study regularly.\nP6: If a student does not receive a recommendation letter, then they do not ask questions.\nP7: If a student is not prepared, then they do not receive a recommendation letter.\nP8: All students ask questions.\nP9: If a student asks questions, then they are prepared.\nP10: If a student studies regularly, then they attend university.\nP11: If a student does not take the test, then they do not ask questions.\nP12: If a student does not take the test, then they do not attend university.\nP13: If at least one student asks questions, then all students who study regularly also attend university.\nP14: If all students take the test, then at least one student is prepared.\nP15: If the previous statement is true, then at least one student is prepared.\nP16: All students are prepared.\nP17: If a student is not prepared, then they do not study regularly.\nP18: There exists at least one student who attends university.\nP19: If a student asks questions, then they study regularly.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: (¬TakesTest(x) → ¬AsksQuestions(x))\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P4\n**Reasoning:** The statement is true because all students take the test, making the premise of not taking the test false, so the implication holds vacuously.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P4\n**Reasoning:** The statement is true because all students take the test, making the premise of not taking the test false, so the implication holds vacuously.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 19,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         4
       ]
@@ -7346,12 +7346,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has submitted a scholarship application, then they are eligible for the scholarship\nP2: If a student has not maintained a good academic standing, then they will not be shortlisted for an interview\nP3: There exists at least one student who has maintained a good academic standing\nP4: If a student has not maintained a good academic standing, then they will not receive the scholarship\nP5: There exists at least one student who has submitted a scholarship application\n\nQuestion: Is the following statement true? Statement: If a student has not maintained a good academic standing, then they will not be shortlisted for an interview\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P2, P3\n**Reasoning:** If a student has not maintained good standing, they will not be shortlisted (premise 2), and at least one student has good standing (premise 3). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P2, P3\n**Reasoning:** If a student has not maintained good standing, they will not be shortlisted (premise 2), and at least one student has good standing (premise 3). Thus, the statement is true, requiring steps to confirm consistency.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 5,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         2,
         3
@@ -7473,12 +7473,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student studies regularly, then they pass the exam.\nP2: All students receive an award.\nP3: If a student does not receive a recommendation letter, then they do not qualify for a scholarship.\nP4: There is at least one student who receives an award.\nP5: There is at least one student who studies regularly.\nP6: All students pass the exam.\nP7: All students study regularly.\nP8: If a student studies regularly, then they qualify for a scholarship.\nP9: If a student studies regularly, then they receive a recommendation letter.\nP10: There is at least one student who attends tutoring sessions.\nP11: If a student does not attend tutoring sessions, then they do not pass the exam.\nP12: If a student qualifies for a scholarship, then they pass the exam.\nP13: If all students pass the exam, then all students study regularly.\nP14: If qualifying for a scholarship implies passing the exam, then there is at least one student who studies regularly.\nP15: If qualifying for a scholarship implies passing the exam, then if a student studies regularly, they pass the exam.\nP16: If a student does not qualify for a scholarship, then they do not study regularly.\nP17: If a student attends tutoring sessions, then they qualify for a scholarship.\nP18: If a student qualifies for a scholarship, then they receive a recommendation letter.\nP19: If a student does not receive a recommendation letter, then they do not pass the exam.\n\nQuestion: Based on the above premises, is the statement true?\nStatement: Exists(x, AttendsTutoring(x))\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P10\n**Reasoning:** The statement is true because there is at least one student who attends tutoring sessions, as explicitly stated.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P10\n**Reasoning:** The statement is true because there is at least one student who attends tutoring sessions, as explicitly stated.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 19,
       "num_premises_used": 1,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         10
       ]
@@ -7515,12 +7515,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one research program at the university.\nP2: There exists at least one pioneering course in the curriculum.\nP3: All educational programs use digital resources.\nP4: All students qualify for graduation.\nP5: There exists at least one student who takes final examinations.\nP6: If there is a research program at the university, then there is at least one student who takes final examinations.\nP7: If there is a pioneering course in the curriculum, then there exists a research program at the university.\nP8: If all students qualify for graduation, then all educational programs use digital resources.\nP9: All students take final examinations.\nP10: If a student qualifies for graduation, then that student takes final examinations.\n\nQuestion: Based on the above premises, which statement can be inferred if we know that all students take final examinations?\nA. Both the statement that all students qualifying for graduation implies all programs use digital resources and its negation are simultaneously true.\nB. It is not the case that all students qualifying for graduation implies all educational programs use digital resources.\nC. The statement that all students qualifying for graduation implies all programs use digital resources implies itself.\nD. If all students qualify for graduation, then all educational programs use digital resources.\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P4, P8, P9\n**Reasoning:** From premise 9 (All students take final examinations), we know ∀x (Student(x) → TakesFinalExams(x)). From premise 4, all students qualify for graduation (∀x (Student(x) → QualifiesForGraduation(x))). From premise 8, if all students qualify for graduation, then all educational programs use digital resources (∀x (Student(x) → QualifiesForGraduation(x)) → ∀y (EducationalProgram(y) → UsesDigitalResources(y))). Since premise 4 states that all students qualify for graduation, premise 8's antecedent is true, so the consequent must be true. Therefore, if all students qualify for graduation, then all educational programs use digital resources (option D).\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P4, P8, P9\n**Reasoning:** From premise 9 (All students take final examinations), we know ∀x (Student(x) → TakesFinalExams(x)). From premise 4, all students qualify for graduation (∀x (Student(x) → QualifiesForGraduation(x))). From premise 8, if all students qualify for graduation, then all educational programs use digital resources (∀x (Student(x) → QualifiesForGraduation(x)) → ∀y (EducationalProgram(y) → UsesDigitalResources(y))). Since premise 4 states that all students qualify for graduation, premise 8's antecedent is true, so the consequent must be true. Therefore, if all students qualify for graduation, then all educational programs use digital resources (option D).\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 10,
       "num_premises_used": 3,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "Yes",
       "relevant_premises_idx": [
         4,
         8,
@@ -7573,12 +7573,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: Submitting a research proposal (S) requires advisor review (R).\nP2: Passing Philosophy (P) grants dormitory access (U).\nP3: Some students have submitted research proposals.\nP4: Thesis completion (T) requires a submitted proposal.\nP5: Advisor-reviewed proposals grant dormitory access.\nP6: Some students qualify for advanced seminars (Q).\nP7: Research proposals must lead to thesis work.\nP8: Failing Philosophy revokes dormitory access.\nP9: The Philosophy-dormitory rule enforces proposal-review linkage.\nP10: The Philosophy-dormitory policy ensures advanced seminar participation.\nP11: Submitting proposals guarantees dormitory access.\nP12: All students complete theses.\nP13: Some students have dormitory access.\nP14: No proposal submission blocks dormitory access.\nP15: Philosophy failure invalidates advisor reviews.\n\nQuestion: If submitting a research proposal requires advisor review, does it follow that advisor-reviewed work guarantees dorm access?\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P5\n**Reasoning:** From premise 1 (Submitting a research proposal requires advisor review), we know ∀x (S(x) → R(x)). From premise 5, advisor-reviewed proposals grant dormitory access (∀x (R(x) → U(x))). Since premise 1 states that submitting a proposal implies advisor review, premise 5's antecedent can be true for some students, so the consequent must be true for those students. Therefore, if submitting a research proposal requires advisor review, it follows that advisor-reviewed work guarantees dorm access.\n</think>\n**Answer:** No",
+    "output": "<think>\n**Relevant Premises:** P1, P5\n**Reasoning:** From premise 1 (Submitting a research proposal requires advisor review), we know ∀x (S(x) → R(x)). From premise 5, advisor-reviewed proposals grant dormitory access (∀x (R(x) → U(x))). Since premise 1 states that submitting a proposal implies advisor review, premise 5's antecedent can be true for some students, so the consequent must be true for those students. Therefore, if submitting a research proposal requires advisor review, it follows that advisor-reviewed work guarantees dorm access.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 15,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "No",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         5
@@ -7775,12 +7775,12 @@
   },
   {
     "input": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has requested permission to be absent, then they are officially granted that permission\nP2: If a student has not requested permission, then they are not granted permission to be absent\nP3: All students have requested permission to be absent from class\nP4: There exists at least one student who provided a valid reason for absence\n\nQuestion: Which of the following can be inferred about students?\nA. All students are officially granted permission to be absent\nB. Some students have not requested permission to be absent\nC. Some students are not granted permission to be absent\nD. All students provided a valid reason for absence\n\nProvide your response in EXACTLY this format:\n<think>\n**Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]\n**Reasoning:** [Step-by-step logical deduction using only the selected premises]\n</think>\n**Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]",
-    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students have requested permission to be absent (premise 3), and requesting permission implies it is granted (premise 1). Thus, all students are granted permission, derived through multiple steps.\n</think>\n**Answer:** Unknown",
+    "output": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** All students have requested permission to be absent (premise 3), and requesting permission implies it is granted (premise 1). Thus, all students are granted permission, derived through multiple steps.\n</think>\n**Answer:** Yes",
     "metadata": {
       "num_premises": 4,
       "num_premises_used": 2,
       "question_type": "YesNo",
-      "answer": "Unknown",
+      "answer": "Yes",
       "relevant_premises_idx": [
         1,
         3
