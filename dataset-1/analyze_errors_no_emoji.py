@@ -1,4 +1,4 @@
-"""
+﻿"""
 Error Analysis Script for EXACT 2026 Type 1 Dataset
 Analyzes dataset quality AND evaluation predictions to find root causes of low accuracy.
 """
@@ -148,17 +148,17 @@ def analyze_dataset_file(filepath: Path, split_name: str, max_samples: int = 500
             reasoning_answer_mismatches += 1
     
     # Print findings
-    print(f"\n📊 Answer Distribution (first {sample_count} samples):")
+    print(f"\n Answer Distribution (first {sample_count} samples):")
     for ans, cnt in sorted(answer_dist.items()):
         pct = cnt / sample_count * 100
         print(f"   {ans:10s}: {cnt:5d}  ({pct:.1f}%)")
     
-    print(f"\n📝 Question Type Distribution:")
+    print(f"\n Question Type Distribution:")
     for qtype, cnt in sorted(question_type_dist.items()):
         pct = cnt / sample_count * 100
         print(f"   {qtype:10s}: {cnt:5d}  ({pct:.1f}%)")
     
-    print(f"\n🔴 CRITICAL: Reasoning↔Answer Contradictions: {len(contradictions)} / {sample_count}  ({len(contradictions)/sample_count*100:.1f}%)")
+    print(f"\n CRITICAL: Reasoning↔Answer Contradictions: {len(contradictions)} / {sample_count}  ({len(contradictions)/sample_count*100:.1f}%)")
     
     if contradictions:
         print("\n   --- Contradiction Examples (first 5) ---")
@@ -242,18 +242,18 @@ def analyze_predictions(pred_filepath: Path) -> dict:
             confusion[gt][model_ans] += 1
     
     accuracy = correct / total * 100 if total > 0 else 0
-    print(f"\n📈 Computed Accuracy: {accuracy:.2f}%  ({correct}/{total})")
+    print(f"\n Computed Accuracy: {accuracy:.2f}%  ({correct}/{total})")
     
-    print(f"\n📊 Accuracy by Question Type:")
+    print(f"\n Accuracy by Question Type:")
     for qtype in sorted(question_type_total.keys()):
         tot = question_type_total[qtype]
         cor = question_type_correct[qtype]
         pct = cor / tot * 100 if tot > 0 else 0
         print(f"   {qtype:10s}: {cor:4d}/{tot:4d} = {pct:.1f}%")
     
-    print(f"\n🔴 Wrong answers: {len(wrong_answer)} | Parse failures: {len(parse_failures)}")
+    print(f"\n Wrong answers: {len(wrong_answer)} | Parse failures: {len(parse_failures)}")
     
-    print(f"\n📉 Confusion Matrix (GT → Predicted):")
+    print(f"\n Confusion Matrix (GT → Predicted):")
     all_labels = sorted(set(confusion.keys()) | {v for vs in confusion.values() for v in vs.keys()})
     for gt_label in all_labels:
         for pred_label in all_labels:
@@ -402,7 +402,7 @@ def main():
             print(f"  - Answer Format Issues                : {r.get('missing_format_count', 0)}")
             print(f"  - Extracted vs Labeled mismatch       : {mismatch_rate:.1f}%")
     
-    print("\n\n📌 ROOT CAUSE PRIORITY LIST:")
+    print("\n\n ROOT CAUSE PRIORITY LIST:")
     print("  1. ❓ Check if dataset has systematic answer label errors (Yes↔No swap)")
     print("  2. ❓ Check if reasoning contradicts the final answer label")
     print("  3. ❓ Check answer format consistency (MCQ vs YesNo)")
