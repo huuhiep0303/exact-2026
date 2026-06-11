@@ -140,11 +140,9 @@ def _local_reason(
     """Call local vLLM / HuggingFace model. Requires GPU."""
     try:
         from openai import OpenAI
-        # vLLM serves an OpenAI-compatible API
-        # client = OpenAI(base_url="http://localhost:8001/v1", api_key="not-needed")
         client = OpenAI(
-            base_url="http://localhost:11434/v1",
-            api_key="ollama",
+            base_url=os.getenv("VLLM_API_URL", "http://localhost:8000/v1"),
+            api_key="not-needed",
         )
         prompt = build_reasoner_prompt(
             question,

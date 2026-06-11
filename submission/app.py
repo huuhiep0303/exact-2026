@@ -1,7 +1,11 @@
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
+
 import os
 import re
 from typing import List, Optional, Any
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import httpx
 import asyncio
@@ -42,6 +46,14 @@ Rules:
 5. Your answer MUST be consistent with your reasoning. Do NOT contradict your own analysis."""
 
 app = FastAPI(title="EXACT 2026 Submission API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Helpers ---
 
@@ -160,15 +172,67 @@ Provide your response in EXACTLY this format:
     )
 
 async def handle_type2(request: QueryRequest) -> QueryResponse:
-    # TODO: Integrate Type 2 pipeline here once the other member finishes.
-    # Currently returns a dummy response matching EXACT Type 2 format.
+    import sys
+    from pathlib import Path
+    import asyncio
+    
+    # Add dataset-2 to path so its internal 'app' imports work
+    d2_path = str(Path(__file__).resolve().parent.parent / "dataset-2")
+    if d2_path not in sys.path:
+        sys.path.insert(0, d2_path)
+        
+    try:
+        from app.pipeline import run_pipeline
+    except ImportError as e:
+        print(f"Error importing dataset-2 pipeline: {e}")
+        return QueryResponse(
+            query_id=request.query_id,
+            answer="0",
+            unit="",
+            explanation=f"Type 2 pipeline import failed: {e}",
+            premises_used=[],
+            reasoning=None
+        )
+
+    # Run the pipeline in a thread to avoid blocking FastAPI event loop
+    try:
+        physics_response = await asyncio.to_thread(run_pipeline, request.query)
+    except Exception as e:
+        print(f"Type 2 Pipeline Error: {e}")
+        return QueryResponse(
+            query_id=request.query_id,
+            answer="0",
+            unit="",
+            explanation=f"Error executing Type 2 pipeline: {str(e)}",
+            premises_used=[],
+            reasoning=None
+        )
+    
+    # Parse answer string (e.g., "5 A") into value and unit
+    ans_str = physics_response.answer.strip()
+    parts = ans_str.split(" ", 1)
+    ans_val = parts[0]
+    ans_unit = parts[1].strip() if len(parts) > 1 else ""
+    
+    # Build reasoning block
+    reasoning_steps = physics_response.cot if physics_response.cot else []
+    if physics_response.fol:
+        reasoning_steps.insert(0, f"FOL: {physics_response.fol}")
+        
+    reasoning = None
+    if reasoning_steps:
+        reasoning = ReasoningBlock(
+            type="cot",
+            steps=reasoning_steps
+        )
+
     return QueryResponse(
         query_id=request.query_id,
-        answer="0",
-        unit="A",
-        explanation="Type 2 pipeline not yet integrated.",
-        premises_used=[],
-        reasoning=None
+        answer=ans_val,
+        unit=ans_unit,
+        explanation=physics_response.explanation,
+        premises_used=[],  # Type 2 has empty premises_used per EXACT rules
+        reasoning=reasoning
     )
 
 # --- Routes ---

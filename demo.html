@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXACT 2026 Reasoning API Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-color) 0%, #1e1b4b 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 3rem 1rem;
+        }
+
+        /* Abstract Background Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(99, 102, 241, 0.3);
+            top: -100px;
+            left: -100px;
+        }
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(168, 85, 247, 0.2);
+            bottom: -200px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        select, textarea {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        select:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Results Area */
+        #results-container {
+            display: none;
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .result-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .result-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        .final-answer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success);
+            font-family: 'Inter', sans-serif;
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 0.5rem;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.8rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            margin-left: 1rem;
+            font-weight: 600;
+        }
+
+        /* Code syntax highlighting simulation */
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .number { color: #d19a66; }
+    </style>
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>EXACT 2026 Reasoning</h1>
+            <p>Advanced AI Physics & Logic Solver</p>
+        </div>
+
+        <div class="glass-panel">
+            <form id="query-form">
+                <div class="form-group">
+                    <label for="task-type">Task Category</label>
+                    <select id="task-type" onchange="loadPreset()">
+                        <option value="type1">Type 1 - Logic (FOL Deduction)</option>
+                        <option value="type2">Type 2 - Physics (Calculation & Formulas)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="premises-group">
+                    <label for="premises">Premises (One per line - Type 1 only)</label>
+                    <textarea id="premises" placeholder="Enter premises here..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="query">Question</label>
+                    <textarea id="query" placeholder="Ask your question here..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submit-btn">
+                    <span>Generate Reasoning</span>
+                    <div class="spinner" id="loading-spinner"></div>
+                </button>
+            </form>
+        </div>
+
+        <div class="glass-panel" id="results-container">
+            <div class="result-section">
+                <label>
+                    AI Reasoning Trace
+                    <span class="status-pill" id="time-taken">0.0s</span>
+                </label>
+                <div class="result-box" id="reasoning-box">...</div>
+            </div>
+
+            <div class="result-section">
+                <label>Final Answer & Explanation</label>
+                <div class="result-box">
+                    <div class="final-answer" id="final-answer"></div>
+                    <div style="margin-top: 1rem; color: #94a3b8;" id="explanation-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal API Endpoint
+        const API_URL = "https://hiephc0710--exact-2026-submission-fastapi-app.modal.run/predict";
+
+        // Presets for quick testing
+        const PRESETS = {
+            type1: {
+                premises: "All cats are animals.\nFluffy is a cat.",
+                query: "If all cats are animals, and Fluffy is a cat, is Fluffy an animal?"
+            },
+            type2: {
+                premises: "",
+                query: "Calculate the energy stored in capacitor C when C = 100 μF and U = 30 V."
+            }
+        };
+
+        const form = document.getElementById('query-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const spinner = document.getElementById('loading-spinner');
+        const btnText = submitBtn.querySelector('span');
+        const resultsContainer = document.getElementById('results-container');
+        const premisesGroup = document.getElementById('premises-group');
+
+        // Elements to update
+        const reasoningBox = document.getElementById('reasoning-box');
+        const finalAnswer = document.getElementById('final-answer');
+        const explanationBox = document.getElementById('explanation-box');
+        const timeTaken = document.getElementById('time-taken');
+
+        function loadPreset() {
+            const type = document.getElementById('task-type').value;
+            document.getElementById('premises').value = PRESETS[type].premises;
+            document.getElementById('query').value = PRESETS[type].query;
+            
+            // Hide premises box for Type 2
+            if(type === 'type2') {
+                premisesGroup.style.display = 'none';
+            } else {
+                premisesGroup.style.display = 'block';
+            }
+        }
+
+        // Load initial preset
+        loadPreset();
+
+        // Format reasoning steps for UI
+        function formatReasoning(steps) {
+            if (!steps || steps.length === 0) return "No reasoning trace provided.";
+            return steps.map(step => {
+                // Simple regex to highlight Python code blocks or FOL tags
+                let formatted = step.replace(/\[FOL\]:/g, '<span class="keyword">[FOL]:</span>')
+                                   .replace(/\[CODE\]:/g, '<span class="keyword">[CODE]:</span>')
+                                   .replace(/Step \d+:/g, match => `<span class="number">${match}</span>`);
+                return formatted;
+            }).join('\n\n');
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // UI State loading
+            submitBtn.disabled = true;
+            spinner.style.display = 'block';
+            btnText.textContent = 'Processing (May take up to 60s for Cold-Start)...';
+            resultsContainer.style.display = 'none';
+
+            const type = document.getElementById('task-type').value;
+            const query = document.getElementById('query').value;
+            const premisesRaw = document.getElementById('premises').value;
+            
+            const premises = type === 'type1' ? premisesRaw.split('\n').filter(p => p.trim() !== '') : [];
+
+            const payload = {
+                query_id: "DEMO_" + Date.now(),
+                type: type,
+                query: query,
+                premises: premises,
+                options: []
+            };
+
+            const startTime = performance.now();
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                const result = data[0]; // Competition requires returning a list
+
+                const endTime = performance.now();
+                timeTaken.textContent = `${((endTime - startTime) / 1000).toFixed(2)}s`;
+
+                // Update UI
+                reasoningBox.innerHTML = result.reasoning ? formatReasoning(result.reasoning.steps) : "No reasoning generated.";
+                
+                let ansText = result.answer;
+                if(result.unit) ansText += ` ${result.unit}`;
+                finalAnswer.textContent = ansText;
+                
+                explanationBox.textContent = result.explanation;
+
+                // Show results
+                resultsContainer.style.display = 'block';
+                
+                // Scroll to results
+                setTimeout(() => {
+                    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+
+            } catch (error) {
+                alert(`Error connecting to Modal API:\n${error.message}\n\nPlease ensure your Modal App is deployed and CORS is configured.`);
+                console.error(error);
+            } finally {
+                // Reset UI State
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+                btnText.textContent = 'Generate Reasoning';
+            }
+        });
+    </script>
+</body>
+</html>

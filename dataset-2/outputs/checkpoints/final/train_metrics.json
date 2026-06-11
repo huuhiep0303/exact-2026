@@ -1,0 +1,11 @@
+{
+  "cuda_available": true,
+  "epoch": 4.0,
+  "eval_samples": 125,
+  "total_flos": 3.188928324728586e+17,
+  "train_loss": 0.13900282840008166,
+  "train_runtime": 3695.2282,
+  "train_samples": 1071,
+  "train_samples_per_second": 1.159,
+  "train_steps_per_second": 0.29
+}
