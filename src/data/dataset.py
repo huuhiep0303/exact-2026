@@ -5,6 +5,8 @@ from torch.utils.data import Dataset
 from typing import List, Dict, Any
 from transformers import PreTrainedTokenizer
 
+from .data_processor import SYSTEM_PROMPT
+
 
 class LogicReasoningDataset(Dataset):
     """Dataset for logic reasoning tasks."""
@@ -19,7 +21,7 @@ class LogicReasoningDataset(Dataset):
         Initialize dataset.
         
         Args:
-            data: List of examples
+            data: List of examples (each with 'input' and 'output' keys)
             tokenizer: Tokenizer
             max_length: Maximum sequence length
         """
@@ -35,6 +37,14 @@ class LogicReasoningDataset(Dataset):
         """
         Get a single example.
         
+        Uses the tokenizer's chat template to format messages consistently.
+        The SYSTEM_PROMPT is imported from data_processor to ensure the
+        same system message is used everywhere (training, inference).
+        
+        Label masking: Only the assistant's response tokens contribute to
+        the loss. The prompt portion (system + user + generation prompt)
+        is masked with -100.
+        
         Args:
             idx: Example index
             
@@ -43,15 +53,16 @@ class LogicReasoningDataset(Dataset):
         """
         example = self.data[idx]
         
-        # Build chat messages
+        # Build chat messages using the shared SYSTEM_PROMPT
         messages = [
-            {"role": "system", "content": "You are a logical reasoning expert."},
+            {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": example['input']}
         ]
         
-        # Tokenize prompt only to find the boundary
+        # Tokenize prompt only (system + user + generation prompt) to find boundary
         prompt_str = self.tokenizer.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
+            messages, tokenize=False, add_generation_prompt=True,
+            enable_thinking=True  # Qwen3: enable thinking for SFT
         )
         prompt_encoding = self.tokenizer(prompt_str, add_special_tokens=False)
         input_length = len(prompt_encoding['input_ids'])
@@ -59,7 +70,8 @@ class LogicReasoningDataset(Dataset):
         # Build full messages including assistant response
         messages.append({"role": "assistant", "content": example['output']})
         full_str = self.tokenizer.apply_chat_template(
-            messages, tokenize=False
+            messages, tokenize=False,
+            enable_thinking=True  # Qwen3: enable thinking for SFT
         )
         
         # Tokenize full text

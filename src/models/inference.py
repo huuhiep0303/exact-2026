@@ -6,6 +6,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from tqdm import tqdm
 
 from ..utils.helpers import extract_premise_indices, extract_answer
+from ..data.data_processor import SYSTEM_PROMPT
 
 
 class InferencePipeline:
@@ -40,13 +41,18 @@ class InferencePipeline:
         Returns:
             Generated text (response only, not including the prompt)
         """
-        # Tokenize using chat template
-        inputs = self.tokenizer.apply_chat_template(
+        # Tokenize using chat template with thinking enabled for Qwen3
+        text = self.tokenizer.apply_chat_template(
             messages,
-            tokenize=True,
+            tokenize=False,
             add_generation_prompt=True,
+            enable_thinking=True  # Qwen3: enable thinking mode
+        )
+        
+        inputs = self.tokenizer(
+            text,
             return_tensors='pt',
-            return_dict=True
+            add_special_tokens=False
         ).to(self.device)
         
         input_length = inputs['input_ids'].shape[1]
@@ -90,20 +96,22 @@ class InferencePipeline:
         Returns:
             Parsed response dictionary
         """
+        import re
+        think_match = re.search(r'<think>\n?(.*?)\n?</think>', response, re.DOTALL)
+        think_block = think_match.group(1) if think_match else response
+
         # Extract relevant premises — only from the "Relevant Premises" section
         # to avoid picking up premise references from reasoning text
         premises_section = ""
-        if "**Relevant Premises:**" in response:
-            start = response.find("**Relevant Premises:**")
+        if "**Relevant Premises:**" in think_block:
+            start = think_block.find("**Relevant Premises:**")
             # Find next section
-            end = response.find("**Reasoning:**", start)
+            end = think_block.find("**Reasoning:**", start)
             if end == -1:
-                end = response.find("**Answer:**", start)
-            if end == -1:
-                end = len(response)
-            premises_section = response[start:end]
+                end = len(think_block)
+            premises_section = think_block[start:end]
         else:
-            premises_section = response
+            premises_section = think_block
         
         relevant_premises = extract_premise_indices(premises_section, num_premises)
         
@@ -113,22 +121,22 @@ class InferencePipeline:
             start = response.find("**Answer:**") + len("**Answer:**")
             answer_section = response[start:].strip()
         else:
-            answer_section = response
+            # If Answer section is not explicitly marked, try to get anything after </think>
+            after_think_match = re.search(r'</think>\s*(.*)', response, re.DOTALL)
+            if after_think_match:
+                answer_section = after_think_match.group(1).strip()
+            else:
+                answer_section = response
         
         answer = extract_answer(answer_section, question_type)
         
-        # Extract reasoning (text between "Reasoning:" and "Answer:")
+        # Extract reasoning
         reasoning = ""
-        if "**Reasoning:**" in response and "**Answer:**" in response:
-            start = response.find("**Reasoning:**") + len("**Reasoning:**")
-            end = response.find("**Answer:**")
-            reasoning = response[start:end].strip()
-        elif "Reasoning:" in response and "Answer:" in response:
-            start = response.find("Reasoning:") + len("Reasoning:")
-            end = response.find("Answer:")
-            reasoning = response[start:end].strip()
+        if "**Reasoning:**" in think_block:
+            start = think_block.find("**Reasoning:**") + len("**Reasoning:**")
+            reasoning = think_block[start:].strip()
         else:
-            reasoning = response
+            reasoning = think_block.strip()
         
         return {
             'relevant_premises': relevant_premises,
@@ -141,19 +149,23 @@ class InferencePipeline:
         """
         Make prediction for a single example.
         
+        CRITICAL FIX: The example['input'] now contains only the user message
+        content (no chat template tokens). We build the chat messages properly
+        using the shared SYSTEM_PROMPT so the format EXACTLY matches training.
+        
         Args:
-            example: Example dictionary
+            example: Example dictionary with 'input' (user content) and 'metadata'
             
         Returns:
             Prediction dictionary
         """
-        prompt = example['input']
+        user_content = example['input']
         metadata = example['metadata']
         
-        # Apply Qwen chat template to match training
+        # Build chat messages using the SAME system prompt as training
         messages = [
-            {"role": "system", "content": "You are a logical reasoning expert."},
-            {"role": "user", "content": prompt}
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_content}
         ]
         
         # Generate response

@@ -15,18 +15,22 @@ split:
   test: 0.15
   random_seed: 42
 
-# Model configuration
+# Model configuration — Qwen3-8B (8.2B params, <8B non-embedding)
 model:
-  name: "Qwen/Qwen2.5-7B-Instruct"
+  name: "Qwen/Qwen3-8B"
   max_length: 3072
-  temperature: 0.1
-  top_p: 0.9
+  # Qwen3 thinking mode recommended settings
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
   do_sample: false
+  # Enable thinking mode to leverage Qwen3's native CoT
+  enable_thinking: true
 
 # LoRA configuration
 lora:
-  r: 32
-  lora_alpha: 64
+  r: 64
+  lora_alpha: 128
   target_modules:
     - "q_proj"
     - "v_proj"
@@ -42,7 +46,7 @@ lora:
 # Training configuration
 training:
   output_dir: "outputs/checkpoints"
-  num_train_epochs: 5
+  num_train_epochs: 8
   per_device_train_batch_size: 1
   per_device_eval_batch_size: 1
   gradient_accumulation_steps: 16
@@ -69,10 +73,11 @@ quantization:
 # Inference configuration
 inference:
   batch_size: 8
-  max_new_tokens: 1024
+  max_new_tokens: 2048
   num_beams: 1
-  temperature: 0.1
-  top_p: 0.9
+  # Qwen3 thinking mode recommended settings
+  temperature: 0.6
+  top_p: 0.95
 
 # Evaluation configuration
 evaluation:
@@ -86,7 +91,7 @@ evaluation:
 logging:
   use_wandb: false
   wandb_project: "exact-2026-type1"
-  wandb_run_name: "qwen-lora-baseline"
+  wandb_run_name: "qwen3-lora-v2"
   log_dir: "outputs/logs"
 
 # Paths

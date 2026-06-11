@@ -17,6 +17,9 @@ def load_model_and_tokenizer(
     """
     Load model and tokenizer.
     
+    Supports both Qwen2.5 and Qwen3 models. Both use ChatML format
+    with <|im_start|>/<|im_end|> special tokens.
+    
     Args:
         config: Configuration dictionary
         for_training: Whether loading for training
@@ -33,7 +36,7 @@ def load_model_and_tokenizer(
         padding_side='right'
     )
     
-    # Set pad token — for Qwen2.5, use <|endoftext|> as pad token
+    # Set pad token — for Qwen models, use <|endoftext|> as pad token
     # to avoid conflicts with <|im_end|> (the eos_token used in chat template)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = '<|endoftext|>'
@@ -100,7 +103,6 @@ def load_trained_model(
     """
     model_name = config['model']['name']
     
-    # Load tokenizer
     # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(
         model_name,

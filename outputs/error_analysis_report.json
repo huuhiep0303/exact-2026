@@ -4,20 +4,20 @@
     "total": 565,
     "analyzed": 300,
     "answer_dist": {
-      "Yes": 49,
-      "No": 114,
+      "Yes": 45,
+      "No": 118,
       "C": 7,
-      "Unknown": 75,
-      "A": 33,
+      "Unknown": 76,
+      "A": 32,
       "D": 3,
       "B": 19
     },
     "question_type_dist": {
-      "YesNo": 238,
-      "MCQ": 62
+      "YesNo": 239,
+      "MCQ": 61
     },
-    "contradiction_count": 61,
-    "contradiction_rate": 0.20333333333333334,
+    "contradiction_count": 62,
+    "contradiction_rate": 0.20666666666666667,
     "contradiction_examples": [
       {
         "index": 4,
@@ -25,8 +25,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2\n**Reasoning:** From premise 1, we know there exists at least one person who has submitted a scholarship application. From premise 2, if a person has submitted a scholarship application, then they meet the scholarship eligibility criteria. Therefore, there exists at leas"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one person who has submitted a scholarship application.\n",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** From premise 1, we know there exists at least one person who has submitted a scholarship application. From premise 2, if a person has submitted a scholarship application, then they meet the scholarship eligibility criteria. Therefore, there exists"
       },
       {
         "index": 7,
@@ -34,8 +34,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P13\n**Reasoning:** The statement that if an AI model is not trained, it cannot generalize to unseen data is true because it is explicitly stated (premise 13).\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Every AI model requires training data to function properly.\nP2: If an AI model",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P13\n**Reasoning:** The statement that if an AI model is not trained, it cannot generalize to unseen data is true because it is explicitly stated (premise 13).\n</think>\n**Answer:** No"
       },
       {
         "index": 23,
@@ -43,8 +43,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P10\n**Reasoning:** The statement that all students have access to resources is true because it is explicitly stated that all students have access to resources (premise 10).\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students are enrolled in courses.\nP2: If a student lacks research, then th",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P10\n**Reasoning:** The statement that all students have access to resources is true because it is explicitly stated that all students have access to resources (premise 10).\n</think>\n**Answer:** No"
       },
       {
         "index": 25,
@@ -52,8 +52,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 1,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P6, P8\n**Reasoning:** From premise 6, we know that if a student does not complete assignments, they will not pass the exam. From premise 8, we know that if a student has completed assignments, they will be eligible for extra credit. Therefore, if a student does not complete as"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who has completed their assignments.\nP2: The",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P6, P8\n**Reasoning:** From premise 6, we know that if a student does not complete assignments, they will not pass the exam. From premise 8, we know that if a student has completed assignments, they will be eligible for extra credit. Therefore, if a student does not com"
       },
       {
         "index": 26,
@@ -61,8 +61,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1\n**Reasoning:** The statement that if a student demonstrates competence, they are qualified to advance is true because it is explicitly stated (premise 1).\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student successfully completes a prerequisite course, they are eligible t",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1\n**Reasoning:** The statement that if a student demonstrates competence, they are qualified to advance is true because it is explicitly stated (premise 1).\n</think>\n**Answer:** No"
       },
       {
         "index": 40,
@@ -70,8 +70,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P2, P7\n**Reasoning:** The statement 'There exists at least one student who does research' is confirmed by combining Premise 2 with Premise 7. Since all students conduct research (Premise 7), it follows that at least one student does research, making the statement true.\n**Answe"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student studies, then they will pass the exam.\nP2: There exists at least ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P2, P7\n**Reasoning:** The statement 'There exists at least one student who does research' is confirmed by combining Premise 2 with Premise 7. Since all students conduct research (Premise 7), it follows that at least one student does research, making the statement true."
       },
       {
         "index": 41,
@@ -79,8 +79,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P3\n**Reasoning:** From premise 3 (There exists at least one object x that has property R), we know ∃x R(x). Since premise 3 directly states the existence of such an object, it follows that if there exists at least one object x that has property R, then there exists at least on"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: In Calculus 2 for engineering students, if an object x does not have property ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P3\n**Reasoning:** From premise 3 (There exists at least one object x that has property R), we know ∃x R(x). Since premise 3 directly states the existence of such an object, it follows that if there exists at least one object x that has property R, then there exists at "
       },
       {
         "index": 42,
@@ -88,8 +88,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 1,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2\n**Reasoning:** If a student behaved suspiciously, they were caught (premise 2), and being caught implies being reported (premise 1). The statement is true, requiring steps to confirm.\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student was caught using unauthorized materials, then they were reported ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** If a student behaved suspiciously, they were caught (premise 2), and being caught implies being reported (premise 1). The statement is true, requiring steps to confirm.\n</think>\n**Answer:** No"
       },
       {
         "index": 46,
@@ -97,8 +97,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4\n**Reasoning:** From premise 4 (There exists at least one student who earns language certification), we know ∃x (EarnsCertification(x)). Since premise 4 directly states the existence of such a student, it follows that if there exists at least one student who earns language c"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a language student completes immersion training, then that student develops",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4\n**Reasoning:** From premise 4 (There exists at least one student who earns language certification), we know ∃x (EarnsCertification(x)). Since premise 4 directly states the existence of such a student, it follows that if there exists at least one student who earns la"
       },
       {
         "index": 48,
@@ -106,8 +106,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P3, P11\n**Reasoning:** From premise 1 (There exists at least one object x that has property R), we know ∃x R(x). From premise 3, every object x has property P (∀x P(x)). From premise 11, if there exists at least one object x with property R, then every object x has propert"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one object x that has property R.\nP2: If an object x doe",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P3, P11\n**Reasoning:** From premise 1 (There exists at least one object x that has property R), we know ∃x R(x). From premise 3, every object x has property P (∀x P(x)). From premise 11, if there exists at least one object x with property R, then every object x has"
       },
       {
         "index": 54,
@@ -115,8 +115,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P5\n**Reasoning:** The statement is true because it is explicitly stated that if a student does not attend lectures, they do not complete assignments.\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who is enrolled in the course.\nP2: If a stud",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P5\n**Reasoning:** The statement is true because it is explicitly stated that if a student does not attend lectures, they do not complete assignments.\n</think>\n**Answer:** No"
       },
       {
         "index": 57,
@@ -124,8 +124,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2, P3, P7\n**Reasoning:** From premise 1, we know that all students are enrolled in the PE course. From premise 2, if a person has not attended the PE course, then they are not attending the PE course this semester. From premise 3, there exists a student who is enrolled in"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students are enrolled in the PE course.\nP2: If a person has not attended t",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2, P3, P7\n**Reasoning:** From premise 1, we know that all students are enrolled in the PE course. From premise 2, if a person has not attended the PE course, then they are not attending the PE course this semester. From premise 3, there exists a student who is enr"
       },
       {
         "index": 70,
@@ -133,8 +133,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2, P3\n**Reasoning:** From premise 1, we know that every high school student is studious. From premise 2, every high school student participates in extracurricular activities. From premise 3, every high school student upholds school values. Therefore, every high school stu"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Every high school student is studious.\nP2: Every high school student participa",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2, P3\n**Reasoning:** From premise 1, we know that every high school student is studious. From premise 2, every high school student participates in extracurricular activities. From premise 3, every high school student upholds school values. Therefore, every high sc"
       },
       {
         "index": 76,
@@ -142,8 +142,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P3, P9\n**Reasoning:** From premise 1 (Submitting a thesis proposal (S) requires advisor approval (T)), we know ∀x (S(x) → T(x)). From premise 3, thesis proposals grant dormitory access (U) (∀x (S(x) → U(x))). From premise 9, thesis-advisor rule enforces research-dormitory "
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Submitting a thesis proposal (S) requires advisor approval (T).\nP2: Failing Ph",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P3, P9\n**Reasoning:** From premise 1 (Submitting a thesis proposal (S) requires advisor approval (T)), we know ∀x (S(x) → T(x)). From premise 3, thesis proposals grant dormitory access (U) (∀x (S(x) → U(x))). From premise 9, thesis-advisor rule enforces research-do"
       },
       {
         "index": 79,
@@ -151,8 +151,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P3, P5\n**Reasoning:** From premise 3, we know that if a person received a warning for previous absences, then they acknowledged the new attendance policy. From premise 5, if (a person received a warning for previous absences implies they acknowledged the new attendance policy)"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a person has not complied with the new attendance rule, then they are not a",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P3, P5\n**Reasoning:** From premise 3, we know that if a person received a warning for previous absences, then they acknowledged the new attendance policy. From premise 5, if (a person received a warning for previous absences implies they acknowledged the new attendance"
       },
       {
         "index": 80,
@@ -160,8 +160,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2, P4\n**Reasoning:** From premise 1, we know that if a student is not studying, then they are not revising. From premise 2, if a student is not understanding the material, then they are not revising. From premise 4, if (a student not understanding the material implies the"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student is not studying, then they are not revising.\nP2: If a student is ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2, P4\n**Reasoning:** From premise 1, we know that if a student is not studying, then they are not revising. From premise 2, if a student is not understanding the material, then they are not revising. From premise 4, if (a student not understanding the material imp"
       },
       {
         "index": 89,
@@ -169,8 +169,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2, P4, P5\n**Reasoning:** From premise 2, we know there exists someone who has successfully obtained the English certificate. From premise 4, if there exists someone who has obtained the English certificate, then everyone is required to have the English certificate. From p"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a person has an English certificate, then they have at least 6.0 IELTS or a",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2, P4, P5\n**Reasoning:** From premise 2, we know there exists someone who has successfully obtained the English certificate. From premise 4, if there exists someone who has obtained the English certificate, then everyone is required to have the English certificate"
       },
       {
         "index": 90,
@@ -178,8 +178,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P3, P4, P5, P6\n**Reasoning:** From premise 5, we know that the Titan computer runs complex software. From premise 6, we know that the Titan computer supports multitasking efficiently. From premise 3, a system that runs complex software and supports multitasking efficiently req"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: A computer with a fast processor can run complex software.\nP2: If a computer h",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P3, P4, P5, P6\n**Reasoning:** From premise 5, we know that the Titan computer runs complex software. From premise 6, we know that the Titan computer supports multitasking efficiently. From premise 3, a system that runs complex software and supports multitasking efficie"
       },
       {
         "index": 92,
@@ -187,8 +187,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P2, P6\n**Reasoning:** The statement 'If a student is not motivated, then they do not participate in discussions' is directly given by Premise 2 and is reinforced by the converse in Premise 6, establishing a biconditional relation. Thus, the statement is true.\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student attends class regularly, then they complete their assignments.\nP2",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P2, P6\n**Reasoning:** The statement 'If a student is not motivated, then they do not participate in discussions' is directly given by Premise 2 and is reinforced by the converse in Premise 6, establishing a biconditional relation. Thus, the statement is true.\n</think>\n"
       },
       {
         "index": 109,
@@ -196,8 +196,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P2, P4\n**Reasoning:** From premise 4, we know that Mary got 7 on the midterm exam, 10 on the project, and 9 on the final exam. From premise 2, if the average of these scores is higher than 8, Mary can get an A grade. From premise 3, Mary got an A grade. Therefore, Mary got an "
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: In a subject, students can get scores through the midterm exam, project, and f",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P2, P4\n**Reasoning:** From premise 4, we know that Mary got 7 on the midterm exam, 10 on the project, and 9 on the final exam. From premise 2, if the average of these scores is higher than 8, Mary can get an A grade. From premise 3, Mary got an A grade. Therefore, Mary"
       }
     ],
     "missing_format_count": 0,
@@ -209,8 +209,8 @@
     "analyzed": 121,
     "answer_dist": {
       "Unknown": 33,
-      "No": 40,
-      "Yes": 25,
+      "No": 41,
+      "Yes": 24,
       "B": 3,
       "A": 17,
       "D": 3
@@ -228,8 +228,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4, P6, P9\n**Reasoning:** From premise 9 (There exists at least one student who has completed the Data Science course), we know ∃x D(x). From premise 4, if a student has completed the Data Science course, then they have passed the exam on Data Analytics (∀x (D(x) → E(x))). Fro"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has completed the Data Science course, then they are eligible to ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4, P6, P9\n**Reasoning:** From premise 9 (There exists at least one student who has completed the Data Science course), we know ∃x D(x). From premise 4, if a student has completed the Data Science course, then they have passed the exam on Data Analytics (∀x (D(x) → E(x"
       },
       {
         "index": 9,
@@ -237,8 +237,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 1,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P3\n**Reasoning:** The statement 'If a student does not do their homework, then they will not attend class' is given by Premise 3. By also considering Premise 1 (that all students attend class), the implication is supported through a two‑step chain, confirming that the stat"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students attend class.\nP2: There exists at least one student who is conduc",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** The statement 'If a student does not do their homework, then they will not attend class' is given by Premise 3. By also considering Premise 1 (that all students attend class), the implication is supported through a two‑step chain, confirming that "
       },
       {
         "index": 24,
@@ -246,8 +246,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P2, P5, P8\n**Reasoning:** From premise 2 (There exists at least one student who qualifies for honors distinction), we know ∃x (QualifiesForHonors(x)). From premise 5, if a program incorporates thesis requirements, then it is research-based (∀x (IncorporatesThesis(x) → Research"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one research-based educational program.\nP2: There exists",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P2, P5, P8\n**Reasoning:** From premise 2 (There exists at least one student who qualifies for honors distinction), we know ∃x (QualifiesForHonors(x)). From premise 5, if a program incorporates thesis requirements, then it is research-based (∀x (IncorporatesThesis(x) → "
       },
       {
         "index": 35,
@@ -255,8 +255,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P6, P10\n**Reasoning:** From premise 6 (Every registration has advisor approval (R)), we know ∀x R(x). From premise 10, universal advisor approval triggers automatic purge of unconfirmed registrations (∀x R(x) → ∀x (¬U(x) → ¬S(x))). Since premise 6 states that all registrations"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Submitting course registration (S) grants enrollment confirmation (U).\nP2: Mee",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P6, P10\n**Reasoning:** From premise 6 (Every registration has advisor approval (R)), we know ∀x R(x). From premise 10, universal advisor approval triggers automatic purge of unconfirmed registrations (∀x R(x) → ∀x (¬U(x) → ¬S(x))). Since premise 6 states that all regis"
       },
       {
         "index": 39,
@@ -264,8 +264,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P5, P10\n**Reasoning:** From premise 5 (Every object x has property R), we know ∀x R(x). From premise 6, every object x has property P (∀x P(x)). From premise 10, if every object x has property R, then there exists at least one object x that has property Q (∀x R(x) → ∃x Q(x)). "
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: At the university, if an object x has property U, then it has property P.\nP2: ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P5, P10\n**Reasoning:** From premise 5 (Every object x has property R), we know ∀x R(x). From premise 6, every object x has property P (∀x P(x)). From premise 10, if every object x has property R, then there exists at least one object x that has property Q (∀x R(x) → ∃x"
       },
       {
         "index": 40,
@@ -273,8 +273,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2, P4\n**Reasoning:** From premise 1, we know that all students adhere to HCMUT's code of conduct. From premise 2, there are vibrant student clubs at HCMUT. From premise 4, if there are vibrant student clubs at HCMUT, then all students adhere to HCMUT's code of conduct. Th"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students adhere to HCMUT's code of conduct.\nP2: There are vibrant student ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2, P4\n**Reasoning:** From premise 1, we know that all students adhere to HCMUT's code of conduct. From premise 2, there are vibrant student clubs at HCMUT. From premise 4, if there are vibrant student clubs at HCMUT, then all students adhere to HCMUT's code of con"
       },
       {
         "index": 44,
@@ -282,8 +282,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P3, P6\n**Reasoning:** From premise 1 (There exists at least one student who graduates on time), we know ∃x (GraduatesOnTime(x)). From premise 3, if a student doesn't understand foundational concepts, then that student won't graduate on time (∀x (¬UnderstandsFoundations(x) "
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who graduates on time.\nP2: All university st",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P3, P6\n**Reasoning:** From premise 1 (There exists at least one student who graduates on time), we know ∃x (GraduatesOnTime(x)). From premise 3, if a student doesn't understand foundational concepts, then that student won't graduate on time (∀x (¬UnderstandsFoundat"
       },
       {
         "index": 48,
@@ -291,8 +291,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4, P6, P7\n**Reasoning:** From premise 4 (All students are qualified for graduation), we know ∀x (Student(x) → QualifiedForGraduation(x)). From premise 6, if all students are qualified for graduation, then there exists at least one student who takes advanced courses (∀x (Stude"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who takes advanced courses.\nP2: There exists",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4, P6, P7\n**Reasoning:** From premise 4 (All students are qualified for graduation), we know ∀x (Student(x) → QualifiedForGraduation(x)). From premise 6, if all students are qualified for graduation, then there exists at least one student who takes advanced courses (∀"
       },
       {
         "index": 53,
@@ -300,8 +300,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P6, P9, P11\n**Reasoning:** From premise 7 (If an object x has property U, then it has property T), we know ∀x (U(x) → T(x)). From premise 9, if it is true that if an object x has property U then it has property T, then every object x has property P (∀x (U(x) → T(x)) → ∀x P(x))"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: At the university, if an object x has property U, then it has property P.\nP2: ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P6, P9, P11\n**Reasoning:** From premise 7 (If an object x has property U, then it has property T), we know ∀x (U(x) → T(x)). From premise 9, if it is true that if an object x has property U then it has property T, then every object x has property P (∀x (U(x) → T(x)) → "
       },
       {
         "index": 59,
@@ -309,8 +309,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1\n**Reasoning:** The statement that if a student demonstrates competence, they are qualified to advance is true because it is explicitly stated (premise 1).\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student successfully completes a prerequisite course, they are eligible t",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1\n**Reasoning:** The statement that if a student demonstrates competence, they are qualified to advance is true because it is explicitly stated (premise 1).\n</think>\n**Answer:** No"
       },
       {
         "index": 65,
@@ -318,8 +318,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P2, P7\n**Reasoning:** From premise 2 (There exists at least one student who passes the course), we know ∃x (Student(x) ∧ PassesCourse(x)). From premise 7, if it's true that studying regularly implies understanding course material, then there exists a student who passes the cou"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student studies regularly, then the student understands course material.\n",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P2, P7\n**Reasoning:** From premise 2 (There exists at least one student who passes the course), we know ∃x (Student(x) ∧ PassesCourse(x)). From premise 7, if it's true that studying regularly implies understanding course material, then there exists a student who passes"
       },
       {
         "index": 66,
@@ -327,8 +327,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P3, P8, P9\n**Reasoning:** From premise 9 (All students contribute to open-source projects), we know ∀x (ContributesToOpenSource(x)). From premise 3, if a student contributes to open-source projects, then they enhance their professional portfolio (∀x (ContributesToOpenSource(x)"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All participants in the summer coding bootcamp complete daily programming exer",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P3, P8, P9\n**Reasoning:** From premise 9 (All students contribute to open-source projects), we know ∀x (ContributesToOpenSource(x)). From premise 3, if a student contributes to open-source projects, then they enhance their professional portfolio (∀x (ContributesToOpenS"
       },
       {
         "index": 69,
@@ -336,8 +336,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 1,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P8, P9, P11\n**Reasoning:** From premise 8 (All students are guaranteed University housing (U)), we know ∀x U(x). From premise 9, university housing (U) ensures Scholarship eligibility (S) (∀x (U(x) → S(x))). From premise 11, students without Scholarships (¬S) cannot receive Re"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Enrollment in Quantum Physics (Q) grants access to University housing (U).\nP2:",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P8, P9, P11\n**Reasoning:** From premise 8 (All students are guaranteed University housing (U)), we know ∀x U(x). From premise 9, university housing (U) ensures Scholarship eligibility (S) (∀x (U(x) → S(x))). From premise 11, students without Scholarships (¬S) cannot re"
       },
       {
         "index": 75,
@@ -345,8 +345,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1\n**Reasoning:** The statement that if a student obtains academic credits, they meet course requirements is true because it is explicitly stated (premise 1).\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student obtains academic credits, they meet course requirements.\nP2: If a",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1\n**Reasoning:** The statement that if a student obtains academic credits, they meet course requirements is true because it is explicitly stated (premise 1).\n</think>\n**Answer:** No"
       },
       {
         "index": 78,
@@ -354,8 +354,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P8, P10\n**Reasoning:** From premise 8 (Failing Philosophy revokes dormitory access), we know ∀x (¬P(x) → ¬U(x)). From premise 10, the Philosophy-dormitory policy ensures advanced seminar participation (∀x (¬P(x) → ¬U(x)) → ∃x Q(x)). Since premise 8 states that failing Philosop"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Submitting a research proposal (S) requires advisor review (R).\nP2: Passing Ph",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P8, P10\n**Reasoning:** From premise 8 (Failing Philosophy revokes dormitory access), we know ∀x (¬P(x) → ¬U(x)). From premise 10, the Philosophy-dormitory policy ensures advanced seminar participation (∀x (¬P(x) → ¬U(x)) → ∃x Q(x)). Since premise 8 states that failing "
       },
       {
         "index": 82,
@@ -363,8 +363,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P2, P3, P5\n**Reasoning:** From premise 2, we know that if a student is preparing for an exam, then they are asking questions. From premise 3, if a student is not studying, then they are not attending tutorials. From premise 5, if (a student preparing for an exam implies they a"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student is not understanding the material, then they are not attending tu",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P2, P3, P5\n**Reasoning:** From premise 2, we know that if a student is preparing for an exam, then they are asking questions. From premise 3, if a student is not studying, then they are not attending tutorials. From premise 5, if (a student preparing for an exam implie"
       },
       {
         "index": 83,
@@ -372,8 +372,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P25\n**Reasoning:** The statement that if a dish is not well-prepared, it is not popular is true because it is explicitly stated (premise 25), and since every dish is well-prepared (premise 2), the implication holds.\n**Answer:** Unknown"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There is at least one dish available today.\nP2: Every dish is well-prepared.\nP",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P25\n**Reasoning:** The statement that if a dish is not well-prepared, it is not popular is true because it is explicitly stated (premise 25), and since every dish is well-prepared (premise 2), the implication holds.\n</think>\n**Answer:** Unknown"
       },
       {
         "index": 90,
@@ -381,8 +381,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P2, P5, P8\n**Reasoning:** From premise 2 (There exists at least one student who qualifies for honors distinction), we know ∃x (QualifiesForHonors(x)). From premise 5, if a program incorporates thesis requirements, then it is research-based (∀x (IncorporatesThesis(x) → Research"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one research-based educational program.\nP2: There exists",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P2, P5, P8\n**Reasoning:** From premise 2 (There exists at least one student who qualifies for honors distinction), we know ∃x (QualifiesForHonors(x)). From premise 5, if a program incorporates thesis requirements, then it is research-based (∀x (IncorporatesThesis(x) → "
       },
       {
         "index": 92,
@@ -390,8 +390,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4, P7, P8\n**Reasoning:** From premise 4 (All students complete the end-of-term research paper), we know ∀x (Student(x) → CompletesResearchPaper(x)). From premise 7, if ∀x (Student(x) ∧ InvestsTimeProjectLearning(x) → BroaderUnderstanding(x)), then ∀x (Student(x) → CompletesRe"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student invests time in project-based learning, that student gains a broa",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4, P7, P8\n**Reasoning:** From premise 4 (All students complete the end-of-term research paper), we know ∀x (Student(x) → CompletesResearchPaper(x)). From premise 7, if ∀x (Student(x) ∧ InvestsTimeProjectLearning(x) → BroaderUnderstanding(x)), then ∀x (Student(x) → Com"
       },
       {
         "index": 106,
@@ -399,8 +399,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P3\n**Reasoning:** The implication from workshop attendance to communication improvement (premise 1) is true, and all students have attended workshops (premise 3). Thus, the statement holds, requiring steps to confirm.\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has attended soft skills workshops, then they have improved their",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P3\n**Reasoning:** The implication from workshop attendance to communication improvement (premise 1) is true, and all students have attended workshops (premise 3). Thus, the statement holds, requiring steps to confirm.\n</think>\n**Answer:** No"
       }
     ],
     "missing_format_count": 0,
@@ -412,8 +412,8 @@
     "analyzed": 122,
     "answer_dist": {
       "Unknown": 27,
-      "Yes": 17,
-      "No": 38,
+      "Yes": 16,
+      "No": 39,
       "A": 23,
       "B": 6,
       "C": 6,
@@ -423,8 +423,8 @@
       "YesNo": 82,
       "MCQ": 40
     },
-    "contradiction_count": 22,
-    "contradiction_rate": 0.18032786885245902,
+    "contradiction_count": 23,
+    "contradiction_rate": 0.1885245901639344,
     "contradiction_examples": [
       {
         "index": 2,
@@ -432,8 +432,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P5, P17\n**Reasoning:** From premise 5 (All students x have passed the Philosophy prerequisite (P)), we know ∀x P(x). From premise 17, if all students have passed Philosophy (P), then every student x is admitted to the University Honors program (U) (∀x P(x) → ∀x U(x)). Since pr"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student x is enrolled in Research Methods (R), then they have passed the ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P5, P17\n**Reasoning:** From premise 5 (All students x have passed the Philosophy prerequisite (P)), we know ∀x P(x). From premise 17, if all students have passed Philosophy (P), then every student x is admitted to the University Honors program (U) (∀x P(x) → ∀x U(x)). "
       },
       {
         "index": 3,
@@ -441,8 +441,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 1,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P11\n**Reasoning:** The statement is true because it is explicitly given as a premise that if a student publishes papers, then they conduct research (premise 11).\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students have knowledge.\nP2: At least one student conducts research.\nP3: I",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P11\n**Reasoning:** The statement is true because it is explicitly given as a premise that if a student publishes papers, then they conduct research (premise 11).\n</think>\n**Answer:** No"
       },
       {
         "index": 4,
@@ -450,8 +450,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4\n**Reasoning:** The statement that if a student does not participate in extracurricular activities, they cannot develop leadership skills is true because it is explicitly stated (premise 4).\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students complete fundamental courses.\nP2: All students submit research pa",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4\n**Reasoning:** The statement that if a student does not participate in extracurricular activities, they cannot develop leadership skills is true because it is explicitly stated (premise 4).\n</think>\n**Answer:** No"
       },
       {
         "index": 5,
@@ -459,8 +459,17 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P6, P7\n**Reasoning:** From premise 7 (All students are guaranteed University housing), we know ∀x U(x). From premise 6, passing Philosophy (P) guarantees University housing (U) (∀x (P(x) → U(x))). Since premise 7 states that all students have housing, premise 6's consequent is"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Students who do not submit a Research project (¬R) cannot complete their Thesi",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P6, P7\n**Reasoning:** From premise 7 (All students are guaranteed University housing), we know ∀x U(x). From premise 6, passing Philosophy (P) guarantees University housing (U) (∀x (P(x) → U(x))). Since premise 7 states that all students have housing, premise 6's conse"
+      },
+      {
+        "index": 22,
+        "type": "reasoning_says_YES_but_answer_is_NO",
+        "labeled_answer": "No",
+        "reasoning_aff": 2,
+        "reasoning_neg": 0,
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: To build a website, a strong understanding of web development technologies lik",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** \n**Reasoning:** The statement that a student who uses security measures will protect user data on their website is true because it is explicitly stated (premise 16).\n</think>\n**Answer:** No"
       },
       {
         "index": 25,
@@ -468,8 +477,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2\n**Reasoning:** All students are enrolled in a thesis-based program (premise 1), and there exists a student who has participated in a research project (premise 2). Thus, the implication holds, and the consequent is true, requiring steps to connect premises.\n**Answer:** N"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students are enrolled in a thesis-based program\nP2: There exists at least ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2\n**Reasoning:** All students are enrolled in a thesis-based program (premise 1), and there exists a student who has participated in a research project (premise 2). Thus, the implication holds, and the consequent is true, requiring steps to connect premises.\n</thi"
       },
       {
         "index": 26,
@@ -477,8 +486,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1\n**Reasoning:** Premise 1 directly states that if someone understands the lecture, they pass the exam. So the statement is true.\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If x understands the lecture, then x passes the exam.\nP2: There exists at leas",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1\n**Reasoning:** Premise 1 directly states that if someone understands the lecture, they pass the exam. So the statement is true.\n</think>\n**Answer:** No"
       },
       {
         "index": 28,
@@ -486,8 +495,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4, P6\n**Reasoning:** From premise 4 (All students are qualified for graduation), we know ∀x (Student(x) → QualifiedForGraduation(x)). From premise 6, if all students are qualified for graduation, then there exists at least one student who takes advanced courses (∀x (Student(x"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one student who takes advanced courses.\nP2: There exists",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4, P6\n**Reasoning:** From premise 4 (All students are qualified for graduation), we know ∀x (Student(x) → QualifiedForGraduation(x)). From premise 6, if all students are qualified for graduation, then there exists at least one student who takes advanced courses (∀x (S"
       },
       {
         "index": 30,
@@ -495,8 +504,8 @@
         "labeled_answer": "Yes",
         "reasoning_aff": 0,
         "reasoning_neg": 1,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P10\n**Reasoning:** The statement that John has missed more than 3 classes this semester is false because John has missed no classes (premise 10).\n**Answer:** Yes"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a person is a student, then they must attend classes regularly.\nP2: If a pe",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P10\n**Reasoning:** The statement that John has missed more than 3 classes this semester is false because John has missed no classes (premise 10).\n</think>\n**Answer:** Yes"
       },
       {
         "index": 36,
@@ -504,8 +513,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4, P5, P6\n**Reasoning:** From premise 6, we know that Kahne is a member of the lab. From premise 4, with guidance and knowledge, Kahne can do a science article. From premise 5, if the science article is successfully published, Kahne will get plus points in their graduation th"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: BK students can participate in the lab of a lecturer to gain guidance to do a ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4, P5, P6\n**Reasoning:** From premise 6, we know that Kahne is a member of the lab. From premise 4, with guidance and knowledge, Kahne can do a science article. From premise 5, if the science article is successfully published, Kahne will get plus points in their gradu"
       },
       {
         "index": 37,
@@ -513,8 +522,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P3, P10\n**Reasoning:** From premise 1 (There exists at least one object x that has property U), we know ∃x U(x). From premise 2, if an object x does not have property S, then it does not have property P (∀x (¬S(x) → ¬P(x))). From premise 4, if an object x has property U, t"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: At the University of Technology, there exists at least one object x that has p",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P3, P10\n**Reasoning:** From premise 1 (There exists at least one object x that has property U), we know ∃x U(x). From premise 2, if an object x does not have property S, then it does not have property P (∀x (¬S(x) → ¬P(x))). From premise 4, if an object x has prope"
       },
       {
         "index": 43,
@@ -522,8 +531,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P3\n**Reasoning:** The statement that if a student attends the seminar, they complete the course successfully is true because it is explicitly stated (premise 3).\n**Answer:** Unknown"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Every student in the course is participating in the training session.\nP2: If a",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P3\n**Reasoning:** The statement that if a student attends the seminar, they complete the course successfully is true because it is explicitly stated (premise 3).\n</think>\n**Answer:** Unknown"
       },
       {
         "index": 46,
@@ -531,8 +540,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4, P9\n**Reasoning:** From premise 9 (There exists at least one student who has completed the Data Science course), we know ∃x D(x). From premise 4, if a student has completed the Data Science course, then they have passed the exam on Data Analytics (∀x (D(x) → E(x))). Since p"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student has completed the Data Science course, then they are eligible to ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4, P9\n**Reasoning:** From premise 9 (There exists at least one student who has completed the Data Science course), we know ∃x D(x). From premise 4, if a student has completed the Data Science course, then they have passed the exam on Data Analytics (∀x (D(x) → E(x)))."
       },
       {
         "index": 52,
@@ -540,8 +549,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P4, P9\n**Reasoning:** From premise 4 (All students have cleared tuition payments (P)), we know ∀x P(x). From premise 9, full tuition compliance by all students waives prerequisite checks (∀x P(x) → ∀x Q(x)). Since premise 4 states that all students have cleared tuition payment"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Submitting course registration (S) grants enrollment confirmation (U).\nP2: Mee",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P4, P9\n**Reasoning:** From premise 4 (All students have cleared tuition payments (P)), we know ∀x P(x). From premise 9, full tuition compliance by all students waives prerequisite checks (∀x P(x) → ∀x Q(x)). Since premise 4 states that all students have cleared tuition"
       },
       {
         "index": 66,
@@ -549,8 +558,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P5, P7, P8\n**Reasoning:** From premise 5 (Everyone in the program regularly attends lectures), we know ∀x (AttendsLectures(x)). From premise 7, if submitting all assignments on time leads to passing with distinction, then not attending lectures regularly results in not receivi"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: Every person in this program is a university student.\nP2: If someone is a univ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P5, P7, P8\n**Reasoning:** From premise 5 (Everyone in the program regularly attends lectures), we know ∀x (AttendsLectures(x)). From premise 7, if submitting all assignments on time leads to passing with distinction, then not attending lectures regularly results in not"
       },
       {
         "index": 73,
@@ -558,8 +567,8 @@
         "labeled_answer": "Unknown",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P2, P5\n**Reasoning:** An enrolled student exists (premise 2). The statement claims that enrollment does not always imply a requirement to attend the lab. Since attending implies enrollment (premise 5), an enrolled student who does not attend is not required to attend (premise "
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If x attends the lab for the subject, then x is required to attend the lab for",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P2, P5\n**Reasoning:** An enrolled student exists (premise 2). The statement claims that enrollment does not always imply a requirement to attend the lab. Since attending implies enrollment (premise 5), an enrolled student who does not attend is not required to attend ("
       },
       {
         "index": 89,
@@ -567,8 +576,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 3,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P2, P3, P4, P5\n**Reasoning:** From premise 2, we know every student is revising. From premise 3, if a student is not understanding the material, then they are not revising. From premise 4, if (a student not understanding the material implies they are not revising), then (a"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: If a student is attending tutorials, then they are revising.\nP2: Every student",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P2, P3, P4, P5\n**Reasoning:** From premise 2, we know every student is revising. From premise 3, if a student is not understanding the material, then they are not revising. From premise 4, if (a student not understanding the material implies they are not revising),"
       },
       {
         "index": 91,
@@ -576,8 +585,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 2,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P13\n**Reasoning:** The statement that if lacking training leads to lacking proficiency, then proficiency leads to training is true because it is explicitly stated that this implication holds (premise 13).\n**Answer:** No"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: All students have qualifications.\nP2: All students have recognition.\nP3: If a ",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P13\n**Reasoning:** The statement that if lacking training leads to lacking proficiency, then proficiency leads to training is true because it is explicitly stated that this implication holds (premise 13).\n</think>\n**Answer:** No"
       },
       {
         "index": 94,
@@ -585,8 +594,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P9, P12, P17\n**Reasoning:** From premise 12 (All students have completed their Thesis), we know ∀x T(x). From premise 17, housing access requires Thesis completion (∀x (U(x) → T(x))). From premise 9, every student is guaranteed University housing (∀x U(x)). Since premise 12 st"
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: At least one student has passed the Philosophy requirement.\nP2: All students h",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P9, P12, P17\n**Reasoning:** From premise 12 (All students have completed their Thesis), we know ∀x T(x). From premise 17, housing access requires Thesis completion (∀x (U(x) → T(x))). From premise 9, every student is guaranteed University housing (∀x U(x)). Since premi"
       },
       {
         "index": 109,
@@ -594,17 +603,8 @@
         "labeled_answer": "No",
         "reasoning_aff": 4,
         "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P1, P5, P6, P9\n**Reasoning:** From premise 9 (All students take final examinations), we know ∀x (Student(x) → TakesFinalExams(x)). From premise 1, there exists at least one research program at the university (∃x (ResearchProgram(x))). From premise 5, there exists at least one "
-      },
-      {
-        "index": 111,
-        "type": "reasoning_says_YES_but_answer_is_UNKNOWN",
-        "labeled_answer": "Unknown",
-        "reasoning_aff": 3,
-        "reasoning_neg": 0,
-        "input_snippet": "You are a logical reasoning expert. Given premises and a question, you must:\n1. Identify which premises are relevant\n2. Provide step-by-step reasoning",
-        "reasoning_snippet": "**Relevant Premises:** P6, P11\n**Reasoning:** From premise 6 (No entrance exam pass → No Research completion), we know ∀x (¬T(x) → ¬R(x)). From premise 11, the exam-Research rule activates Quantum Physics policies (∀x (¬T(x) → ¬R(x)) → ∀x (Q(x) → R(x))). Since premise 6 states that no entrance exam "
+        "input_snippet": "Given the following premises, answer the question below.\n\nPremises:\nP1: There exists at least one research program at the university.\nP2: There exists",
+        "reasoning_snippet": "<think>\n**Relevant Premises:** P1, P5, P6, P9\n**Reasoning:** From premise 9 (All students take final examinations), we know ∀x (Student(x) → TakesFinalExams(x)). From premise 1, there exists at least one research program at the university (∃x (ResearchProgram(x))). From premise 5, there exists at le"
       }
     ],
     "missing_format_count": 0,

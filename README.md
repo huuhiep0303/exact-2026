@@ -156,20 +156,22 @@ cat outputs/processed_data/train_samples.txt
 
 ## 🤖 Model Strategy
 
-### Recommended Model: Qwen2.5-7B-Instruct
+### Recommended Model: Qwen3-8B
 
 **Lý do chọn:**
 
-- ✅ 7B parameters (< 8B requirement)
-- ✅ 128K context length (xử lý nhiều premises)
-- ✅ Reasoning capability xuất sắc
+- ✅ 8.2B total / 6.95B non-embedding parameters
+- ✅ 32K native context (131K with YaRN)
+- ✅ Thinking/Non-thinking mode switching
+- ✅ Superior reasoning capability (Gen 3)
 - ✅ Multilingual support tốt
 - ✅ Open-source với license thân thiện
 
 ### Alternative Models
 
-1. **Llama-3.1-8B-Instruct** (8B, 128K context)
-2. **Mistral-7B-Instruct-v0.3** (7B, 32K context)
+1. **Qwen2.5-7B-Instruct** (7.6B, 128K context)
+2. **Llama-3.1-8B-Instruct** (8B, 128K context)
+3. **Mistral-7B-Instruct-v0.3** (7B, 32K context)
 3. **Phi-3-Medium-4K-Instruct** (3.8B, 4K context)
 
 ### Training Approach: LoRA Fine-tuning

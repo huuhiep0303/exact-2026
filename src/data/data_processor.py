@@ -8,6 +8,8 @@ from .data_loader import load_raw_data, save_processed_data
 from ..utils.helpers import format_premises
 
 
+# System prompt used consistently across training AND inference.
+# Import this from anywhere to ensure consistency.
 SYSTEM_PROMPT = """You are an expert in formal logical reasoning. Your task is to analyze premises and answer questions using rigorous logical deduction.
 
 Rules:
@@ -38,14 +40,18 @@ class DataProcessor:
         question: str
     ) -> str:
         """
-        Create input prompt using Qwen chat template format.
+        Create input prompt — returns ONLY the user message content.
+        
+        The chat template (system message, role tokens) will be applied
+        by the tokenizer during training/inference. This function should
+        NOT include any special tokens like <|im_start|> or <|im_end|>.
         
         Args:
             premises: List of premises
             question: Question text
             
         Returns:
-            Formatted prompt string with chat template
+            User message content string (no chat template tokens)
         """
         premises_text = format_premises(premises)
         
@@ -57,14 +63,13 @@ Premises:
 Question: {question}
 
 Provide your response in EXACTLY this format:
+<think>
 **Relevant Premises:** [List only the premise numbers you used, e.g., P1, P3, P5]
 **Reasoning:** [Step-by-step logical deduction using only the selected premises]
+</think>
 **Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]"""
         
-        # Use Qwen2.5 chat template format
-        prompt = f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{user_message}<|im_end|>\n<|im_start|>assistant\n"
-        
-        return prompt
+        return user_message
     
     def create_response(
         self,
@@ -73,7 +78,10 @@ Provide your response in EXACTLY this format:
         answer: str
     ) -> str:
         """
-        Create expected response.
+        Create expected response — returns ONLY the assistant message content.
+        
+        NO special tokens (<|im_end|>) should be included here.
+        The tokenizer's chat template will handle adding them.
         
         Args:
             idx: List of relevant premise indices
@@ -81,13 +89,15 @@ Provide your response in EXACTLY this format:
             answer: Answer
             
         Returns:
-            Formatted response with end token
+            Assistant response content (no chat template tokens)
         """
         relevant_premises_str = ", ".join([f"P{i}" for i in idx])
         
-        response = f"""**Relevant Premises:** {relevant_premises_str}
+        response = f"""<think>
+**Relevant Premises:** {relevant_premises_str}
 **Reasoning:** {explanation}
-**Answer:** {answer}<|im_end|>"""
+</think>
+**Answer:** {answer}"""
         
         return response
     
@@ -118,7 +128,7 @@ Provide your response in EXACTLY this format:
             else:
                 question_type = 'YesNo'
             
-            # Create prompt and response
+            # Create prompt (user content only) and response (assistant content only)
             prompt = self.create_prompt(premises_nl, question)
             response = self.create_response(idx, explanation, answer)
             
