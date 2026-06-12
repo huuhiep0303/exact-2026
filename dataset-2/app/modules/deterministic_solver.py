@@ -1414,7 +1414,7 @@ def _solve_square_center_field(question: str) -> DeterministicResult | None:
     return None
 
 
-def solve_deterministic(question: str, topic: str = "") -> DeterministicResult | None:
+def solve_deterministic(question: str, topic: str = "", target=None) -> DeterministicResult | None:
     """Return a deterministic answer for high-confidence patterns, else None."""
     q = _normalize(question).lower()
     topic = (topic or "").upper()

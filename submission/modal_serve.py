@@ -21,12 +21,11 @@ image = (
 # Expose the FastAPI app
 @app.function(
     image=image,
-    secrets=[modal.Secret.from_dict({
-        # Replace this URL with your actual vLLM endpoint URL deployed on Modal or elsewhere
-        "VLLM_API_URL": "https://hiephc0710--exact-2026-vllm-serve.modal.run/v1",
-        "MODEL_NAME": "exact-lora",
-        "REASONER_MODEL": "exact-lora-type2"
-    })]
+    secrets=[modal.Secret.from_name("exact-2026-config")],
+    min_containers=0,
+    max_containers=1,
+    scaledown_window=60,
+    # timeout=600, #có hoặc không
 )
 @modal.asgi_app()
 def fastapi_app():

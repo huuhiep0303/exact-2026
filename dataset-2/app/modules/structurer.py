@@ -116,4 +116,9 @@ def structure_response(ctx: PipelineContext) -> PhysicsResponse:
         cot=cot_steps if cot_steps else None,
         premises=ctx.premises if ctx.premises else None,
         confidence=ctx.confidence,
+        answer_source=ctx.answer_source,
+        solver_strategy=ctx.solver_strategy or None,
+        routed_topic=ctx.topic,
+        target_quantity=ctx.target_quantity,
+        expected_unit_dimension=ctx.expected_unit_dimension or None,
     )

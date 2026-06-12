@@ -1,0 +1,2 @@
+modal deploy submission/vllm_serve.py
+modal deploy submission/modal_serve.py

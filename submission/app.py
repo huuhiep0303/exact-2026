@@ -35,6 +35,9 @@ class QueryResponse(BaseModel):
 # Configurable vLLM URL (e.g., http://localhost:8000/v1 or Modal internal URL)
 VLLM_API_URL = os.getenv("VLLM_API_URL", "http://localhost:8000/v1")
 MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen3-8B") # Or whatever model ID you serve
+TYPE1_MODEL = os.getenv("TYPE1_MODEL", "exact-lora")
+TYPE2_MODEL = os.getenv("TYPE2_MODEL", "exact-lora-type2")
+
 
 SYSTEM_PROMPT = """You are an expert in formal logical reasoning. Your task is to analyze premises and answer questions using rigorous logical deduction.
 
@@ -74,10 +77,10 @@ def call_vllm(user_message: str) -> str:
     # But for simplicity, we can do a blocking call or async call. Let's do async.
     pass
 
-async def async_call_vllm(user_message: str) -> str:
+async def async_call_vllm(user_message: str, model_name: str = MODEL_NAME) -> str:
     async with httpx.AsyncClient(timeout=55.0) as client:
         payload = {
-            "model": MODEL_NAME,
+            "model": model_name,
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_message}
@@ -86,6 +89,7 @@ async def async_call_vllm(user_message: str) -> str:
             "top_p": 0.95,
             "max_tokens": 2048,
         }
+
         try:
             response = await client.post(f"{VLLM_API_URL}/chat/completions", json=payload)
             response.raise_for_status()
@@ -116,7 +120,7 @@ Provide your response in EXACTLY this format:
 **Answer:** [Your final answer: A/B/C/D or Yes/No/Unknown]"""
 
     # 2. Call Model
-    raw_response = await async_call_vllm(user_message)
+    raw_response = await async_call_vllm(user_message, model_name=TYPE1_MODEL)
     
     # 3. Parse output
     think_match = re.search(r'<think>\n?(.*?)\n?</think>', raw_response, re.DOTALL)
@@ -176,10 +180,16 @@ async def handle_type2(request: QueryRequest) -> QueryResponse:
     from pathlib import Path
     import asyncio
     
+    # Configure environment variables for dataset-2 BEFORE importing its modules
+    os.environ["PIPELINE_MODE"] = "api"
+    os.environ["OPENAI_BASE_URL"] = VLLM_API_URL
+    os.environ["REASONER_API_MODEL"] = TYPE2_MODEL
+
     # Add dataset-2 to path so its internal 'app' imports work
     d2_path = str(Path(__file__).resolve().parent.parent / "dataset-2")
     if d2_path not in sys.path:
         sys.path.insert(0, d2_path)
+
         
     try:
         from app.pipeline import run_pipeline

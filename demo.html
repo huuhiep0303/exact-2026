@@ -1,87 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXACT 2026 Reasoning API Demo</title>
+    <title>EXACT 2026 API Testing Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --bg-color: #0f172a;
-            --glass-bg: rgba(30, 41, 59, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --primary: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            --primary-hover: #7c3aed;
+            --bg-color: #030712;
+            --panel-bg: rgba(17, 24, 39, 0.75);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
             --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.2);
+            --error: #ef4444;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, var(--bg-color) 0%, #1e1b4b 100%);
+            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg-color) 70%);
             color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 3rem 1rem;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            overflow-x: hidden;
         }
 
-        /* Abstract Background Orbs */
+        /* Ambient Glowing Background Orbs */
         .orb {
-            position: fixed;
+            position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            opacity: 0.5;
-            animation: float 20s infinite ease-in-out alternate;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.35;
+            animation: float 25s infinite ease-in-out alternate;
         }
         .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: rgba(99, 102, 241, 0.3);
-            top: -100px;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -150px;
             left: -100px;
         }
         .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: rgba(168, 85, 247, 0.2);
+            width: 600px;
+            height: 600px;
+            background: #4f46e5;
             bottom: -200px;
             right: -100px;
-            animation-delay: -10s;
+            animation-delay: -12s;
         }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.1); }
+            100% { transform: translate(60px, 80px) scale(1.15); }
         }
 
         .container {
             width: 100%;
-            max-width: 900px;
-            position: relative;
+            max-width: 1200px;
             z-index: 10;
         }
 
+        /* Header section */
         .header {
             text-align: center;
             margin-bottom: 2rem;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #a855f7, #6366f1);
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            background: linear-gradient(to right, #c084fc, #818cf8, #38bdf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
@@ -90,28 +95,149 @@
         .header p {
             color: var(--text-muted);
             font-size: 1.1rem;
+            font-weight: 400;
         }
 
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-group {
+        /* Configuration Panel */
+        .config-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            padding: 1.5rem;
             margin-bottom: 1.5rem;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
+        }
+
+        .endpoint-wrapper {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .input-text {
+            flex: 1;
+            background: rgba(3, 7, 18, 0.8);
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 0.85rem 1.2rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-text:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        .btn-action {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 0.85rem 1.2rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Two columns Dashboard */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            padding: 1.75rem;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            min-height: 580px;
+        }
+
+        .panel-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tabs styling */
+        .tabs {
+            display: flex;
+            background: rgba(3, 7, 18, 0.6);
+            border-radius: 0.75rem;
+            padding: 0.25rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.6rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .tab-content {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
         }
 
         label {
             display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.8rem;
+            font-weight: 600;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -120,67 +246,81 @@
 
         select, textarea {
             width: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--glass-border);
+            background: rgba(3, 7, 18, 0.7);
+            border: 1px solid var(--border-color);
             color: white;
-            padding: 1rem;
+            padding: 0.85rem 1rem;
             border-radius: 0.75rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         select:focus, textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 0 3px var(--primary-glow);
         }
 
         textarea {
             min-height: 120px;
+            font-family: inherit;
             resize: vertical;
             line-height: 1.5;
         }
 
+        .json-editor {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            min-height: 380px;
+            flex: 1;
+            line-height: 1.6;
+            background: rgba(2, 6, 23, 0.9);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            color: #38bdf8;
+        }
+
+        /* Submit Button */
         .btn-submit {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
             color: white;
             border: none;
             padding: 1rem;
             border-radius: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.05rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px var(--primary-glow);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            margin-top: auto;
         }
 
-        .btn-submit:hover {
+        .btn-submit:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 12px 28px rgba(139, 92, 246, 0.6);
         }
 
-        .btn-submit:active {
+        .btn-submit:active:not(:disabled) {
             transform: translateY(0);
         }
 
         .btn-submit:disabled {
-            opacity: 0.7;
+            opacity: 0.6;
             cursor: not-allowed;
-            transform: none;
         }
 
-        /* Loading Spinner */
+        /* Spinner */
         .spinner {
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
+            border: 2.5px solid rgba(255,255,255,0.25);
             border-radius: 50%;
             border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
+            animation: spin 0.8s linear infinite;
             display: none;
         }
 
@@ -188,211 +328,493 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Results Area */
-        #results-container {
-            display: none;
-            animation: slideUp 0.5s ease forwards;
+        /* Results Display */
+        .badge-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .result-section {
-            margin-bottom: 1.5rem;
-        }
-
-        .result-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .result-box {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--glass-border);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #cbd5e1;
-            white-space: pre-wrap;
-            overflow-x: auto;
-        }
-
-        .final-answer {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--success);
-            font-family: 'Inter', sans-serif;
-            display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 0.5rem;
-        }
-
-        .status-pill {
+        .status-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
             display: inline-flex;
             align-items: center;
-            font-size: 0.8rem;
-            background: rgba(99, 102, 241, 0.2);
-            color: #818cf8;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            margin-left: 1rem;
-            font-weight: 600;
+            gap: 0.35rem;
         }
 
-        /* Code syntax highlighting simulation */
-        .keyword { color: #c678dd; }
-        .string { color: #98c379; }
-        .number { color: #d19a66; }
+        .status-badge.neutral {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-badge.success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .status-badge.error {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.1);
+        }
+
+        .output-box {
+            background: rgba(3, 7, 18, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            overflow: auto;
+        }
+
+        .final-answer-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .final-answer-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--success);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .final-answer-val {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-shadow: 0 0 10px var(--success-glow);
+        }
+
+        .explanation-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .trace-steps {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+        }
+
+        .trace-step {
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+        }
+
+        .trace-step:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .keyword { color: #f472b6; }
+        .number { color: #fb923c; }
+
+        .json-viewer {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            color: #a7f3d0;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            flex: 1;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .empty-state svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            stroke: var(--text-muted);
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Background Orbs -->
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
 
     <div class="container">
+        <!-- Header -->
         <div class="header">
-            <h1>EXACT 2026 Reasoning</h1>
-            <p>Advanced AI Physics & Logic Solver</p>
+            <h1>EXACT 2026 API TESTER</h1>
+            <p>Trực quan hóa cấu trúc Request/Response và kiểm tra hiệu năng Endpoint</p>
         </div>
 
-        <div class="glass-panel">
-            <form id="query-form">
-                <div class="form-group">
-                    <label for="task-type">Task Category</label>
-                    <select id="task-type" onchange="loadPreset()">
-                        <option value="type1">Type 1 - Logic (FOL Deduction)</option>
-                        <option value="type2">Type 2 - Physics (Calculation & Formulas)</option>
-                    </select>
+        <!-- Configuration Panel -->
+        <div class="config-panel">
+            <div class="form-group">
+                <label for="endpoint-url">Modal API Endpoint URL</label>
+                <div class="endpoint-wrapper">
+                    <input type="text" id="endpoint-url" class="input-text" value="https://hirocao0710--exact-2026-submission-fastapi-app.modal.run/predict">
+                    <button class="btn-action" onclick="resetDefaultEndpoint()">Đặt mặc định</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            
+            <!-- Left Panel: REQUEST -->
+            <div class="panel">
+                <div class="panel-title">
+                    <span>Yêu Cầu (Request)</span>
+                    <div style="width: 200px;">
+                        <select id="preset-selector" onchange="loadPresetSelect()" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+                            <option value="t1_easy">Preset 1: Type 1 - Logic Đơn giản</option>
+                            <option value="t1_complex">Preset 2: Type 1 - Logic Phức tạp</option>
+                            <option value="t2_capacitor">Preset 3: Type 2 - Tính năng lượng tụ điện</option>
+                            <option value="t2_parallel">Preset 4: Type 2 - Mạch đèn song song</option>
+                            <option value="custom">Tùy biến (Custom JSON)...</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="form-group" id="premises-group">
-                    <label for="premises">Premises (One per line - Type 1 only)</label>
-                    <textarea id="premises" placeholder="Enter premises here..."></textarea>
+                <!-- Tabs to switch between Form and Raw JSON -->
+                <div class="tabs">
+                    <button id="tab-form-btn" class="tab-btn active" onclick="switchReqTab('form')">Interactive Form</button>
+                    <button id="tab-json-btn" class="tab-btn" onclick="switchReqTab('json')">Raw JSON Payload</button>
                 </div>
 
-                <div class="form-group">
-                    <label for="query">Question</label>
-                    <textarea id="query" placeholder="Ask your question here..."></textarea>
+                <!-- Form Tab Content -->
+                <div id="req-form-tab" class="tab-content active">
+                    <div class="form-group">
+                        <label for="task-type">Task Category (Type)</label>
+                        <select id="task-type" onchange="syncFormToJSON()">
+                            <option value="type1">Type 1 - Logic (FOL Deduction)</option>
+                            <option value="type2">Type 2 - Physics (Calculation & Formulas)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="premises-group">
+                        <label for="premises">Premises (Một tiền đề mỗi dòng - Type 1)</label>
+                        <textarea id="premises" oninput="syncFormToJSON()" placeholder="Nhập các dữ kiện tiền đề..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="query">Question (Câu hỏi cần giải)</label>
+                        <textarea id="query" oninput="syncFormToJSON()" placeholder="Nhập câu hỏi..."></textarea>
+                    </div>
+
+                    <div class="form-group" id="options-group">
+                        <label for="options">Options (Các tùy chọn trả lời, cách nhau bằng dấu phẩy)</label>
+                        <input type="text" id="options" class="input-text" oninput="syncFormToJSON()" placeholder="Ví dụ: Yes, No, Uncertain">
+                    </div>
                 </div>
 
-                <button type="submit" class="btn-submit" id="submit-btn">
-                    <span>Generate Reasoning</span>
+                <!-- Raw JSON Tab Content -->
+                <div id="req-json-tab" class="tab-content">
+                    <div class="form-group" style="display: flex; flex-direction: column; flex: 1;">
+                        <label for="raw-json-req">Request JSON Body</label>
+                        <textarea id="raw-json-req" class="json-editor" oninput="syncJSONToForm()"></textarea>
+                    </div>
+                </div>
+
+                <button class="btn-submit" id="submit-btn" onclick="sendRequest()">
+                    <span>Gửi Yêu Cầu (Send Request)</span>
                     <div class="spinner" id="loading-spinner"></div>
                 </button>
-            </form>
-        </div>
-
-        <div class="glass-panel" id="results-container">
-            <div class="result-section">
-                <label>
-                    AI Reasoning Trace
-                    <span class="status-pill" id="time-taken">0.0s</span>
-                </label>
-                <div class="result-box" id="reasoning-box">...</div>
             </div>
 
-            <div class="result-section">
-                <label>Final Answer & Explanation</label>
-                <div class="result-box">
-                    <div class="final-answer" id="final-answer"></div>
-                    <div style="margin-top: 1rem; color: #94a3b8;" id="explanation-box"></div>
+            <!-- Right Panel: RESPONSE -->
+            <div class="panel">
+                <div class="panel-title">
+                    <span>Phản Hồi (Response)</span>
+                    <div class="badge-bar" id="status-badges" style="display: none;">
+                        <span class="status-badge neutral" id="badge-status">CODE: 200</span>
+                        <span class="status-badge neutral" id="badge-time">TIME: 0.0s</span>
+                    </div>
                 </div>
+
+                <!-- Tabs to switch between Visual and Raw JSON -->
+                <div class="tabs" id="resp-tabs" style="display: none; margin-bottom: 1.25rem;">
+                    <button id="tab-visual-btn" class="tab-btn active" onclick="switchRespTab('visual')">Visual Results</button>
+                    <button id="tab-raw-btn" class="tab-btn" onclick="switchRespTab('raw')">Raw JSON Response</button>
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-resp-state" class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <p>Chưa có phản hồi nào. Hãy thiết lập Request và nhấn "Gửi Yêu Cầu" để kiểm tra kết quả.</p>
+                </div>
+
+                <!-- Visual Tab Content -->
+                <div id="resp-visual-tab" class="tab-content">
+                    <!-- Final Answer -->
+                    <div class="final-answer-container">
+                        <div>
+                            <div class="final-answer-label">Đáp án cuối cùng</div>
+                            <div class="final-answer-val" id="res-answer">-</div>
+                        </div>
+                    </div>
+
+                    <!-- Explanation -->
+                    <div class="form-group">
+                        <label>Giải thích (Explanation)</label>
+                        <div class="explanation-card" id="res-explanation"></div>
+                    </div>
+
+                    <!-- Premises Used -->
+                    <div class="form-group" id="res-premises-container">
+                        <label>Tiền đề được sử dụng (Premises Used)</label>
+                        <div class="output-box" id="res-premises" style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;"></div>
+                    </div>
+
+                    <!-- Reasoning steps -->
+                    <div class="form-group" style="flex: 1; display: flex; flex-direction: column;">
+                        <label>Chuỗi suy luận (Reasoning Trace)</label>
+                        <div class="output-box" style="flex: 1; min-height: 320px; max-height: 600px; overflow-y: auto;">
+                            <div class="trace-steps" id="res-reasoning"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Raw JSON Tab Content -->
+                <div id="resp-raw-tab" class="tab-content">
+                    <div class="form-group" style="display: flex; flex-direction: column; flex: 1;">
+                        <label>Response JSON Body</label>
+                        <div class="output-box json-editor" style="flex: 1; margin-bottom: 0;">
+                            <div class="json-viewer" id="res-raw-json"></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
         </div>
     </div>
 
     <script>
-        // Modal API Endpoint
-        const API_URL = "https://hiephc0710--exact-2026-submission-fastapi-app.modal.run/predict";
+        const DEFAULT_URL = "https://hirocao0710--exact-2026-submission-fastapi-app.modal.run/predict";
 
-        // Presets for quick testing
+        // Pre-configured JSON request bodies
         const PRESETS = {
-            type1: {
-                premises: "All cats are animals.\nFluffy is a cat.",
-                query: "If all cats are animals, and Fluffy is a cat, is Fluffy an animal?"
+            t1_easy: {
+                query_id: "PRESET_T1_EASY",
+                type: "type1",
+                query: "If all cats are animals, and Fluffy is a cat, is Fluffy an animal?",
+                premises: [
+                    "All cats are animals.",
+                    "Fluffy is a cat."
+                ],
+                options: ["Yes", "No", "Uncertain"]
             },
-            type2: {
-                premises: "",
-                query: "Calculate the energy stored in capacitor C when C = 100 μF and U = 30 V."
+            t1_complex: {
+                query_id: "PRESET_T1_SOPHIA",
+                type: "type1",
+                query: "Does Sophia qualify for the university scholarship?",
+                premises: [
+                    "Core curriculum is completed and science assessment is passed implies advanced courses.",
+                    "Advanced course qualification and research methodology implies international program eligibility.",
+                    "International program eligibility and a capstone project awards an honors diploma.",
+                    "Honors diploma and community service qualifies for the university scholarship.",
+                    "Sophia completed the core curriculum.",
+                    "Sophia passed the science assessment.",
+                    "Sophia did research methodology.",
+                    "Sophia completed a capstone project.",
+                    "Sophia did community service."
+                ],
+                options: ["Yes", "No", "Uncertain"]
+            },
+            t2_capacitor: {
+                query_id: "PRESET_T2_CAPACITOR",
+                type: "type2",
+                query: "Calculate the energy stored in capacitor C when C = 100 uF and U = 30 V.",
+                premises: [],
+                options: []
+            },
+            t2_parallel: {
+                query_id: "PRESET_T2_PARALLEL",
+                type: "type2",
+                query: "Two identical lamps, each of resistance 12 ohm, are connected in parallel to a 6 V source. Calculate the current through each lamp.",
+                premises: [],
+                options: []
+            },
+            custom: {
+                query_id: "CUSTOM_REQUEST",
+                type: "type1",
+                query: "Write your custom question here...",
+                premises: [],
+                options: []
             }
         };
 
-        const form = document.getElementById('query-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const spinner = document.getElementById('loading-spinner');
-        const btnText = submitBtn.querySelector('span');
-        const resultsContainer = document.getElementById('results-container');
-        const premisesGroup = document.getElementById('premises-group');
+        let activeReqTab = "form";
+        let activeRespTab = "visual";
 
-        // Elements to update
-        const reasoningBox = document.getElementById('reasoning-box');
-        const finalAnswer = document.getElementById('final-answer');
-        const explanationBox = document.getElementById('explanation-box');
-        const timeTaken = document.getElementById('time-taken');
+        function resetDefaultEndpoint() {
+            document.getElementById('endpoint-url').value = DEFAULT_URL;
+        }
 
-        function loadPreset() {
-            const type = document.getElementById('task-type').value;
-            document.getElementById('premises').value = PRESETS[type].premises;
-            document.getElementById('query').value = PRESETS[type].query;
+        function switchReqTab(tab) {
+            activeReqTab = tab;
+            document.getElementById('tab-form-btn').classList.toggle('active', tab === 'form');
+            document.getElementById('tab-json-btn').classList.toggle('active', tab === 'json');
             
-            // Hide premises box for Type 2
-            if(type === 'type2') {
+            document.getElementById('req-form-tab').classList.toggle('active', tab === 'form');
+            document.getElementById('req-json-tab').classList.toggle('active', tab === 'json');
+        }
+
+        function switchRespTab(tab) {
+            activeRespTab = tab;
+            document.getElementById('tab-visual-btn').classList.toggle('active', tab === 'visual');
+            document.getElementById('tab-raw-btn').classList.toggle('active', tab === 'raw');
+            
+            document.getElementById('resp-visual-tab').classList.toggle('active', tab === 'visual');
+            document.getElementById('resp-raw-tab').classList.toggle('active', tab === 'raw');
+        }
+
+        // Load preset from dropdown
+        function loadPresetSelect() {
+            const presetKey = document.getElementById('preset-selector').value;
+            const payload = PRESETS[presetKey];
+            
+            // Update raw json area
+            document.getElementById('raw-json-req').value = JSON.stringify(payload, null, 2);
+            
+            // Sync to interactive form fields
+            updateFormFromJSON(payload);
+        }
+
+        function updateFormFromJSON(payload) {
+            document.getElementById('task-type').value = payload.type || "type1";
+            document.getElementById('premises').value = (payload.premises || []).join('\n');
+            document.getElementById('query').value = payload.query || "";
+            document.getElementById('options').value = (payload.options || []).join(', ');
+            
+            // Hide premises/options for Type 2
+            const premisesGroup = document.getElementById('premises-group');
+            const optionsGroup = document.getElementById('options-group');
+            if (payload.type === 'type2') {
                 premisesGroup.style.display = 'none';
+                optionsGroup.style.display = 'none';
             } else {
                 premisesGroup.style.display = 'block';
+                optionsGroup.style.display = 'block';
             }
         }
 
-        // Load initial preset
-        loadPreset();
+        // Form fields changed -> update Raw JSON editor
+        function syncFormToJSON() {
+            if (activeReqTab !== 'form') return;
+            
+            const type = document.getElementById('task-type').value;
+            const premisesText = document.getElementById('premises').value;
+            const query = document.getElementById('query').value;
+            const optionsText = document.getElementById('options').value;
+            
+            const premises = premisesText.split('\n').map(p => p.trim()).filter(p => p !== '');
+            const options = optionsText.split(',').map(o => o.trim()).filter(o => o !== '');
 
-        // Format reasoning steps for UI
-        function formatReasoning(steps) {
-            if (!steps || steps.length === 0) return "No reasoning trace provided.";
-            return steps.map(step => {
-                // Simple regex to highlight Python code blocks or FOL tags
-                let formatted = step.replace(/\[FOL\]:/g, '<span class="keyword">[FOL]:</span>')
-                                   .replace(/\[CODE\]:/g, '<span class="keyword">[CODE]:</span>')
-                                   .replace(/Step \d+:/g, match => `<span class="number">${match}</span>`);
-                return formatted;
-            }).join('\n\n');
+            // Hide/show fields
+            document.getElementById('premises-group').style.display = (type === 'type2') ? 'none' : 'block';
+            document.getElementById('options-group').style.display = (type === 'type2') ? 'none' : 'block';
+
+            // Parse current JSON or get preset template
+            let currentPayload = {};
+            try {
+                currentPayload = JSON.parse(document.getElementById('raw-json-req').value);
+            } catch(e) {
+                currentPayload = { query_id: "REQ_" + Date.now() };
+            }
+
+            currentPayload.type = type;
+            currentPayload.query = query;
+            currentPayload.premises = type === 'type1' ? premises : [];
+            currentPayload.options = type === 'type1' ? options : [];
+            
+            document.getElementById('raw-json-req').value = JSON.stringify(currentPayload, null, 2);
+            document.getElementById('preset-selector').value = "custom";
         }
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // Raw JSON changed -> update Form fields
+        function syncJSONToForm() {
+            if (activeReqTab !== 'json') return;
+            try {
+                const payload = JSON.parse(document.getElementById('raw-json-req').value);
+                updateFormFromJSON(payload);
+                document.getElementById('preset-selector').value = "custom";
+            } catch(e) {
+                // Invalid JSON, don't update form
+            }
+        }
+
+        // Format reasoning trace with highlights
+        function formatReasoning(steps) {
+            if (!steps || steps.length === 0) return "Không có chuỗi suy luận nào.";
+            return steps.map((step, idx) => {
+                let formatted = step.replace(/FOL:/g, '<span class="keyword">FOL:</span>')
+                                   .replace(/Step \d+:/g, match => `<span class="number">${match}</span>`);
+                return `<div class="trace-step">${formatted}</div>`;
+            }).join('');
+        }
+
+        // AJAX submit request
+        async function sendRequest() {
+            const url = document.getElementById('endpoint-url').value.trim();
+            const submitBtn = document.getElementById('submit-btn');
+            const spinner = document.getElementById('loading-spinner');
+            const statusBadges = document.getElementById('status-badges');
+            const badgeStatus = document.getElementById('badge-status');
+            const badgeTime = document.getElementById('badge-time');
             
-            // UI State loading
+            let payload = {};
+            try {
+                payload = JSON.parse(document.getElementById('raw-json-req').value);
+            } catch(e) {
+                alert("Lỗi cú pháp JSON trong mục 'Raw JSON Payload'! Vui lòng kiểm tra lại.");
+                return;
+            }
+
+            // UI loading state
             submitBtn.disabled = true;
             spinner.style.display = 'block';
-            btnText.textContent = 'Processing (May take up to 60s for Cold-Start)...';
-            resultsContainer.style.display = 'none';
-
-            const type = document.getElementById('task-type').value;
-            const query = document.getElementById('query').value;
-            const premisesRaw = document.getElementById('premises').value;
             
-            const premises = type === 'type1' ? premisesRaw.split('\n').filter(p => p.trim() !== '') : [];
-
-            const payload = {
-                query_id: "DEMO_" + Date.now(),
-                type: type,
-                query: query,
-                premises: premises,
-                options: []
-            };
+            // Hide empty state and show visual tabs
+            document.getElementById('empty-resp-state').style.display = 'none';
+            document.getElementById('resp-tabs').style.display = 'none';
+            document.getElementById('resp-visual-tab').classList.remove('active');
+            document.getElementById('resp-raw-tab').classList.remove('active');
+            statusBadges.style.display = 'none';
 
             const startTime = performance.now();
 
             try {
-                const response = await fetch(API_URL, {
+                // Check if endpoint is local or remote, handle array wrapped response of competition
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -400,43 +822,63 @@
                     body: JSON.stringify(payload)
                 });
 
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                const endTime = performance.now();
+                const elapsedSec = ((endTime - startTime) / 1000).toFixed(2);
+
+                // Set badge status
+                badgeStatus.className = "status-badge " + (response.ok ? "success" : "error");
+                badgeStatus.textContent = `CODE: ${response.status}`;
+                badgeTime.textContent = `TIME: ${elapsedSec}s`;
+                statusBadges.style.display = 'flex';
+
+                const responseData = await response.json();
+                
+                // Server response can be a list (as required by competition schema)
+                const result = Array.isArray(responseData) ? responseData[0] : responseData;
+
+                // Bind response to visual fields
+                let displayAns = result.answer || "0";
+                if(result.unit) displayAns += ` ${result.unit}`;
+                document.getElementById('res-answer').textContent = displayAns;
+                document.getElementById('res-explanation').textContent = result.explanation || "Không có giải thích.";
+                
+                if (result.premises_used && result.premises_used.length > 0) {
+                    document.getElementById('res-premises-container').style.display = 'block';
+                    document.getElementById('res-premises').textContent = JSON.stringify(result.premises_used);
+                } else {
+                    document.getElementById('res-premises-container').style.display = 'none';
                 }
 
-                const data = await response.json();
-                const result = data[0]; // Competition requires returning a list
+                const steps = result.reasoning ? result.reasoning.steps : [];
+                document.getElementById('res-reasoning').innerHTML = formatReasoning(steps);
 
-                const endTime = performance.now();
-                timeTaken.textContent = `${((endTime - startTime) / 1000).toFixed(2)}s`;
+                // Bind raw response JSON
+                document.getElementById('res-raw-json').textContent = JSON.stringify(responseData, null, 2);
 
-                // Update UI
-                reasoningBox.innerHTML = result.reasoning ? formatReasoning(result.reasoning.steps) : "No reasoning generated.";
-                
-                let ansText = result.answer;
-                if(result.unit) ansText += ` ${result.unit}`;
-                finalAnswer.textContent = ansText;
-                
-                explanationBox.textContent = result.explanation;
-
-                // Show results
-                resultsContainer.style.display = 'block';
-                
-                // Scroll to results
-                setTimeout(() => {
-                    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                // Show tabs and visual content
+                document.getElementById('resp-tabs').style.display = 'flex';
+                switchRespTab('visual');
 
             } catch (error) {
-                alert(`Error connecting to Modal API:\n${error.message}\n\nPlease ensure your Modal App is deployed and CORS is configured.`);
-                console.error(error);
+                const endTime = performance.now();
+                const elapsedSec = ((endTime - startTime) / 1000).toFixed(2);
+
+                badgeStatus.className = "status-badge error";
+                badgeStatus.textContent = "ERROR";
+                badgeTime.textContent = `TIME: ${elapsedSec}s`;
+                statusBadges.style.display = 'flex';
+
+                document.getElementById('res-raw-json').textContent = `Kết nối thất bại:\n${error.message}`;
+                document.getElementById('resp-tabs').style.display = 'flex';
+                switchRespTab('raw');
             } finally {
-                // Reset UI State
                 submitBtn.disabled = false;
                 spinner.style.display = 'none';
-                btnText.textContent = 'Generate Reasoning';
             }
-        });
+        }
+
+        // Initialize preset
+        loadPresetSelect();
     </script>
 </body>
 </html>

@@ -1,44 +1,90 @@
+import subprocess
+
 import modal
 
-app = modal.App("exact-2026-vllm")
 
-# Khởi tạo Volume chứa LoRA weights
+APP_NAME = "exact-2026-vllm"
+MODEL_NAME = "Qwen/Qwen3-8B"
+VLLM_PORT = 8000
+
+app = modal.App(APP_NAME)
+
+# This volume must contain the two LoRA adapter directories referenced below.
 volume = modal.Volume.from_name("exact-2026-volume", create_if_missing=True)
 
-# Image chứa vLLM và các thư viện cần thiết
 vllm_image = (
     modal.Image.debian_slim(python_version="3.10")
     .pip_install("vllm>=0.4.0", "huggingface_hub", "hf-transfer")
     .env({"HF_HUB_ENABLE_HF_TRANSFER": "1"})
 )
 
-# Chạy vLLM server như một web_server trên port 8000
+
 @app.function(
     image=vllm_image,
-    gpu="A100", # Cần A100 để chạy 8B + LoRA mượt mà
+    gpu="A100",
     volumes={"/workspace": volume},
     secrets=[modal.Secret.from_name("huggingface-secret")],
-    timeout=3600, # Giữ container sống lâu để tránh cold start liên tục
+    min_containers=0,
+    max_containers=1,
+    scaledown_window=600,
+    # timeout=600,
 )
-@modal.web_server(8000, startup_timeout=600)
+@modal.concurrent(max_inputs=1)
+@modal.web_server(VLLM_PORT, startup_timeout=600)
 def serve():
-    import subprocess
-    
-    # Khởi chạy vLLM OpenAI-compatible server với LoRA
-    # Base model: Qwen/Qwen3-8B
-    # LoRA module sẽ được gắn tên là 'exact-lora' và trỏ tới volume
     cmd = [
-        "python", "-m", "vllm.entrypoints.openai.api_server",
-        "--model", "Qwen/Qwen3-8B",
-        "--host", "0.0.0.0",
-        "--port", "8000",
+        "python",
+        "-m",
+        "vllm.entrypoints.openai.api_server",
+        "--model",
+        MODEL_NAME,
+        "--host",
+        "0.0.0.0",
+        "--port",
+        str(VLLM_PORT),
         "--enable-lora",
-        "--lora-modules", "exact-lora=/workspace/checkpoints/final", "exact-lora-type2=/workspace/checkpoints/type2-final",
-        "--max-lora-rank", "64",
-        "--max-model-len", "4096",
-        "--gpu-memory-utilization", "0.9"
+        "--lora-modules",
+        "exact-lora=/workspace/checkpoints/final",
+        "exact-lora-type2=/workspace/checkpoints/type2-final",
+        "--max-loras",
+        "1",
+        "--max-cpu-loras",
+        "2",
+        "--max-lora-rank",
+        "64",
+        "--max-model-len",
+        "4096",
+        "--gpu-memory-utilization",
+        "0.9",
     ]
-    # Use subprocess.Popen().wait() so the function blocks indefinitely.
-    # If the function returns, Modal kills the container.
-    process = subprocess.Popen(cmd)
-    process.wait()
+
+    import socket
+    import time
+
+    print("Starting vLLM server...")
+    proc = subprocess.Popen(cmd)
+
+    # Monitor startup and fail fast if the subprocess exits prematurely
+    start_time = time.time()
+    port_open = False
+    while time.time() - start_time < 580:  # slightly less than the 600s startup_timeout
+        if proc.poll() is not None:
+            raise RuntimeError(
+                f"vLLM server exited prematurely with code {proc.returncode}. "
+                "Check Modal logs for CUDA OOM, missing checkpoint volume, or other errors."
+            )
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.settimeout(2)
+                s.connect(("127.0.0.1", VLLM_PORT))
+                port_open = True
+                break
+        except Exception:
+            time.sleep(2)
+
+    if not port_open:
+        proc.terminate()
+        raise TimeoutError("vLLM server did not bind to port in time.")
+
+    print("vLLM server is ready and listening on port!")
+

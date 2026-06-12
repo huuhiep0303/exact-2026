@@ -22,6 +22,7 @@ from app.modules.sandbox import execute_sandbox
 from app.modules.normalizer import normalize_answer
 from app.modules.confidence import compute_confidence
 from app.modules.deterministic_solver import solve_deterministic
+from app.modules.answer_target import detect_answer_target, solver_result_is_compatible
 from app.modules.structurer import structure_response
 
 
@@ -136,17 +137,28 @@ def run_pipeline(question: str) -> PhysicsResponse:
         print(f"[Step 4] Sandbox: {status}")
 
     # ─── Step 5: Answer Normalizer ───
+    target = detect_answer_target(question)
+    ctx.target_quantity = target.quantity
+    ctx.expected_unit_dimension = ",".join(target.expected_dimensions)
     if sandbox_result.success:
         raw_answer = sandbox_result.answer_value or ""
         raw_unit = sandbox_result.unit or ""
+        ctx.answer_source = "sandbox"
     else:
         raw_answer = reasoner_output.raw_answer or ""
         raw_unit = reasoner_output.raw_unit or ""
+        ctx.answer_source = "llm"
 
     final_answer, final_unit = normalize_answer(raw_answer, raw_unit)
-    deterministic_result = solve_deterministic(question, topic=ctx.topic)
-    if deterministic_result is not None:
+    deterministic_result = solve_deterministic(question, topic=ctx.topic, target=target)
+    solver_compatible = bool(
+        deterministic_result
+        and solver_result_is_compatible(target, deterministic_result.answer, deterministic_result.unit)
+    )
+    if deterministic_result is not None and solver_compatible:
         final_answer, final_unit = normalize_answer(deterministic_result.answer, deterministic_result.unit)
+        ctx.answer_source = "deterministic_solver"
+        ctx.solver_strategy = deterministic_result.strategy
     ctx.final_answer = final_answer
     ctx.final_unit = final_unit
     if config.debug:
@@ -170,6 +182,8 @@ def run_pipeline(question: str) -> PhysicsResponse:
         retries_used=sandbox_result.retries_used,
         code_error=sandbox_result.error,
         sanity_warnings=warnings,
+        answer_source=ctx.answer_source,
+        solver_compatible=solver_compatible,
     )
 
     response = structure_response(ctx)

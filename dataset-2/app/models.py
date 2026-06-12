@@ -24,6 +24,11 @@ class PhysicsResponse(BaseModel):
     cot: Optional[List[str]] = Field(None, description="Chain-of-thought reasoning steps")
     premises: Optional[List[str]] = Field(None, description="Laws/formulas applied")
     confidence: Optional[float] = Field(None, ge=0.0, le=1.0, description="Confidence score")
+    answer_source: Optional[str] = Field(None, description="llm, sandbox, or deterministic_solver")
+    solver_strategy: Optional[str] = Field(None, description="Deterministic solver strategy when used")
+    routed_topic: Optional[str] = Field(None, description="Topic selected from question text")
+    target_quantity: Optional[str] = Field(None, description="Requested physical quantity")
+    expected_unit_dimension: Optional[str] = Field(None, description="Expected output dimension")
 
 
 # ─── Internal pipeline data containers ───
@@ -66,6 +71,10 @@ class PipelineContext(BaseModel):
     # Step 5: Normalized answer
     final_answer: str = ""
     final_unit: str = ""
+    answer_source: str = "llm"
+    solver_strategy: str = ""
+    target_quantity: str = "unknown"
+    expected_unit_dimension: str = ""
 
     # Step 6: Structured output
     cot_steps: List[str] = Field(default_factory=list)
