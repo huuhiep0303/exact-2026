@@ -1,0 +1,18 @@
+✓ Initialized. View run at 
+https://modal.com/apps/hirocao0710/main/ap-Z5oTyGrDC54Z5Gv0AIQkFG
+✓ Created objects.
+├── 🔨 Created mount 
+│   C:\Users\MSI\.gemini\antigravity\brain\a5b3544c-07cb-4bb1-a08c-3ad56b612fcc
+│   \scratch\check_secret.py
+└── 🔨 Created function check.
+--- ENVIRONMENT VARIABLES ---
+USE_QDRANT: true
+QDRANT_HOST: https://4e048dd7-7f79-4151-b176-38a386c6298e.sa-east-1-0.aws.cloud.qdrant.io
+QDRANT_API_KEY (prefix): eyJhbGciOi...
+QDRANT_COLLECTION: physics_kb
+-----------------------------
+Qdrant connection test: SUCCESS!
+Available Collections: ['physics_kb']
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/hirocao0710/main/ap-Z5oTyGrDC54Z5Gv0AIQkFG

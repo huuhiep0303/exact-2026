@@ -27,12 +27,16 @@ def build_submission():
                         "__pycache__", ".git", "venv", ".venv", "node_modules", 
                         "checkpoints", "qdrant_storage", "eval_results", "outputs", 
                         "dist", "EXACT2026_dataset_2026-05-15", ".codegraph",
-                        "external", "runs", ".svelte-kit", "CMakeFiles"
+                        "external", "runs", ".svelte-kit", "CMakeFiles",
+                        "data", "processed", "processed_v2", "modal_logs", "wandb"
                     }
                     if any(exclude in Path(root).parts for exclude in exclude_dirs):
                         continue
                         
                     for file in files:
+                        # Skip large non-code files
+                        if file.lower().endswith(('.pdf', '.jsonl', '.csv', '.pyc', '.zip', '.tar.gz', '.log', '.out', '.png', '.jpg', '.jpeg')):
+                            continue
                         file_path = os.path.join(root, file)
                         # Add to zip with relative path
                         rel_path = os.path.relpath(file_path, base_dir)
