@@ -22,11 +22,14 @@ def build_submission():
             folder_path = base_dir / folder
             if folder_path.exists():
                 for root, dirs, files in os.walk(folder_path):
-                    # Ignore standard exclusions
-                    if "__pycache__" in root or ".git" in root or "venv" in root or "node_modules" in root:
-                        continue
-                    # Ignore the dist directory itself
-                    if str(dist_dir) in root:
+                    # Ignore standard and large exclusions
+                    exclude_dirs = {
+                        "__pycache__", ".git", "venv", ".venv", "node_modules", 
+                        "checkpoints", "qdrant_storage", "eval_results", "outputs", 
+                        "dist", "EXACT2026_dataset_2026-05-15", ".codegraph",
+                        "external", "runs", ".svelte-kit", "CMakeFiles"
+                    }
+                    if any(exclude in Path(root).parts for exclude in exclude_dirs):
                         continue
                         
                     for file in files:
@@ -44,35 +47,29 @@ def build_submission():
         f.write("\\times,nhân,\n")
         # Empty cells mean use canonical
         
-    # 3. Create urls.txt (Template)
+    # 3. Create urls.txt with the real active URLs
     print("Generating urls.txt...")
     urls_path = dist_dir / "urls.txt"
     with open(urls_path, 'w', encoding='utf-8') as f:
-        f.write("Prediction Endpoint: https://<your-vllm-fastapi-app-url.modal.run>/predict\n")
-        f.write("vLLM Model Endpoint: https://<your-vllm-engine-url.modal.run>/v1/models\n")
+        f.write("Prediction Endpoint: https://hirocao0710--exact-2026-submission-fastapi-app.modal.run/predict\n")
+        f.write("vLLM Model Endpoint: https://hirocao0710--exact-2026-vllm-serve.modal.run/v1/models\n")
         
-    # 4. Create solution.md (Template for PDF conversion)
-    print("Generating solution.md (please convert to PDF as solution.pdf)...")
-    solution_path = dist_dir / "solution.md"
-    with open(solution_path, 'w', encoding='utf-8') as f:
-        f.write("# Giải pháp EXACT 2026\n\n")
-        f.write("## 1. Datasets đã dùng\n")
-        f.write("- EXACT 2026 Type 1 (Logic): 565 mẫu train (đã làm sạch dữ liệu nhiễu).\n")
-        f.write("- EXACT 2026 Type 2 (Physics): Dữ liệu vật lý cơ bản.\n\n")
-        f.write("## 2. Approach và phương pháp\n")
-        f.write("Hệ thống kết hợp 2 pipeline:\n")
-        f.write("- **Type 1 (Logic)**: Xử lý bằng hệ chuyên gia kết hợp prompt engineering chuẩn.\n")
-        f.write("- **Type 2 (Physics)**: Dùng RAG kết hợp Code Sandbox để tính toán đáp án và unit.\n\n")
-        f.write("## 3. Kích thước mô hình\n")
-        f.write("Tổng số lượng tham số đang được load đồng thời là dưới 8B. Chúng tôi sử dụng Qwen3-8B phục vụ cho cả Type 1 và Type 2 thông qua 1 instance vLLM duy nhất.\n")
+    # 4. Copy solution.docx to dist/
+    print("Copying solution.docx to dist/...")
+    src_solution = base_dir / "solution.docx"
+    dest_solution = dist_dir / "solution.docx"
+    if src_solution.exists():
+        shutil.copy2(src_solution, dest_solution)
+    else:
+        print("Warning: solution.docx not found in workspace root.")
         
     print("\n" + "="*50)
     print(f"DONE! Build artifacts are in: {dist_dir}")
     print("="*50)
     print("ACTIONS REQUIRED BEFORE SUBMISSION:")
-    print("1. Edit dist/urls.txt with your actual Modal deployment URLs.")
+    print("1. Review dist/urls.txt (already configured with active Modal endpoints).")
     print("2. Review dist/notation_mapping.csv if you have custom math notations.")
-    print("3. Convert dist/solution.md to solution.pdf (e.g. using VSCode Markdown PDF extension or print to PDF).")
+    print("3. Convert dist/solution.docx to solution.pdf (as required by the guidelines).")
     print("4. Select source_code.zip, urls.txt, notation_mapping.csv, and solution.pdf -> Create a new zip named <your_team_name>.zip")
     print("="*50)
 
