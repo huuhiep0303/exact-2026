@@ -23,11 +23,11 @@ vllm_image = (
     image=vllm_image,
     gpu="A100",
     volumes={"/workspace": volume},
-    secrets=[modal.Secret.from_name("huggingface-secret")],
+    # secrets=[modal.Secret.from_name("huggingface-secret")],
     min_containers=0,
     max_containers=1,
-    scaledown_window=600,
-    # timeout=600,
+    scaledown_window=60,
+    timeout=900,
 )
 @modal.concurrent(max_inputs=1)
 @modal.web_server(VLLM_PORT, startup_timeout=600)

@@ -1,0 +1,94 @@
+{
+  "endpoint": "https://hirocao0710--exact-2026-submission-fastapi-app.modal.run/predict",
+  "cases": [
+    {
+      "name": "type1_mcq_correct_option_c",
+      "request_payload": {
+        "query_id": "demo_type1_mcq_c",
+        "type": "type1",
+        "query": "Which option is logically supported?\nA. Cedar may not enter Vault Nine\nB. The cafeteria closes at nine\nC. Cedar may enter Vault Nine\nD. Cedar lost the security badge",
+        "premises": [
+          "Cedar has a security badge.",
+          "If Cedar has a security badge, then Cedar may enter Vault Nine.",
+          "The cafeteria closes at six."
+        ],
+        "options": ["A", "B", "C", "D"]
+      },
+      "expected": {
+        "answer": "C",
+        "premises_used": [0, 1]
+      }
+    },
+    {
+      "name": "type1_yes_no_answer_no_reordered_options",
+      "request_payload": {
+        "query_id": "demo_type1_no",
+        "type": "type1",
+        "query": "Is Kite X approved for night flights?",
+        "premises": [
+          "No solar-powered drone is approved for night flights.",
+          "Kite X is a solar-powered drone."
+        ],
+        "options": ["Uncertain", "No", "Yes"]
+      },
+      "expected": {
+        "answer": "No",
+        "premises_used": [0, 1]
+      }
+    },
+    {
+      "name": "type1_unknown_meta_premise_at_index_1",
+      "request_payload": {
+        "query_id": "demo_type1_unknown",
+        "type": "type1",
+        "query": "Does Nia have archive clearance?",
+        "premises": [
+          "Nia completed orientation.",
+          "No record states whether Nia has archive clearance.",
+          "The archive opens on Monday."
+        ],
+        "options": ["No", "Unknown", "Yes"]
+      },
+      "expected": {
+        "answer": "Unknown",
+        "premises_used": [1]
+      }
+    },
+    {
+      "name": "type1_number_37",
+      "request_payload": {
+        "query_id": "demo_type1_number_37",
+        "type": "type1",
+        "query": "How many sealed files does Archive Z store?",
+        "premises": [
+          "Room B contains four desks.",
+          "Archive Z stores 37 sealed files.",
+          "Archive Z is below the library."
+        ],
+        "options": []
+      },
+      "expected": {
+        "answer": "37",
+        "premises_used": [1]
+      }
+    },
+    {
+      "name": "type1_text_orion_laboratory",
+      "request_payload": {
+        "query_id": "demo_type1_text_orion",
+        "type": "type1",
+        "query": "Which facility may host the symposium?",
+        "premises": [
+          "If a facility passes inspection, then that facility may host the symposium.",
+          "Orion Laboratory passed inspection.",
+          "The symposium begins in October."
+        ],
+        "options": []
+      },
+      "expected": {
+        "answer": "Orion Laboratory",
+        "premises_used": [0, 1]
+      }
+    }
+  ]
+}

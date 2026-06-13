@@ -373,6 +373,24 @@
             overflow: auto;
         }
 
+        .expected-check {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            white-space: pre-wrap;
+        }
+
+        .expected-check.pass {
+            color: var(--success);
+            border-color: rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.08);
+        }
+
+        .expected-check.fail {
+            color: var(--error);
+            border-color: rgba(239, 68, 68, 0.35);
+            background: rgba(239, 68, 68, 0.08);
+        }
+
         .final-answer-container {
             display: flex;
             align-items: center;
@@ -537,6 +555,10 @@
                 <div id="req-json-tab" class="tab-content">
                     <div class="form-group" style="display: flex; flex-direction: column; flex: 1;">
                         <label for="raw-json-req">Request JSON Body</label>
+                        <div style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.5rem;">
+                            Accepts a direct API payload or a test case with request_payload and expected.
+                            Only request_payload is sent to the endpoint.
+                        </div>
                         <textarea id="raw-json-req" class="json-editor" oninput="syncJSONToForm()"></textarea>
                     </div>
                 </div>
@@ -554,6 +576,7 @@
                     <div class="badge-bar" id="status-badges" style="display: none;">
                         <span class="status-badge neutral" id="badge-status">CODE: 200</span>
                         <span class="status-badge neutral" id="badge-time">TIME: 0.0s</span>
+                        <span class="status-badge neutral" id="badge-expected" style="display: none;">EXPECTED: N/A</span>
                     </div>
                 </div>
 
@@ -579,6 +602,11 @@
                             <div class="final-answer-label">Đáp án cuối cùng</div>
                             <div class="final-answer-val" id="res-answer">-</div>
                         </div>
+                    </div>
+
+                    <div class="form-group" id="expected-check-container" style="display: none;">
+                        <label>Expected Result Check</label>
+                        <div class="output-box expected-check" id="expected-check"></div>
                     </div>
 
                     <!-- Explanation -->
@@ -727,6 +755,128 @@
             }
         }
 
+        function getRequestContext(value) {
+            if (!value || typeof value !== 'object' || Array.isArray(value)) {
+                throw new Error('The JSON root must be an object.');
+            }
+
+            if (Array.isArray(value.cases)) {
+                throw new Error('Paste one item from cases, not the entire test suite.');
+            }
+
+            if (value.request_payload !== undefined) {
+                if (!value.request_payload || typeof value.request_payload !== 'object' || Array.isArray(value.request_payload)) {
+                    throw new Error('request_payload must be an object.');
+                }
+                return {
+                    document: value,
+                    payload: value.request_payload,
+                    expected: value.expected || null,
+                    name: value.name || value.request_payload.query_id || 'test_case',
+                    wrapped: true
+                };
+            }
+
+            return {
+                document: value,
+                payload: value,
+                expected: null,
+                name: value.query_id || 'request',
+                wrapped: false
+            };
+        }
+
+        function validateRequestPayload(payload) {
+            for (const field of ['query_id', 'type', 'query']) {
+                if (typeof payload[field] !== 'string' || payload[field].trim() === '') {
+                    throw new Error(`${field} must be a non-empty string.`);
+                }
+            }
+            if (!['type1', 'type2'].includes(payload.type)) {
+                throw new Error('type must be type1 or type2.');
+            }
+            if (!Array.isArray(payload.premises)) {
+                throw new Error('premises must be an array.');
+            }
+            if (!Array.isArray(payload.options)) {
+                throw new Error('options must be an array.');
+            }
+        }
+
+        function sortedNumbers(value) {
+            return Array.isArray(value) ? [...value].map(Number).sort((a, b) => a - b) : [];
+        }
+
+        function sameArray(left, right) {
+            return JSON.stringify(sortedNumbers(left)) === JSON.stringify(sortedNumbers(right));
+        }
+
+        function evaluateExpected(result, expected) {
+            const checks = [];
+
+            if (Object.prototype.hasOwnProperty.call(expected, 'answer')) {
+                const acceptedAnswers = [expected.answer, ...(expected.aliases || [])]
+                    .map(value => String(value).trim());
+                const actualAnswer = String(result.answer ?? '').trim();
+                checks.push({
+                    field: 'answer',
+                    pass: acceptedAnswers.includes(actualAnswer),
+                    expected: acceptedAnswers.join(' | '),
+                    actual: actualAnswer
+                });
+            }
+
+            if (Object.prototype.hasOwnProperty.call(expected, 'premises_used')) {
+                checks.push({
+                    field: 'premises_used',
+                    pass: sameArray(result.premises_used, expected.premises_used),
+                    expected: JSON.stringify(sortedNumbers(expected.premises_used)),
+                    actual: JSON.stringify(sortedNumbers(result.premises_used))
+                });
+            }
+
+            if (Object.prototype.hasOwnProperty.call(expected, 'unit')) {
+                const expectedUnit = String(expected.unit ?? '').trim();
+                const actualUnit = String(result.unit ?? '').trim();
+                checks.push({
+                    field: 'unit',
+                    pass: actualUnit === expectedUnit,
+                    expected: expectedUnit,
+                    actual: actualUnit
+                });
+            }
+
+            return {
+                pass: checks.length > 0 && checks.every(check => check.pass),
+                checks
+            };
+        }
+
+        function showExpectedCheck(caseName, result, expected) {
+            const container = document.getElementById('expected-check-container');
+            const output = document.getElementById('expected-check');
+            const badge = document.getElementById('badge-expected');
+
+            if (!expected) {
+                container.style.display = 'none';
+                badge.style.display = 'none';
+                return;
+            }
+
+            const evaluation = evaluateExpected(result, expected);
+            const lines = evaluation.checks.map(check =>
+                `${check.pass ? 'PASS' : 'FAIL'} ${check.field}: expected ${check.expected}; actual ${check.actual}`
+            );
+
+            output.className = `output-box expected-check ${evaluation.pass ? 'pass' : 'fail'}`;
+            output.textContent = `${caseName}: ${evaluation.pass ? 'PASS' : 'FAIL'}\n${lines.join('\n')}`;
+            container.style.display = 'block';
+
+            badge.className = `status-badge ${evaluation.pass ? 'success' : 'error'}`;
+            badge.textContent = `EXPECTED: ${evaluation.pass ? 'PASS' : 'FAIL'}`;
+            badge.style.display = 'inline-flex';
+        }
+
         // Form fields changed -> update Raw JSON editor
         function syncFormToJSON() {
             if (activeReqTab !== 'form') return;
@@ -744,11 +894,14 @@
             document.getElementById('options-group').style.display = (type === 'type2') ? 'none' : 'block';
 
             // Parse current JSON or get preset template
+            let currentDocument = {};
             let currentPayload = {};
             try {
-                currentPayload = JSON.parse(document.getElementById('raw-json-req').value);
+                currentDocument = JSON.parse(document.getElementById('raw-json-req').value);
+                currentPayload = getRequestContext(currentDocument).payload;
             } catch(e) {
-                currentPayload = { query_id: "REQ_" + Date.now() };
+                currentDocument = { query_id: "REQ_" + Date.now() };
+                currentPayload = currentDocument;
             }
 
             currentPayload.type = type;
@@ -756,7 +909,7 @@
             currentPayload.premises = type === 'type1' ? premises : [];
             currentPayload.options = type === 'type1' ? options : [];
             
-            document.getElementById('raw-json-req').value = JSON.stringify(currentPayload, null, 2);
+            document.getElementById('raw-json-req').value = JSON.stringify(currentDocument, null, 2);
             document.getElementById('preset-selector').value = "custom";
         }
 
@@ -764,8 +917,8 @@
         function syncJSONToForm() {
             if (activeReqTab !== 'json') return;
             try {
-                const payload = JSON.parse(document.getElementById('raw-json-req').value);
-                updateFormFromJSON(payload);
+                const value = JSON.parse(document.getElementById('raw-json-req').value);
+                updateFormFromJSON(getRequestContext(value).payload);
                 document.getElementById('preset-selector').value = "custom";
             } catch(e) {
                 // Invalid JSON, don't update form
@@ -790,14 +943,19 @@
             const statusBadges = document.getElementById('status-badges');
             const badgeStatus = document.getElementById('badge-status');
             const badgeTime = document.getElementById('badge-time');
+            const badgeExpected = document.getElementById('badge-expected');
             
-            let payload = {};
+            let requestContext;
             try {
-                payload = JSON.parse(document.getElementById('raw-json-req').value);
+                const value = JSON.parse(document.getElementById('raw-json-req').value);
+                requestContext = getRequestContext(value);
+                validateRequestPayload(requestContext.payload);
             } catch(e) {
-                alert("Lỗi cú pháp JSON trong mục 'Raw JSON Payload'! Vui lòng kiểm tra lại.");
+                alert(`JSON test không hợp lệ: ${e.message}`);
                 return;
             }
+
+            const payload = requestContext.payload;
 
             // UI loading state
             submitBtn.disabled = true;
@@ -808,6 +966,8 @@
             document.getElementById('resp-tabs').style.display = 'none';
             document.getElementById('resp-visual-tab').classList.remove('active');
             document.getElementById('resp-raw-tab').classList.remove('active');
+            document.getElementById('expected-check-container').style.display = 'none';
+            badgeExpected.style.display = 'none';
             statusBadges.style.display = 'none';
 
             const startTime = performance.now();
@@ -851,6 +1011,8 @@
 
                 const steps = result.reasoning ? result.reasoning.steps : [];
                 document.getElementById('res-reasoning').innerHTML = formatReasoning(steps);
+
+                showExpectedCheck(requestContext.name, result, requestContext.expected);
 
                 // Bind raw response JSON
                 document.getElementById('res-raw-json').textContent = JSON.stringify(responseData, null, 2);

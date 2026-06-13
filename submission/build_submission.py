@@ -10,7 +10,14 @@ def build_submission():
     
     # Clean previous build
     if dist_dir.exists():
-        shutil.rmtree(dist_dir)
+        for item in dist_dir.iterdir():
+            try:
+                if item.is_file():
+                    item.unlink()
+                elif item.is_dir():
+                    shutil.rmtree(item)
+            except Exception as e:
+                print(f"Skipping deletion of {item} due to: {e}")
     dist_dir.mkdir(parents=True, exist_ok=True)
     
     # 1. Create source_code.zip
@@ -63,7 +70,10 @@ def build_submission():
     src_solution = base_dir / "solution.docx"
     dest_solution = dist_dir / "solution.docx"
     if src_solution.exists():
-        shutil.copy2(src_solution, dest_solution)
+        try:
+            shutil.copy2(src_solution, dest_solution)
+        except Exception as e:
+            print(f"Warning: Could not copy solution.docx (already exists or locked): {e}")
     else:
         print("Warning: solution.docx not found in workspace root.")
         

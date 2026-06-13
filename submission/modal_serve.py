@@ -30,6 +30,10 @@ image = (
 @modal.asgi_app()
 def fastapi_app():
     import sys
+    # IMPORTANT: Insert dataset-2 at position 0 BEFORE importing submission.app.
+    # This ensures 'from app.pipeline import run_pipeline' resolves to
+    # /root/Project/dataset-2/app/pipeline.py, NOT submission/app.py (name collision).
+    sys.path.insert(0, "/root/Project/dataset-2")
     sys.path.append("/root/Project")
     # Change working directory so dataset-2 can find its KB files relative to itself
     os.chdir("/root/Project")

@@ -1,2 +1,2 @@
-modal deploy submission/vllm_serve.py
-modal deploy submission/modal_serve.py
+$env:PYTHONIOENCODING="utf-8"; modal deploy submission/modal_serve.py
+$env:PYTHONIOENCODING="utf-8"; modal deploy submission/vllm_serve.py
