@@ -282,13 +282,17 @@ class QdrantKB:
 
         try:
             if config.qdrant_host.startswith(("http://", "https://")):
-                self.client = QdrantClient(url=config.qdrant_host, api_key=config.qdrant_api_key or None, timeout=60.0)
+                self.client = QdrantClient(
+                    url=config.qdrant_host,
+                    api_key=config.qdrant_api_key or None,
+                    timeout=8.0,
+                )
             else:
                 self.client = QdrantClient(
                     host=config.qdrant_host,
                     port=config.qdrant_port,
                     api_key=config.qdrant_api_key or None,
-                    timeout=60.0
+                    timeout=8.0
                 )
             # Ping client
             self.client.get_collections()

@@ -37,6 +37,9 @@ VLLM_API_URL = os.getenv("VLLM_API_URL", "http://localhost:8000/v1")
 MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen3-8B") # Or whatever model ID you serve
 TYPE1_MODEL = os.getenv("TYPE1_MODEL", "exact-lora")
 TYPE2_MODEL = os.getenv("TYPE2_MODEL", "exact-lora-type2")
+VLLM_REQUEST_TIMEOUT = float(os.getenv("VLLM_REQUEST_TIMEOUT", "45"))
+TYPE1_MAX_TOKENS = int(os.getenv("TYPE1_MAX_TOKENS", "512"))
+TYPE2_PIPELINE_TIMEOUT = float(os.getenv("TYPE2_PIPELINE_TIMEOUT", "50"))
 
 
 SYSTEM_PROMPT = """You are an expert in formal logical reasoning. Analyze the premises and answer the question using rigorous logical deduction.
@@ -335,7 +338,8 @@ def call_vllm(user_message: str) -> str:
     pass
 
 async def async_call_vllm(user_message: str, model_name: str = MODEL_NAME) -> str:
-    async with httpx.AsyncClient(timeout=55.0) as client:
+    timeout = httpx.Timeout(VLLM_REQUEST_TIMEOUT, connect=10.0)
+    async with httpx.AsyncClient(timeout=timeout) as client:
         payload = {
             "model": model_name,
             "messages": [
@@ -344,7 +348,7 @@ async def async_call_vllm(user_message: str, model_name: str = MODEL_NAME) -> st
             ],
             "temperature": 0.0,
             "top_p": 1.0,
-            "max_tokens": 2048,
+            "max_tokens": TYPE1_MAX_TOKENS,
         }
 
         try:
@@ -354,7 +358,7 @@ async def async_call_vllm(user_message: str, model_name: str = MODEL_NAME) -> st
             return data["choices"][0]["message"]["content"]
         except Exception as e:
             print(f"vLLM Error: {e}")
-            return ""
+            raise HTTPException(status_code=502, detail=f"vLLM request failed: {e}") from e
 
 # --- Pipelines ---
 
@@ -462,7 +466,20 @@ async def handle_type2(request: QueryRequest) -> QueryResponse:
 
     # Run the pipeline in a thread to avoid blocking FastAPI event loop
     try:
-        physics_response = await asyncio.to_thread(run_pipeline, request.query)
+        physics_response = await asyncio.wait_for(
+            asyncio.to_thread(run_pipeline, request.query),
+            timeout=TYPE2_PIPELINE_TIMEOUT,
+        )
+    except asyncio.TimeoutError:
+        print(f"Type 2 Pipeline Error: exceeded {TYPE2_PIPELINE_TIMEOUT}s budget")
+        return QueryResponse(
+            query_id=request.query_id,
+            answer="0",
+            unit="",
+            explanation="Type 2 pipeline exceeded the internal time budget.",
+            premises_used=[],
+            reasoning=None
+        )
     except Exception as e:
         print(f"Type 2 Pipeline Error: {e}")
         return QueryResponse(

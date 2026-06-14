@@ -1,2 +1,20 @@
-$env:PYTHONIOENCODING="utf-8"; modal deploy submission/modal_serve.py
-$env:PYTHONIOENCODING="utf-8"; modal deploy submission/vllm_serve.py
+$env:PYTHONIOENCODING="utf-8"
+modal deploy submission/vllm_serve.py --timestamps
+
+Sau đó đợi model thực sự ready. Kiểm tra:
+Invoke-RestMethod `
+  "https://hirocao0710--exact-2026-vllm-serve.modal.run/v1/models"
+
+Chỉ tiếp tục khi kết quả có đủ:
+Qwen/Qwen3-8B
+exact-lora
+exact-lora-type2
+
+Sau đó deploy API:
+$env:PYTHONIOENCODING="utf-8"
+modal deploy submission/modal_serve.py --timestamps
+
+$env:PYTHONIOENCODING="utf-8"
+modal deploy submission/vllm_serve.py --timestamps
+$env:PYTHONIOENCODING="utf-8"
+modal deploy submission/modal_serve.py --timestamps

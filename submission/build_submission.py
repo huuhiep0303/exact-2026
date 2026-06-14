@@ -1,7 +1,64 @@
 import os
+import argparse
 import zipfile
 import shutil
 from pathlib import Path
+
+MAX_SOURCE_ZIP_BYTES = 4 * 1024 * 1024
+SOURCE_FOLDERS = ("dataset-1", "dataset-2", "submission")
+EXCLUDED_DIRS = {
+    "__pycache__", ".git", "venv", ".venv", "node_modules",
+    "checkpoints", "qdrant_storage", "eval_results", "outputs",
+    "dist", "EXACT2026_dataset_2026-05-15", ".codegraph",
+    "external", "runs", ".svelte-kit", "CMakeFiles", "data",
+    "processed", "processed_v2", "modal_logs", "wandb",
+}
+EXCLUDED_SUFFIXES = {
+    ".pdf", ".jsonl", ".csv", ".pyc", ".zip", ".gz", ".log",
+    ".out", ".png", ".jpg", ".jpeg", ".safetensors", ".bin",
+    ".gguf", ".pt", ".pth",
+}
+EXCLUDED_NAMES = {".env"}
+
+
+def build_source_code_zip(base_dir: Path, dist_dir: Path) -> Path:
+    """Create the source archive without touching other submission artifacts."""
+    dist_dir.mkdir(parents=True, exist_ok=True)
+    output_path = dist_dir / "source_code.zip"
+
+    with zipfile.ZipFile(
+        output_path,
+        "w",
+        compression=zipfile.ZIP_DEFLATED,
+        compresslevel=9,
+    ) as zipf:
+        for folder in SOURCE_FOLDERS:
+            folder_path = base_dir / folder
+            if not folder_path.exists():
+                continue
+
+            for root, dirs, files in os.walk(folder_path):
+                dirs[:] = [name for name in dirs if name not in EXCLUDED_DIRS]
+                root_path = Path(root)
+
+                for filename in files:
+                    file_path = root_path / filename
+                    if filename in EXCLUDED_NAMES:
+                        continue
+                    if file_path.suffix.lower() in EXCLUDED_SUFFIXES:
+                        continue
+                    zipf.write(file_path, file_path.relative_to(base_dir))
+
+    size = output_path.stat().st_size
+    if size > MAX_SOURCE_ZIP_BYTES:
+        output_path.unlink()
+        raise RuntimeError(
+            f"source_code.zip is {size / 1024 / 1024:.2f} MB; limit is 4 MB"
+        )
+
+    print(f"Built {output_path} ({size / 1024 / 1024:.2f} MB)")
+    return output_path
+
 
 def build_submission():
     base_dir = Path(__file__).resolve().parent.parent
@@ -22,32 +79,7 @@ def build_submission():
     
     # 1. Create source_code.zip
     print("Building source_code.zip...")
-    source_code_zip_path = dist_dir / "source_code.zip"
-    with zipfile.ZipFile(source_code_zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-        # Include dataset-1, dataset-2, submission, and any config files
-        for folder in ["dataset-1", "dataset-2", "submission"]:
-            folder_path = base_dir / folder
-            if folder_path.exists():
-                for root, dirs, files in os.walk(folder_path):
-                    # Ignore standard and large exclusions
-                    exclude_dirs = {
-                        "__pycache__", ".git", "venv", ".venv", "node_modules", 
-                        "checkpoints", "qdrant_storage", "eval_results", "outputs", 
-                        "dist", "EXACT2026_dataset_2026-05-15", ".codegraph",
-                        "external", "runs", ".svelte-kit", "CMakeFiles",
-                        "data", "processed", "processed_v2", "modal_logs", "wandb"
-                    }
-                    if any(exclude in Path(root).parts for exclude in exclude_dirs):
-                        continue
-                        
-                    for file in files:
-                        # Skip large non-code files
-                        if file.lower().endswith(('.pdf', '.jsonl', '.csv', '.pyc', '.zip', '.tar.gz', '.log', '.out', '.png', '.jpg', '.jpeg')):
-                            continue
-                        file_path = os.path.join(root, file)
-                        # Add to zip with relative path
-                        rel_path = os.path.relpath(file_path, base_dir)
-                        zipf.write(file_path, rel_path)
+    build_source_code_zip(base_dir, dist_dir)
     
     # 2. Create notation_mapping.csv (Template)
     print("Generating notation_mapping.csv...")
@@ -88,4 +120,16 @@ def build_submission():
     print("="*50)
 
 if __name__ == "__main__":
-    build_submission()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--source-only",
+        action="store_true",
+        help="Only rebuild dist/source_code.zip and preserve other artifacts.",
+    )
+    args = parser.parse_args()
+
+    if args.source_only:
+        project_dir = Path(__file__).resolve().parent.parent
+        build_source_code_zip(project_dir, project_dir / "submission" / "dist")
+    else:
+        build_submission()

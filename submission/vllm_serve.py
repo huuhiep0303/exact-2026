@@ -11,25 +11,35 @@ app = modal.App(APP_NAME)
 
 # This volume must contain the two LoRA adapter directories referenced below.
 volume = modal.Volume.from_name("exact-2026-volume", create_if_missing=True)
+hf_cache_volume = modal.Volume.from_name("exact-2026-hf-cache", create_if_missing=True)
+vllm_cache_volume = modal.Volume.from_name("exact-2026-vllm-cache", create_if_missing=True)
 
 vllm_image = (
     modal.Image.debian_slim(python_version="3.10")
     .pip_install("vllm>=0.4.0", "huggingface_hub", "hf-transfer")
-    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1"})
+    .env({
+        "HF_HUB_ENABLE_HF_TRANSFER": "1",
+        "HF_XET_HIGH_PERFORMANCE": "1",
+        "VLLM_LOG_STATS_INTERVAL": "5",
+    })
 )
 
 
 @app.function(
     image=vllm_image,
     gpu="A100",
-    volumes={"/workspace": volume},
-    # secrets=[modal.Secret.from_name("huggingface-secret")],
+    volumes={
+        "/workspace": volume,
+        "/root/.cache/huggingface": hf_cache_volume,
+        "/root/.cache/vllm": vllm_cache_volume,
+    },
+    secrets=[modal.Secret.from_name("exact-2026-config")],
     min_containers=0,
     max_containers=1,
-    scaledown_window=60,
+    scaledown_window=600,
     timeout=900,
 )
-@modal.concurrent(max_inputs=1)
+@modal.concurrent(max_inputs=8)
 @modal.web_server(VLLM_PORT, startup_timeout=600)
 def serve():
     cmd = [
@@ -56,6 +66,13 @@ def serve():
         "4096",
         "--gpu-memory-utilization",
         "0.9",
+        # Trade a little warm throughput for a much shorter cold start.
+        "--enforce-eager",
+        "--enable-prefix-caching",
+        # The Modal Volume is exposed as 9P; vLLM recommends prefetching for
+        # this filesystem instead of reading each shard lazily.
+        "--safetensors-load-strategy",
+        "prefetch",
     ]
 
     import socket
@@ -87,4 +104,3 @@ def serve():
         raise TimeoutError("vLLM server did not bind to port in time.")
 
     print("vLLM server is ready and listening on port!")
-

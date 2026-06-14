@@ -184,6 +184,7 @@ def _api_reason(
         client = OpenAI(
             api_key=os.getenv("OPENAI_API_KEY") or "not-needed",
             base_url=os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+            timeout=float(os.getenv("REASONER_API_TIMEOUT", "40")),
         )
         prompt = build_reasoner_prompt(
             question,
