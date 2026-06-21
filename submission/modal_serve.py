@@ -14,7 +14,13 @@ image = (
         "fastapi", "uvicorn", "pydantic", "httpx", "openai",
         "python-dotenv", "qdrant-client", "sentence-transformers"
     )
-    .env({"HF_XET_HIGH_PERFORMANCE": "1"})
+    .env({
+        "HF_XET_HIGH_PERFORMANCE": "1",
+        "USE_QDRANT": "true",
+        "QDRANT_HOST": "https://4e048dd7-7f79-4151-b176-38a386c6298e.sa-east-1-0.aws.cloud.qdrant.io",
+        "QDRANT_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIiwic3ViamVjdCI6ImFwaS1rZXk6ZWJmODI1ZWMtZmNlOC00ZjAwLTlkYzItMjRhZWI3MmFhZWFhIn0._NCEdi3t_d8bR_c9YLIQu45nZ_nDi-_0_B5EGonq3bc",
+        "QDRANT_COLLECTION": "physics_kb"
+    })
     .add_local_dir(os.path.join(BASE_DIR, "submission"), remote_path="/root/Project/submission", ignore=["__pycache__", ".git", "dist"])
     .add_local_dir(os.path.join(BASE_DIR, "dataset-1"), remote_path="/root/Project/dataset-1", ignore=["venv", "outputs", "__pycache__", ".git", "EXACT2026_dataset_2026-05-15"])
     .add_local_dir(os.path.join(BASE_DIR, "dataset-2"), remote_path="/root/Project/dataset-2", ignore=["venv", "eval_results", "__pycache__", ".git", "checkpoints", "wandb", ".env"])
@@ -25,7 +31,7 @@ image = (
     image=image,
     secrets=[modal.Secret.from_name("exact-2026-config")],
     volumes={"/root/.cache/huggingface": hf_cache_volume},
-    min_containers=0,
+    min_containers=1,
     max_containers=1,
     scaledown_window=600,
     # timeout=600, #có hoặc không
@@ -45,9 +51,9 @@ def fastapi_app():
     # Keep one-time Qdrant and embedding initialization out of the first
     # competition request's 60-second response budget.
     os.environ["PIPELINE_MODE"] = "api"
-    os.environ["OPENAI_BASE_URL"] = os.getenv(
-        "VLLM_API_URL", "http://localhost:8000/v1"
-    )
+    vllm_url = os.getenv("VLLM_API_URL", "https://ngocthaodn0109--exact-2026-vllm-serve.modal.run/v1")
+    os.environ["VLLM_API_URL"] = vllm_url
+    os.environ["OPENAI_BASE_URL"] = vllm_url
     os.environ["REASONER_API_MODEL"] = os.getenv(
         "TYPE2_MODEL", "exact-lora-type2"
     )

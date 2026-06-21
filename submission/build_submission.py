@@ -94,8 +94,8 @@ def build_submission():
     print("Generating urls.txt...")
     urls_path = dist_dir / "urls.txt"
     with open(urls_path, 'w', encoding='utf-8') as f:
-        f.write("Prediction Endpoint: https://hirocao0710--exact-2026-submission-fastapi-app.modal.run/predict\n")
-        f.write("vLLM Model Endpoint: https://hirocao0710--exact-2026-vllm-serve.modal.run/v1/models\n")
+        f.write("Prediction Endpoint: https://ngocthaodn0109--exact-2026-submission-fastapi-app.modal.run/predict\n")
+        f.write("vLLM Model Endpoint: https://ngocthaodn0109--exact-2026-vllm-serve.modal.run/v1/models\n")
         
     # 4. Copy solution.docx to dist/
     print("Copying solution.docx to dist/...")

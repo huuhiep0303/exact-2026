@@ -39,7 +39,7 @@ TYPE1_MODEL = os.getenv("TYPE1_MODEL", "exact-lora")
 TYPE2_MODEL = os.getenv("TYPE2_MODEL", "exact-lora-type2")
 VLLM_REQUEST_TIMEOUT = float(os.getenv("VLLM_REQUEST_TIMEOUT", "45"))
 TYPE1_MAX_TOKENS = int(os.getenv("TYPE1_MAX_TOKENS", "512"))
-TYPE2_PIPELINE_TIMEOUT = float(os.getenv("TYPE2_PIPELINE_TIMEOUT", "50"))
+TYPE2_PIPELINE_TIMEOUT = float(os.getenv("TYPE2_PIPELINE_TIMEOUT", "60"))
 
 
 SYSTEM_PROMPT = """You are an expert in formal logical reasoning. Analyze the premises and answer the question using rigorous logical deduction.

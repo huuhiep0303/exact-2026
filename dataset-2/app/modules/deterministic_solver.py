@@ -73,6 +73,11 @@ def _resistance_factor(unit: str) -> float:
     return {"ohm": 1.0, "kohm": 1e3}.get(unit.lower(), 1.0)
 
 
+def _volume_factor(unit: str) -> float:
+    normalized = unit.lower().replace("^", "").replace("\u00b3", "3")
+    return {"m3": 1.0, "cm3": 1e-6, "l": 1e-3, "liter": 1e-3, "litre": 1e-3}.get(normalized, 1.0)
+
+
 def _energy_unit(value_j: float) -> tuple[float, str]:
     if abs(value_j) < 1e-6:
         return value_j * 1e9, "nJ"
@@ -271,6 +276,31 @@ def _extract_all_charges(question: str) -> dict[str, float]:
     return charges
 
 
+def _extract_two_unnamed_charges(question: str) -> tuple[float, float] | None:
+    text = _normalize(question)
+    match = re.search(
+        r"\btwo\s+charges\s+([+-]?)\s*("
+        + _FLOAT
+        + r")\s*(nC|uC|mC|C)\s+and\s+([+-]?)\s*("
+        + _FLOAT
+        + r")\s*(nC|uC|mC|C)\b",
+        text,
+        re.I,
+    )
+    if not match:
+        return None
+
+    sign1, value1, unit1, sign2, value2, unit2 = match.groups()
+    parsed1 = _number(value1)
+    parsed2 = _number(value2)
+    if parsed1 is None or parsed2 is None:
+        return None
+
+    q1 = parsed1 * _charge_factor(unit1)
+    q2 = parsed2 * _charge_factor(unit2)
+    return (-q1 if sign1 == "-" else q1, -q2 if sign2 == "-" else q2)
+
+
 def _extract_force_value(question: str) -> float | None:
     text = _normalize(question)
     match = re.search(r"force[^.\n]{0,40}?(" + _FLOAT + r")\s*(nN|uN|mN|N)\b", text, re.I)
@@ -340,6 +370,20 @@ def _extract_resistance(question: str) -> float | None:
         if parsed is not None:
             return parsed * _resistance_factor(match.group(2))
     return _first_value(question, ["R", "resistance", "resistor"], r"kohm|ohm", _resistance_factor)
+
+
+def _extract_time_seconds(question: str) -> float | None:
+    text = _normalize(question)
+    match = re.search(r"(" + _FLOAT + r")\s*(minutes?|mins?|min|seconds?|secs?|s)\b", text, re.I)
+    if not match:
+        return None
+    value = _number(match.group(1))
+    if value is None:
+        return None
+    unit = match.group(2).lower()
+    if unit.startswith("min"):
+        return value * 60
+    return value
 
 
 def _extract_impedance(question: str) -> float | None:
@@ -553,6 +597,33 @@ def _solve_inverse_coulomb_charge(question: str) -> DeterministicResult | None:
     charge = math.sqrt(force * distance * distance / 9e9)
     value, unit = _charge_unit(charge)
     return DeterministicResult(_fmt(value), unit, "ld_inverse_coulomb_charge")
+
+
+def _solve_direct_coulomb_force(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "force" not in q:
+        return None
+    if not any(term in q for term in ["force between", "electrostatic force", "coulomb force"]):
+        return None
+    if any(term in q for term in ["q3", "q0", "test charge", "third charge", "acting on"]):
+        return None
+
+    charges = _extract_all_charges(question)
+    if "q1" not in charges or "q2" not in charges:
+        return None
+
+    distances = _extract_distances(question)
+    distance = _dist(distances, "AB") or _dist(distances, "OB")
+    if not distance:
+        return None
+
+    k_match = re.search(r"\bk\s*=\s*(" + _FLOAT + r")", _normalize(question), re.I)
+    k = _number(k_match.group(1)) if k_match else None
+    if k is None:
+        k = 9e9
+
+    force = k * abs(charges["q1"] * charges["q2"]) / (distance * distance)
+    return DeterministicResult(_fmt(force), "N", "ld_direct_coulomb_force")
 
 
 def _solve_ld_two_source_force(question: str) -> DeterministicResult | None:
@@ -873,9 +944,13 @@ def _solve_ld_midpoint_field(question: str) -> DeterministicResult | None:
         return None
     charges = _extract_all_charges(question)
     if "q1" not in charges or "q2" not in charges:
+        unnamed = _extract_two_unnamed_charges(question)
+        if unnamed is not None:
+            charges["q1"], charges["q2"] = unnamed
+    if "q1" not in charges or "q2" not in charges:
         return None
     distances = _extract_distances(question)
-    d = _dist(distances, "AB")
+    d = _dist(distances, "AB") or _dist(distances, "OB")
     if not d:
         return None
     field = _field_magnitude([(charges["q1"], (0.0, 0.0)), (charges["q2"], (d, 0.0))], (d / 2, 0.0))
@@ -1078,6 +1153,16 @@ def _solve_capacitor(question: str) -> DeterministicResult | None:
     c = _extract_capacitance(question)
     u = _extract_voltage(question)
     charge = _extract_charge_value(question)
+
+    if "series" in q and "charge" in q:
+        caps = _all_values(question, r"pF|nF|uF|mF|F", _capacitance_factor)
+        voltages = _all_values(question, r"kV|mV|V", lambda unit: {"kv": 1e3, "mv": 1e-3, "v": 1.0}.get(unit.lower(), 1.0))
+        total_voltage = voltages[-1] if voltages else u
+        positive_caps = [cap for cap in caps if cap > 0]
+        if len(positive_caps) >= 2 and total_voltage is not None:
+            equivalent = 1.0 / sum(1.0 / cap for cap in positive_caps)
+            value, unit = _charge_unit(equivalent * total_voltage)
+            return DeterministicResult(_fmt(value), unit, "td_series_capacitor_charge")
 
     if "series" in q and ("voltage across" in q or "potential difference across" in q):
         caps = _all_values(question, r"pF|nF|uF|mF|F", _capacitance_factor)
@@ -1388,6 +1473,117 @@ def _solve_measurement_and_dc(question: str) -> DeterministicResult | None:
     return None
 
 
+def _solve_resistor_electrical_energy(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "resistor" not in q or "energy" not in q:
+        return None
+
+    resistance = _extract_resistance(question)
+    voltage = _extract_voltage(question)
+    current = _first_value(question, ["I", "current"], r"mA|uA|A", _current_factor)
+    time_s = _extract_time_seconds(question)
+    if time_s is None:
+        return None
+
+    energy = None
+    if voltage is not None and resistance:
+        energy = voltage * voltage / resistance * time_s
+    elif current is not None and resistance is not None:
+        energy = current * current * resistance * time_s
+    elif voltage is not None and current is not None:
+        energy = voltage * current * time_s
+
+    if energy is None:
+        return None
+    value, unit = _energy_unit(energy)
+    return DeterministicResult(_fmt(value), unit, "general_resistor_electrical_energy")
+
+
+def _solve_conductor_resistance_from_resistivity(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "resistivity" not in q and "rho" not in q:
+        return None
+    if "resistance" not in q:
+        return None
+
+    text = _normalize(question)
+    rho_match = re.search(
+        r"(?:rho|resistivity)[^.\n]{0,30}?(?:=|is)?\s*("
+        + _FLOAT
+        + r")\s*ohm\s*\*?\s*(mm|cm|m)\s*\^?2\s*/\s*m\b",
+        text,
+        re.I,
+    )
+    length_match = re.search(r"\b(?:l|length)\s*(?:=|is)?\s*(" + _FLOAT + r")\s*(mm|cm|m)\b", text, re.I)
+    area_match = re.search(
+        r"\b(?:S|area|cross-sectional\s+area)[^.\n]{0,25}?(?:=|is)?\s*("
+        + _FLOAT
+        + r")\s*(mm|cm|m)\s*\^?2\b",
+        text,
+        re.I,
+    )
+    if not rho_match or not length_match or not area_match:
+        return None
+
+    rho = _number(rho_match.group(1))
+    length = _number(length_match.group(1))
+    area = _number(area_match.group(1))
+    if rho is None or length is None or area is None or area == 0:
+        return None
+
+    rho_area_unit = rho_match.group(2).lower()
+    length_m = length * _distance_factor(length_match.group(2))
+    area_unit = area_match.group(2).lower()
+
+    # rho in ohm*mm^2/m or ohm*cm^2/m should be paired with area in that
+    # same square-length unit. Converting only S to SI while leaving rho
+    # unchanged causes a 10^6 scale error for mm^2.
+    if rho_area_unit == "mm":
+        area_in_rho_unit = area * (_distance_factor(area_unit) / _distance_factor("mm")) ** 2
+    elif rho_area_unit == "cm":
+        area_in_rho_unit = area * (_distance_factor(area_unit) / _distance_factor("cm")) ** 2
+    else:
+        area_in_rho_unit = area * (_distance_factor(area_unit) ** 2)
+
+    resistance = rho * length_m / area_in_rho_unit
+    return DeterministicResult(_fmt(resistance), "ohm", "general_conductor_resistance_from_resistivity")
+
+
+def _solve_ideal_gas_pressure(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "gas" not in q or "pressure" not in q:
+        return None
+    if "mol" not in q or "temperature" not in q or "volume" not in q:
+        return None
+
+    text = _normalize(question).replace("\u00b3", "^3")
+    amount_match = re.search(r"\bn\s*=\s*(" + _FLOAT + r")\s*mol\b", text, re.I)
+    temperature_match = re.search(r"\bT\s*=\s*(" + _FLOAT + r")\s*K\b", text, re.I)
+    volume_match = re.search(r"\bV\s*=\s*(" + _FLOAT + r")\s*(m\^?3|m3|cm\^?3|cm3|L|liter|litre)\b", text, re.I)
+    gas_constant_match = re.search(r"\bR\s*=\s*(" + _FLOAT + r")\s*J\s*/?\s*\(?\s*mol\s*\*?\s*K\s*\)?", text, re.I)
+
+    if not amount_match or not temperature_match or not volume_match:
+        return None
+
+    amount = _number(amount_match.group(1))
+    temperature = _number(temperature_match.group(1))
+    volume = _number(volume_match.group(1))
+    if amount is None or temperature is None or volume is None or volume == 0:
+        return None
+
+    gas_constant = 8.314
+    if gas_constant_match:
+        parsed_r = _number(gas_constant_match.group(1))
+        if parsed_r is not None:
+            gas_constant = parsed_r
+
+    pressure = amount * gas_constant * temperature / (volume * _volume_factor(volume_match.group(2)))
+    if pressure:
+        exponent = math.floor(math.log10(abs(pressure)))
+        pressure = round(pressure, 2 - exponent)
+    return DeterministicResult(_fmt(pressure), "Pa", "general_ideal_gas_pressure")
+
+
 def _solve_square_center_field(question: str) -> DeterministicResult | None:
     q = _normalize(question).lower()
     if "four charges" not in q or "square" not in q or "diagonal" not in q:
@@ -1414,12 +1610,58 @@ def _solve_square_center_field(question: str) -> DeterministicResult | None:
     return None
 
 
+def _solve_thin_lens_image_distance(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "lens" not in q or "focal length" not in q or "image distance" not in q:
+        return None
+
+    text = _normalize(question)
+    object_match = re.search(
+        r"object[^.\n]{0,80}?(?:placed|is|at)?[^.\n]{0,30}?("
+        + _FLOAT
+        + r")\s*(mm|cm|m)\s+(?:in\s+front\s+of|from)\s+(?:a\s+)?(?:converging\s+|diverging\s+)?lens",
+        text,
+        re.I,
+    )
+    focal_match = re.search(
+        r"focal\s+length[^.\n]{0,30}?("
+        + _FLOAT
+        + r")\s*(mm|cm|m)\b",
+        text,
+        re.I,
+    )
+    if not object_match or not focal_match:
+        return None
+
+    object_distance = _number(object_match.group(1))
+    focal_length = _number(focal_match.group(1))
+    if object_distance is None or focal_length is None:
+        return None
+
+    object_unit = object_match.group(2)
+    object_distance *= _distance_factor(object_unit)
+    focal_length *= _distance_factor(focal_match.group(2))
+    if "diverging lens" in q:
+        focal_length = -abs(focal_length)
+
+    denominator = (1.0 / focal_length) - (1.0 / object_distance)
+    if abs(denominator) < 1e-15:
+        return None
+
+    image_distance = 1.0 / denominator
+    output_unit = object_unit.lower()
+    output_value = image_distance / _distance_factor(output_unit)
+    return DeterministicResult(_fmt(output_value), output_unit, "optics_thin_lens_image_distance")
+
+
 def solve_deterministic(question: str, topic: str = "", target=None) -> DeterministicResult | None:
     """Return a deterministic answer for high-confidence patterns, else None."""
     q = _normalize(question).lower()
     topic = (topic or "").upper()
     topic_solvers = {
         "THCB": (
+            _solve_resistor_electrical_energy,
+            _solve_conductor_resistance_from_resistivity,
             _solve_measurement_and_dc,
         ),
         "TD": (
@@ -1429,6 +1671,8 @@ def solve_deterministic(question: str, topic: str = "", target=None) -> Determin
             _solve_energy_storage,
         ),
         "CH": (
+            _solve_resistor_electrical_energy,
+            _solve_conductor_resistance_from_resistivity,
             _solve_rlc,
         ),
         "DDT": (
@@ -1438,6 +1682,7 @@ def solve_deterministic(question: str, topic: str = "", target=None) -> Determin
             _solve_measurement_and_dc,
         ),
         "LD": (
+            _solve_direct_coulomb_force,
             _solve_inverse_coulomb_charge,
             _solve_ld_collinear_descriptive_force,
             _solve_ld_isosceles_right_field,
@@ -1467,12 +1712,17 @@ def solve_deterministic(question: str, topic: str = "", target=None) -> Determin
         ),
     }
     fallback_solvers = (
+        _solve_thin_lens_image_distance,
+        _solve_resistor_electrical_energy,
+        _solve_conductor_resistance_from_resistivity,
+        _solve_ideal_gas_pressure,
         _solve_chlt_resonance_yes_no,
         _solve_rlc,
         _solve_capacitor,
         _solve_energy_storage,
         _solve_solenoid,
         _solve_measurement_and_dc,
+        _solve_direct_coulomb_force,
         _solve_inverse_coulomb_charge,
         _solve_ld_collinear_descriptive_force,
         _solve_ld_isosceles_right_field,

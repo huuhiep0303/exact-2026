@@ -1,5 +1,5 @@
 {
-  "endpoint": "https://hirocao0710--exact-2026-submission-fastapi-app.modal.run/predict",
+  "endpoint": "https://ngocthaodn0109--exact-2026-submission-fastapi-app.modal.run/predict",
   "cases": [
     {
       "name": "type1_mcq_correct_option_c",

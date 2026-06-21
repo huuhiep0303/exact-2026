@@ -1,2 +1,2 @@
-Prediction Endpoint: https://hirocao0710--exact-2026-submission-fastapi-app.modal.run/predict
-vLLM Model Endpoint: https://hirocao0710--exact-2026-vllm-serve.modal.run/v1/models
+Prediction Endpoint: https://ngocthaodn0109--exact-2026-submission-fastapi-app.modal.run/predict
+vLLM Model Endpoint: https://ngocthaodn0109--exact-2026-vllm-serve.modal.run/v1/models

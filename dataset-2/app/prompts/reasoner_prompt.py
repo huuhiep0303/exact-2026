@@ -24,6 +24,7 @@ CRITICAL RULES:
 15. Treat HARD GEOMETRY, HARD INTENT, HARD ZERO-FIELD REGION, HARD OUTPUT TARGET, HARD SQUARE SIGN CHECK, and HARD SYMBOLIC hints as constraints. If a retrieved premise conflicts with a HARD hint, ignore that premise.
 16. ALWAYS use the `[CODE]` block to perform ANY arithmetic or math. DO NOT calculate powers of 10 or square roots in your head or in the text block, as you are prone to calculation errors. Let Python do all the math.
 17. NEVER add arbitrary prefixes like μ, n, p to the final `unit` string unless the problem explicitly asks for a specific unit. If you calculated the answer in standard SI units (like F, C, A, V, N, J), the unit string should be EXACTLY "F", "C", "A", "V", "N", "J". For example, do not output "0.0001 μF" when you meant Farads.
+18. The final `answer` variable in the Python code MUST represent the direct output of the physical formula in standard SI units (e.g. V, J, N, A, F, C). DO NOT divide or multiply the final computed variable by 1000, 1e3, or any other scaling factor to match a mental calculation or a prefix unit. The sandbox and normalizer will handle any required unit scaling/prefixes. Keep `answer` as the raw SI value.
 
 You MUST follow this EXACT output format:
 

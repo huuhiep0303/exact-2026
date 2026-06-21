@@ -16,11 +16,15 @@ vllm_cache_volume = modal.Volume.from_name("exact-2026-vllm-cache", create_if_mi
 
 vllm_image = (
     modal.Image.debian_slim(python_version="3.10")
-    .pip_install("vllm>=0.4.0", "huggingface_hub", "hf-transfer")
+    .pip_install("vllm>=0.7.0", "huggingface_hub", "hf-transfer")
     .env({
         "HF_HUB_ENABLE_HF_TRANSFER": "1",
         "HF_XET_HIGH_PERFORMANCE": "1",
         "VLLM_LOG_STATS_INTERVAL": "5",
+        "VLLM_USE_FLASHINFER": "0",
+        "VLLM_USE_FLASHINFER_SAMPLER": "0",
+        "VLLM_DISABLE_FLASHINFER": "1",
+        "VLLM_ATTENTION_BACKEND": "FLASH_ATTN",
     })
 )
 
@@ -34,7 +38,7 @@ vllm_image = (
         "/root/.cache/vllm": vllm_cache_volume,
     },
     secrets=[modal.Secret.from_name("exact-2026-config")],
-    min_containers=0,
+    min_containers=1,
     max_containers=1,
     scaledown_window=600,
     timeout=900,
@@ -44,6 +48,7 @@ vllm_image = (
 def serve():
     cmd = [
         "python",
+        "-u",
         "-m",
         "vllm.entrypoints.openai.api_server",
         "--model",
@@ -66,11 +71,8 @@ def serve():
         "4096",
         "--gpu-memory-utilization",
         "0.9",
-        # Trade a little warm throughput for a much shorter cold start.
         "--enforce-eager",
         "--enable-prefix-caching",
-        # The Modal Volume is exposed as 9P; vLLM recommends prefetching for
-        # this filesystem instead of reading each shard lazily.
         "--safetensors-load-strategy",
         "prefetch",
     ]
@@ -79,7 +81,8 @@ def serve():
     import time
 
     print("Starting vLLM server...")
-    proc = subprocess.Popen(cmd)
+    import sys
+    proc = subprocess.Popen(cmd, stdout=sys.stdout, stderr=sys.stderr)
 
     # Monitor startup and fail fast if the subprocess exits prematurely
     start_time = time.time()
