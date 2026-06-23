@@ -25,7 +25,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_EVAL_FILE = ROOT.parent / "exact_eval_round1_hi_fine.json"
-DEFAULT_ENDPOINT = "https://ngocthaodn0109--exact-2026-submission-fastapi-app.modal.run/predict"
+DEFAULT_ENDPOINT = "https://m3pminh15112005--exact-2026-submission-fastapi-app.modal.run/predict"
 DEFAULT_OUT_DIR = ROOT / "eval_results" / "live_topic1_judge"
 
 

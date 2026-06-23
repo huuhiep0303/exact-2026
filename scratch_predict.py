@@ -4,7 +4,7 @@ import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-url = "https://ngocthaodn0109--exact-2026-submission-fastapi-app.modal.run/predict"
+url = "https://m3pminh15112005--exact-2026-submission-fastapi-app.modal.run/predict"
 
 payload = {
     "query_id": "T2_0015",

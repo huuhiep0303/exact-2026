@@ -47,7 +47,7 @@ image = (
     image=image,
     secrets=[modal.Secret.from_name("exact-2026-config")],
     volumes={"/root/.cache/huggingface": hf_cache_volume},
-    min_containers=0,
+    min_containers=1,
     max_containers=1,
     scaledown_window=600,
     # timeout=600, #có hoặc không
@@ -67,7 +67,7 @@ def fastapi_app():
     # Keep one-time Qdrant and embedding initialization out of the first
     # competition request's 60-second response budget.
     os.environ["PIPELINE_MODE"] = "api"
-    vllm_url = os.getenv("VLLM_API_URL", "https://ngocthaodn0109--exact-2026-vllm-serve.modal.run/v1")
+    vllm_url = os.getenv("VLLM_API_URL", "https://m3pminh15112005--exact-2026-vllm-serve.modal.run/v1")
     os.environ["VLLM_API_URL"] = vllm_url
     os.environ["OPENAI_BASE_URL"] = vllm_url
     os.environ["REASONER_API_MODEL"] = os.getenv(

@@ -5,7 +5,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 sys.path.insert(0, r"d:\Work\Learn\Exact_XAI\exact-2026\dataset-2")
 os.environ["PIPELINE_MODE"] = "api"
-os.environ["OPENAI_BASE_URL"] = "https://ngocthaodn0109--exact-2026-vllm-serve.modal.run/v1"
+os.environ["OPENAI_BASE_URL"] = "https://m3pminh15112005--exact-2026-vllm-serve.modal.run/v1"
 os.environ["REASONER_API_MODEL"] = "exact-lora-type2"
 
 from app.modules.reasoner import reason

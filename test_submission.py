@@ -4,7 +4,7 @@ import time
 
 def test_system():
     # URL của API FastAPI đã deploy trên Modal
-    api_url = "https://hiephc0303--exact-2026-submission-fastapi-app.modal.run/predict"
+    api_url = "https://m3pminh15112005--exact-2026-submission-fastapi-app.modal.run/predict"
     
     print(f"Bắt đầu gửi request tới: {api_url}")
     print("-" * 50)

@@ -1,5 +1,5 @@
 Predict URL:
-https://ngocthaodn0109--exact-2026-submission-fastapi-app.modal.run/predict
+https://m3pminh15112005--exact-2026-submission-fastapi-app.modal.run/predict
 
 vLLM Models URL:
-https://ngocthaodn0109--exact-2026-vllm-serve.modal.run/v1/models
+https://m3pminh15112005--exact-2026-vllm-serve.modal.run/v1/models

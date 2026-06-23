@@ -2,7 +2,7 @@ import urllib.request
 import json
 import time
 
-url = "https://ngocthaodn0109--exact-2026-vllm-serve.modal.run/v1/chat/completions"
+url = "https://m3pminh15112005--exact-2026-vllm-serve.modal.run/v1/chat/completions"
 
 payload = {
     "model": "exact-lora-type2",
