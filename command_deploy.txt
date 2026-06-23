@@ -1,0 +1,39 @@
+# Modal account setup + deploy checklist
+# Run from repo folder:
+# cd D:\Work\Learn\Exact_XAI\exact-2026
+
+# 1) Login/switch Modal account if needed
+python run_modal.py setup
+
+# 2) Create required secret in the current Modal workspace.
+# This reads keys from dataset-2/.env, including HF_TOKEN and Qdrant vars.
+python run_modal.py secret create exact-2026-config --from-dotenv dataset-2\.env --env main --force
+
+# 3) Upload LoRA adapters to the workspace volume.
+# Type 1 adapter -> exact-lora
+python run_modal.py volume put exact-2026-volume "dataset-1/outputs/checkpoints/final/" checkpoints/final
+
+# Type 2 adapter -> exact-lora-type2
+# Important: use the real qwen3_8b_lora_v4_a100 adapter, not dataset-2/outputs/checkpoints/final.
+python run_modal.py volume put exact-2026-volume "dataset-2/finetuning/runs/qwen3_8b_lora_v3_a100/qwen3_8b_lora_v4_a100/adapter/" checkpoints/type2-final
+
+# 4) Deploy vLLM
+$env:PYTHONIOENCODING="utf-8"
+python run_modal.py deploy submission/vllm_serve.py --timestamps
+
+# 5) Wait until vLLM is ready, then check loaded models.
+Invoke-RestMethod `
+  "https://m3pminh15112005--exact-2026-vllm-serve.modal.run/v1/models"
+
+# Continue only when the result includes all 3:
+# Qwen/Qwen3-8B
+# exact-lora
+# exact-lora-type2
+
+# 6) Deploy FastAPI submission endpoint
+$env:PYTHONIOENCODING="utf-8"
+python run_modal.py deploy submission/modal_serve.py --timestamps
+
+# Final endpoint:
+# https://m3pminh15112005--exact-2026-submission-fastapi-app.modal.run/predict
+
