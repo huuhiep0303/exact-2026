@@ -68,6 +68,9 @@ def normalize_answer(raw_answer: str, unit: str = "") -> tuple[str, str]:
 
     answer = raw_answer.strip()
     unit = unit.strip()
+    unit_clean = unit.lower().replace(" ", "").replace("*", "").replace("·", "").replace("^2", "2")
+    if unit_clean in ("nm2/c", "n*m2/c", "n·m2/c", "n·m²/c", "n*m^2/c", "n/c.m2"):
+        unit = "N/C"
 
     # ─── Group C: Unicode scientific notation ───
     # e.g., "4.0 × 10⁴" or "1.2×10⁵"

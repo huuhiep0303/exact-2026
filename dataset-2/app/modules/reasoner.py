@@ -136,6 +136,8 @@ def _local_reason(
     question_type: str = "quantitative",
     unit_hints: list[str] | None = None,
     geometry_hints: list[str] | None = None,
+    rejected_premises: list[str] | None = None,
+    premise_warnings: list[str] | None = None,
 ) -> str:
     """Call local vLLM / HuggingFace model. Requires GPU."""
     try:
@@ -153,6 +155,8 @@ def _local_reason(
             question_type=question_type,
             unit_hints=unit_hints,
             geometry_hints=geometry_hints,
+            rejected_premises=rejected_premises,
+            premise_warnings=premise_warnings,
         )
         response = client.chat.completions.create(
             model=config.reasoner_model,
@@ -176,6 +180,8 @@ def _api_reason(
     question_type: str = "quantitative",
     unit_hints: list[str] | None = None,
     geometry_hints: list[str] | None = None,
+    rejected_premises: list[str] | None = None,
+    premise_warnings: list[str] | None = None,
 ) -> str:
     """Call external API (OpenAI-compatible)."""
     import os
@@ -193,6 +199,8 @@ def _api_reason(
             question_type=question_type,
             unit_hints=unit_hints,
             geometry_hints=geometry_hints,
+            rejected_premises=rejected_premises,
+            premise_warnings=premise_warnings,
         )
         response = client.chat.completions.create(
             model=os.getenv("REASONER_API_MODEL", "gpt-4o-mini"),
@@ -216,6 +224,8 @@ def reason(
     question_type: str = "quantitative",
     unit_hints: list[str] | None = None,
     geometry_hints: list[str] | None = None,
+    rejected_premises: list[str] | None = None,
+    premise_warnings: list[str] | None = None,
 ) -> ReasonerOutput:
     """
     Step 3: Generate reasoning, FOL, and Python code for a physics problem.
@@ -237,6 +247,8 @@ def reason(
             question_type=question_type,
             unit_hints=unit_hints,
             geometry_hints=geometry_hints,
+            rejected_premises=rejected_premises,
+            premise_warnings=premise_warnings,
         )
     elif config.mode == "api":
         raw = _api_reason(
@@ -246,6 +258,8 @@ def reason(
             question_type=question_type,
             unit_hints=unit_hints,
             geometry_hints=geometry_hints,
+            rejected_premises=rejected_premises,
+            premise_warnings=premise_warnings,
         )
     else:
         raw = _mock_reason(question, premises)

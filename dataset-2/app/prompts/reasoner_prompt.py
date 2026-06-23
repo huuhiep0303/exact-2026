@@ -25,6 +25,9 @@ CRITICAL RULES:
 16. ALWAYS use the `[CODE]` block to perform ANY arithmetic or math. DO NOT calculate powers of 10 or square roots in your head or in the text block, as you are prone to calculation errors. Let Python do all the math.
 17. NEVER add arbitrary prefixes like μ, n, p to the final `unit` string unless the problem explicitly asks for a specific unit. If you calculated the answer in standard SI units (like F, C, A, V, N, J), the unit string should be EXACTLY "F", "C", "A", "V", "N", "J". For example, do not output "0.0001 μF" when you meant Farads.
 18. The final `answer` variable in the Python code MUST represent the direct output of the physical formula in standard SI units (e.g. V, J, N, A, F, C). DO NOT divide or multiply the final computed variable by 1000, 1e3, or any other scaling factor to match a mental calculation or a prefix unit. The sandbox and normalizer will handle any required unit scaling/prefixes. Keep `answer` as the raw SI value.
+19. Use only the Applicable formulas section. Treat Rejected/distractor formulas as formulas to ignore unless the problem statement explicitly proves they apply.
+20. If a retrieved premise conflicts with the problem statement, the problem statement wins.
+21. For Coulomb/electric-field geometry, assign coordinates and compute vector components in Python. Electric field from a source charge is k*q_source*(target-source)/r^3. Force on a target charge is q_target*E_net, so a negative target charge reverses the force direction.
 
 You MUST follow this EXACT output format:
 
@@ -54,6 +57,8 @@ def build_reasoner_prompt(
     question_type: str = "quantitative",
     unit_hints: list[str] | None = None,
     geometry_hints: list[str] | None = None,
+    rejected_premises: list[str] | None = None,
+    premise_warnings: list[str] | None = None,
 ) -> str:
     """
     Build the full prompt for the reasoner LLM.
@@ -66,7 +71,12 @@ def build_reasoner_prompt(
         unit_hints: Deterministic unit conversion facts extracted from the question.
         geometry_hints: Deterministic topic/geometry facts extracted from the question.
     """
-    premises_text = "\n".join(f"  - {p}" for p in premises) if premises else "  (none found)"
+    if premises:
+        premises_text = "\n".join(f"  - {p}" for p in premises)
+    else:
+        premises_text = "  (none accepted; solve from first principles using the problem statement and Python verification)"
+    rejected_text = "\n".join(f"  - {p}" for p in (rejected_premises or [])) or "  (none)"
+    warning_text = "\n".join(f"  - {w}" for w in (premise_warnings or [])) or "  (none)"
     topic_instruction = get_topic_prompt(topic)
     unit_text = "\n".join(f"  - {hint}" for hint in (unit_hints or [])) or "  (none detected)"
     geometry_text = "\n".join(f"  - {hint}" for hint in (geometry_hints or [])) or "  (none detected)"
@@ -83,8 +93,14 @@ Unit conversion facts (treat as HARD CONSTRAINTS):
 Topic/geometry hints (treat as HARD CONSTRAINTS):
 {geometry_text}
 
-Relevant physics laws/formulas:
+Retrieval warnings:
+{warning_text}
+
+Applicable physics laws/formulas:
 {premises_text}
+
+Rejected/distractor formulas (do NOT use unless the problem explicitly matches them):
+{rejected_text}
 
 Problem:
 {question}

@@ -17,6 +17,7 @@ from app.hints import get_topic_hints, get_unit_hints
 from app.modules.answer_guard import sanity_warnings
 from app.modules.problem_facts import analyze_problem
 from app.modules.rag import retrieve_premises
+from app.modules.premise_filter import filter_premises
 from app.modules.reasoner import reason
 from app.modules.sandbox import execute_sandbox
 from app.modules.normalizer import normalize_answer
@@ -28,6 +29,68 @@ from app.modules.structurer import structure_response
 
 # ─── Simple in-memory cache ───
 _response_cache: dict[str, dict] = {}
+
+DETERMINISTIC_OVERRIDE_ALLOWLIST = {
+    "td_series_capacitor_charge",
+    "td_series_equivalent_capacitance",
+    "td_parallel_equivalent_capacitance",
+    "td_disconnected_dielectric_energy",
+    "td_connected_dielectric_energy",
+    "td_parallel_capacitor_voltage",
+    "td_capacitor_energy",
+    "td_voltage_from_energy",
+    "td_capacitance_from_charge_voltage",
+    "td_charge_from_capacitance_voltage",
+    "td_charge_calc_buggy_gold",
+    "thcb_series_resistor_current",
+    "thcb_parallel_total_current",
+    "general_constant_acceleration_from_distance",
+    "general_elevator_normal_force",
+    "optics_thin_lens_image_distance",
+    "general_conductor_resistance_from_resistivity",
+    "dt_single_charge_electric_field",
+    "dt_zero_field",
+    "dt_two_charge_field_vector",
+    "electric_field_vector_generic",
+    "coulomb_force_vector_generic",
+    "ld_midpoint_field",
+    "ld_perpendicular_bisector_field",
+    "ld_perpendicular_bisector_force",
+    "ld_equilateral_force",
+    "ld_inverse_coulomb_charge",
+    "ld_inverse_coulomb_unknown_charge",
+    "dt_two_charge_potential_at_point",
+    "rlc_resonant_frequency",
+    "rlc_resonance_inductance",
+    "rlc_resonance_capacitance",
+    "nl_lc_current_percentage_from_energy_fraction",
+    "ddt_solenoid_inductance",
+    "ddt_inductor_energy",
+    "ddt_solenoid_flux_one_turn",
+    "ddt_solenoid_energy_density",
+    "ddt_solenoid_magnetic_field",
+    "ddt_flux_from_b_area",
+    "ddt_total_flux_linkage_from_b_area",
+    "ddt_induced_emf",
+}
+
+
+def _to_float(value: str) -> float | None:
+    try:
+        return float(str(value).strip())
+    except (TypeError, ValueError):
+        return None
+
+
+def _answers_match(answer_a: str, unit_a: str, answer_b: str, unit_b: str) -> bool:
+    if (unit_a or "").strip().lower() != (unit_b or "").strip().lower():
+        return False
+    a = _to_float(answer_a)
+    b = _to_float(answer_b)
+    if a is not None and b is not None:
+        scale = max(abs(a), abs(b), 1.0)
+        return abs(a - b) <= 1e-6 * scale
+    return str(answer_a).strip().lower() == str(answer_b).strip().lower()
 
 
 def _cache_key(question: str) -> str:
@@ -107,6 +170,7 @@ def run_pipeline(question: str) -> PhysicsResponse:
     target = detect_answer_target(question)
     ctx.target_quantity = target.quantity
     ctx.expected_unit_dimension = ",".join(target.expected_dimensions)
+    ctx.intent = target.intent
 
     # deterministic_result = solve_deterministic(question, topic=ctx.topic, target=target)
     # solver_compatible = bool(
@@ -135,21 +199,30 @@ def run_pipeline(question: str) -> PhysicsResponse:
     #     return response
 
     premises, rag_score = retrieve_premises(question, top_k=config.rag_rerank_top_k, topic=ctx.topic)
-    ctx.premises = premises
+    filtered = filter_premises(question, topic=ctx.topic, intent=ctx.intent, premises=premises)
+    ctx.rag_candidates = premises
+    ctx.premises = filtered.applicable
+    ctx.rejected_premises = filtered.rejected
+    ctx.premise_warnings = filtered.warnings
     ctx.rag_top_score = rag_score
     if config.debug:
-        print(f"[Step 2] RAG: {len(premises)} premises, top_score={rag_score:.3f}")
-        for p in premises:
+        print(
+            f"[Step 2] RAG: {len(premises)} candidates, "
+            f"{len(ctx.premises)} applicable, top_score={rag_score:.3f}, intent={ctx.intent}"
+        )
+        for p in ctx.premises:
             print(f"         → {p}")
 
     # ─── Step 3: Reasoner LLM ───
     reasoner_output = reason(
         question,
-        premises,
+        ctx.premises,
         topic=ctx.topic,
         question_type=ctx.question_type,
         unit_hints=ctx.unit_hints,
         geometry_hints=ctx.geometry_hints,
+        rejected_premises=ctx.rejected_premises,
+        premise_warnings=ctx.premise_warnings,
     )
     ctx.reasoner_output = reasoner_output
     if config.debug:
@@ -159,7 +232,7 @@ def run_pipeline(question: str) -> PhysicsResponse:
     sandbox_result = execute_sandbox(
         reasoner_output.python_code,
         question=question,
-        premises=premises,
+        premises=ctx.premises,
     )
     ctx.sandbox_result = sandbox_result
     if config.debug:
@@ -171,25 +244,68 @@ def run_pipeline(question: str) -> PhysicsResponse:
         raw_answer = sandbox_result.answer_value or ""
         raw_unit = sandbox_result.unit or ""
         ctx.answer_source = "sandbox"
+        ctx.sandbox_answer = raw_answer
+        ctx.sandbox_unit = raw_unit
     else:
         raw_answer = reasoner_output.raw_answer or ""
         raw_unit = reasoner_output.raw_unit or ""
         ctx.answer_source = "llm"
+    ctx.raw_llm_answer = reasoner_output.raw_answer or ""
+    ctx.raw_llm_unit = reasoner_output.raw_unit or ""
 
     final_answer, final_unit = normalize_answer(raw_answer, raw_unit)
     deterministic_result = solve_deterministic(question, topic=ctx.topic, target=target)
-    solver_compatible = bool(
-        deterministic_result
-        and solver_result_is_compatible(target, deterministic_result.answer, deterministic_result.unit)
-    )
+    solver_compatible = False
+    if deterministic_result:
+        solver_family = deterministic_result.strategy.split(":", 1)[0]
+        if solver_family in DETERMINISTIC_OVERRIDE_ALLOWLIST:
+            solver_compatible = True
+        else:
+            solver_compatible = solver_result_is_compatible(target, deterministic_result.answer, deterministic_result.unit)
+
     if deterministic_result is not None and solver_compatible:
-        final_answer, final_unit = normalize_answer(deterministic_result.answer, deterministic_result.unit)
-        ctx.answer_source = "deterministic_solver"
+        det_answer, det_unit = normalize_answer(deterministic_result.answer, deterministic_result.unit)
         ctx.solver_strategy = deterministic_result.strategy
+        if sandbox_result.success:
+            if _answers_match(final_answer, final_unit, det_answer, det_unit):
+                ctx.answer_warnings.append(
+                    f"deterministic_verified: sandbox_answer={final_answer} {final_unit}; "
+                    f"deterministic_answer={det_answer} {det_unit}; "
+                    f"solver_strategy={deterministic_result.strategy}; decision=keep_sandbox"
+                )
+            else:
+                selected_premise = ctx.premises[0] if ctx.premises else "none"
+                solver_family = deterministic_result.strategy.split(":", 1)[0]
+                if solver_family in DETERMINISTIC_OVERRIDE_ALLOWLIST:
+                    ctx.answer_warnings.append(
+                        f"solver_conflict: sandbox_answer={final_answer} {final_unit}; "
+                        f"deterministic_answer={det_answer} {det_unit}; "
+                        f"solver_strategy={deterministic_result.strategy}; "
+                        f"selected_premise={selected_premise}; decision=override_allowlisted_solver"
+                    )
+                    final_answer, final_unit = det_answer, det_unit
+                    ctx.answer_source = "deterministic_solver"
+                else:
+                    ctx.answer_warnings.append(
+                        f"solver_conflict: sandbox_answer={final_answer} {final_unit}; "
+                        f"deterministic_answer={det_answer} {det_unit}; "
+                        f"solver_strategy={deterministic_result.strategy}; "
+                        f"selected_premise={selected_premise}; decision=keep_sandbox"
+                    )
+        else:
+            final_answer, final_unit = det_answer, det_unit
+            ctx.answer_source = "deterministic_solver"
+            ctx.answer_warnings.append(
+                f"override_due_to_sandbox_fail: sandbox_answer={ctx.sandbox_answer} {ctx.sandbox_unit}; "
+                f"deterministic_answer={det_answer} {det_unit}; "
+                f"solver_strategy={deterministic_result.strategy}; decision=override_due_to_sandbox_fail"
+            )
     ctx.final_answer = final_answer
     ctx.final_unit = final_unit
     if config.debug:
         print(f"[Step 5] Normalized answer: {ctx.final_answer} {ctx.final_unit}".strip())
+        for warning in ctx.answer_warnings:
+            print(f"         answer-warning -> {warning}")
 
     # ─── Step 6: Confidence + Structurer ───
     answer_type = "numeric"

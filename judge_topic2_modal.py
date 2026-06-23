@@ -113,9 +113,13 @@ def normalize_unit(unit: Any) -> str:
 
 
 def parse_numeric(value: Any) -> float | None:
-    text = normalize_text(value).translate(SUPERSCRIPT_MAP).replace(",", "")
+    text = normalize_text(value)
     if not text:
         return None
+
+    # Prepend ^ to superscript blocks so they don't get merged into normal numbers
+    text = re.sub(r"([⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+)", r"^\1", text)
+    text = text.translate(SUPERSCRIPT_MAP).replace(",", "")
 
     if "=" in text:
         parsed = parse_numeric(text.rsplit("=", 1)[-1])
@@ -124,13 +128,19 @@ def parse_numeric(value: Any) -> float | None:
 
     text = re.sub(r"\^\{([+-]?\d+)\}", r"^\1", text)
 
-    textbook_power = re.fullmatch(r"\s*([+-]?\d+(?:\.\d+)?)\s*\.\s*10\s*\^?\s*([+-]?\d+)\s*", text)
+    textbook_power = re.fullmatch(r"\s*([+-]?\d+(?:\.\d+)?)\s*\.\s*10\s*\^\s*([+-]?\d+)\s*", text)
     if textbook_power:
-        return float(textbook_power.group(1)) * (10 ** int(textbook_power.group(2)))
+        exponent = int(textbook_power.group(2))
+        if abs(exponent) > 308:
+            return None
+        return float(textbook_power.group(1)) * (10 ** exponent)
 
     power_only = re.fullmatch(r"\s*10\s*\^\s*([+-]?\d+)\s*", text)
     if power_only:
-        return 10 ** int(power_only.group(1))
+        exponent = int(power_only.group(1))
+        if abs(exponent) > 308:
+            return None
+        return 10 ** exponent
 
     sci = re.search(
         r"([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*(?:x|\*)\s*10\s*\^?\s*([+-]?\d+)",
@@ -138,7 +148,10 @@ def parse_numeric(value: Any) -> float | None:
         flags=re.IGNORECASE,
     )
     if sci:
-        return float(sci.group(1)) * (10 ** int(sci.group(2)))
+        exponent = int(sci.group(2))
+        if abs(exponent) > 308:
+            return None
+        return float(sci.group(1)) * (10 ** exponent)
 
     plain = re.search(r"^[\s=]*([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)", text, flags=re.IGNORECASE)
     if not plain:

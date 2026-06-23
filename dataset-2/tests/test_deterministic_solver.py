@@ -125,6 +125,17 @@ class DeterministicSolverTests(unittest.TestCase):
         self.assertEqual(result.unit, "V")
         self.assertEqual(result.strategy, "dt_two_charge_potential_at_point")
 
+    def test_single_charge_electric_field_round2_regression(self):
+        question = (
+            "A point charge q = 4 nC creates an electric field at distance "
+            "r = 0.20 m. Use k = 9e9. Calculate the field magnitude."
+        )
+        result = solve_deterministic(question, topic="coulomb_force")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "900")
+        self.assertEqual(result.unit, "N/C")
+        self.assertEqual(result.strategy, "dt_single_charge_electric_field")
+
     def test_series_resistor_current_round1_regression(self):
         question = (
             "Two resistors R1 = 12 ohm and R2 = 18 ohm are connected in "
@@ -135,6 +146,18 @@ class DeterministicSolverTests(unittest.TestCase):
         self.assertEqual(result.answer, "0.5")
         self.assertEqual(result.unit, "A")
         self.assertEqual(result.strategy, "thcb_series_resistor_current")
+
+    def test_parallel_resistor_total_current_round1_regression(self):
+        question = (
+            "Two resistors R1 = 6 ohm and R2 = 3 ohm are connected in "
+            "parallel across a 12 V source. Calculate the total current drawn "
+            "from the source."
+        )
+        result = solve_deterministic(question, topic="dc_circuit")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "6")
+        self.assertEqual(result.unit, "A")
+        self.assertEqual(result.strategy, "thcb_parallel_total_current")
 
     def test_work_energy_final_speed_round1_regression(self):
         question = (
@@ -321,6 +344,86 @@ class DeterministicSolverTests(unittest.TestCase):
             with self.subTest(sample_id=sample_id):
                 topic = "".join(ch for ch in sample_id if not ch.isdigit())
                 self.assert_topic_solver_matches(sample_id, topic)
+
+    def test_round1_hidden_regression_cases(self):
+        samples = [
+            (
+                "Two charges +4.0 nC and -4.0 nC are fixed 20 cm apart in air. Calculate the magnitude of the electric field at the midpoint between the charges. Use k = 9.0 × 10^9 N·m²/C².",
+                "7200",
+                "V/m",
+                "ld_midpoint_field",
+            ),
+            (
+                "A point P is 10 cm from a charge q1 = +6.0 nC and 20 cm from a charge q2 = -2.0 nC. Calculate the electric potential at P. Use k = 9.0 × 10^9 N·m²/C².",
+                "450",
+                "V",
+                "dt_two_charge_potential_at_point",
+            ),
+            (
+                "An LC circuit has inductance L = 0.20 H and capacitance C = 50 μF. Calculate the resonant frequency of the circuit.",
+                "50.329",
+                "Hz",
+                "rlc_resonant_frequency",
+            ),
+        ]
+        for question, expected_answer, expected_unit, expected_strategy in samples:
+            with self.subTest(expected_strategy=expected_strategy):
+                result = solve_deterministic(question)
+                self.assertIsNotNone(result)
+                self.assertAlmostEqual(float(result.answer), float(expected_answer), places=3)
+                self.assertEqual(result.unit, expected_unit)
+                self.assertEqual(result.strategy, expected_strategy)
+
+    def test_round3_vector_and_intent_regression_cases(self):
+        samples = [
+            (
+                "Given two point charges located along the Ox axis: charge q1 = -9 x 10^-6 C is placed at the origin O, and charge q2 = 4 x 10^-6 C is located 20 cm from the origin. What is the coordinate on the Ox axis where the electric field strength is zero?",
+                "60",
+                "cm",
+            ),
+            (
+                "A point charge q = +5 nC is in air. What is the electric field magnitude at a point 10 cm away? Use k = 9.0 x 10^9 N*m^2/C^2.",
+                "4500",
+                "N/C",
+            ),
+            (
+                "In an oscillating LC circuit, when the electric field energy is 1/4 of the total energy, what percentage (%) of the maximum current is the instantaneous current (round the result to one decimal place)?",
+                "86.6",
+                "%",
+            ),
+            (
+                "Three charges q1 = +2 μC, q2 = +2 μC, and q3 = -2 μC are placed at the three vertices of an equilateral triangle with a side length of 10 cm. Calculate the magnitude of the net electric force acting on q3.",
+                "6.24",
+                "N",
+            ),
+            (
+                "Two charges are 20 cm apart and attract with force 0.09 N. If one charge is 1 uC, find the magnitude of the other charge. Use k = 9.0 x 10^9.",
+                "0.4",
+                "uC",
+            ),
+            (
+                "Given a capacitor with C = 50 μF, what inductance L is required to achieve resonance at 200 Hz?",
+                "12.67",
+                "mH",
+            ),
+            (
+                "Given L = 0.3 H, what capacitance C must be chosen for a capacitor to achieve resonance at a frequency of 120 Hz?",
+                "5.86",
+                "uF",
+            ),
+            (
+                "Two point charges, q1 = 0.5 nC and q2 = -0.5 nC, are placed at points A and B, separated by 6 cm in air. What is the magnitude of the electric field intensity at point M, which lies on the perpendicular bisector of AB, at a distance ℓ = 4 cm from the midpoint of AB?",
+                "2160",
+                "V/m",
+            ),
+        ]
+        for question, expected_answer, expected_unit in samples:
+            with self.subTest(question=question):
+                result = solve_deterministic(question)
+                self.assertIsNotNone(result)
+                final = f"{result.answer} {result.unit}".strip()
+                comparison = compare_prediction(final, expected_answer, expected_unit, 1e-2, 1e-9)
+                self.assertTrue(comparison[4], f"{final} != {expected_answer} {expected_unit}; strategy={result.strategy}")
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ Pydantic models for API request/response and internal data flow.
 Maps directly to the endpoint.txt schema.
 """
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import Any, List, Optional
 
 
 # ─── API Request ───
@@ -29,6 +29,7 @@ class PhysicsResponse(BaseModel):
     routed_topic: Optional[str] = Field(None, description="Topic selected from question text")
     target_quantity: Optional[str] = Field(None, description="Requested physical quantity")
     expected_unit_dimension: Optional[str] = Field(None, description="Expected output dimension")
+    trace: Optional[dict[str, Any]] = Field(None, description="Internal debug trace; omit from submissions")
 
 
 # ─── Internal pipeline data containers ───
@@ -55,9 +56,13 @@ class PipelineContext(BaseModel):
     question: str
     question_type: str = "quantitative"  # "quantitative" | "qualitative"
     topic: str = "general"
+    intent: str = "unknown"
 
     # Step 2: RAG
     premises: List[str] = Field(default_factory=list)
+    rag_candidates: List[str] = Field(default_factory=list)
+    rejected_premises: List[str] = Field(default_factory=list)
+    premise_warnings: List[str] = Field(default_factory=list)
     rag_top_score: float = 0.0
     unit_hints: List[str] = Field(default_factory=list)
     geometry_hints: List[str] = Field(default_factory=list)
@@ -75,6 +80,11 @@ class PipelineContext(BaseModel):
     solver_strategy: str = ""
     target_quantity: str = "unknown"
     expected_unit_dimension: str = ""
+    raw_llm_answer: str = ""
+    raw_llm_unit: str = ""
+    sandbox_answer: str = ""
+    sandbox_unit: str = ""
+    answer_warnings: List[str] = Field(default_factory=list)
 
     # Step 6: Structured output
     cot_steps: List[str] = Field(default_factory=list)

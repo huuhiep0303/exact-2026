@@ -67,6 +67,22 @@ def detect_topic(question: str) -> Topic:
     if any(term in q for term in zero_field_terms) and ("field" in q or " e " in f" {q} "):
         return "electric_field_zero"
 
+    energy_terms = ["energy", "stored", "electric field energy", "magnetic field energy", "electromagnetic energy"]
+    energy_devices = ["lc", "oscillation", "oscillating", "capacitor", "inductor", "inductance", "electric field energy", "magnetic field energy"]
+    capacitor_structure_terms = ["parallel-plate", "parallel plate", "plate distance", "source", "battery", "connected", "disconnected", "dielectric"]
+    lc_energy_context = (
+        any(term in q for term in ["lc", "oscillat", "maximum current", "instantaneous current"])
+        and any(term in q for term in ["energy", "electric field energy", "magnetic field energy"])
+    )
+    if lc_energy_context:
+        return "energy_oscillation"
+    if any(term in q for term in energy_terms) and any(term in q for term in energy_devices):
+        if not any(term in q for term in capacitor_structure_terms):
+            return "energy_oscillation"
+
+    if any(term in q for term in ["lc oscillation", "oscillation", "capacitor energy", "inductor energy", "electromagnetic energy"]):
+        return "energy_oscillation"
+
     coulomb_terms = ["charge", "charges", "q1", "q2", "q3", "test charge", "coulomb"]
     force_terms = ["force", "forces", "acting on", "resultant", "magnitude"]
     if any(term in q for term in coulomb_terms) and any(term in q for term in force_terms):
@@ -121,20 +137,11 @@ def detect_topic(question: str) -> Topic:
     if any(term in q for term in ["rlc", "resonance", "resonant", "resonate", "alternating", "ac circuit", "impedance", "reactance"]):
         return "ac_circuit"
 
-    energy_terms = ["energy", "stored", "electric field energy", "magnetic field energy", "electromagnetic energy"]
-    energy_devices = ["lc", "oscillation", "capacitor", "inductor", "inductance", "electric field energy", "magnetic field energy"]
-    capacitor_structure_terms = ["parallel-plate", "parallel plate", "plate distance", "source", "battery", "connected", "disconnected", "dielectric"]
-    if any(term in q for term in energy_terms) and any(term in q for term in energy_devices):
-        if not any(term in q for term in capacitor_structure_terms):
-            return "energy_oscillation"
-
-    if any(term in q for term in ["lc oscillation", "oscillation", "capacitor energy", "inductor energy", "electromagnetic energy"]):
-        return "energy_oscillation"
-
     if any(term in q for term in ["solenoid", "magnetic", "inductance", "inductor", "flux", "faraday"]):
         return "magnetism_induction"
 
-    if any(term in q for term in ["voltage", "potential", "electric potential", " v = 0", "equipotential"]):
+    volume_context = any(term in q for term in ["volume", " m^3", " m3", "cubic meter", "cubic metre"])
+    if not volume_context and any(term in q for term in ["voltage", "potential", "electric potential", " v = 0", "equipotential"]):
         if "capacitor" not in q and "plates" not in q:
             return "electric_potential"
 

@@ -165,7 +165,9 @@ def parse_numeric(value: str) -> Optional[float]:
     if not value:
         return None
 
-    cleaned = value.translate(SUPERSCRIPT_MAP)
+    # Prepend ^ to superscript blocks so they don't get merged into normal numbers
+    cleaned = re.sub(r"([⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+)", r"^\1", value)
+    cleaned = cleaned.translate(SUPERSCRIPT_MAP)
     cleaned = cleaned.replace(",", "")
     cleaned = cleaned.replace("×", "x")
     cleaned = cleaned.replace("·", "*")
@@ -178,7 +180,7 @@ def parse_numeric(value: str) -> Optional[float]:
             return parsed_after_equals
 
     # Textbook shorthand such as "45.10^{5}" means 45 * 10^5, not 45.10.
-    textbook_power = re.fullmatch(r"\s*([+-]?\d+(?:\.\d+)?)\s*\.\s*10\s*\^?\s*([+-]?\d+)\s*", cleaned)
+    textbook_power = re.fullmatch(r"\s*([+-]?\d+(?:\.\d+)?)\s*\.\s*10\s*\^\s*([+-]?\d+)\s*", cleaned)
     if textbook_power:
         try:
             return float(textbook_power.group(1)) * (10 ** int(textbook_power.group(2)))

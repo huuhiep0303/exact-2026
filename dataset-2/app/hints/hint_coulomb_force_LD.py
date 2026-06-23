@@ -278,6 +278,11 @@ def _detect_force_direction(question: str) -> List[str]:
             "opposite-sign charges ATTRACT (force pulls toward source)."
         )
         hints.append(
+            "HARD FORCE COMPUTATION: first compute the net electric field from source charges by vector components, "
+            "then compute force on the target charge with F_vector = q_target * E_net. "
+            "If q_target is negative, the force direction is opposite to E_net; the requested magnitude is |q_target|*|E_net|."
+        )
+        hints.append(
             "HARD SUPERPOSITION (COLLINEAR): if both vectors point in the SAME direction "
             "→ F_net = F1 + F2. If OPPOSITE directions → F_net = |F1 − F2|."
         )
@@ -290,6 +295,10 @@ def _detect_force_direction(question: str) -> List[str]:
             "HARD SUPERPOSITION: If two vectors point in SAME direction, ADD them (E_net = E1 + E2). "
             "If OPPOSITE direction, SUBTRACT them (E_net = |E1 - E2|). "
             "If at an angle, use VECTOR ADDITION."
+        )
+        hints.append(
+            "HARD FIELD COMPUTATION: assign coordinates and compute Ex,Ey in Python with "
+            "E_i = k*q_i*(target-source)/r_i^3; do not decide signs from prose alone."
         )
     return hints
 

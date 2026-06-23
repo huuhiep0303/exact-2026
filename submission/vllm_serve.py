@@ -38,7 +38,7 @@ vllm_image = (
         "/root/.cache/vllm": vllm_cache_volume,
     },
     secrets=[modal.Secret.from_name("exact-2026-config")],
-    min_containers=0,
+    min_containers=1,
     max_containers=1,
     scaledown_window=600,
     timeout=900,
