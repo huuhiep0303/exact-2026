@@ -113,6 +113,100 @@ class DeterministicSolverTests(unittest.TestCase):
         self.assertEqual(result.unit, "Pa")
         self.assertEqual(result.strategy, "general_ideal_gas_pressure")
 
+    def test_two_charge_potential_round1_regression(self):
+        question = (
+            "A point P is 10 cm from a charge q1 = +6.0 nC and 20 cm from "
+            "a charge q2 = -2.0 nC. Calculate the electric potential at P. "
+            "Use k = 9.0 x 10^9 N*m^2/C^2."
+        )
+        result = solve_deterministic(question, topic="electric_potential")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "450")
+        self.assertEqual(result.unit, "V")
+        self.assertEqual(result.strategy, "dt_two_charge_potential_at_point")
+
+    def test_series_resistor_current_round1_regression(self):
+        question = (
+            "Two resistors R1 = 12 ohm and R2 = 18 ohm are connected in "
+            "series to a 15 V source. Calculate the current in the circuit."
+        )
+        result = solve_deterministic(question, topic="dc_circuit")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "0.5")
+        self.assertEqual(result.unit, "A")
+        self.assertEqual(result.strategy, "thcb_series_resistor_current")
+
+    def test_work_energy_final_speed_round1_regression(self):
+        question = (
+            "A 2.0 kg object starts from rest. A constant net force of 10 N "
+            "acts on it over a distance of 5.0 m. Calculate the final speed "
+            "of the object."
+        )
+        result = solve_deterministic(question, topic="general")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "7.07107")
+        self.assertEqual(result.unit, "m/s")
+        self.assertEqual(result.strategy, "general_work_energy_final_speed")
+
+    def test_uniform_braking_distance_round1_regression(self):
+        question = (
+            "A car moving at 20 m/s brakes uniformly to rest with acceleration "
+            "-4.0 m/s^2. Calculate the braking distance."
+        )
+        result = solve_deterministic(question, topic="general")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "50")
+        self.assertEqual(result.unit, "m")
+        self.assertEqual(result.strategy, "general_uniform_braking_distance")
+
+    def test_elevator_normal_force_round1_regression(self):
+        question = (
+            "A person of mass 60 kg stands in an elevator accelerating upward "
+            "at 1.5 m/s^2. Calculate the normal force exerted by the elevator "
+            "floor on the person. Use g = 9.8 m/s^2."
+        )
+        result = solve_deterministic(question, topic="general")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "678")
+        self.assertEqual(result.unit, "N")
+        self.assertEqual(result.strategy, "general_elevator_normal_force")
+
+    def test_vertical_throw_max_height_round1_regression(self):
+        question = (
+            "A ball is thrown vertically upward with an initial speed of "
+            "19.6 m/s. Calculate the maximum height reached by the ball. "
+            "Use g = 9.8 m/s^2."
+        )
+        result = solve_deterministic(question, topic="general")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "19.6")
+        self.assertEqual(result.unit, "m")
+        self.assertEqual(result.strategy, "general_vertical_throw_max_height")
+
+    def test_constant_acceleration_round1_regression(self):
+        question = (
+            "A car starts with an initial speed of 8 m/s and travels 66 m "
+            "in 6 s with constant acceleration. Calculate the acceleration "
+            "of the car."
+        )
+        result = solve_deterministic(question, topic="general")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "1")
+        self.assertEqual(result.unit, "m/s^2")
+        self.assertEqual(result.strategy, "general_constant_acceleration_from_distance")
+
+    def test_transformer_secondary_voltage_round1_regression(self):
+        question = (
+            "A transformer has primary turns N1 = 200, secondary turns "
+            "N2 = 800, and primary voltage U1 = 12 V. Calculate the "
+            "secondary voltage."
+        )
+        result = solve_deterministic(question, topic="general")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.answer, "48")
+        self.assertEqual(result.unit, "V")
+        self.assertEqual(result.strategy, "general_transformer_secondary_voltage")
+
     def test_dt_regression_cases(self):
         for sample_id in [
             "DT002",

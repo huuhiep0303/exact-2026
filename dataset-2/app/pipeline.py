@@ -104,6 +104,36 @@ def run_pipeline(question: str) -> PhysicsResponse:
         print("[Step 1] Cache MISS")
 
     # ─── Step 2: Hybrid RAG ───
+    target = detect_answer_target(question)
+    ctx.target_quantity = target.quantity
+    ctx.expected_unit_dimension = ",".join(target.expected_dimensions)
+
+    # deterministic_result = solve_deterministic(question, topic=ctx.topic, target=target)
+    # solver_compatible = bool(
+    #     deterministic_result
+    #     and solver_result_is_compatible(target, deterministic_result.answer, deterministic_result.unit)
+    # )
+    # if deterministic_result is not None and solver_compatible:
+    #     ctx.final_answer, ctx.final_unit = normalize_answer(
+    #         deterministic_result.answer,
+    #         deterministic_result.unit,
+    #     )
+    #     ctx.answer_source = "deterministic_solver"
+    #     ctx.solver_strategy = deterministic_result.strategy
+    #     ctx.confidence = compute_confidence(
+    #         code_success=True,
+    #         answer_source=ctx.answer_source,
+    #         solver_compatible=True,
+    #     )
+    #     response = structure_response(ctx)
+    #     _cache_set(question, response)
+    #     if config.debug:
+    #         print(
+    #             f"[Step 1b] Deterministic fast path: {ctx.solver_strategy} "
+    #             f"({time.time() - start_time:.3f}s)"
+    #         )
+    #     return response
+
     premises, rag_score = retrieve_premises(question, top_k=config.rag_rerank_top_k, topic=ctx.topic)
     ctx.premises = premises
     ctx.rag_top_score = rag_score
@@ -137,9 +167,6 @@ def run_pipeline(question: str) -> PhysicsResponse:
         print(f"[Step 4] Sandbox: {status}")
 
     # ─── Step 5: Answer Normalizer ───
-    target = detect_answer_target(question)
-    ctx.target_quantity = target.quantity
-    ctx.expected_unit_dimension = ",".join(target.expected_dimensions)
     if sandbox_result.success:
         raw_answer = sandbox_result.answer_value or ""
         raw_unit = sandbox_result.unit or ""

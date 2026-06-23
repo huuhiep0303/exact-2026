@@ -39,7 +39,7 @@ TYPE1_MODEL = os.getenv("TYPE1_MODEL", "exact-lora")
 TYPE2_MODEL = os.getenv("TYPE2_MODEL", "exact-lora-type2")
 VLLM_REQUEST_TIMEOUT = float(os.getenv("VLLM_REQUEST_TIMEOUT", "45"))
 TYPE1_MAX_TOKENS = int(os.getenv("TYPE1_MAX_TOKENS", "512"))
-TYPE2_PIPELINE_TIMEOUT = float(os.getenv("TYPE2_PIPELINE_TIMEOUT", "60"))
+TYPE2_PIPELINE_TIMEOUT = float(os.getenv("TYPE2_PIPELINE_TIMEOUT", "50"))
 
 
 SYSTEM_PROMPT = """You are an expert in formal logical reasoning. Analyze the premises and answer the question using rigorous logical deduction.
@@ -445,6 +445,23 @@ Provide your response in EXACTLY this format:
         )
     )
 
+def split_type2_answer(answer: str) -> tuple[str, str]:
+    ans_str = (answer or "").strip()
+    if not ans_str:
+        return "", ""
+    if ";" not in ans_str:
+        match = re.fullmatch(
+            r"(?:[A-Za-z][A-Za-z0-9_]*\s*=\s*)?"
+            r"([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)"
+            r"\s*([^\d\s].*)?",
+            ans_str,
+            re.I,
+        )
+        if match:
+            return match.group(1), (match.group(2) or "").strip()
+    parts = ans_str.split(" ", 1)
+    return parts[0], parts[1].strip() if len(parts) > 1 else ""
+
 async def handle_type2(request: QueryRequest) -> QueryResponse:
     # Configure environment variables for dataset-2 BEFORE importing its modules
     os.environ["PIPELINE_MODE"] = "api"
@@ -491,11 +508,8 @@ async def handle_type2(request: QueryRequest) -> QueryResponse:
             reasoning=None
         )
     
-    # Parse answer string (e.g., "5 A") into value and unit
-    ans_str = physics_response.answer.strip()
-    parts = ans_str.split(" ", 1)
-    ans_val = parts[0]
-    ans_unit = parts[1].strip() if len(parts) > 1 else ""
+    # Parse answer string (e.g., "5 A" or "I = 0.5 A") into value and unit.
+    ans_val, ans_unit = split_type2_answer(physics_response.answer)
     
     # Build reasoning block
     reasoning_steps = physics_response.cot if physics_response.cot else []

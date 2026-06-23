@@ -23,7 +23,23 @@ image = (
     })
     .add_local_dir(os.path.join(BASE_DIR, "submission"), remote_path="/root/Project/submission", ignore=["__pycache__", ".git", "dist"])
     .add_local_dir(os.path.join(BASE_DIR, "dataset-1"), remote_path="/root/Project/dataset-1", ignore=["venv", "outputs", "__pycache__", ".git", "EXACT2026_dataset_2026-05-15"])
-    .add_local_dir(os.path.join(BASE_DIR, "dataset-2"), remote_path="/root/Project/dataset-2", ignore=["venv", "eval_results", "__pycache__", ".git", "checkpoints", "wandb", ".env"])
+    .add_local_dir(
+        os.path.join(BASE_DIR, "dataset-2"),
+        remote_path="/root/Project/dataset-2",
+        ignore=[
+            "venv",
+            "eval_results",
+            "__pycache__",
+            ".git",
+            "checkpoints",
+            "wandb",
+            ".env",
+            "external",
+            "finetuning",
+            "outputs",
+            "qdrant_storage",
+        ],
+    )
 )
 
 # Expose the FastAPI app
@@ -31,7 +47,7 @@ image = (
     image=image,
     secrets=[modal.Secret.from_name("exact-2026-config")],
     volumes={"/root/.cache/huggingface": hf_cache_volume},
-    min_containers=1,
+    min_containers=0,
     max_containers=1,
     scaledown_window=600,
     # timeout=600, #có hoặc không
@@ -59,6 +75,24 @@ def fastapi_app():
     )
     from app.modules.knowledge_base import get_knowledge_base
     get_knowledge_base()
+
+    try:
+        import httpx
+
+        model_name = os.environ["REASONER_API_MODEL"]
+        with httpx.Client(timeout=httpx.Timeout(20.0, connect=5.0)) as client:
+            client.post(
+                f"{vllm_url}/chat/completions",
+                json={
+                    "model": model_name,
+                    "messages": [{"role": "user", "content": "Return 1."}],
+                    "max_tokens": 1,
+                    "temperature": 0,
+                },
+            )
+        print(f"[Warmup] Requested vLLM LoRA adapter: {model_name}")
+    except Exception as exc:
+        print(f"[Warmup] vLLM LoRA adapter warmup skipped: {exc}")
     
     from submission.app import app as web_app
     return web_app

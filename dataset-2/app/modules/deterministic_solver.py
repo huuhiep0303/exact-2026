@@ -1260,6 +1260,31 @@ def _solve_capacitor(question: str) -> DeterministicResult | None:
         value, unit = _charge_unit(c * u)
         return DeterministicResult(_fmt(value), unit, "td_charge_from_capacitance_voltage")
 
+    if "series" in q and ("capacitance" in q or "equivalent" in q or "calculate c" in q):
+        caps = _all_values(question, r"pF|nF|uF|mF|F", _capacitance_factor)
+        positive_caps = [cap for cap in caps if cap > 0]
+        if len(positive_caps) == 1:
+            _count_map = {"two": 2, "three": 3, "four": 4, "five": 5}
+            _m = re.search(r"\b(two|three|four|five)\b", q)
+            if _m:
+                positive_caps = positive_caps * _count_map[_m.group(1)]
+        if len(positive_caps) >= 2:
+            equivalent = 1.0 / sum(1.0 / cap for cap in positive_caps)
+            value, unit = _capacitance_unit(equivalent)
+            return DeterministicResult(_fmt(value), unit, "td_series_equivalent_capacitance")
+
+    if "parallel" in q and ("capacitance" in q or "equivalent" in q or "calculate c" in q) and "plate" not in q:
+        caps = _all_values(question, r"pF|nF|uF|mF|F", _capacitance_factor)
+        positive_caps = [cap for cap in caps if cap > 0]
+        if len(positive_caps) == 1:
+            _count_map = {"two": 2, "three": 3, "four": 4, "five": 5}
+            _m = re.search(r"\b(two|three|four|five)\b", q)
+            if _m:
+                positive_caps = positive_caps * _count_map[_m.group(1)]
+        if len(positive_caps) >= 2:
+            value, unit = _capacitance_unit(sum(positive_caps))
+            return DeterministicResult(_fmt(value), unit, "td_parallel_equivalent_capacitance")
+
     if ("capacitance" in q or "calculate c" in q) and c is not None and charge is None:
         value, unit = _capacitance_unit(c)
         return DeterministicResult(_fmt(value), unit, "td_parallel_plate_capacitance")
@@ -1348,6 +1373,14 @@ def _solve_measurement_and_dc(question: str) -> DeterministicResult | None:
     text = _normalize(question)
     plus_minus = r"(?:\u00b1|Â±|\\+/-|\\+-)"
     measure_unit = r"°C|degC|mm|cm|m|g|kg|a|v|c"
+
+    if "series" in q and ("resistor" in q or "resistors" in q) and "current" in q:
+        voltage = _extract_voltage(question)
+        resistances = _all_values(question, r"kohm|ohm|Î©", _resistance_factor)
+        if voltage is not None and len(resistances) >= 2:
+            total_resistance = sum(r for r in resistances if r)
+            if total_resistance:
+                return DeterministicResult(_fmt(voltage / total_resistance), "A", "thcb_series_resistor_current")
 
     if "relative error" in q and "power" in q:
         voltage = re.search(r"(" + _FLOAT + r")\s*" + plus_minus + r"\s*(" + _FLOAT + r")\s*V", text, re.I)
@@ -1549,6 +1582,177 @@ def _solve_conductor_resistance_from_resistivity(question: str) -> Deterministic
     return DeterministicResult(_fmt(resistance), "ohm", "general_conductor_resistance_from_resistivity")
 
 
+def _solve_two_charge_potential_at_point(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "potential" not in q or "charge" not in q:
+        return None
+
+    charges = _extract_all_charges(question)
+    if "q1" not in charges or "q2" not in charges:
+        return None
+
+    text = _normalize(question)
+    point_distances = re.findall(
+        r"(\d+(?:\.\d*)?|\.\d+)\s*(mm|cm|m)\s+from\s+(?:a\s+charge\s+)?q([12])\b",
+        text,
+        re.I,
+    )
+    distances: dict[str, float] = {}
+    for value_text, unit, charge_idx in point_distances:
+        value = _number(value_text)
+        if value is not None:
+            distances[f"q{charge_idx}"] = value * _distance_factor(unit)
+
+    if "q1" not in distances or "q2" not in distances:
+        return None
+
+    k_match = re.search(r"\bk\s*=\s*(" + _FLOAT + r")", text, re.I)
+    k = _number(k_match.group(1)) if k_match else None
+    if k is None:
+        k = 9e9
+
+    potential = k * (charges["q1"] / distances["q1"] + charges["q2"] / distances["q2"])
+    return DeterministicResult(_fmt(potential), "V", "dt_two_charge_potential_at_point")
+
+
+def _solve_work_energy_final_speed(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "final speed" not in q or "force" not in q or "distance" not in q:
+        return None
+    if "starts from rest" not in q:
+        return None
+
+    text = _normalize(question)
+    mass_match = re.search(r"(" + _FLOAT + r")\s*kg\b", text, re.I)
+    force_match = re.search(r"(?:force|net force)[^.\n]{0,20}?(" + _FLOAT + r")\s*N\b", text, re.I)
+    distance_match = re.search(r"(?:distance|over a distance of)[^.\n]{0,20}?(" + _FLOAT + r")\s*(mm|cm|m)\b", text, re.I)
+    if not mass_match or not force_match or not distance_match:
+        return None
+
+    mass = _number(mass_match.group(1))
+    force = _number(force_match.group(1))
+    distance = _number(distance_match.group(1))
+    if mass is None or force is None or distance is None or mass == 0:
+        return None
+
+    distance *= _distance_factor(distance_match.group(2))
+    return DeterministicResult(_fmt(math.sqrt(2 * force * distance / mass)), "m/s", "general_work_energy_final_speed")
+
+
+def _solve_uniform_braking_distance(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "braking distance" not in q or "brakes" not in q:
+        return None
+    if "to rest" not in q:
+        return None
+
+    text = _normalize(question)
+    speed_match = re.search(r"(?:moving at|initial speed of)\s+(" + _FLOAT + r")\s*m/s\b", text, re.I)
+    acceleration_match = re.search(r"acceleration\s+(" + _FLOAT + r")\s*m/s\^?2\b", text, re.I)
+    if not speed_match or not acceleration_match:
+        return None
+
+    initial_speed = _number(speed_match.group(1))
+    acceleration = _number(acceleration_match.group(1))
+    if initial_speed is None or acceleration is None or acceleration == 0:
+        return None
+
+    distance = -(initial_speed * initial_speed) / (2 * acceleration)
+    if distance < 0:
+        distance = abs(distance)
+    return DeterministicResult(_fmt(distance), "m", "general_uniform_braking_distance")
+
+
+def _solve_elevator_normal_force(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "elevator" not in q or "normal force" not in q:
+        return None
+
+    text = _normalize(question)
+    mass_match = re.search(r"mass\s+(" + _FLOAT + r")\s*kg\b", text, re.I)
+    acceleration_match = re.search(r"accelerating\s+(upward|downward)\s+at\s+(" + _FLOAT + r")\s*m/s\^?2\b", text, re.I)
+    g_match = re.search(r"\bg\s*=\s*(" + _FLOAT + r")\s*m/s\^?2\b", text, re.I)
+    if not mass_match or not acceleration_match:
+        return None
+
+    mass = _number(mass_match.group(1))
+    acceleration = _number(acceleration_match.group(2))
+    g = _number(g_match.group(1)) if g_match else 9.8
+    if mass is None or acceleration is None or g is None:
+        return None
+
+    direction = acceleration_match.group(1).lower()
+    effective_acceleration = g + acceleration if direction == "upward" else g - acceleration
+    return DeterministicResult(_fmt(mass * effective_acceleration), "N", "general_elevator_normal_force")
+
+
+def _solve_vertical_throw_max_height(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "maximum height" not in q or "initial speed" not in q:
+        return None
+    if "thrown vertically upward" not in q and "vertical" not in q:
+        return None
+
+    text = _normalize(question)
+    speed_match = re.search(r"initial\s+speed\s+of\s+(" + _FLOAT + r")\s*m/s\b", text, re.I)
+    g_match = re.search(r"\bg\s*=\s*(" + _FLOAT + r")\s*m/s\^?2\b", text, re.I)
+    if not speed_match:
+        return None
+
+    speed = _number(speed_match.group(1))
+    g = _number(g_match.group(1)) if g_match else 9.8
+    if speed is None or g is None or g == 0:
+        return None
+
+    return DeterministicResult(_fmt(speed * speed / (2 * g)), "m", "general_vertical_throw_max_height")
+
+
+def _solve_constant_acceleration_from_distance(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "acceleration" not in q or "initial speed" not in q:
+        return None
+    if "constant acceleration" not in q:
+        return None
+
+    text = _normalize(question)
+    speed_match = re.search(r"initial\s+speed\s+of\s+(" + _FLOAT + r")\s*m/s\b", text, re.I)
+    distance_match = re.search(r"travels\s+(" + _FLOAT + r")\s*(mm|cm|m)\b", text, re.I)
+    time_match = re.search(r"in\s+(" + _FLOAT + r")\s*s\b", text, re.I)
+    if not speed_match or not distance_match or not time_match:
+        return None
+
+    initial_speed = _number(speed_match.group(1))
+    distance = _number(distance_match.group(1))
+    time_s = _number(time_match.group(1))
+    if initial_speed is None or distance is None or time_s is None or time_s == 0:
+        return None
+
+    distance *= _distance_factor(distance_match.group(2))
+    acceleration = 2 * (distance - initial_speed * time_s) / (time_s * time_s)
+    return DeterministicResult(_fmt(acceleration), "m/s^2", "general_constant_acceleration_from_distance")
+
+
+def _solve_transformer_secondary_voltage(question: str) -> DeterministicResult | None:
+    q = _normalize(question).lower()
+    if "transformer" not in q or "secondary voltage" not in q:
+        return None
+
+    text = _normalize(question)
+    n1_match = re.search(r"\bN1\s*=\s*(" + _FLOAT + r")\b", text, re.I)
+    n2_match = re.search(r"\bN2\s*=\s*(" + _FLOAT + r")\b", text, re.I)
+    u1_match = re.search(r"\bU1\s*=\s*(" + _FLOAT + r")\s*V\b", text, re.I)
+    if not n1_match or not n2_match or not u1_match:
+        return None
+
+    n1 = _number(n1_match.group(1))
+    n2 = _number(n2_match.group(1))
+    u1 = _number(u1_match.group(1))
+    if n1 is None or n2 is None or u1 is None or n1 == 0:
+        return None
+
+    return DeterministicResult(_fmt(u1 * n2 / n1), "V", "general_transformer_secondary_voltage")
+
+
 def _solve_ideal_gas_pressure(question: str) -> DeterministicResult | None:
     q = _normalize(question).lower()
     if "gas" not in q or "pressure" not in q:
@@ -1715,6 +1919,13 @@ def solve_deterministic(question: str, topic: str = "", target=None) -> Determin
         _solve_thin_lens_image_distance,
         _solve_resistor_electrical_energy,
         _solve_conductor_resistance_from_resistivity,
+        _solve_two_charge_potential_at_point,
+        _solve_work_energy_final_speed,
+        _solve_uniform_braking_distance,
+        _solve_elevator_normal_force,
+        _solve_vertical_throw_max_height,
+        _solve_constant_acceleration_from_distance,
+        _solve_transformer_secondary_voltage,
         _solve_ideal_gas_pressure,
         _solve_chlt_resonance_yes_no,
         _solve_rlc,

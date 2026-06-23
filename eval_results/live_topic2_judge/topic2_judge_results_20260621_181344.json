@@ -1,0 +1,830 @@
+[
+  {
+    "query_id": "T2_0001",
+    "ok": true,
+    "expected": "3.38 × 10^-3 J",
+    "got": "0.003384 J",
+    "status_code": 200,
+    "elapsed_sec": 1.3206494000000077,
+    "request_payload": {
+      "query_id": "T2_0001",
+      "type": "type2",
+      "query": "A capacitor has capacitance C = 47 μF and is connected to a potential difference U = 12 V. Calculate the energy stored in the capacitor.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0001",
+      "answer": "0.003384",
+      "unit": "J",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 0.003384 J.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "0.003384",
+    "pred_unit": "J",
+    "gold_value": "3.38 x 10^-3",
+    "gold_unit": "J"
+  },
+  {
+    "query_id": "T2_0002",
+    "ok": true,
+    "expected": "150 uF",
+    "got": "150 μF",
+    "status_code": 200,
+    "elapsed_sec": 1.041230200000001,
+    "request_payload": {
+      "query_id": "T2_0002",
+      "type": "type2",
+      "query": "A capacitor stores a charge Q = 2.4 mC when connected to a voltage U = 16 V. Calculate the capacitance of the capacitor.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0002",
+      "answer": "150",
+      "unit": "μF",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 150 μF.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "150",
+    "pred_unit": "μF",
+    "gold_value": "150",
+    "gold_unit": "μF"
+  },
+  {
+    "query_id": "T2_0003",
+    "ok": true,
+    "expected": "1.5 N",
+    "got": "1.5 N",
+    "status_code": 200,
+    "elapsed_sec": 0.9535984000000042,
+    "request_payload": {
+      "query_id": "T2_0003",
+      "type": "type2",
+      "query": "Two point charges q1 = +3.0 μC and q2 = -5.0 μC are separated by a distance of 0.30 m in air. Calculate the magnitude of the electrostatic force between them. Use k = 9.0 × 10^9 N·m²/C².",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0003",
+      "answer": "1.5",
+      "unit": "N",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 1.5 N.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "1.5",
+    "pred_unit": "N",
+    "gold_value": "1.5",
+    "gold_unit": "N"
+  },
+  {
+    "query_id": "T2_0004",
+    "ok": true,
+    "expected": "7.20 × 10^3 N/C",
+    "got": "7200 V/m",
+    "status_code": 200,
+    "elapsed_sec": 0.9495164999999872,
+    "request_payload": {
+      "query_id": "T2_0004",
+      "type": "type2",
+      "query": "Two charges +4.0 nC and -4.0 nC are fixed 20 cm apart in air. Calculate the magnitude of the electric field at the midpoint between the charges. Use k = 9.0 × 10^9 N·m²/C².",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0004",
+      "answer": "7200",
+      "unit": "V/m",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 7200 V/m.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": false,
+    "physical_equiv": true,
+    "pred_value": "7200",
+    "pred_unit": "V/m",
+    "gold_value": "7.20 x 10^3",
+    "gold_unit": "N/C"
+  },
+  {
+    "query_id": "T2_0005",
+    "ok": true,
+    "expected": "450 V",
+    "got": "450 V",
+    "status_code": 200,
+    "elapsed_sec": 1.0028727000000117,
+    "request_payload": {
+      "query_id": "T2_0005",
+      "type": "type2",
+      "query": "A point P is 10 cm from a charge q1 = +6.0 nC and 20 cm from a charge q2 = -2.0 nC. Calculate the electric potential at P. Use k = 9.0 × 10^9 N·m²/C².",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0005",
+      "answer": "450",
+      "unit": "V",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 450 V.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "450",
+    "pred_unit": "V",
+    "gold_value": "450",
+    "gold_unit": "V"
+  },
+  {
+    "query_id": "T2_0006",
+    "ok": true,
+    "expected": "36 uC",
+    "got": "36 μC",
+    "status_code": 200,
+    "elapsed_sec": 1.031198900000021,
+    "request_payload": {
+      "query_id": "T2_0006",
+      "type": "type2",
+      "query": "Two capacitors C1 = 6.0 μF and C2 = 3.0 μF are connected in series across an 18 V battery. Calculate the charge stored on each capacitor.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0006",
+      "answer": "36",
+      "unit": "μC",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 36 μC.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "36",
+    "pred_unit": "μC",
+    "gold_value": "36",
+    "gold_unit": "μC"
+  },
+  {
+    "query_id": "T2_0007",
+    "ok": true,
+    "expected": "1800 J",
+    "got": "1800 J",
+    "status_code": 200,
+    "elapsed_sec": 0.9605138999999951,
+    "request_payload": {
+      "query_id": "T2_0007",
+      "type": "type2",
+      "query": "A 24 Ω resistor is connected to a 12 V battery for 5 minutes. Calculate the electrical energy converted in the resistor.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0007",
+      "answer": "1800",
+      "unit": "J",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 1800 J.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "1800",
+    "pred_unit": "J",
+    "gold_value": "1800",
+    "gold_unit": "J"
+  },
+  {
+    "query_id": "T2_0008",
+    "ok": true,
+    "expected": "0.5 A",
+    "got": "0.5 A",
+    "status_code": 200,
+    "elapsed_sec": 0.9651088000000243,
+    "request_payload": {
+      "query_id": "T2_0008",
+      "type": "type2",
+      "query": "Two resistors R1 = 12 Ω and R2 = 18 Ω are connected in series to a 15 V source. Calculate the current in the circuit.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0008",
+      "answer": "0.5",
+      "unit": "A",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 0.5 A.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "0.5",
+    "pred_unit": "A",
+    "gold_value": "0.5",
+    "gold_unit": "A"
+  },
+  {
+    "query_id": "T2_0009",
+    "ok": true,
+    "expected": "6 A",
+    "got": "6 A",
+    "status_code": 200,
+    "elapsed_sec": 0.9837178999999878,
+    "request_payload": {
+      "query_id": "T2_0009",
+      "type": "type2",
+      "query": "Two resistors R1 = 6 Ω and R2 = 3 Ω are connected in parallel across a 12 V source. Calculate the total current drawn from the source.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0009",
+      "answer": "6",
+      "unit": "A",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 6 A.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "6",
+    "pred_unit": "A",
+    "gold_value": "6",
+    "gold_unit": "A"
+  },
+  {
+    "query_id": "T2_0010",
+    "ok": true,
+    "expected": "50.3 Hz",
+    "got": "50.3292 Hz",
+    "status_code": 200,
+    "elapsed_sec": 0.9866039000000058,
+    "request_payload": {
+      "query_id": "T2_0010",
+      "type": "type2",
+      "query": "An LC circuit has inductance L = 0.20 H and capacitance C = 50 μF. Calculate the resonant frequency of the circuit.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0010",
+      "answer": "50.3292",
+      "unit": "Hz",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 50.3292 Hz.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "50.3292",
+    "pred_unit": "Hz",
+    "gold_value": "50.3",
+    "gold_unit": "Hz"
+  },
+  {
+    "query_id": "T2_0011",
+    "ok": true,
+    "expected": "151 ohm",
+    "got": "150.796 ohm",
+    "status_code": 200,
+    "elapsed_sec": 0.9846450999999945,
+    "request_payload": {
+      "query_id": "T2_0011",
+      "type": "type2",
+      "query": "An inductor with inductance L = 0.40 H is connected to an AC source of frequency f = 60 Hz. Calculate the inductive reactance.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0011",
+      "answer": "150.796",
+      "unit": "ohm",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 150.796 ohm.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "150.796",
+    "pred_unit": "ohm",
+    "gold_value": "151",
+    "gold_unit": "ohm"
+  },
+  {
+    "query_id": "T2_0012",
+    "ok": true,
+    "expected": "1 m/s^2",
+    "got": "1 m/s^2",
+    "status_code": 200,
+    "elapsed_sec": 0.9855105000000037,
+    "request_payload": {
+      "query_id": "T2_0012",
+      "type": "type2",
+      "query": "A car starts with an initial speed of 8 m/s and travels 66 m in 6 s with constant acceleration. Calculate the acceleration of the car.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0012",
+      "answer": "1",
+      "unit": "m/s^2",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 1 m/s^2.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "1",
+    "pred_unit": "m/s^2",
+    "gold_value": "1",
+    "gold_unit": "m/s^2"
+  },
+  {
+    "query_id": "T2_0013",
+    "ok": false,
+    "expected": "50 m",
+    "got": "0",
+    "status_code": 200,
+    "elapsed_sec": 60.988940000000014,
+    "request_payload": {
+      "query_id": "T2_0013",
+      "type": "type2",
+      "query": "A car moving at 20 m/s brakes uniformly to rest with acceleration -4.0 m/s². Calculate the braking distance.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0013",
+      "answer": "0",
+      "unit": "",
+      "explanation": "Type 2 pipeline exceeded the internal time budget.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": false,
+    "numeric_match": false,
+    "strict_unit": false,
+    "physical_equiv": false,
+    "pred_value": "0",
+    "pred_unit": "",
+    "gold_value": "50",
+    "gold_unit": "m"
+  },
+  {
+    "query_id": "T2_0014",
+    "ok": false,
+    "expected": "678 N",
+    "got": "0",
+    "status_code": 200,
+    "elapsed_sec": 61.03015140000002,
+    "request_payload": {
+      "query_id": "T2_0014",
+      "type": "type2",
+      "query": "A person of mass 60 kg stands in an elevator accelerating upward at 1.5 m/s². Calculate the normal force exerted by the elevator floor on the person. Use g = 9.8 m/s².",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0014",
+      "answer": "0",
+      "unit": "",
+      "explanation": "Type 2 pipeline exceeded the internal time budget.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": false,
+    "numeric_match": false,
+    "strict_unit": false,
+    "physical_equiv": false,
+    "pred_value": "0",
+    "pred_unit": "",
+    "gold_value": "678",
+    "gold_unit": "N"
+  },
+  {
+    "query_id": "T2_0015",
+    "ok": true,
+    "expected": "7.07 m/s",
+    "got": "7.07107 m/s",
+    "status_code": 200,
+    "elapsed_sec": 1.0400715000000105,
+    "request_payload": {
+      "query_id": "T2_0015",
+      "type": "type2",
+      "query": "A 2.0 kg object starts from rest. A constant net force of 10 N acts on it over a distance of 5.0 m. Calculate the final speed of the object.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0015",
+      "answer": "7.07107",
+      "unit": "m/s",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 7.07107 m/s.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "7.07107",
+    "pred_unit": "m/s",
+    "gold_value": "7.07",
+    "gold_unit": "m/s"
+  },
+  {
+    "query_id": "T2_0016",
+    "ok": true,
+    "expected": "19.6 m",
+    "got": "19.6 m",
+    "status_code": 200,
+    "elapsed_sec": 0.9975982999999928,
+    "request_payload": {
+      "query_id": "T2_0016",
+      "type": "type2",
+      "query": "A ball is thrown vertically upward with an initial speed of 19.6 m/s. Calculate the maximum height reached by the ball. Use g = 9.8 m/s².",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0016",
+      "answer": "19.6",
+      "unit": "m",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 19.6 m.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "19.6",
+    "pred_unit": "m",
+    "gold_value": "19.6",
+    "gold_unit": "m"
+  },
+  {
+    "query_id": "T2_0017",
+    "ok": true,
+    "expected": "3.15 × 10^4 J",
+    "got": "31500 J",
+    "status_code": 200,
+    "elapsed_sec": 34.76525219999996,
+    "request_payload": {
+      "query_id": "T2_0017",
+      "type": "type2",
+      "query": "How much heat is required to raise the temperature of 0.50 kg of water by 15 °C? Use c = 4200 J/(kg·°C).",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0017",
+      "answer": "31500",
+      "unit": "J",
+      "explanation": "Using Excerpt from CH_ac_circuit_rules (part 15), the computation yields a result of 31500, in units of J.",
+      "premises_used": [],
+      "reasoning": {
+        "type": "cot",
+        "steps": [
+          "FOL: ∀p (PhysicsProblem(p) ∧ Topic(p, \"general\") → SolveByRelevantPremisesAndExecutableCode(p))",
+          "Step 1: Identify the mass of the water (m) as 0.50 kg.",
+          "Step 2: Identify the temperature change (ΔT) as 15 °C.",
+          "Step 3: Identify the specific heat capacity of water (c) as 4200 J/(kg·°C).",
+          "Step 4: Use the formula for heat (Q) required: Q = m × c × ΔT.",
+          "Step 5: Substitute the values into the formula: Q = 0.50 kg × 4200 J/(kg·°C) × 15 °C.",
+          "Step 6: Calculate the result: Q = 0.50 × 4200 × 15 = 31500 J."
+        ]
+      }
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "31500",
+    "pred_unit": "J",
+    "gold_value": "3.15 x 10^4",
+    "gold_unit": "J"
+  },
+  {
+    "query_id": "T2_0018",
+    "ok": true,
+    "expected": "6.68 × 10^4 J",
+    "got": "66800 J",
+    "status_code": 200,
+    "elapsed_sec": 33.10847100000001,
+    "request_payload": {
+      "query_id": "T2_0018",
+      "type": "type2",
+      "query": "Calculate the heat required to melt 0.20 kg of ice at 0 °C. Use the latent heat of fusion of ice L = 3.34 × 10^5 J/kg.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0018",
+      "answer": "66800",
+      "unit": "J",
+      "explanation": "Using Excerpt from DT_electric_field_vector (part 20), the computation yields a result of 66800, in units of J.",
+      "premises_used": [],
+      "reasoning": {
+        "type": "cot",
+        "steps": [
+          "FOL: ∀p (PhysicsProblem(p) ∧ Topic(p, \"general\") → SolveByRelevantPremisesAndExecutableCode(p))",
+          "Step 1: Identify the given mass of ice (m) and the latent heat of fusion of ice (L).",
+          "Step 2: The mass of ice is m = 0.20 kg.",
+          "Step 3: The latent heat of fusion of ice is L = 3.34 × 10^5 J/kg.",
+          "Step 4: The formula for the heat (Q) required to melt a mass (m) of substance is Q = m × L.",
+          "Step 5: Substitute the given values into the formula: Q = 0.20 kg × 3.34 × 10^5 J/kg.",
+          "Step 6: Calculate the heat required: Q = 6.68 × 10^4 J."
+        ]
+      }
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "66800",
+    "pred_unit": "J",
+    "gold_value": "6.68 x 10^4",
+    "gold_unit": "J"
+  },
+  {
+    "query_id": "T2_0019",
+    "ok": true,
+    "expected": "1.25 × 10^5 Pa",
+    "got": "125000 Pa",
+    "status_code": 200,
+    "elapsed_sec": 1.029060999999956,
+    "request_payload": {
+      "query_id": "T2_0019",
+      "type": "type2",
+      "query": "A gas sample contains n = 0.50 mol at temperature T = 300 K in a volume V = 0.010 m³. Calculate the pressure of the gas. Use R = 8.314 J/(mol·K).",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0019",
+      "answer": "125000",
+      "unit": "Pa",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 125000 Pa.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "125000",
+    "pred_unit": "Pa",
+    "gold_value": "1.25 x 10^5",
+    "gold_unit": "Pa"
+  },
+  {
+    "query_id": "T2_0020",
+    "ok": true,
+    "expected": "60 cm",
+    "got": "60 cm",
+    "status_code": 200,
+    "elapsed_sec": 1.0406229000000167,
+    "request_payload": {
+      "query_id": "T2_0020",
+      "type": "type2",
+      "query": "An object is placed 30 cm in front of a converging lens with focal length 20 cm. Calculate the image distance.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0020",
+      "answer": "60",
+      "unit": "cm",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 60 cm.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "60",
+    "pred_unit": "cm",
+    "gold_value": "60",
+    "gold_unit": "cm"
+  },
+  {
+    "query_id": "T2_0028",
+    "ok": true,
+    "expected": "3 W",
+    "got": "3 W",
+    "status_code": 200,
+    "elapsed_sec": 22.204131399999994,
+    "request_payload": {
+      "query_id": "T2_0028",
+      "type": "type2",
+      "query": "A lamp carries current I = 0.25 A under voltage U = 12 V. Calculate its power.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0028",
+      "answer": "3",
+      "unit": "W",
+      "explanation": "Using Excerpt from THCB_parallel_dc_circuit (part 9), the computation yields a result of 3, in units of W.",
+      "premises_used": [],
+      "reasoning": {
+        "type": "cot",
+        "steps": [
+          "FOL: ∀p (PhysicsProblem(p) ∧ Topic(p, \"dc_circuit\") → SolveByRelevantPremisesAndExecutableCode(p))",
+          "Step 1: Identify the given current (I) and voltage (U).",
+          "Step 2: Recall the formula for power (P) in an electrical circuit: P = U × I.",
+          "Step 3: Substitute the given values into the formula: P = 12 V × 0.25 A.",
+          "Step 4: Calculate the power: P = 3 W."
+        ]
+      }
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "3",
+    "pred_unit": "W",
+    "gold_value": "3",
+    "gold_unit": "W"
+  },
+  {
+    "query_id": "T2_0029",
+    "ok": true,
+    "expected": "15 uJ",
+    "got": "15 μJ",
+    "status_code": 200,
+    "elapsed_sec": 28.416780899999992,
+    "request_payload": {
+      "query_id": "T2_0029",
+      "type": "type2",
+      "query": "A charge q = 3 uC moves through a potential difference U = 5 V. Calculate the work done.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0029",
+      "answer": "15",
+      "unit": "μJ",
+      "explanation": "Using Excerpt from DT_electric_potential_voltage (part 7), the computation yields a result of 15, in units of μJ.",
+      "premises_used": [],
+      "reasoning": {
+        "type": "cot",
+        "steps": [
+          "FOL: ∀p (PhysicsProblem(p) ∧ Topic(p, \"electric_potential\") → SolveByRelevantPremisesAndExecutableCode(p))",
+          "Step 1: Identify the given charge q = 3 uC and potential difference U = 5 V.",
+          "Step 2: Convert the charge from microcoulombs (uC) to coulombs (C): q = 3 uC = 3 × 10^-6 C.",
+          "Step 3: Recall the formula for work done by electric force: W = q × U.",
+          "Step 4: Substitute the values into the formula: W = (3 × 10^-6 C) × (5 V).",
+          "Step 5: Calculate the work: W = 15 × 10^-6 J = 15 uJ."
+        ]
+      }
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "15",
+    "pred_unit": "μJ",
+    "gold_value": "15",
+    "gold_unit": "μJ"
+  },
+  {
+    "query_id": "T2_0039",
+    "ok": true,
+    "expected": "1 ohm",
+    "got": "1 ohm",
+    "status_code": 200,
+    "elapsed_sec": 1.0266514000000484,
+    "request_payload": {
+      "query_id": "T2_0039",
+      "type": "type2",
+      "query": "A conductor has length l = 2 m, cross-sectional area S = 1 mm^2, and resistivity rho = 0.5 ohm*mm^2/m. Calculate its resistance.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0039",
+      "answer": "1",
+      "unit": "ohm",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 1 ohm.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "1",
+    "pred_unit": "ohm",
+    "gold_value": "1",
+    "gold_unit": "ohm"
+  },
+  {
+    "query_id": "T2_0049",
+    "ok": true,
+    "expected": "48 V",
+    "got": "48 V",
+    "status_code": 200,
+    "elapsed_sec": 0.9880308000000468,
+    "request_payload": {
+      "query_id": "T2_0049",
+      "type": "type2",
+      "query": "A transformer has primary turns N1 = 200, secondary turns N2 = 800, and primary voltage U1 = 12 V. Calculate the secondary voltage.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0049",
+      "answer": "48",
+      "unit": "V",
+      "explanation": "The problem was solved by applying relevant physics principles. The final answer is 48 V.",
+      "premises_used": [],
+      "reasoning": null
+    },
+    "exact": true,
+    "numeric_match": true,
+    "strict_unit": true,
+    "physical_equiv": true,
+    "pred_value": "48",
+    "pred_unit": "V",
+    "gold_value": "48",
+    "gold_unit": "V"
+  },
+  {
+    "query_id": "T2_0050",
+    "ok": true,
+    "expected": "1 ohm",
+    "got": "1 Ω",
+    "status_code": 200,
+    "elapsed_sec": 31.098203900000044,
+    "request_payload": {
+      "query_id": "T2_0050",
+      "type": "type2",
+      "query": "A resistor dissipates P = 9 W when the current is I = 3 A. Calculate its resistance.",
+      "premises": [],
+      "options": []
+    },
+    "response": {
+      "query_id": "T2_0050",
+      "answer": "1",
+      "unit": "Ω",
+      "explanation": "Using Excerpt from THCB_parallel_dc_circuit (part 2), the computation yields a result of 1, in units of Ω.",
+      "premises_used": [],
+      "reasoning": {
+        "type": "cot",
+        "steps": [
+          "FOL: ∀p (PhysicsProblem(p) ∧ Topic(p, \"dc_circuit\") → SolveByRelevantPremisesAndExecutableCode(p))",
+          "Step 1: Identify the given values from the question: Power (P) = 9 W and Current (I) = 3 A.",
+          "Step 2: Recall the formula for power in terms of current and resistance: P = I²R.",
+          "Step 3: Rearrange the formula to solve for resistance (R): R = P / I².",
+          "Step 4: Substitute the given values into the rearranged formula: R = 9 W / (3 A)².",
+          "Step 5: Calculate the square of the current: (3 A)² = 9 A².",
+          "Step 6: Perform the division to find the resistance: R = 9 W / 9 A² = 1 Ω.",
+          "Step 7: State the final conclusion: the resistance is R = 1 Ω."
+        ]
+      }
+    },
+    "exact": false,
+    "numeric_match": true,
+    "strict_unit": false,
+    "physical_equiv": true,
+    "pred_value": "1",
+    "pred_unit": "Ω",
+    "gold_value": "1",
+    "gold_unit": "ohm"
+  }
+]

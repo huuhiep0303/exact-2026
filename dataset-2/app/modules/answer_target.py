@@ -47,6 +47,10 @@ _UNIT_DIMENSIONS = {
     "m": "distance",
     "cm": "distance",
     "mm": "distance",
+    "m/s": "speed",
+    "m/s^2": "acceleration",
+    "m/s2": "acceleration",
+    "pa": "pressure",
     "v": "voltage",
     "a": "current",
 }
@@ -148,6 +152,14 @@ def detect_answer_target(question: str) -> AnswerTarget:
         return AnswerTarget("numeric", "capacitance", ("capacitance",))
     if "power" in focus and "power factor" not in focus:
         return AnswerTarget("numeric", "power", ("power",))
+    if "current" in focus:
+        return AnswerTarget("numeric", "current", ("current",))
+    if "speed" in focus or "velocity" in focus:
+        return AnswerTarget("numeric", "speed", ("speed",))
+    if "acceleration" in focus:
+        return AnswerTarget("numeric", "acceleration", ("acceleration",))
+    if "pressure" in focus:
+        return AnswerTarget("numeric", "pressure", ("pressure",))
     if "what distance" in focus or "how far" in focus or re.search(
         r"\b(?:find|calculate|determine)\s+(?:the\s+)?distance\b", focus
     ):
